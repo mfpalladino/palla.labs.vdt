@@ -8,7 +8,7 @@ namespace Palla.Labs.Vdt.Controllers
     {
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse<string>(HttpStatusCode.OK, "Aparentemente está tudo ok...");
+            return Request.CreateResponse<string>(HttpStatusCode.OK, "Aparentemente está tudo ok (testando appveyor)...");
         }
     }
 }
