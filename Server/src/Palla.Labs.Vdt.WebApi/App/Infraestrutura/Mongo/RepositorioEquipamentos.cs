@@ -37,12 +37,12 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
         private static string PegaStringConexao()
         {
-            return ConfigurationManager.ConnectionStrings["string-conexao"].ConnectionString;
+            return Environment.GetEnvironmentVariable("string-conexao") ?? ConfigurationManager.AppSettings["string-conexao"];
         }
 
         private static string PegaBancoDeDados()
         {
-            return ConfigurationManager.AppSettings["banco-de-dados"];
+            return Environment.GetEnvironmentVariable("banco-de-dados") ?? ConfigurationManager.AppSettings["banco-de-dados"];
         }
     }
 }
