@@ -202,7 +202,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="palla.labs.vdt.webapi-log4net.config" />
-    <Content Include="palla.labs.vdt.webapi.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
