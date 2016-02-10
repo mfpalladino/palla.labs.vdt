@@ -6,7 +6,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao
     [SetUpFixture]
     public class Configuracao
     {
-        [SetUp]
+        [OneTimeSetUp]
         public void RodarAntes()
         {
             Registrador.EfetuarRegistros();
