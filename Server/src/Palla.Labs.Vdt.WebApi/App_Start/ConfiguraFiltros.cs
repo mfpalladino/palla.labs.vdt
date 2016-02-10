@@ -2,9 +2,9 @@
 
 namespace Palla.Labs.Vdt
 {
-    public class FilterConfig
+    public class ConfiguraFiltros
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        public static void Configurar(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
         }

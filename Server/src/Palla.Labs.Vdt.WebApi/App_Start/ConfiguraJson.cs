@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using System.Web.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+
+namespace Palla.Labs.Vdt
+{
+    public static class ConfiguraJson
+    {
+        public static void Configurar(HttpConfiguration config)
+        {
+            var jsonFormatter = new JsonMediaTypeFormatter
+            {
+                SerializerSettings = { ContractResolver = new CamelCasePropertyNamesContractResolver() }
+            };
+
+            jsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Include;
+            jsonFormatter.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Unspecified;
+
+            config.Services.Replace(typeof(IContentNegotiator), new JsonContentNegotiator(jsonFormatter));
+        }
+
+        public class JsonContentNegotiator : IContentNegotiator
+        {
+            private readonly JsonMediaTypeFormatter _jsonFormatter;
+
+            public JsonContentNegotiator(JsonMediaTypeFormatter formatter)
+            {
+                _jsonFormatter = formatter;
+            }
+
+            public ContentNegotiationResult Negotiate(Type type, HttpRequestMessage request, IEnumerable<MediaTypeFormatter> formatters)
+            {
+                var result = new ContentNegotiationResult(_jsonFormatter, new MediaTypeHeaderValue("application/json"));
+                return result;
+            }
+        }
+
+    }
+}

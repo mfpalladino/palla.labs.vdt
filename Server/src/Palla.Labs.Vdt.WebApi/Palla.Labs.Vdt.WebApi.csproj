@@ -46,6 +46,15 @@
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB.Bson.2.2.3\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\MongoDB.Driver.2.2.3\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.2.3\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -140,21 +149,33 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\ApplicationServices\" />
-    <Folder Include="App\Domain\Factories\" />
-    <Folder Include="App\Domain\Services\" />
-    <Folder Include="App\Infrastructure\Web\" />
+    <Folder Include="App\Dominio\Fabricas\" />
+    <Folder Include="App\Dominio\Servicos\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Domain\Exceptions\BaseException.cs" />
-    <Compile Include="App\Domain\Exceptions\HttpStatusCodeMapper\DomainExceptionHttpStatusCodeMapper.cs" />
-    <Compile Include="App\Domain\Model\ErrorResult.cs" />
-    <Compile Include="App_Start\ExceptionsPolicy\DomainExceptionHttpStatusCodeFilter.cs" />
-    <Compile Include="App_Start\ExceptionsPolicy\ExceptionsPolicyConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IocConfig.cs" />
-    <Compile Include="App_Start\JsonContentNegotiator.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="App\Dominio\Excecoes\BaseException.cs" />
+    <Compile Include="App\Dominio\Excecoes\MapeadorParaHttpStatusCode\ExcecaoDominioParaHttpStatusCode.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\CentralAlarme.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\TipoCentralAlarme.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\ComprimentoMangueira.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\DiametroMangueira.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\EquipamentoBase.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\Mangueira.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\TipoMangueira.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
+    <Compile Include="App\Dominio\Modelos\ResultadoErro.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\Extintor.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamento.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamentoExtensoes.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\Registrador.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\RepositorioEquipamentos.cs" />
+    <Compile Include="App_Start\ConfiguraJson.cs" />
+    <Compile Include="App_Start\Excecoes\FiltroExcecoes.cs" />
+    <Compile Include="App_Start\Excecoes\ConfiguraPoliticaExcecoes.cs" />
+    <Compile Include="App_Start\ConfiguraFiltros.cs" />
+    <Compile Include="App_Start\ConfiguraIoC.cs" />
+    <Compile Include="App_Start\ConfiguraWebApi.cs" />
     <Compile Include="Controllers\HealthCheckController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="parameters.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

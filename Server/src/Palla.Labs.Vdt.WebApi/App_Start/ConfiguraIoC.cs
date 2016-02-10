@@ -4,9 +4,9 @@ using SimpleInjector.Integration.WebApi;
 
 namespace Palla.Labs.Vdt
 {
-    public static class IocConfig
+    public static class ConfiguraIoC
     {
-        public static void Configure(HttpConfiguration config)
+        public static void Configurar(HttpConfiguration config)
         {
             var container = new Container();
             //

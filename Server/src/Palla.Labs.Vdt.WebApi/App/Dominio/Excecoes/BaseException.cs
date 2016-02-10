@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Palla.Labs.Vdt.App.Domain.Exceptions
+namespace Palla.Labs.Vdt.App.Dominio.Excecoes
 {
     public abstract class BaseException : Exception
     {
