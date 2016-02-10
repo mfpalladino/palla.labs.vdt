@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Integracao
@@ -7,7 +7,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao
     public class Configuracao
     {
         [OneTimeSetUp]
-        public void RodarAntes()
+        public void RodarAntesDosTestes()
         {
             Registrador.EfetuarRegistros();
         }

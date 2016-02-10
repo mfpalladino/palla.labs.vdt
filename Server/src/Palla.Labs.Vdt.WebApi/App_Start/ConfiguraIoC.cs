@@ -1,4 +1,6 @@
 using System.Web.Http;
+using MongoDB.Driver;
+using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 
@@ -9,7 +11,12 @@ namespace Palla.Labs.Vdt
         public static void Configurar(HttpConfiguration config)
         {
             var container = new Container();
-            //
+            
+            var leitorConfiguracoes = new LeitorConfiguracoesBancoDeDadosArquivo();
+            
+            container.RegisterSingle<ILeitorConfiguracoesBancoDeDados>(leitorConfiguracoes);
+            container.RegisterSingle<IMongoClient>(new MongoClient(leitorConfiguracoes.StringConexao));
+            container.RegisterSingle<RepositorioEquipamentos, RepositorioEquipamentos>();
 
             container.RegisterWebApiControllers(config);
 

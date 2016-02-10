@@ -1,48 +1,34 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Configuration;
 using MongoDB.Driver;
 using Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 {
-    public class RepositorioEquipamentos
+    public class RepositorioEquipamentos : RepositorioBase
     {
         private const string NOME_COLECAO = "equipamentos";
 
-        public void Inserir(EquipamentoBase equipamento)
+        public RepositorioEquipamentos(IMongoClient mongoClient, ILeitorConfiguracoesBancoDeDados leitorConfiguracoesBancoDeDados)
+            : base(mongoClient, leitorConfiguracoesBancoDeDados)
         {
-            var client = new MongoClient(PegaStringConexao());
-            var db = client.GetDatabase(PegaBancoDeDados());
-            var collection = db.GetCollection<EquipamentoBase>(NOME_COLECAO);
-            collection.InsertOne(equipamento);
         }
 
-        public IReadOnlyList<EquipamentoBase> ListarTodos() //apenas para testes
+        public void Inserir(EquipamentoBase equipamento)
         {
-            var client = new MongoClient(PegaStringConexao());
-            var db = client.GetDatabase(PegaBancoDeDados());
-            var collection = db.GetCollection<EquipamentoBase>(NOME_COLECAO);
-            return new ReadOnlyCollection<EquipamentoBase>(collection.Find(x => true).ToList());
+            var colecao = MongoDatabase.GetCollection<EquipamentoBase>(NOME_COLECAO);
+            colecao.InsertOne(equipamento);
+        }
+
+        public EquipamentoBase ListarPorId(Guid id)
+        {
+            var colecao = MongoDatabase.GetCollection<EquipamentoBase>(NOME_COLECAO);
+            return colecao.Find(x => x.Id == id).FirstOrDefault();
         }
 
         public void Remover(Guid id)
         {
-            var client = new MongoClient(PegaStringConexao());
-            var db = client.GetDatabase(PegaBancoDeDados());
-            var collection = db.GetCollection<EquipamentoBase>(NOME_COLECAO);
-            collection.DeleteOne(x => x.Id == id);
-        }
-
-        private static string PegaStringConexao()
-        {
-            return Environment.GetEnvironmentVariable("string-conexao") ?? ConfigurationManager.AppSettings["string-conexao"];
-        }
-
-        private static string PegaBancoDeDados()
-        {
-            return Environment.GetEnvironmentVariable("banco-de-dados") ?? ConfigurationManager.AppSettings["banco-de-dados"];
+            var colecao = MongoDatabase.GetCollection<EquipamentoBase>(NOME_COLECAO);
+            colecao.DeleteOne(x => x.Id == id);
         }
     }
 }

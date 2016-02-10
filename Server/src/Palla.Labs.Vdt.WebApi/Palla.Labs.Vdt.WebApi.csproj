@@ -168,7 +168,12 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\Extintor.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamentoExtensoes.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ILeitorConfiguracoesBancoDeDados.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\LeitorConfiguracoesBancoDeDadosArquivo.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\LeitorConfiguracoesBancoDeDadosVariavelAmbiente.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\LeitorConfiguracoesBancoDeDadosVariavelAmbienteTestes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\Registrador.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\RepositorioBase.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioEquipamentos.cs" />
     <Compile Include="App_Start\ConfiguraJson.cs" />
     <Compile Include="App_Start\Excecoes\FiltroExcecoes.cs" />
@@ -184,7 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="parameters.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
