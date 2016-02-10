@@ -55,9 +55,25 @@
     <Reference Include="MongoDB.Driver.Core">
       <HintPath>..\packages\MongoDB.Driver.Core.2.2.3\lib\net45\MongoDB.Driver.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\packages\NUnit3TestAdapter.3.0.8-ctp-8\lib\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.engine">
+      <HintPath>..\packages\NUnit3TestAdapter.3.0.8-ctp-8\lib\nunit.engine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.engine.api">
+      <HintPath>..\packages\NUnit3TestAdapter.3.0.8-ctp-8\lib\nunit.engine.api.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NUnit3.TestAdapter">
+      <HintPath>..\packages\NUnit3TestAdapter.3.0.8-ctp-8\lib\NUnit3.TestAdapter.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="SimpleInjector">
       <HintPath>..\packages\SimpleInjector.2.8.0-beta1\lib\net45\SimpleInjector.dll</HintPath>
@@ -149,29 +165,36 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\ApplicationServices\" />
-    <Folder Include="App\Dominio\Fabricas\" />
-    <Folder Include="App\Dominio\Servicos\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Dominio\Excecoes\BaseException.cs" />
     <Compile Include="App\Dominio\Excecoes\MapeadorParaHttpStatusCode\ExcecaoDominioParaHttpStatusCode.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaParametrosVencimento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\CentralAlarme.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\TipoCentralAlarme.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\ParametrosVencimentoCentralAlarme.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\ParametrosVencimentoExtintor.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\ParametrosVencimentoMangueira.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\ParametrosVencimentoSistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\ComprimentoMangueira.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\DiametroMangueira.cs" />
-    <Compile Include="App\Dominio\Modelos\Equipamento\EquipamentoBase.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Equipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\Mangueira.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\TipoMangueira.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Manutencao.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\ParametrosVencimento.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\ParteEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\ResultadoErro.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\Extintor.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamentoExtensoes.cs" />
-    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ILeitorConfiguracoesBancoDeDados.cs" />
-    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\LeitorConfiguracoesBancoDeDadosArquivo.cs" />
-    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\LeitorConfiguracoesBancoDeDadosVariavelAmbiente.cs" />
-    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\LeitorConfiguracoesBancoDeDadosVariavelAmbienteTestes.cs" />
+    <Compile Include="App\Dominio\Servicos\ServicoManutencao.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\IConfigBancoDados.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ConfigBancoDadosArquivo.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ConfigBancoDadosVariavelAmbiente.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ConfigBancoDadosVariavelAmbienteTestes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\Registrador.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioBase.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioEquipamentos.cs" />

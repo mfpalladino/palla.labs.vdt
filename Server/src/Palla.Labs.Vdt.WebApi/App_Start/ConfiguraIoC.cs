@@ -12,9 +12,9 @@ namespace Palla.Labs.Vdt
         {
             var container = new Container();
             
-            var leitorConfiguracoes = new LeitorConfiguracoesBancoDeDadosArquivo();
-            
-            container.RegisterSingle<ILeitorConfiguracoesBancoDeDados>(leitorConfiguracoes);
+            var leitorConfiguracoes = new ConfigBancoDadosArquivo();
+
+            container.RegisterSingle<IConfigBancoDados>(leitorConfiguracoes);
             container.RegisterSingle<IMongoClient>(new MongoClient(leitorConfiguracoes.StringConexao));
             container.RegisterSingle<RepositorioEquipamentos, RepositorioEquipamentos>();
 

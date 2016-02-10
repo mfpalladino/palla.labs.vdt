@@ -4,18 +4,18 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 {
     public abstract class RepositorioBase
     {
-        protected RepositorioBase(IMongoClient mongoClient, ILeitorConfiguracoesBancoDeDados leitorConfiguracoesBancoDeDados)
+        protected RepositorioBase(IMongoClient mongoClient, IConfigBancoDados configBancoDados)
         {
             MongoClient = mongoClient;
-            LeitorConfiguracoesBancoDeDados = leitorConfiguracoesBancoDeDados;
+            ConfigBancoDados = configBancoDados;
         }
 
         protected IMongoClient MongoClient { get; private set; }
-        protected ILeitorConfiguracoesBancoDeDados LeitorConfiguracoesBancoDeDados { get; private set; }
+        protected IConfigBancoDados ConfigBancoDados { get; private set; }
 
         protected IMongoDatabase MongoDatabase
         {
-            get { return MongoClient.GetDatabase(LeitorConfiguracoesBancoDeDados.BancoDeDados); }
+            get { return MongoClient.GetDatabase(ConfigBancoDados.NomeBancoDados); }
         }
     }
 }

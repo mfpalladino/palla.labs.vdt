@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
 using MongoDB.Driver;
 using NUnit.Framework;
-using Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.WebApi.Testes.Fabricas;
 
-namespace Palla.Labs.Vdt.WebApi.Testes.Integracao
+namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
 {
     [TestFixture]
     public class RepositorioEquipamentoDeve
@@ -13,7 +13,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao
         [Test]
         public void LidarCorretamenteComHierarquiaDeEquipamentos()
         {
-            var leitorConfiguracoes = new LeitorConfiguracoesBancoDeDadosVariavelAmbienteTestes();
+            var leitorConfiguracoes = new ConfigBancoDadosVariavelAmbienteTestes();
             var repositorio = new RepositorioEquipamentos(new MongoClient(leitorConfiguracoes.StringConexao), leitorConfiguracoes);
 
             Extintor extintor = null;

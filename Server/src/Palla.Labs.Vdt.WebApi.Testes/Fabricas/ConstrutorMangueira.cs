@@ -1,4 +1,5 @@
-﻿using Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento;
+﻿using System.Collections.Generic;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
 {
@@ -6,7 +7,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
     {
         public Mangueira Construir()
         {
-            return new Mangueira(TipoMangueira.Tipo1, DiametroMangueira.DoisMetrosEMeio, ComprimentoMangueira.TrintaMetros);
+            return new Mangueira(TipoMangueira.Tipo1, DiametroMangueira.DoisMetrosEMeio, ComprimentoMangueira.TrintaMetros, new List<Manutencao>());
         }
     }
 }

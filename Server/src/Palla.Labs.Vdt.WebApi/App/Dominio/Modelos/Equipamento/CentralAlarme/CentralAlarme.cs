@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
-namespace Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento
+namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
-    public class CentralAlarme : EquipamentoBase
+    public class CentralAlarme : Equipamento
     {
         private readonly string _fabricante;
         private readonly string _modelo;
@@ -19,14 +20,16 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento
             int quantidadeDetectores,
             bool detectorEnderecavel,
             int quantidadeAcionadores,
-            int quantidadeSirenes)
+            int quantidadeSirenes,
+            IList<Manutencao> manutencoes)
             : this(Guid.NewGuid(), fabricante,
                 modelo,
                 tipoCentralAlarme,
                 quantidadeDetectores,
                 detectorEnderecavel,
                 quantidadeAcionadores,
-                quantidadeSirenes)
+                quantidadeSirenes,
+                manutencoes)
         {
         }
 
@@ -36,8 +39,9 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento
             int quantidadeDetectores, 
             bool detectorEnderecavel,
             int quantidadeAcionadores,
-            int quantidadeSirenes)
-            : base(id, TipoEquipamento.CentralAlarme)
+            int quantidadeSirenes,
+            IList<Manutencao> manutencoes)
+            : base(id, manutencoes, TipoEquipamento.CentralAlarme)
         {
             _fabricante = fabricante;
             _modelo = modelo;

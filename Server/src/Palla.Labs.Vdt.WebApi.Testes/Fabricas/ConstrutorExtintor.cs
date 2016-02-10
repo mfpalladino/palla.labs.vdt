@@ -1,5 +1,6 @@
 ﻿using System;
-using Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento;
+using System.Collections.Generic;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
 {
@@ -7,7 +8,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
     {
         public Extintor Construir()
         {
-            return new Extintor("111", "agente", "localização", DateTime.Now); 
+            return new Extintor("111", "agente", "localização", DateTime.Now, new List<Manutencao>()); 
         }
     }
 }

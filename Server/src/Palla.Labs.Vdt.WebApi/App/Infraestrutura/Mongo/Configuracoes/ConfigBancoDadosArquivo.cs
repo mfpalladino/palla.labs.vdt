@@ -3,9 +3,9 @@ using System.Configuration;
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 {
-    public class LeitorConfiguracoesBancoDeDadosArquivo : ILeitorConfiguracoesBancoDeDados
+    public class ConfigBancoDadosArquivo : IConfigBancoDados
     {
-        public string BancoDeDados
+        public string NomeBancoDados
         {
             get { return ConfigurationManager.AppSettings["banco-de-dados"]; }
         }

@@ -1,9 +1,9 @@
  // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 {
-    public interface ILeitorConfiguracoesBancoDeDados
+    public interface IConfigBancoDados
     {
-        string BancoDeDados { get; }
+        string NomeBancoDados { get; }
         string StringConexao { get; }
     }
 }

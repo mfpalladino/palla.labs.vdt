@@ -1,4 +1,5 @@
-﻿using Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento;
+﻿using System.Collections.Generic;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
 {
@@ -6,7 +7,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
     {
         public SistemaContraIncendioEmCoifa Construir()
         {
-            return new SistemaContraIncendioEmCoifa("central", 2, 2, 2);
+            return new SistemaContraIncendioEmCoifa("central", 2, 2, 2, new List<Manutencao>());
         }
     }
 }

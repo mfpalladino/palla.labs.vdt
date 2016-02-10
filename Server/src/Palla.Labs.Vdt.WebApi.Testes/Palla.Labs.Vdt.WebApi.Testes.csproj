@@ -85,7 +85,8 @@
     <Compile Include="Fabricas\ConstrutorMangueira.cs" />
     <Compile Include="Fabricas\ConstrutorSistemaContraIncendioEmCoifa.cs" />
     <Compile Include="Integracao\Configuracao.cs" />
-    <Compile Include="Integracao\RepositorioEquipamentoDeve.cs" />
+    <Compile Include="Integracao\Repositorios\RepositorioEquipamentoDeve.cs" />
+    <Compile Include="Integracao\Servicos\ServicoManutencaoDeve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

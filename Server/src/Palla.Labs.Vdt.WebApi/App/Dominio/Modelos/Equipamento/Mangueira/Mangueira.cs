@@ -1,23 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
-namespace Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento
+namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
-    public class Mangueira : EquipamentoBase
+    public class Mangueira : Equipamento
     {
         private readonly TipoMangueira _tipoMangueira;
         private readonly DiametroMangueira _diametro;
         private readonly ComprimentoMangueira _comprimento;
 
-        public Mangueira(TipoMangueira tipoMangueira,
-            DiametroMangueira diametro, ComprimentoMangueira comprimento)
-            : this(Guid.NewGuid(), tipoMangueira, diametro, comprimento)
+        public Mangueira(TipoMangueira tipoMangueira, DiametroMangueira diametro, ComprimentoMangueira comprimento, IList<Manutencao> manutencoes)
+            : this(Guid.NewGuid(), tipoMangueira, diametro, comprimento, manutencoes)
         {
         }
 
         public Mangueira(Guid id, TipoMangueira tipoMangueira,
-            DiametroMangueira diametro, ComprimentoMangueira comprimento)
-            : base(id, TipoEquipamento.Mangueira)
+            DiametroMangueira diametro, ComprimentoMangueira comprimento, IList<Manutencao> manutencoes)
+            : base(id, manutencoes, TipoEquipamento.Mangueira)
         {
             _tipoMangueira = tipoMangueira;
             _diametro = diametro;

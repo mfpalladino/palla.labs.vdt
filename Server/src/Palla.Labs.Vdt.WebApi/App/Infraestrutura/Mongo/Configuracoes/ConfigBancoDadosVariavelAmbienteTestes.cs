@@ -3,9 +3,9 @@ using System;
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 {
-    public class LeitorConfiguracoesBancoDeDadosVariavelAmbienteTestes : ILeitorConfiguracoesBancoDeDados
+    public class ConfigBancoDadosVariavelAmbienteTestes : IConfigBancoDados
     {
-        public string BancoDeDados
+        public string NomeBancoDados
         {
             get { return Environment.GetEnvironmentVariable("vdt-banco-de-dados-testes"); }
         }

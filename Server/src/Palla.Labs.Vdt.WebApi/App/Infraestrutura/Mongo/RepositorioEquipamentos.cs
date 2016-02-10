@@ -1,6 +1,6 @@
 using System;
 using MongoDB.Driver;
-using Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 {
@@ -8,26 +8,33 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
     {
         private const string NOME_COLECAO = "equipamentos";
 
-        public RepositorioEquipamentos(IMongoClient mongoClient, ILeitorConfiguracoesBancoDeDados leitorConfiguracoesBancoDeDados)
-            : base(mongoClient, leitorConfiguracoesBancoDeDados)
+        public RepositorioEquipamentos(IMongoClient mongoClient, IConfigBancoDados configBancoDados)
+            : base(mongoClient, configBancoDados)
         {
         }
 
-        public void Inserir(EquipamentoBase equipamento)
+        public void Inserir(Equipamento equipamento)
         {
-            var colecao = MongoDatabase.GetCollection<EquipamentoBase>(NOME_COLECAO);
+            var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);
             colecao.InsertOne(equipamento);
         }
 
-        public EquipamentoBase ListarPorId(Guid id)
+        public void InserirManutencao(Equipamento equipamento, Manutencao manutencao)
         {
-            var colecao = MongoDatabase.GetCollection<EquipamentoBase>(NOME_COLECAO);
+            var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);
+            colecao.FindOneAndUpdate(Builders<Equipamento>.Filter.Eq(x => x.Id, equipamento.Id), 
+                Builders<Equipamento>.Update.AddToSet(x => x.Manutencoes, manutencao));
+        }
+
+        public Equipamento ListarPorId(Guid id)
+        {
+            var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);
             return colecao.Find(x => x.Id == id).FirstOrDefault();
         }
 
         public void Remover(Guid id)
         {
-            var colecao = MongoDatabase.GetCollection<EquipamentoBase>(NOME_COLECAO);
+            var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);
             colecao.DeleteOne(x => x.Id == id);
         }
     }

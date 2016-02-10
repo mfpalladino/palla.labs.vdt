@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
-namespace Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento
+namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
-    public class Extintor : EquipamentoBase
+    public class Extintor : Equipamento
     {
         private readonly string _numeroCilindro;
         private readonly string _agente;
@@ -11,14 +12,14 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento
         private readonly DateTime _fabricadoEm;
 
         public Extintor(string numeroCilindro,
-            string agente, string localizacao, DateTime fabricadoEm)
-            : this(Guid.NewGuid(), numeroCilindro, agente, localizacao, fabricadoEm)
+            string agente, string localizacao, DateTime fabricadoEm, IList<Manutencao> manutencoes)
+            : this(Guid.NewGuid(), numeroCilindro, agente, localizacao, fabricadoEm, manutencoes)
         {
         }
 
         public Extintor(Guid id, string numeroCilindro,
-            string agente, string localizacao, DateTime fabricadoEm)
-            : base(id, TipoEquipamento.Extintor)
+            string agente, string localizacao, DateTime fabricadoEm, IList<Manutencao> manutencoes)
+            : base(id, manutencoes, TipoEquipamento.Extintor)
         {
             _numeroCilindro = numeroCilindro;
             _agente = agente;

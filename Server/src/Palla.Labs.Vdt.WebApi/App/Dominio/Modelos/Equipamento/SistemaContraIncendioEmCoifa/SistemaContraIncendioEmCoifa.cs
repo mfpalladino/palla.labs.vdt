@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
-namespace Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento
+namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
-    public class SistemaContraIncendioEmCoifa : EquipamentoBase
+    public class SistemaContraIncendioEmCoifa : Equipamento
     {
         private readonly string _central;
         private readonly int _quantidadeCilindroCo2;
@@ -11,14 +12,14 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos.Equipamento
         private readonly int _quantidadeCilindroSaponificante;
 
         public SistemaContraIncendioEmCoifa(string central,
-            int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante)
-            : this(Guid.NewGuid(), central, quantidadeCilindroCo2, pesoCilindroCo2, quantidadeCilindroSaponificante)
+            int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante, IList<Manutencao> manutencoes)
+            : this(Guid.NewGuid(), central, quantidadeCilindroCo2, pesoCilindroCo2, quantidadeCilindroSaponificante, manutencoes)
         {
         }
 
         public SistemaContraIncendioEmCoifa(Guid id, string central,
-            int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante)
-            : base(id, TipoEquipamento.SistemaContraIncendioEmCoifa)
+            int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante, IList<Manutencao> manutencoes)
+            : base(id, manutencoes, TipoEquipamento.SistemaContraIncendioEmCoifa)
         {
             _central = central;
             _quantidadeCilindroCo2 = quantidadeCilindroCo2;
