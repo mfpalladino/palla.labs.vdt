@@ -86,7 +86,8 @@
     <Compile Include="Fabricas\ConstrutorSistemaContraIncendioEmCoifa.cs" />
     <Compile Include="Integracao\Configuracao.cs" />
     <Compile Include="Integracao\Repositorios\RepositorioEquipamentoDeve.cs" />
-    <Compile Include="Integracao\Servicos\ServicoManutencaoDeve.cs" />
+    <Compile Include="Integracao\ServicosAplicacao\CriadorManutencaoDeve.cs" />
+    <Compile Include="Unidade\ServicosDominio\CalculadoraSituacaoManutencaoDeve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

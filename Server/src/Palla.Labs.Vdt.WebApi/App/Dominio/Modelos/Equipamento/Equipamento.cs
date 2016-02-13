@@ -10,7 +10,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
     {
         private readonly Guid _id;
         private readonly TipoEquipamento _tipo;
-        private ParametrosVencimento _parametrosVencimento;
+        private ParametrosManutencao _parametrosManutencao;
         private readonly IList<Manutencao> _manutencoes;
 
         protected Equipamento(Guid id, IList<Manutencao> manutencoes, TipoEquipamento tipo)
@@ -35,12 +35,12 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             get { return new ReadOnlyCollection<Manutencao>(_manutencoes); }
         }
 
-        public ParametrosVencimento ParametrosVencimento
+        public ParametrosManutencao ParametrosManutencao
         {
             get
             {
-                return _parametrosVencimento ??
-                       (_parametrosVencimento = FabricaParametrosVencimento.Criar(_tipo));
+                return _parametrosManutencao ??
+                       (_parametrosManutencao = FabricaParametrosManutencao.Criar(_tipo));
             }
         }
     }

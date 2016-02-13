@@ -164,33 +164,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\ApplicationServices\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\Compartilhado\ExtensoesDeBoolean.cs" />
+    <Compile Include="App\Compartilhado\ExtensoesDeDateTime.cs" />
     <Compile Include="App\Dominio\Excecoes\BaseException.cs" />
     <Compile Include="App\Dominio\Excecoes\MapeadorParaHttpStatusCode\ExcecaoDominioParaHttpStatusCode.cs" />
-    <Compile Include="App\Dominio\Fabricas\FabricaParametrosVencimento.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaParametrosManutencao.cs" />
+    <Compile Include="App\Dominio\Servicos\CalculadoraSituacaoManutencao.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\CentralAlarme.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\TipoCentralAlarme.cs" />
-    <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\ParametrosVencimentoCentralAlarme.cs" />
-    <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\ParametrosVencimentoExtintor.cs" />
-    <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\ParametrosVencimentoMangueira.cs" />
-    <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\ParametrosVencimentoSistemaContraIncendioEmCoifa.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\ParametrosManutencaoCentralAlarme.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\ParametrosManutencaoExtintor.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\ParametrosManutencaoMangueira.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\ParametrosManutencaoSistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\ComprimentoMangueira.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\DiametroMangueira.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Equipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\Mangueira.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Mangueira\TipoMangueira.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Manutencao.cs" />
-    <Compile Include="App\Dominio\Modelos\Equipamento\ParametrosVencimento.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\ParametrosManutencao.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\ParteEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
+    <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
     <Compile Include="App\Dominio\Modelos\ResultadoErro.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\Extintor.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamentoExtensoes.cs" />
-    <Compile Include="App\Dominio\Servicos\ServicoManutencao.cs" />
+    <Compile Include="App\ServicosAplicacao\ServicoManutencao.cs" />
     <Compile Include="App\Infraestrutura\Mongo\Configuracoes\IConfigBancoDados.cs" />
     <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ConfigBancoDadosArquivo.cs" />
     <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ConfigBancoDadosVariavelAmbiente.cs" />

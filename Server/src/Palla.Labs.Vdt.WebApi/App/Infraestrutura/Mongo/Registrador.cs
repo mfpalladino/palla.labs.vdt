@@ -14,7 +14,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
                 cm.MapIdField(c => c.Id);
                 cm.MapField(c => c.Tipo);
                 cm.MapField(c => c.Manutencoes);
-                cm.UnmapMember(c => c.ParametrosVencimento);
+                cm.UnmapMember(c => c.ParametrosManutencao);
             });
 
             BsonClassMap.RegisterClassMap<Extintor>(cm =>
