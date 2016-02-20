@@ -9,7 +9,7 @@ assembly_info:
   assembly_informational_version: '{version}'
 environment:
   vdt-banco-de-dados-testes:
-	secure: ggnWFrCFYUyrvD+MQuymcLS0p/E15V1qYJ/mSh6KJIQ=
+    secure: ggnWFrCFYUyrvD+MQuymcLS0p/E15V1qYJ/mSh6KJIQ=
   vdt-string-conexao-testes:
     secure: pZxBKcuTkC2DMElcMW1wpbuRKSERSlge8SUtf1PY/CAySF5+E6WF3rF4Y6/Z4i14GY5HwFeQBD1Im+ForReZCe8oJ7xLJyjc7pTAN8JrWSGrdR7WbrFjQVlA3/vQu33g2BNLRLo6H7ll6gFG2TT3fg==
   COVERALLS_REPO_TOKEN:
