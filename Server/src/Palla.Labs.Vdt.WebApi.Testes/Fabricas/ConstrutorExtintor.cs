@@ -16,7 +16,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
 
         public Extintor Construir()
         {
-            return new Extintor("111", "agente", "localização", DateTime.Now, _manutencoes); 
+            return new Extintor(Guid.NewGuid(), "111", "agente", "localização", DateTime.Now, _manutencoes); 
         }
     }
 }

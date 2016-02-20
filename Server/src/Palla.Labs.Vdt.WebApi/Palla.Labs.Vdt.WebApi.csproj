@@ -172,6 +172,11 @@
     <Compile Include="App\Dominio\Excecoes\BaseException.cs" />
     <Compile Include="App\Dominio\Excecoes\MapeadorParaHttpStatusCode\ExcecaoDominioParaHttpStatusCode.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaParametrosManutencao.cs" />
+    <Compile Include="App\Dominio\Modelos\Cliente\Cliente.cs" />
+    <Compile Include="App\Dominio\Modelos\Cliente\Cnpj.cs" />
+    <Compile Include="App\Dominio\Modelos\Cliente\CorreioEletronico.cs" />
+    <Compile Include="App\Dominio\Modelos\Cliente\Endereco.cs" />
+    <Compile Include="App\Dominio\Modelos\Cliente\Grupo.cs" />
     <Compile Include="App\Dominio\Servicos\CalculadoraSituacaoManutencao.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\CentralAlarme.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\TipoCentralAlarme.cs" />
@@ -193,6 +198,8 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\Extintor.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamentoExtensoes.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\RepositorioClientes.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\RepositorioGrupos.cs" />
     <Compile Include="App\ServicosAplicacao\ServicoManutencao.cs" />
     <Compile Include="App\Infraestrutura\Mongo\Configuracoes\IConfigBancoDados.cs" />
     <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ConfigBancoDadosArquivo.cs" />

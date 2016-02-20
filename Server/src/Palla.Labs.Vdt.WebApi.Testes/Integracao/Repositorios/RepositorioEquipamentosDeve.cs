@@ -8,7 +8,7 @@ using Palla.Labs.Vdt.WebApi.Testes.Fabricas;
 namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
 {
     [TestFixture]
-    public class RepositorioEquipamentoDeve
+    public class RepositorioEquipamentosDeve
     {
         [Test]
         public void LidarCorretamenteComHierarquiaDeEquipamentos()

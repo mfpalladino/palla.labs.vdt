@@ -7,7 +7,7 @@ using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
 using Palla.Labs.Vdt.WebApi.Testes.Fabricas;
 
-namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Servicos
+namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.ServicosAplicacao
 {
     [TestFixture]
     public class CriadorManutencaoDeve

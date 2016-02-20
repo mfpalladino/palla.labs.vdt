@@ -81,11 +81,18 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Fabricas\ConstrutorCentralAlarme.cs" />
+    <Compile Include="Fabricas\ConstrutorCliente.cs" />
+    <Compile Include="Fabricas\ConstrutorCnpj.cs" />
+    <Compile Include="Fabricas\ConstrutorCorreioEletronico.cs" />
+    <Compile Include="Fabricas\ConstrutorEndereco.cs" />
     <Compile Include="Fabricas\ConstrutorExtintor.cs" />
+    <Compile Include="Fabricas\ConstrutorGrupo.cs" />
     <Compile Include="Fabricas\ConstrutorMangueira.cs" />
     <Compile Include="Fabricas\ConstrutorSistemaContraIncendioEmCoifa.cs" />
     <Compile Include="Integracao\Configuracao.cs" />
-    <Compile Include="Integracao\Repositorios\RepositorioEquipamentoDeve.cs" />
+    <Compile Include="Integracao\Repositorios\RepositorioClientesDeve.cs" />
+    <Compile Include="Integracao\Repositorios\RepositorioGruposDeve.cs" />
+    <Compile Include="Integracao\Repositorios\RepositorioEquipamentosDeve.cs" />
     <Compile Include="Integracao\ServicosAplicacao\CriadorManutencaoDeve.cs" />
     <Compile Include="Unidade\ServicosDominio\CalculadoraSituacaoManutencaoDeve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
