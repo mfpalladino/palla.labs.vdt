@@ -24,7 +24,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             CorreioEletronico correioEletronicoLoja,
             CorreioEletronico correioEletronicoManutencao,
             CorreioEletronico correioEletronicoAdministracao)
-            : this(new Guid(), grupoId, cnpj, nome, codigo, endereco, correioEletronicoLoja, correioEletronicoManutencao, correioEletronicoAdministracao)
+            : this(Guid.NewGuid(), grupoId, cnpj, nome, codigo, endereco, correioEletronicoLoja, correioEletronicoManutencao, correioEletronicoAdministracao)
         {
         }
 

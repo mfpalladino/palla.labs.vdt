@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.Excecoes;
 
 namespace Palla.Labs.Vdt
@@ -18,6 +19,7 @@ namespace Palla.Labs.Vdt
             ConfiguraJson.Configurar(config);
             ConfiguraPoliticaExcecoes.Configurar(config);
             ConfiguraIoC.Configurar(config);
+            ConfiguraMongo.Configurar();
         }
     }
 }

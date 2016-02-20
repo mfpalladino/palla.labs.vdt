@@ -14,7 +14,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private readonly int _quantidadeAcionadores;
         private readonly int _quantidadeSirenes;
 
-        public CentralAlarme(Guid customerId, string fabricante,
+        public CentralAlarme(Guid clienteId, string fabricante,
             string modelo,
             TipoCentralAlarme tipoCentralAlarme,
             int quantidadeDetectores,
@@ -22,7 +22,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             int quantidadeAcionadores,
             int quantidadeSirenes,
             IList<Manutencao> manutencoes)
-            : this(Guid.NewGuid(), customerId, fabricante,
+            : this(Guid.NewGuid(), clienteId, fabricante,
                 modelo,
                 tipoCentralAlarme,
                 quantidadeDetectores,
@@ -33,7 +33,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         {
         }
 
-        public CentralAlarme(Guid id, Guid customerId, string fabricante,
+        public CentralAlarme(Guid id, Guid clienteId, string fabricante,
             string modelo, 
             TipoCentralAlarme tipoCentralAlarme, 
             int quantidadeDetectores, 
@@ -41,7 +41,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             int quantidadeAcionadores,
             int quantidadeSirenes,
             IList<Manutencao> manutencoes)
-            : base(id, customerId, manutencoes, TipoEquipamento.CentralAlarme)
+            : base(id, clienteId, manutencoes, TipoEquipamento.CentralAlarme)
         {
             _fabricante = fabricante;
             _modelo = modelo;

@@ -9,15 +9,15 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
     public abstract class Equipamento
     {
         private readonly Guid _id;
-        private readonly Guid _customerId;
+        private readonly Guid _clienteId;
         private readonly TipoEquipamento _tipo;
         private ParametrosManutencao _parametrosManutencao;
         private readonly IList<Manutencao> _manutencoes;
 
-        protected Equipamento(Guid id, Guid customerId, IList<Manutencao> manutencoes, TipoEquipamento tipo)
+        protected Equipamento(Guid id, Guid clienteId, IList<Manutencao> manutencoes, TipoEquipamento tipo)
         {
             _id = id;
-            _customerId = customerId;
+            _clienteId = clienteId;
             _manutencoes = manutencoes;
             _tipo = tipo;
         }
@@ -27,9 +27,9 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             get { return _id; }
         }
 
-        public Guid CustomerId
+        public Guid ClienteId
         {
-            get { return _customerId; }
+            get { return _clienteId; }
         }
 
         public TipoEquipamento Tipo

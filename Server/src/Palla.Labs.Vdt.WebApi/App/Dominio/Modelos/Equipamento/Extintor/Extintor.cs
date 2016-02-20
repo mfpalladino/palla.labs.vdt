@@ -11,15 +11,15 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private readonly string _localizacao;
         private readonly DateTime _fabricadoEm;
 
-        public Extintor(Guid customerId, string numeroCilindro,
+        public Extintor(Guid clienteId, string numeroCilindro,
             string agente, string localizacao, DateTime fabricadoEm, IList<Manutencao> manutencoes)
-            : this(Guid.NewGuid(), customerId, numeroCilindro, agente, localizacao, fabricadoEm, manutencoes)
+            : this(Guid.NewGuid(), clienteId, numeroCilindro, agente, localizacao, fabricadoEm, manutencoes)
         {
         }
 
-        public Extintor(Guid id, Guid customerId, string numeroCilindro,
+        public Extintor(Guid id, Guid clienteId, string numeroCilindro,
             string agente, string localizacao, DateTime fabricadoEm, IList<Manutencao> manutencoes)
-            : base(id, customerId, manutencoes, TipoEquipamento.Extintor)
+            : base(id, clienteId, manutencoes, TipoEquipamento.Extintor)
         {
             _numeroCilindro = numeroCilindro;
             _agente = agente;

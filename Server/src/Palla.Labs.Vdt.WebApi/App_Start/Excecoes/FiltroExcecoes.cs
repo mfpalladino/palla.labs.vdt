@@ -6,7 +6,7 @@ using System.Net.Http.Formatting;
 using System.Web.Http.Filters;
 using log4net;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
-using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 namespace Palla.Labs.Vdt.Excecoes
 {
@@ -31,7 +31,7 @@ namespace Palla.Labs.Vdt.Excecoes
             }
 
             var httpResponseMessage = new HttpResponseMessage(_mapeador[context.Exception.GetType()]);
-            var baseException = context.Exception as BaseException;
+            var baseException = context.Exception as ExcecaoBase;
             if (baseException != null)
             {
                 if (baseException.ContainsMessageForApiClient)
@@ -40,7 +40,7 @@ namespace Palla.Labs.Vdt.Excecoes
                         new JsonMediaTypeFormatter()); //só vamos mandar mensagens que controlamos (e temos certeza do que se trata)
                 else
                     httpResponseMessage.Content = new ObjectContent(typeof(ResultadoErro),
-                        ResultadoErro.CreateNotUnmappedError(),
+                        ResultadoErro.CriarErroNaoEsperado(),
                         new JsonMediaTypeFormatter());
                             
                 logger.Error(logger, context.Exception);
@@ -48,7 +48,7 @@ namespace Palla.Labs.Vdt.Excecoes
             else
             {
                 httpResponseMessage.Content = new ObjectContent(typeof(ResultadoErro), 
-                    ResultadoErro.CreateNotUnmappedError(), 
+                    ResultadoErro.CriarErroNaoEsperado(), 
                     new JsonMediaTypeFormatter());
                 
                 logger.Error(context.Exception.Message, context.Exception);

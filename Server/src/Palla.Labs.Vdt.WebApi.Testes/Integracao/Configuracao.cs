@@ -9,7 +9,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao
         [OneTimeSetUp]
         public void RodarAntesDosTestes()
         {
-            Registrador.EfetuarRegistros();
+            ConfiguraMongo.Configurar();
         }
     }
 }
