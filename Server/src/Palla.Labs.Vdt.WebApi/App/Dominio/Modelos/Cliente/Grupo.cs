@@ -31,7 +31,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             get { return _nome; }
         }
 
-        public void Validar()
+        private void Validar()
         {
             if (String.IsNullOrWhiteSpace(Nome))
                 throw new FormatoInvalido("O nome do grupo deve ser informado.");

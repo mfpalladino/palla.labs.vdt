@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Palla.Labs.Vdt.App.Infraestrutura.AutoMapper;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.Excecoes;
 
@@ -18,8 +19,9 @@ namespace Palla.Labs.Vdt
 
             ConfiguraJson.Configurar(config);
             ConfiguraPoliticaExcecoes.Configurar(config);
-            ConfiguraIoC.Configurar(config);
             ConfiguraMongo.Configurar();
+            var mapperConfiguration = ConfiguraAutoMapper.Configurar();
+            ConfiguraIoC.Configurar(config, mapperConfiguration);
         }
     }
 }

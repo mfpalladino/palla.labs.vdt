@@ -37,12 +37,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.4.2.2\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="FluentAssertions.Core">
       <HintPath>..\packages\FluentAssertions.4.2.2\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\MongoDB.Bson.2.2.3\lib\net45\MongoDB.Bson.dll</HintPath>
     </Reference>
@@ -51,6 +55,9 @@
     </Reference>
     <Reference Include="MongoDB.Driver.Core">
       <HintPath>..\packages\MongoDB.Driver.Core.2.2.3\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
@@ -94,6 +101,9 @@
     <Compile Include="Integracao\Repositorios\RepositorioGruposDeve.cs" />
     <Compile Include="Integracao\Repositorios\RepositorioEquipamentosDeve.cs" />
     <Compile Include="Integracao\ServicosAplicacao\CriadorManutencaoDeve.cs" />
+    <Compile Include="Unidade\Modelos\GrupoDeve.cs" />
+    <Compile Include="Unidade\ServicosAplicacao\LocalizadorGrupoDeve.cs" />
+    <Compile Include="Unidade\ServicosAplicacao\ModificadorGrupoDeve.cs" />
     <Compile Include="Unidade\ServicosDominio\CalculadoraSituacaoManutencaoDeve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

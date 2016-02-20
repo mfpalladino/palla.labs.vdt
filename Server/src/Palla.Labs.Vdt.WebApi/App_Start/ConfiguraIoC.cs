@@ -1,4 +1,5 @@
 using System.Web.Http;
+using AutoMapper;
 using MongoDB.Driver;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
@@ -9,7 +10,7 @@ namespace Palla.Labs.Vdt
 {
     public static class ConfiguraIoC
     {
-        public static void Configurar(HttpConfiguration config)
+        public static void Configurar(HttpConfiguration config, MapperConfiguration mapperConfiguration)
         {
             var container = new Container();
             
@@ -22,6 +23,7 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<CriadorGrupo, CriadorGrupo>();
             container.RegisterSingle<ModificadorGrupo, ModificadorGrupo>();
             container.RegisterSingle<LocalizadorGrupo, LocalizadorGrupo>();
+            container.RegisterSingle(mapperConfiguration.CreateMapper);
 
             container.RegisterWebApiControllers(config);
 

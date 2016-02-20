@@ -9,6 +9,10 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
     {
         private const string NOME_COLECAO = "grupos";
 
+        protected RepositorioGrupos() //usado penas para testes
+        {
+        }
+
         public RepositorioGrupos(IMongoClient mongoClient, IConfigBancoDados configBancoDados)
             : base(mongoClient, configBancoDados)
         {
@@ -27,7 +31,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
         }
 
-        public Grupo ListarPorId(Guid id)
+        public virtual Grupo ListarPorId(Guid id)
         {
             var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
             return colecao.Find(x => x.Id == id).FirstOrDefault();

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using AutoMapper;
 using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Fabricas;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.ServicosAplicacao
@@ -12,21 +12,23 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class LocalizadorGrupo
     {
         private readonly RepositorioGrupos _repositorioGrupos;
+        private readonly IMapper _mapper;
 
-        public LocalizadorGrupo(RepositorioGrupos repositorioGrupos)
+        public LocalizadorGrupo(RepositorioGrupos repositorioGrupos, IMapper mapper)
         {
             _repositorioGrupos = repositorioGrupos;
+            _mapper = mapper;
         }
 
         public Grupo Localizar(string id)
         {
             Validar(id);
-            return new ConstrutorGrupoDto(_repositorioGrupos.ListarPorId(new Guid(id))).Construir();
+            return _mapper.Map<Grupo>(_repositorioGrupos.ListarPorId(new Guid(id)));
         }
 
         public IEnumerable<Grupo> Localizar()
         {
-            return new ConstrutorListaGrupoDto(_repositorioGrupos.ListarTodos()).Construir();
+            return _mapper.Map<IEnumerable<Grupo>>(_repositorioGrupos.ListarTodos());
         }
 
         private void Validar(string id)
