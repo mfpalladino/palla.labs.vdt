@@ -22,8 +22,6 @@ build:
   verbosity: normal
 test_script:
 - ps: >-
-    nunit3-console "Server\src\Palla.Labs.Vdt.WebApi.Testes\bin\$env:CONFIGURATION\Palla.Labs.Vdt.WebApi.Testes.dll" --result=myresults.xml
-- ps: >-
     .\Server\src\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -target:nunit3-console.exe "-targetargs:""Server\src\Palla.Labs.Vdt.WebApi.Testes\bin\$env:CONFIGURATION\Palla.Labs.Vdt.WebApi.Testes.dll""" -filter:"+[Palla*]*" -output:opencoverCoverage.xml
 
     $coveralls = (Resolve-Path "Server\src/packages/coveralls.net.*/tools/csmacnz.coveralls.exe").ToString()
@@ -31,8 +29,6 @@ test_script:
     $env:APPVEYOR_BUILD_NUMBER
     
     & $coveralls --opencover -i opencoverCoverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_BUILD_NUMBER --serviceName appveyor
-
-    & $wc = New-Object 'System.Net.WebClient' $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit3/$($env:APPVEYOR_JOB_ID)", (Resolve-Path myresults.xml))
 deploy:
 - provider: Environment
   name: Palla.Labs.Vdt.WebApi
