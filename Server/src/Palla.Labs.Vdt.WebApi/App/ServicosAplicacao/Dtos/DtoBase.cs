@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Palla.Labs.Vdt.App.ServicosAplicacao.Dtos
+﻿namespace Palla.Labs.Vdt.App.ServicosAplicacao.Dtos
 {
     public abstract class DtoBase<T>
     {

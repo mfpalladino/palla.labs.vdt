@@ -24,5 +24,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         {
             return _endereco;
         }
+
+        public void Validar(string nome)
+        {
+            //todo
+        }
     }
 }

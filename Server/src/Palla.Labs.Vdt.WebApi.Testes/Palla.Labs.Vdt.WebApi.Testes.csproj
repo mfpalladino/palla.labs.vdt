@@ -96,12 +96,14 @@
     <Compile Include="Fabricas\ConstrutorGrupo.cs" />
     <Compile Include="Fabricas\ConstrutorMangueira.cs" />
     <Compile Include="Fabricas\ConstrutorSistemaContraIncendioEmCoifa.cs" />
-    <Compile Include="Integracao\Configuracao.cs" />
+    <Compile Include="Configuracao.cs" />
     <Compile Include="Integracao\Repositorios\RepositorioClientesDeve.cs" />
     <Compile Include="Integracao\Repositorios\RepositorioGruposDeve.cs" />
     <Compile Include="Integracao\Repositorios\RepositorioEquipamentosDeve.cs" />
     <Compile Include="Integracao\ServicosAplicacao\CriadorManutencaoDeve.cs" />
     <Compile Include="Unidade\Excecoes\ExcecaoParaHttpStatusCodeDeve.cs" />
+    <Compile Include="Unidade\Mapeadores\MapeadorClienteDeve.cs" />
+    <Compile Include="Unidade\Modelos\CnpjDeve.cs" />
     <Compile Include="Unidade\Modelos\GrupoDeve.cs" />
     <Compile Include="Unidade\ServicosAplicacao\LocalizadorGrupoDeve.cs" />
     <Compile Include="Unidade\ServicosAplicacao\ModificadorGrupoDeve.cs" />

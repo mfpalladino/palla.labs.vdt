@@ -12,7 +12,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Excecoes
             return new Dictionary<Type, HttpStatusCode>
             {
                 {typeof(FormatoInvalido), HttpStatusCode.BadRequest},
-                {typeof(RecursoNaoEncontrado), HttpStatusCode.NotFound}
+                {typeof(RecursoNaoEncontrado), HttpStatusCode.NotFound},
+                {typeof(JaExisteUmRecursoComEstasCaracteristicas), HttpStatusCode.Conflict}
             };
         }
     }

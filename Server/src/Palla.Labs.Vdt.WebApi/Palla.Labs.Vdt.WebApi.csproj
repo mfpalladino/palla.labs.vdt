@@ -173,6 +173,7 @@
     <Compile Include="App\Compartilhado\ExtensoesDeDateTime.cs" />
     <Compile Include="App\Compartilhado\ExtensoesDeString.cs" />
     <Compile Include="App\Dominio\Excecoes\ExcecaoBase.cs" />
+    <Compile Include="App\Dominio\Excecoes\JaExisteUmRecursoComEstasCaracteristicas.cs" />
     <Compile Include="App\Dominio\Excecoes\MapeadorParaHttpStatusCode\ExcecaoDominioParaHttpStatusCode.cs" />
     <Compile Include="App\Dominio\Excecoes\RecursoNaoEncontrado.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaParametrosManutencao.cs" />
@@ -202,6 +203,9 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
     <Compile Include="App\Infraestrutura\AutoMapper\ConfiguraAutoMapper.cs" />
     <Compile Include="App\Infraestrutura\AutoMapper\MapperExtensoes.cs" />
+    <Compile Include="App\ServicosAplicacao\Cliente\CriadorCliente.cs" />
+    <Compile Include="App\ServicosAplicacao\Cliente\LocalizadorCliente.cs" />
+    <Compile Include="App\ServicosAplicacao\Dtos\ClienteDto.cs" />
     <Compile Include="App\ServicosAplicacao\Dtos\DtoBase.cs" />
     <Compile Include="App\ServicosAplicacao\Dtos\ResultadoErroDto.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\Extintor.cs" />
@@ -220,6 +224,7 @@
     <Compile Include="App\Infraestrutura\Mongo\RepositorioEquipamentos.cs" />
     <Compile Include="App\ServicosAplicacao\Dtos\GrupoDto.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\LocalizadorGrupo.cs" />
+    <Compile Include="App\ServicosAplicacao\Cliente\ModificadorCliente.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\ModificadorGrupo.cs" />
     <Compile Include="App_Start\ConfiguraJson.cs" />
     <Compile Include="App_Start\Excecoes\FiltroExcecoes.cs" />
@@ -227,6 +232,7 @@
     <Compile Include="App_Start\ConfiguraFiltros.cs" />
     <Compile Include="App_Start\ConfiguraIoC.cs" />
     <Compile Include="App_Start\ConfiguraWebApi.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\VerificaSaudeController.cs" />
     <Compile Include="Global.asax.cs">

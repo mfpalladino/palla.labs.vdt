@@ -1,4 +1,5 @@
 ﻿using System;
+using Palla.Labs.Vdt.App.Dominio.Excecoes;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
@@ -13,6 +14,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private readonly CorreioEletronico _correioEletronicoManutencao;
         private readonly CorreioEletronico _correioEletronicoAdministracao;
         private readonly Guid _grupoId;
+
+        protected Cliente() //usado apenas para mapeamento e testes
+        {
+        }
 
         public Cliente(
             Guid grupoId,
@@ -45,6 +50,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             _correioEletronicoLoja = correioEletronicoLoja;
             _correioEletronicoManutencao = correioEletronicoManutencao;
             _correioEletronicoAdministracao = correioEletronicoAdministracao;
+
+            Validar();
         }
 
         public string Nome
@@ -85,6 +92,30 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public CorreioEletronico CorreioEletronicoAdministracao
         {
             get { return _correioEletronicoAdministracao; }
+        }
+
+        private void Validar()
+        {
+            if (String.IsNullOrWhiteSpace(Nome))
+                throw new FormatoInvalido("O nome do cliente deve ser informado.");
+
+            if (Nome.Length > 100)
+                throw new FormatoInvalido("O nome do cliente não pode ter mais de 100 caracteres.");
+
+            if (String.IsNullOrWhiteSpace(Codigo))
+                throw new FormatoInvalido("O código do cliente deve ser informado.");
+
+            if (Codigo.Length > 20)
+                throw new FormatoInvalido("O código do cliente não pode ter mais de 20 caracteres.");
+
+            if (GrupoId == Guid.Empty)
+                throw new FormatoInvalido("O código do grupo deve ser informado.");
+
+            Cnpj.Validar();
+            Endereco.Validar();
+            CorreioEletronicoLoja.Validar("loja");
+            CorreioEletronicoAdministracao.Validar("administração");
+            CorreioEletronicoManutencao.Validar("manutenção");
         }
     }
 }

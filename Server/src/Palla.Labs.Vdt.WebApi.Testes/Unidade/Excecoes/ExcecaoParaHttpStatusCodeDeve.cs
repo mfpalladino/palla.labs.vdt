@@ -19,5 +19,11 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Excecoes
         {
             ExcecaoParaHttpStatusCode.Dicionario()[typeof(RecursoNaoEncontrado)].Should().Be(HttpStatusCode.NotFound);
         }
+
+        [Test]
+        public void Retornar409ParaRecursoJaExistenteComAsMesmasCaracteristicas()
+        {
+            ExcecaoParaHttpStatusCode.Dicionario()[typeof(JaExisteUmRecursoComEstasCaracteristicas)].Should().Be(HttpStatusCode.Conflict);
+        }
     }
 }

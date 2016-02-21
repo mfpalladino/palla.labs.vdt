@@ -62,5 +62,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         {
             get { return _cep; }
         }
+
+        public void Validar()
+        {
+            //todo
+        }
     }
 }
