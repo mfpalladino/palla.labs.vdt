@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MongoDB.Bson.Serialization;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
 
@@ -8,10 +9,20 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
     {
         public static void Configurar()
         {
+            BsonClassMap.RegisterClassMap<EntidadeBase<Guid>>(cm =>
+            {
+                cm.MapIdField(c => c.Id);
+            });
+
+            ConfigurarEquipamentos();
+            ConfigurarClientes();
+        }
+
+        private static void ConfigurarEquipamentos()
+        {
             BsonClassMap.RegisterClassMap<Equipamento>(cm =>
             {
                 cm.SetIsRootClass(true);
-                cm.MapIdField(c => c.Id);
                 cm.MapField(c => c.ClienteId);
                 cm.MapField(c => c.Tipo);
                 cm.MapField(c => c.Manutencoes);
@@ -62,11 +73,13 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
                 cm.MapField(c => c.Data);
                 cm.MapField(c => c.Parte);
             });
+        }
 
+        private static void ConfigurarClientes()
+        {
             BsonClassMap.RegisterClassMap<Grupo>(cm =>
             {
                 cm.MapCreator(x => new Grupo(x.Id, x.Nome));
-                cm.MapIdField(c => c.Id);
                 cm.MapField(c => c.Nome);
             });
 
@@ -97,7 +110,6 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             BsonClassMap.RegisterClassMap<Cliente>(cm =>
             {
                 cm.MapCreator(x => new Cliente(x.Id, x.GrupoId, x.Cnpj, x.Nome, x.Codigo, x.Endereco, x.CorreioEletronicoLoja, x.CorreioEletronicoManutencao, x.CorreioEletronicoAdministracao));
-                cm.MapIdField(c => c.Id);
                 cm.MapField(c => c.GrupoId);
                 cm.MapField(c => c.Cnpj);
                 cm.MapField(c => c.Nome);

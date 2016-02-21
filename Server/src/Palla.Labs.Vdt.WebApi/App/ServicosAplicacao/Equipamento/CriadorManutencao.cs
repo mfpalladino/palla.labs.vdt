@@ -2,6 +2,7 @@
 using System.Linq;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
+// ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.ServicosAplicacao
 {
     public class CriadorManutencao

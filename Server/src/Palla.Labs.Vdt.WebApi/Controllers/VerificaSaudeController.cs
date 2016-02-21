@@ -6,11 +6,11 @@ using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 namespace Palla.Labs.Vdt.Controllers
 {
-    public class HealthCheckController : ApiController
+    public class VerificaSaudeController : ApiController
     {
         private readonly RepositorioEquipamentos _repositorioEquipamentos;
 
-        public HealthCheckController(RepositorioEquipamentos repositorioEquipamentos)
+        public VerificaSaudeController(RepositorioEquipamentos repositorioEquipamentos)
         {
             _repositorioEquipamentos = repositorioEquipamentos;
         }

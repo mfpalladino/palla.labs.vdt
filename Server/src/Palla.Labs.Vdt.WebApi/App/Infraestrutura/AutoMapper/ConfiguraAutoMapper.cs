@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.AutoMapper
 {
@@ -8,7 +10,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.AutoMapper
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<ServicosAplicacao.Dtos.Grupo, Dominio.Modelos.Grupo>().ReverseMap();
+                cfg.CreateMap<GrupoDto, Grupo>().ReverseMap();
             });
 
             return config;

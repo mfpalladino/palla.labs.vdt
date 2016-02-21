@@ -166,7 +166,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\ServicosAplicacao\Fabricas\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +182,7 @@
     <Compile Include="App\Dominio\Modelos\Cliente\Endereco.cs" />
     <Compile Include="App\Dominio\Excecoes\FormatoInvalido.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Grupo.cs" />
+    <Compile Include="App\Dominio\Modelos\EntidadeBase.cs" />
     <Compile Include="App\Dominio\Servicos\CalculadoraSituacaoManutencao.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\CentralAlarme.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\TipoCentralAlarme.cs" />
@@ -201,22 +201,24 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
     <Compile Include="App\Infraestrutura\AutoMapper\ConfiguraAutoMapper.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\ResultadoErro.cs" />
+    <Compile Include="App\Infraestrutura\AutoMapper\MapperExtensoes.cs" />
+    <Compile Include="App\ServicosAplicacao\Dtos\DtoBase.cs" />
+    <Compile Include="App\ServicosAplicacao\Dtos\ResultadoErroDto.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\Extintor.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamentoExtensoes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioClientes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioGrupos.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\CriadorGrupo.cs" />
-    <Compile Include="App\ServicosAplicacao\CriadorManutencao.cs" />
-    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\IConfigBancoDados.cs" />
-    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ConfigBancoDadosArquivo.cs" />
-    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ConfigBancoDadosVariavelAmbiente.cs" />
-    <Compile Include="App\Infraestrutura\Mongo\Configuracoes\ConfigBancoDadosVariavelAmbienteTestes.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\CriadorManutencao.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\ConfiguracoesParaAcesso\IConfigBancoDados.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\ConfiguracoesParaAcesso\ConfigBancoDadosArquivo.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\ConfiguracoesParaAcesso\ConfigBancoDadosVariavelAmbiente.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\ConfiguracoesParaAcesso\ConfigBancoDadosVariavelAmbienteTestes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\ConfiguraMongo.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioBase.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioEquipamentos.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\Grupo.cs" />
+    <Compile Include="App\ServicosAplicacao\Dtos\GrupoDto.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\LocalizadorGrupo.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\ModificadorGrupo.cs" />
     <Compile Include="App_Start\ConfiguraJson.cs" />
@@ -226,7 +228,7 @@
     <Compile Include="App_Start\ConfiguraIoC.cs" />
     <Compile Include="App_Start\ConfiguraWebApi.cs" />
     <Compile Include="Controllers\GruposController.cs" />
-    <Compile Include="Controllers\HealthCheckController.cs" />
+    <Compile Include="Controllers\VerificaSaudeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

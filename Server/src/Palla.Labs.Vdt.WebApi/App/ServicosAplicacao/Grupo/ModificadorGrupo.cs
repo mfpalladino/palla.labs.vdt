@@ -2,6 +2,8 @@
 using AutoMapper;
 using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.Infraestrutura.AutoMapper;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
@@ -11,21 +13,18 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class ModificadorGrupo
     {
         private readonly RepositorioGrupos _repositorioGrupos;
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapeador;
 
-        public ModificadorGrupo(RepositorioGrupos repositorioGrupos, IMapper mapper)
+        public ModificadorGrupo(RepositorioGrupos repositorioGrupos, IMapper mapeador)
         {
             _repositorioGrupos = repositorioGrupos;
-            _mapper = mapper;
+            _mapeador = mapeador;
         }
 
-        public void Modificar(string id, Grupo grupo)
+        public void Modificar(string id, GrupoDto grupoDto)
         {
             Validar(id);
-
-            grupo.Id = new Guid(id);
-
-            _repositorioGrupos.Editar(_mapper.Map<Dominio.Modelos.Grupo>(grupo));
+            _repositorioGrupos.Editar(_mapeador.ParaEntidade<Grupo, GrupoDto>(id.ParaGuid(), grupoDto));
         }
 
         private void Validar(string id)

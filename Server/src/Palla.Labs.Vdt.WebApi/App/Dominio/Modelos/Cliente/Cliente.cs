@@ -3,9 +3,8 @@
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
-    public class Cliente
+    public class Cliente : EntidadeBase<Guid>
     {
-        private readonly Guid _id;
         private readonly string _nome;
         private readonly Cnpj _cnpj;
         private readonly string _codigo;
@@ -36,9 +35,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             Endereco endereco,
             CorreioEletronico correioEletronicoLoja,
             CorreioEletronico correioEletronicoManutencao,
-            CorreioEletronico correioEletronicoAdministracao)
+            CorreioEletronico correioEletronicoAdministracao):base(id)
         {
-            _id = id;
             _grupoId = grupoId;
             _cnpj = cnpj;
             _nome = nome;
@@ -47,11 +45,6 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             _correioEletronicoLoja = correioEletronicoLoja;
             _correioEletronicoManutencao = correioEletronicoManutencao;
             _correioEletronicoAdministracao = correioEletronicoAdministracao;
-        }
-
-        public Guid Id
-        {
-            get { return _id; }
         }
 
         public string Nome

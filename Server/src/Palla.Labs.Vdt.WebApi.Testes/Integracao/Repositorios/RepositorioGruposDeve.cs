@@ -25,8 +25,11 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
 
                 var grupoRecuperado = repositorio.ListarPorId(grupo.Id);
 
+                var todosOsGrupos = repositorio.ListarTodos();
+
                 grupoRecuperado.Id.Should().Be(grupo.Id);
                 grupoRecuperado.Nome.Should().BeEquivalentTo(grupo.Nome);
+                todosOsGrupos.Should().NotBeNullOrEmpty();
             }
             finally
             {

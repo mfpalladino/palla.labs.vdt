@@ -4,9 +4,11 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
 using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
+using Palla.Labs.Vdt.WebApi.Testes.Fabricas;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
 {
@@ -17,7 +19,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
         public void GerarExcecaoQuandoIdNaoForValido()
         {
             //Arrange
-            Action acao = () => new ModificadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<IMapper>().Object).Modificar("qualquer coisa", new Grupo());
+            Action acao = () => new ModificadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<IMapper>().Object).Modificar("qualquer coisa", new GrupoDto());
 
             //Asserts
             acao.ShouldThrow<FormatoInvalido>();
@@ -32,10 +34,32 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             repositorio.Setup(x => x.ListarPorId(new Guid(id))).Throws<RecursoNaoEncontrado>();
 
             //Action
-            Action acao = () => new ModificadorGrupo(repositorio.Object, new Mock<IMapper>().Object).Modificar(id, new Grupo());
+            Action acao = () => new ModificadorGrupo(repositorio.Object, new Mock<IMapper>().Object).Modificar(id, new GrupoDto());
 
             //Asserts
             acao.ShouldThrow<RecursoNaoEncontrado>();
+        }
+
+        [Test]
+        public void FazerOEsperadoQuandoTudoEstiverOk()
+        {
+            //Arrange
+            var repositorio = new Mock<RepositorioGrupos>();
+            var mapper = new Mock<IMapper>();
+
+            var id = Guid.NewGuid();
+            var grupoEsperado = new ConstrutorGrupo().Construir();
+            var grupoRecebido = new GrupoDto {Id = id, Nome = "Grupo"};
+
+            repositorio.Setup(x => x.ListarPorId(It.IsAny<Guid>())).Returns(grupoEsperado);
+            repositorio.Setup(x => x.Editar(grupoEsperado));
+            mapper.Setup(x => x.Map<Grupo>(grupoRecebido)).Returns(grupoEsperado);
+
+            //Action
+            Action acao = () => new ModificadorGrupo(repositorio.Object, mapper.Object).Modificar(id.ToString(), grupoRecebido);
+
+            //Asserts
+            acao.ShouldNotThrow();
         }
     }
 }

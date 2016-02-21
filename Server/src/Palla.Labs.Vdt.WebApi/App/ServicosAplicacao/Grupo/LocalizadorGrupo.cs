@@ -12,23 +12,23 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class LocalizadorGrupo
     {
         private readonly RepositorioGrupos _repositorioGrupos;
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapeador;
 
-        public LocalizadorGrupo(RepositorioGrupos repositorioGrupos, IMapper mapper)
+        public LocalizadorGrupo(RepositorioGrupos repositorioGrupos, IMapper mapeador)
         {
             _repositorioGrupos = repositorioGrupos;
-            _mapper = mapper;
+            _mapeador = mapeador;
         }
 
-        public Grupo Localizar(string id)
+        public GrupoDto Localizar(string id)
         {
             Validar(id);
-            return _mapper.Map<Grupo>(_repositorioGrupos.ListarPorId(new Guid(id)));
+            return _mapeador.Map<GrupoDto>(_repositorioGrupos.ListarPorId(new Guid(id)));
         }
 
-        public IEnumerable<Grupo> Localizar()
+        public IEnumerable<GrupoDto> Localizar()
         {
-            return _mapper.Map<IEnumerable<Grupo>>(_repositorioGrupos.ListarTodos());
+            return _mapeador.Map<IEnumerable<GrupoDto>>(_repositorioGrupos.ListarTodos());
         }
 
         private void Validar(string id)

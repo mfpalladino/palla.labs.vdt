@@ -21,9 +21,9 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Post([FromBody] Grupo grupo)
+        public HttpResponseMessage Post([FromBody] GrupoDto grupoDto)
         {
-            var grupoSalvo = _criadorGrupo.Criar(grupo);
+            var grupoSalvo = _criadorGrupo.Criar(grupoDto);
             var response = Request.CreateResponse(HttpStatusCode.Created);
             response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = grupoSalvo.Id }));
             return response;
@@ -31,9 +31,9 @@ namespace Palla.Labs.Vdt.Controllers
 
         [HttpPut]
         [Route("grupos/{id}")]
-        public HttpResponseMessage Put([FromUri] string id, [FromBody] Grupo grupo)
+        public HttpResponseMessage Put([FromUri] string id, [FromBody] GrupoDto grupoDto)
         {
-            _modificadorGrupo.Modificar(id, grupo);
+            _modificadorGrupo.Modificar(id, grupoDto);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }

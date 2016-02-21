@@ -101,6 +101,7 @@
     <Compile Include="Integracao\Repositorios\RepositorioGruposDeve.cs" />
     <Compile Include="Integracao\Repositorios\RepositorioEquipamentosDeve.cs" />
     <Compile Include="Integracao\ServicosAplicacao\CriadorManutencaoDeve.cs" />
+    <Compile Include="Unidade\Excecoes\ExcecaoParaHttpStatusCodeDeve.cs" />
     <Compile Include="Unidade\Modelos\GrupoDeve.cs" />
     <Compile Include="Unidade\ServicosAplicacao\LocalizadorGrupoDeve.cs" />
     <Compile Include="Unidade\ServicosAplicacao\ModificadorGrupoDeve.cs" />

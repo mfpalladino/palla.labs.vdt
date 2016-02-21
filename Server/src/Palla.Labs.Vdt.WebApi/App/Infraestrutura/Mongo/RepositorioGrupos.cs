@@ -24,7 +24,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             colecao.InsertOne(grupo);
         }
 
-        public void Editar(Grupo grupo)
+        public virtual void Editar(Grupo grupo)
         {
             var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
             colecao.ReplaceOne(Builders<Grupo>.Filter.Eq(x => x.Id, grupo.Id), grupo);
@@ -37,7 +37,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             return colecao.Find(x => x.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<Grupo> ListarTodos()
+        public virtual IEnumerable<Grupo> ListarTodos()
         {
             var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
             return colecao.Find(x => true).SortBy(x => x.Nome).ToList();

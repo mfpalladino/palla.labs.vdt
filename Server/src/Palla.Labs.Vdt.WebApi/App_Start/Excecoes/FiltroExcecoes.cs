@@ -35,20 +35,20 @@ namespace Palla.Labs.Vdt.Excecoes
             if (baseException != null)
             {
                 if (baseException.ContainsMessageForApiClient)
-                    httpResponseMessage.Content = new ObjectContent(typeof(ResultadoErro), 
-                        new ResultadoErro(baseException.MessageForApiClient), 
+                    httpResponseMessage.Content = new ObjectContent(typeof(ResultadoErroDto), 
+                        new ResultadoErroDto(baseException.MessageForApiClient), 
                         new JsonMediaTypeFormatter()); //só vamos mandar mensagens que controlamos (e temos certeza do que se trata)
                 else
-                    httpResponseMessage.Content = new ObjectContent(typeof(ResultadoErro),
-                        ResultadoErro.CriarErroNaoEsperado(),
+                    httpResponseMessage.Content = new ObjectContent(typeof(ResultadoErroDto),
+                        ResultadoErroDto.CriarErroNaoEsperado(),
                         new JsonMediaTypeFormatter());
                             
                 logger.Error(logger, context.Exception);
             }
             else
             {
-                httpResponseMessage.Content = new ObjectContent(typeof(ResultadoErro), 
-                    ResultadoErro.CriarErroNaoEsperado(), 
+                httpResponseMessage.Content = new ObjectContent(typeof(ResultadoErroDto), 
+                    ResultadoErroDto.CriarErroNaoEsperado(), 
                     new JsonMediaTypeFormatter());
                 
                 logger.Error(context.Exception.Message, context.Exception);

@@ -6,25 +6,18 @@ using Palla.Labs.Vdt.App.Dominio.Fabricas;
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
-    public abstract class Equipamento
+    public abstract class Equipamento : EntidadeBase<Guid>
     {
-        private readonly Guid _id;
         private readonly Guid _clienteId;
         private readonly TipoEquipamento _tipo;
         private ParametrosManutencao _parametrosManutencao;
         private readonly IList<Manutencao> _manutencoes;
 
-        protected Equipamento(Guid id, Guid clienteId, IList<Manutencao> manutencoes, TipoEquipamento tipo)
+        protected Equipamento(Guid id, Guid clienteId, IList<Manutencao> manutencoes, TipoEquipamento tipo) : base(id)
         {
-            _id = id;
             _clienteId = clienteId;
             _manutencoes = manutencoes;
             _tipo = tipo;
-        }
-
-        public Guid Id
-        {
-            get { return _id; }
         }
 
         public Guid ClienteId
