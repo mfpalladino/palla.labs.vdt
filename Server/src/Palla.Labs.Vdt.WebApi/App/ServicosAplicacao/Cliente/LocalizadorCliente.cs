@@ -23,12 +23,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
         public ClienteDto Localizar(string id)
         {
             Validar(id);
-            return _mapeador.Map<ClienteDto>(_repositorioClientes.ListarPorId(new Guid(id)));
+            return _mapeador.Map<ClienteDto>(_repositorioClientes.BuscarPorId(new Guid(id)));
         }
 
         public IEnumerable<ClienteDto> Localizar()
         {
-            return _mapeador.Map<IEnumerable<ClienteDto>>(_repositorioClientes.ListarTodos());
+            return _mapeador.Map<IEnumerable<ClienteDto>>(_repositorioClientes.Buscar());
         }
 
         private void Validar(string id)
@@ -36,7 +36,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (!id.GuidValido())
                 throw new FormatoInvalido("O identificador de cliente informado não é válido.");
 
-            if (_repositorioClientes.ListarPorId(new Guid(id)) == null)
+            if (_repositorioClientes.BuscarPorId(new Guid(id)) == null)
                 throw new RecursoNaoEncontrado("Cliente não encontrado");
         }
     }

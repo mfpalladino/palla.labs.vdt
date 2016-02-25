@@ -12,19 +12,19 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao.Dtos
 
         public string GrupoId  { get; set; }
 
-        public string EnderecoLogradouro  { get; set; }
+        public string Logradouro  { get; set; }
 
-        public string EnderecoNumero { get; set; }
+        public string Numero { get; set; }
 
-        public string EnderecoComplemento { get; set; }
+        public string Complemento { get; set; }
 
-        public string EnderecoBairro { get; set; }
+        public string Bairro { get; set; }
 
-        public string EnderecoCidade { get; set; }
+        public string Cidade { get; set; }
 
-        public string EnderecoEstado { get; set; }
+        public string Estado { get; set; }
 
-        public string EnderecoCep { get; set; }
+        public string Cep { get; set; }
 
         public string CorreioEletronicoLoja { get; set; }
 

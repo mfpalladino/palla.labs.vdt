@@ -20,8 +20,8 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Mapeadores
             var clienteDto = ConfiguraAutoMapper.Mapeador.Map<ClienteDto>(cliente);
 
             //Asserts
-            clienteDto.EnderecoLogradouro.Should().Be(cliente.Endereco.Logradouro);
-            clienteDto.EnderecoCep.Should().Be(cliente.Endereco.Cep);
+            clienteDto.Logradouro.Should().Be(cliente.Endereco.Logradouro);
+            clienteDto.Cep.Should().Be(cliente.Endereco.Cep);
             clienteDto.CorreioEletronicoLoja.Should().Be(cliente.CorreioEletronicoLoja.Endereco);
             clienteDto.Cnpj.Should().Be(cliente.Cnpj.Numero);
         }
@@ -37,8 +37,8 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Mapeadores
             var clienteGerado = ConfiguraAutoMapper.Mapeador.Map<Cliente>(clienteDto);
             
             //Asserts
-            clienteDto.EnderecoLogradouro.Should().Be(clienteGerado.Endereco.Logradouro);
-            clienteDto.EnderecoCep.Should().Be(clienteGerado.Endereco.Cep);
+            clienteDto.Logradouro.Should().Be(clienteGerado.Endereco.Logradouro);
+            clienteDto.Cep.Should().Be(clienteGerado.Endereco.Cep);
             clienteDto.CorreioEletronicoLoja.Should().Be(clienteGerado.CorreioEletronicoLoja.Endereco);
             clienteDto.Cnpj.Should().Be(clienteGerado.Cnpj.Numero);
         }

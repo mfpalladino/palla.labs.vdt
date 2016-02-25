@@ -1,4 +1,8 @@
 ﻿// ReSharper disable once CheckNamespace
+
+using System;
+using Palla.Labs.Vdt.App.Dominio.Excecoes;
+
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
     public class CorreioEletronico
@@ -27,7 +31,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 
         public void Validar(string nome)
         {
-            //todo
+            if (String.IsNullOrWhiteSpace(Endereco))
+                throw new FormatoInvalido(String.Format("O correio eletrônico '{0}' do cliente deve ser informado.", nome));
         }
     }
 }

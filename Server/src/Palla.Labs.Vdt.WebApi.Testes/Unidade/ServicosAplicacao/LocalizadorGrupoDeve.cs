@@ -32,7 +32,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             //Arrange
             var id = Guid.NewGuid().ToString();
             var repositorio = new Mock<RepositorioGrupos>();
-            repositorio.Setup(x => x.ListarPorId(new Guid(id))).Throws<RecursoNaoEncontrado>();
+            repositorio.Setup(x => x.BuscarPorId(new Guid(id))).Throws<RecursoNaoEncontrado>();
 
             //Action
             Action acao = () => new LocalizadorGrupo(repositorio.Object, new Mock<IMapper>().Object).Localizar(id);
@@ -52,7 +52,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             var grupoEsperado = new Grupo(id, "Grupo");
             var grupoRetornadoMapper = new GrupoDto { Id = grupoEsperado.Id, Nome = grupoEsperado.Nome };
 
-            repositorio.Setup(x => x.ListarPorId(It.IsAny<Guid>())).Returns(grupoEsperado);
+            repositorio.Setup(x => x.BuscarPorId(It.IsAny<Guid>())).Returns(grupoEsperado);
             mapper.Setup(x => x.Map<GrupoDto>(It.IsAny<Grupo>())).Returns(grupoRetornadoMapper);
 
             //Action
@@ -76,7 +76,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             var grupoRetornadoMapper = new GrupoDto { Id = grupoRetornadoDoBanco.Id, Nome = grupoRetornadoDoBanco.Nome };
             var gruposRetornadosMapper = new List<GrupoDto> { grupoRetornadoMapper };
 
-            repositorio.Setup(x => x.ListarTodos()).Returns(gruposRetornadosDoBanco);
+            repositorio.Setup(x => x.Buscar()).Returns(gruposRetornadosDoBanco);
             mapper.Setup(x => x.Map<IEnumerable<GrupoDto>>(It.IsAny<IEnumerable<Grupo>>())).Returns(gruposRetornadosMapper);
 
             //Action

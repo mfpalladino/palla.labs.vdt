@@ -31,7 +31,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             //Arrange
             var id = Guid.NewGuid().ToString();
             var repositorio = new Mock<RepositorioGrupos>();
-            repositorio.Setup(x => x.ListarPorId(new Guid(id))).Throws<RecursoNaoEncontrado>();
+            repositorio.Setup(x => x.BuscarPorId(new Guid(id))).Throws<RecursoNaoEncontrado>();
 
             //Action
             Action acao = () => new ModificadorGrupo(repositorio.Object, new Mock<IMapper>().Object).Modificar(id, new GrupoDto());
@@ -51,7 +51,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             var grupoEsperado = new ConstrutorGrupo().Construir();
             var grupoRecebido = new GrupoDto {Id = id, Nome = "Grupo"};
 
-            repositorio.Setup(x => x.ListarPorId(It.IsAny<Guid>())).Returns(grupoEsperado);
+            repositorio.Setup(x => x.BuscarPorId(It.IsAny<Guid>())).Returns(grupoEsperado);
             repositorio.Setup(x => x.Editar(grupoEsperado));
             mapper.Setup(x => x.Map<Grupo>(grupoRecebido)).Returns(grupoEsperado);
 

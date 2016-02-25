@@ -23,12 +23,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
         public GrupoDto Localizar(string id)
         {
             Validar(id);
-            return _mapeador.Map<GrupoDto>(_repositorioGrupos.ListarPorId(new Guid(id)));
+            return _mapeador.Map<GrupoDto>(_repositorioGrupos.BuscarPorId(new Guid(id)));
         }
 
         public IEnumerable<GrupoDto> Localizar()
         {
-            return _mapeador.Map<IEnumerable<GrupoDto>>(_repositorioGrupos.ListarTodos());
+            return _mapeador.Map<IEnumerable<GrupoDto>>(_repositorioGrupos.Buscar());
         }
 
         private void Validar(string id)
@@ -36,7 +36,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (!id.GuidValido())
                 throw new FormatoInvalido("O identificador de grupo informado não é válido.");
 
-            if (_repositorioGrupos.ListarPorId(new Guid(id)) == null)
+            if (_repositorioGrupos.BuscarPorId(new Guid(id)) == null)
                 throw new RecursoNaoEncontrado("Grupo não encontrado");
         }
     }

@@ -35,11 +35,28 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.AutoMapper
                     new Cnpj(x.Cnpj),
                     x.Nome,
                     x.Codigo,
-                    new Endereco(x.EnderecoLogradouro, x.EnderecoNumero, x.EnderecoComplemento, x.EnderecoBairro, x.EnderecoCidade, x.EnderecoEstado, x.EnderecoCep),
+                    new Endereco(x.Logradouro, x.Numero, x.Complemento, x.Bairro, x.Cidade, x.Estado, x.Cep),
                     new CorreioEletronico(x.CorreioEletronicoLoja),
                     new CorreioEletronico(x.CorreioEletronicoManutencao),
                     new CorreioEletronico(x.CorreioEletronicoAdministracao)))
-                .ReverseMap();
+                .ReverseMap()
+                .ConstructUsing(x => new ClienteDto
+                {
+                    Nome = x.Nome,
+                    Cnpj = x.Cnpj.ToString(),
+                    Codigo = x.Codigo,
+                    GrupoId = x.GrupoId.ToString(),
+                    Logradouro = x.Endereco.Logradouro,
+                    Numero = x.Endereco.Numero,
+                    Complemento = x.Endereco.Complemento,
+                    Bairro = x.Endereco.Bairro,
+                    Cidade = x.Endereco.Logradouro,
+                    Estado = x.Endereco.Estado,
+                    Cep = x.Endereco.Cep,
+                    CorreioEletronicoLoja = x.CorreioEletronicoLoja.ToString(),
+                    CorreioEletronicoManutencao = x.CorreioEletronicoManutencao.ToString(),
+                    CorreioEletronicoAdministracao = x.CorreioEletronicoAdministracao.ToString()
+                });
         }
     }
 }

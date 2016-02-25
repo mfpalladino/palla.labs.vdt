@@ -31,16 +31,16 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
         }
 
-        public virtual Grupo ListarPorId(Guid id)
-        {
-            var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
-            return colecao.Find(x => x.Id == id).FirstOrDefault();
-        }
-
-        public virtual IEnumerable<Grupo> ListarTodos()
+        public virtual IEnumerable<Grupo> Buscar()
         {
             var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
             return colecao.Find(x => true).SortBy(x => x.Nome).ToList();
+        }
+
+        public virtual Grupo BuscarPorId(Guid id)
+        {
+            var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
+            return colecao.Find(x => x.Id == id).FirstOrDefault();
         }
 
         public void Remover(Guid id)

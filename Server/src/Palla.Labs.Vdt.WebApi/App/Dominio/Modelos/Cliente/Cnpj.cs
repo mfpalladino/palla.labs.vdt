@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Palla.Labs.Vdt.App.Dominio.Excecoes;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
@@ -46,7 +47,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 
         public void Validar()
         {
-            //todo
+            if (String.IsNullOrWhiteSpace(Numero))
+                throw new FormatoInvalido("O CNPJ do cliente deve ser informado.");
         }
     }
 }

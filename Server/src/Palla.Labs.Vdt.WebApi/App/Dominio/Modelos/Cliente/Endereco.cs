@@ -1,4 +1,9 @@
 ﻿// ReSharper disable once CheckNamespace
+
+using System;
+using Palla.Labs.Vdt.App.Dominio.Excecoes;
+
+// ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
     public class Endereco
@@ -65,7 +70,41 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 
         public void Validar()
         {
-            //todo
+            if (String.IsNullOrWhiteSpace(Logradouro))
+                throw new FormatoInvalido("O logradouro do endereço deve ser informado.");
+
+            if (Logradouro.Length > 200)
+                throw new FormatoInvalido("O logradouro do endereço deve ter no máximo 200 caracteres.");
+
+            if (String.IsNullOrWhiteSpace(Numero))
+                throw new FormatoInvalido("O número do endereço deve ser informado.");
+
+            if (Numero.Length > 20)
+                throw new FormatoInvalido("O número do endereço deve ter no máximo 20 caracteres.");
+
+            if (String.IsNullOrWhiteSpace(Bairro))
+                throw new FormatoInvalido("O bairro do endereço deve ser informado.");
+
+            if (Bairro.Length > 120)
+                throw new FormatoInvalido("O bairro do endereço deve ter no máximo 120 caracteres.");
+
+            if (String.IsNullOrWhiteSpace(Cidade))
+                throw new FormatoInvalido("A cidade do endereço deve ser informada.");
+
+            if (Cidade.Length > 80)
+                throw new FormatoInvalido("A cidade do endereço deve ter no máximo 80 caracteres.");
+
+            if (String.IsNullOrWhiteSpace(Estado))
+                throw new FormatoInvalido("O estado do endereço deve ser informado.");
+
+            if (Estado.Length != 2)
+                throw new FormatoInvalido("O estado do endereço deve ter exatamente 2 caracteres.");
+
+            if (String.IsNullOrWhiteSpace(Cep))
+                throw new FormatoInvalido("O CEP do endereço deve ser informado.");
+
+            if (Estado.Length > 10)
+                throw new FormatoInvalido("O CEP do endereço deve ter no máximo 10 caracteres.");
         }
     }
 }

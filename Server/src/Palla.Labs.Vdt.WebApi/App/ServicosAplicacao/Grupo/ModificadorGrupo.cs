@@ -32,7 +32,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (!id.GuidValido())
                 throw new FormatoInvalido("O identificador de grupo informado não é válido.");
 
-            if (_repositorioGrupos.ListarPorId(new Guid(id)) == null)
+            if (_repositorioGrupos.BuscarPorId(new Guid(id)) == null)
                 throw new RecursoNaoEncontrado("Grupo não encontrado");
         }
     }

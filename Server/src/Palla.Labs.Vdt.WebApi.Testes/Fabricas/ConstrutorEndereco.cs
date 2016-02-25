@@ -6,7 +6,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
     {
         public Endereco Construir()
         {
-            return new Endereco("logradouro", "numero", "complemento", "bairro", "cidade", "estado", "cep");
+            return new Endereco("logradouro", "numero", "complemento", "bairro", "cidade", "SP", "cep");
         }
     }
 }
