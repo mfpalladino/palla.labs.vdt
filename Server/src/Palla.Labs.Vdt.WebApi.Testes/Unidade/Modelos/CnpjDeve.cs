@@ -1,5 +1,7 @@
+using System;
 using FluentAssertions;
 using NUnit.Framework;
+using Palla.Labs.Vdt.App.Dominio.Excecoes;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Modelos
@@ -8,17 +10,36 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Modelos
     public class CnpjDeve
     {
         [Test]
-        public void SepararApenasOsNumerosDoCnpjInformado()
+        public void GerarExcecaoQuandoCnpjForVazio()
         {
-            //Arrange
-            const string cnpjLiteral = "77.046.700/0001-41";
-            const string cnpjLiteralSomenteNumeros = "77046700000141";
-            
-            //action
-            var cnpj = new Cnpj(cnpjLiteral);
+            //Arrange/action
+            // ReSharper disable once ObjectCreationAsStatement
+            Action acao = () => new Cnpj("");
 
             //Asserts
-            cnpj.Numero.Should().Be(cnpjLiteralSomenteNumeros);
+            acao.ShouldThrow<FormatoInvalido>();
+        }
+
+        [Test]
+        public void GerarExcecaoQuandoCnpjForMaiorQueOPermitido()
+        {
+            //Arrange/action
+            // ReSharper disable once ObjectCreationAsStatement
+            Action acao = () => new Cnpj("1".PadRight(15, '1'));
+
+            //Asserts
+            acao.ShouldThrow<FormatoInvalido>();
+        }
+
+        [Test]
+        public void GerarExcecaoQuandoCnpjTiverAlgoAlemDeNumeros()
+        {
+            //Arrange/action
+            // ReSharper disable once ObjectCreationAsStatement
+            Action acao = () => new Cnpj("123abc");
+
+            //Asserts
+            acao.ShouldThrow<FormatoInvalido>();
         }
     }
 }

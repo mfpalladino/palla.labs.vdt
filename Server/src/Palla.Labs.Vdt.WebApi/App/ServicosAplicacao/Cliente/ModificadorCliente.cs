@@ -37,13 +37,13 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (_repositorioClientes.BuscarPorId(new Guid(id)) == null)
                 throw new RecursoNaoEncontrado("O cliente não foi encontrado.");
 
-            if (!String.IsNullOrWhiteSpace(clienteDto.Nome) && _repositorioClientes.BuscarPorNomeExcetoId(clienteDto.Nome, clienteDto.Id) != null)
+            if (!String.IsNullOrWhiteSpace(clienteDto.Nome) && _repositorioClientes.BuscarPorNomeExcetoId(clienteDto.Nome, id.ParaGuid()) != null)
                 throw new JaExisteUmRecursoComEstasCaracteristicas("Já existe um cliente informado com este nome.");
 
-            if (!String.IsNullOrWhiteSpace(clienteDto.Cnpj) && _repositorioClientes.BuscarPorCnpjExcetoId(clienteDto.Cnpj, clienteDto.Id) != null)
+            if (!String.IsNullOrWhiteSpace(clienteDto.Cnpj) && _repositorioClientes.BuscarPorCnpjExcetoId(clienteDto.Cnpj, id.ParaGuid()) != null)
                 throw new JaExisteUmRecursoComEstasCaracteristicas("Já existe um cliente informado com este CNPJ.");
 
-            if (!String.IsNullOrWhiteSpace(clienteDto.Codigo) && _repositorioClientes.BuscarPorCodigoExcetoId(clienteDto.Codigo, clienteDto.Id) != null)
+            if (!String.IsNullOrWhiteSpace(clienteDto.Codigo) && _repositorioClientes.BuscarPorCodigoExcetoId(clienteDto.Codigo, id.ParaGuid()) != null)
                 throw new JaExisteUmRecursoComEstasCaracteristicas("Já existe um cliente informado com este código.");
 
             if (clienteDto.GrupoId.GuidValido() && _repositorioGrupos.BuscarPorId(clienteDto.GrupoId.ParaGuid()) == null)

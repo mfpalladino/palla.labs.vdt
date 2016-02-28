@@ -104,6 +104,7 @@
     <Compile Include="Unidade\Excecoes\ExcecaoParaHttpStatusCodeDeve.cs" />
     <Compile Include="Unidade\Mapeadores\MapeadorClienteDeve.cs" />
     <Compile Include="Unidade\Modelos\CnpjDeve.cs" />
+    <Compile Include="Unidade\Modelos\EnderecoDeve.cs" />
     <Compile Include="Unidade\Modelos\GrupoDeve.cs" />
     <Compile Include="Unidade\ServicosAplicacao\LocalizadorGrupoDeve.cs" />
     <Compile Include="Unidade\ServicosAplicacao\ModificadorGrupoDeve.cs" />

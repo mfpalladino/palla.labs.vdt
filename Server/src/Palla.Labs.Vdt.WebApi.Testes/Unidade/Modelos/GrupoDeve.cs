@@ -13,6 +13,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Modelos
         public void GerarExcecaoQuandoNomeNaoForInformado()
         {
             //Arrange/action
+            // ReSharper disable once ObjectCreationAsStatement
             Action acao = () => new Grupo("");
 
             //Asserts
@@ -23,6 +24,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Modelos
         public void GerarExcecaoQuandoNomeTiverMaisDe50Caracteres()
         {
             //Arrange/action
+            // ReSharper disable once ObjectCreationAsStatement
             Action acao = () => new Grupo("1".PadRight(51, 'a'));
 
             //Asserts

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace Palla.Labs.Vdt.App.Compartilhado
 {
@@ -13,6 +14,11 @@ namespace Palla.Labs.Vdt.App.Compartilhado
         public static Guid ParaGuid(this string guid)
         {
             return new Guid(guid);
+        }
+
+        public static bool ContemSomenteDigitos(this string valor)
+        {
+            return valor.All(c => c >= '0' && c <= '9');
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿// ReSharper disable once CheckNamespace
 
 using System;
+using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
 
 // ReSharper disable once CheckNamespace
@@ -31,6 +32,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             _cidade = cidade;
             _estado = estado;
             _cep = cep;
+
+            Validar();
         }
 
         public string Logradouro 
@@ -82,6 +85,9 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             if (Numero.Length > 20)
                 throw new FormatoInvalido("O número do endereço deve ter no máximo 20 caracteres.");
 
+            if (Complemento != null && Complemento.Length > 100)
+                throw new FormatoInvalido("O complemento do endereço deve ter no máximo 100 caracteres.");
+
             if (String.IsNullOrWhiteSpace(Bairro))
                 throw new FormatoInvalido("O bairro do endereço deve ser informado.");
 
@@ -103,8 +109,11 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             if (String.IsNullOrWhiteSpace(Cep))
                 throw new FormatoInvalido("O CEP do endereço deve ser informado.");
 
-            if (Estado.Length > 10)
+            if (Cep.Length > 10)
                 throw new FormatoInvalido("O CEP do endereço deve ter no máximo 10 caracteres.");
+
+            if (!Cep.ContemSomenteDigitos())
+                throw new FormatoInvalido("O CEP do endereço deve conter apenas números.");
         }
     }
 }

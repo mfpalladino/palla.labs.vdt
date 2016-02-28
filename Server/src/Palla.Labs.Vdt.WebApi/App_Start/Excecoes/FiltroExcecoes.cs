@@ -23,15 +23,17 @@ namespace Palla.Labs.Vdt.Excecoes
         {
             var logger = LogManager.GetLogger(context.ActionContext.ControllerContext.Controller.GetType());
 
-            if (!_mapeador.ContainsKey(context.Exception.GetType()))
+            var excecao = context.Exception.InnerException ?? context.Exception;
+
+            if (!_mapeador.ContainsKey(excecao.GetType()))
             {
                 context.Response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
                 logger.Error(logger, context.Exception);
                 return; //ATENÇÃO: Quebra de fluxo
             }
 
-            var httpResponseMessage = new HttpResponseMessage(_mapeador[context.Exception.GetType()]);
-            var baseException = context.Exception as ExcecaoBase;
+            var httpResponseMessage = new HttpResponseMessage(_mapeador[excecao.GetType()]);
+            var baseException = excecao as ExcecaoBase;
             if (baseException != null)
             {
                 if (baseException.ContainsMessageForApiClient)

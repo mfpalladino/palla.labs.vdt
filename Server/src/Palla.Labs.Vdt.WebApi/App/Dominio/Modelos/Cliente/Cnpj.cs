@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
 
 // ReSharper disable once CheckNamespace
@@ -11,10 +11,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 
         public Cnpj(string cnpj)
         {
-            if (String.IsNullOrWhiteSpace(cnpj))
-                throw new ArgumentNullException("cnpj");
-
-            _numero = new String(cnpj.Where(Char.IsDigit).ToArray()); //apenas números
+            _numero = cnpj;
 
             Validar();
         }
@@ -49,6 +46,12 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         {
             if (String.IsNullOrWhiteSpace(Numero))
                 throw new FormatoInvalido("O CNPJ do cliente deve ser informado.");
+
+            if (Numero.Length > 14)
+                throw new FormatoInvalido("O CNPJ do cliente deve ser 14 caracteres.");
+
+            if (!Numero.ContemSomenteDigitos())
+                throw new FormatoInvalido("O CNPJ do cliente deve conter apenas números.");
         }
     }
 }

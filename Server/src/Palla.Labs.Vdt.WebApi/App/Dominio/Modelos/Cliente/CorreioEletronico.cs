@@ -1,8 +1,7 @@
-﻿// ReSharper disable once CheckNamespace
-
-using System;
+﻿using System;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
 
+// ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
     public class CorreioEletronico
