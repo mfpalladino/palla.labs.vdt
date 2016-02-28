@@ -5,8 +5,8 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http.Filters;
 using log4net;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 namespace Palla.Labs.Vdt.Excecoes
 {

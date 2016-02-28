@@ -1,9 +1,9 @@
 ﻿using Palla.Labs.Vdt.App.Dominio.Modelos;
 
 // ReSharper disable once CheckNamespace
-namespace Palla.Labs.Vdt.App.ServicosAplicacao.Dtos
+namespace Palla.Labs.Vdt.App.Dominio.Dtos
 {
-    public class CentralAlarmeDtoBase : EquipamentoDtoBase
+    public class CentralAlarmeDto : EquipamentoDto
     {
         public string Fabricante { get; set; }
 

@@ -1,11 +1,9 @@
 ﻿using System;
-using AutoMapper;
 using Palla.Labs.Vdt.App.Compartilhado;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
-using Palla.Labs.Vdt.App.Dominio.Modelos;
-using Palla.Labs.Vdt.App.Infraestrutura.AutoMapper;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.ServicosAplicacao
@@ -13,18 +11,18 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class ModificadorGrupo
     {
         private readonly RepositorioGrupos _repositorioGrupos;
-        private readonly IMapper _mapeador;
+        private readonly FabricaGrupo _fabricaGrupo;
 
-        public ModificadorGrupo(RepositorioGrupos repositorioGrupos, IMapper mapeador)
+        public ModificadorGrupo(RepositorioGrupos repositorioGrupos, FabricaGrupo fabricaGrupo)
         {
             _repositorioGrupos = repositorioGrupos;
-            _mapeador = mapeador;
+            _fabricaGrupo = fabricaGrupo;
         }
 
         public void Modificar(string id, GrupoDto grupoDto)
         {
             Validar(id);
-            _repositorioGrupos.Editar(_mapeador.ParaEntidade<Grupo, GrupoDto>(id.ParaGuid(), grupoDto));
+            _repositorioGrupos.Editar(_fabricaGrupo.Criar(id.ParaGuid(), grupoDto));
         }
 
         private void Validar(string id)

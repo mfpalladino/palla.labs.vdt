@@ -1,11 +1,9 @@
 ﻿using System;
-using AutoMapper;
 using Palla.Labs.Vdt.App.Compartilhado;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
-using Palla.Labs.Vdt.App.Dominio.Modelos;
-using Palla.Labs.Vdt.App.Infraestrutura.AutoMapper;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.ServicosAplicacao
@@ -14,19 +12,19 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     {
         private readonly RepositorioClientes _repositorioClientes;
         private readonly RepositorioGrupos _repositorioGrupos;
-        private readonly IMapper _mapeador;
+        private readonly FabricaCliente _fabricaCliente;
 
-        public ModificadorCliente(RepositorioClientes repositorioClientes, RepositorioGrupos repositorioGrupos, IMapper mapeador)
+        public ModificadorCliente(RepositorioClientes repositorioClientes, RepositorioGrupos repositorioGrupos, FabricaCliente fabricaCliente)
         {
             _repositorioClientes = repositorioClientes;
             _repositorioGrupos = repositorioGrupos;
-            _mapeador = mapeador;
+            _fabricaCliente = fabricaCliente;
         }
 
         public void Modificar(string id, ClienteDto clienteDto)
         {
             Validar(id, clienteDto);
-            _repositorioClientes.Editar(_mapeador.ParaEntidade<Cliente, ClienteDto>(id.ParaGuid(), clienteDto));
+            _repositorioClientes.Editar(_fabricaCliente.Criar(id.ParaGuid(), clienteDto));
         }
 
         private void Validar(string id, ClienteDto clienteDto)

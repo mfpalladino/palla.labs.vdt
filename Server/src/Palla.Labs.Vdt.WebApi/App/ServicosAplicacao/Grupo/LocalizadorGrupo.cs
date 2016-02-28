@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using AutoMapper;
 using Palla.Labs.Vdt.App.Compartilhado;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.ServicosAplicacao
@@ -12,23 +12,23 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class LocalizadorGrupo
     {
         private readonly RepositorioGrupos _repositorioGrupos;
-        private readonly IMapper _mapeador;
+        private readonly FabricaGrupoDto _fabricaGrupoDto;
 
-        public LocalizadorGrupo(RepositorioGrupos repositorioGrupos, IMapper mapeador)
+        public LocalizadorGrupo(RepositorioGrupos repositorioGrupos, FabricaGrupoDto fabricaGrupoDto)
         {
             _repositorioGrupos = repositorioGrupos;
-            _mapeador = mapeador;
+            _fabricaGrupoDto = fabricaGrupoDto;
         }
 
         public GrupoDto Localizar(string id)
         {
             Validar(id);
-            return _mapeador.Map<GrupoDto>(_repositorioGrupos.BuscarPorId(new Guid(id)));
+            return _fabricaGrupoDto.Criar(_repositorioGrupos.BuscarPorId(new Guid(id)));
         }
 
         public IEnumerable<GrupoDto> Localizar()
         {
-            return _mapeador.Map<IEnumerable<GrupoDto>>(_repositorioGrupos.Buscar());
+            return _fabricaGrupoDto.Criar(_repositorioGrupos.Buscar());
         }
 
         private void Validar(string id)

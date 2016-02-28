@@ -2,8 +2,8 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 namespace Palla.Labs.Vdt.Controllers
 {

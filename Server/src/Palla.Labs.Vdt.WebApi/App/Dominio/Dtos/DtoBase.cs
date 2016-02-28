@@ -1,4 +1,4 @@
-﻿namespace Palla.Labs.Vdt.App.ServicosAplicacao.Dtos
+﻿namespace Palla.Labs.Vdt.App.Dominio.Dtos
 {
     public abstract class DtoBase<T>
     {

@@ -37,9 +37,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.4.2.2\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
@@ -102,7 +99,7 @@
     <Compile Include="Integracao\Repositorios\RepositorioEquipamentosDeve.cs" />
     <Compile Include="Integracao\ServicosAplicacao\CriadorManutencaoDeve.cs" />
     <Compile Include="Unidade\Excecoes\ExcecaoParaHttpStatusCodeDeve.cs" />
-    <Compile Include="Unidade\Mapeadores\MapeadorClienteDeve.cs" />
+    <Compile Include="Unidade\Mapeadores\FabricaClienteDeve.cs" />
     <Compile Include="Unidade\Modelos\CnpjDeve.cs" />
     <Compile Include="Unidade\Modelos\EnderecoDeve.cs" />
     <Compile Include="Unidade\Modelos\GrupoDeve.cs" />

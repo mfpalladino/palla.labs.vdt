@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Palla.Labs.Vdt.App.Infraestrutura.AutoMapper;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 namespace Palla.Labs.Vdt.WebApi.Testes
@@ -11,7 +10,6 @@ namespace Palla.Labs.Vdt.WebApi.Testes
         public void RodarAntesDosTestes()
         {
             ConfiguraMongo.Configurar();
-            ConfiguraAutoMapper.Configurar();
         }
     }
 }

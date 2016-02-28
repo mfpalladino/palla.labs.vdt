@@ -35,10 +35,10 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
                 centralAlarme = new ConstrutorCentralAlarme().Construir();
                 repositorio.Inserir(centralAlarme);
 
-                repositorio.ListarPorId(extintor.Id).Tipo.Should().Be(TipoEquipamento.Extintor);
-                repositorio.ListarPorId(mangueira.Id).Tipo.Should().Be(TipoEquipamento.Mangueira);
-                repositorio.ListarPorId(sistemaContraIncendioEmCoifa.Id).Tipo.Should().Be(TipoEquipamento.SistemaContraIncendioEmCoifa);
-                repositorio.ListarPorId(centralAlarme.Id).Tipo.Should().Be(TipoEquipamento.CentralAlarme);
+                repositorio.BuscarPorId(extintor.Id).Tipo.Should().Be(TipoEquipamento.Extintor);
+                repositorio.BuscarPorId(mangueira.Id).Tipo.Should().Be(TipoEquipamento.Mangueira);
+                repositorio.BuscarPorId(sistemaContraIncendioEmCoifa.Id).Tipo.Should().Be(TipoEquipamento.SistemaContraIncendioEmCoifa);
+                repositorio.BuscarPorId(centralAlarme.Id).Tipo.Should().Be(TipoEquipamento.CentralAlarme);
             }
             finally
             {

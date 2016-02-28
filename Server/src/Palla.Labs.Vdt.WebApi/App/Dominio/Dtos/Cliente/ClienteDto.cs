@@ -1,7 +1,7 @@
 using System;
 
 // ReSharper disable once CheckNamespace
-namespace Palla.Labs.Vdt.App.ServicosAplicacao.Dtos
+namespace Palla.Labs.Vdt.App.Dominio.Dtos
 {
     public class ClienteDto : DtoBase<Guid>
     {

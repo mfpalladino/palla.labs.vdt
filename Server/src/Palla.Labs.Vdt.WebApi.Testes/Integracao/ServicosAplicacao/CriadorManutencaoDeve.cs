@@ -28,7 +28,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.ServicosAplicacao
                 var nomeParteParaManutencao = extintor.ParametrosManutencao.Partes.First().Nome;
                 servico.Criar(extintor.Id, nomeParteParaManutencao);
 
-                var extintorAposAManutencao = repositorio.ListarPorId(extintor.Id);
+                var extintorAposAManutencao = repositorio.BuscarPorId(extintor.Id);
 
                 extintorAposAManutencao.Manutencoes.Should().HaveCount(1);
                 extintorAposAManutencao.Manutencoes.First().Parte.Should().Be(nomeParteParaManutencao);

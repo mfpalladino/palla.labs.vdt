@@ -16,7 +16,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
 
         public void Criar(Guid idEquipamento, string parte)
         {
-            var equipamento = _repositorioEquipamentos.ListarPorId(idEquipamento);
+            var equipamento = _repositorioEquipamentos.BuscarPorId(idEquipamento);
 
             if (equipamento.ParametrosManutencao.Partes.Select(x => x.Nome).All(x => x != parte))
                 throw new Exception("A parte informada não faz parte do equipamento.");

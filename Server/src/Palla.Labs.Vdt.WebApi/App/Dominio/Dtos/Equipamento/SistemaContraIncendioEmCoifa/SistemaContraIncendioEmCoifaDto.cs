@@ -1,8 +1,8 @@
 ﻿
 // ReSharper disable once CheckNamespace
-namespace Palla.Labs.Vdt.App.ServicosAplicacao.Dtos
+namespace Palla.Labs.Vdt.App.Dominio.Dtos
 {
-    public class SistemaContraIncendioEmCoifaDtoBase : EquipamentoDtoBase
+    public class SistemaContraIncendioEmCoifaDto : EquipamentoDto
     {
         public string Central { get; set; }
         public int QuantidadeCilindroCo2 { get; set; }

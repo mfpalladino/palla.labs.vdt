@@ -41,9 +41,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
@@ -176,6 +173,12 @@
     <Compile Include="App\Dominio\Excecoes\JaExisteUmRecursoComEstasCaracteristicas.cs" />
     <Compile Include="App\Dominio\Excecoes\MapeadorParaHttpStatusCode\ExcecaoDominioParaHttpStatusCode.cs" />
     <Compile Include="App\Dominio\Excecoes\RecursoNaoEncontrado.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaCliente.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaEquipamentoDto.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaClienteDto.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaEquipamento.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaGrupo.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaGrupoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaParametrosManutencao.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cliente.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cnpj.cs" />
@@ -201,23 +204,24 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\ParteEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
-    <Compile Include="App\Infraestrutura\AutoMapper\ConfiguraAutoMapper.cs" />
-    <Compile Include="App\Infraestrutura\AutoMapper\MapperExtensoes.cs" />
+    <Compile Include="App\Infraestrutura\Mvc\EquipamentoDtoModelBinder.cs" />
     <Compile Include="App\ServicosAplicacao\Cliente\CriadorCliente.cs" />
     <Compile Include="App\ServicosAplicacao\Cliente\LocalizadorCliente.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\Cliente\ClienteDto.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\DtoBase.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\Equipamento\CentralAlarme\CentralAlarmeDto.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\Equipamento\EquipamentoDtoBase.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\Equipamento\Extintor\ExtintorDto.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\Equipamento\Mangueira\MangueiraDto.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifaDto.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\ResultadoErroDto.cs" />
+    <Compile Include="App\Dominio\Dtos\Cliente\ClienteDto.cs" />
+    <Compile Include="App\Dominio\Dtos\DtoBase.cs" />
+    <Compile Include="App\Dominio\Dtos\Equipamento\CentralAlarme\CentralAlarmeDto.cs" />
+    <Compile Include="App\Dominio\Dtos\Equipamento\EquipamentoDto.cs" />
+    <Compile Include="App\Dominio\Dtos\Equipamento\Extintor\ExtintorDto.cs" />
+    <Compile Include="App\Dominio\Dtos\Equipamento\Mangueira\MangueiraDto.cs" />
+    <Compile Include="App\Dominio\Dtos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifaDto.cs" />
+    <Compile Include="App\Dominio\Dtos\ResultadoErroDto.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\Extintor\Extintor.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamentoExtensoes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioClientes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioGrupos.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\CriadorEquipamento.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\LocalizadorEquipamento.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\CriadorGrupo.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\CriadorManutencao.cs" />
     <Compile Include="App\Infraestrutura\Mongo\ConfiguracoesParaAcesso\IConfigBancoDados.cs" />
@@ -227,7 +231,7 @@
     <Compile Include="App\Infraestrutura\Mongo\ConfiguraMongo.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioBase.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioEquipamentos.cs" />
-    <Compile Include="App\ServicosAplicacao\Dtos\Cliente\GrupoDto.cs" />
+    <Compile Include="App\Dominio\Dtos\Cliente\GrupoDto.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\LocalizadorGrupo.cs" />
     <Compile Include="App\ServicosAplicacao\Cliente\ModificadorCliente.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\ModificadorGrupo.cs" />

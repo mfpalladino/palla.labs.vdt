@@ -1,10 +1,9 @@
 ﻿using System;
-using AutoMapper;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
-using Palla.Labs.Vdt.App.Infraestrutura.AutoMapper;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.ServicosAplicacao
@@ -12,19 +11,19 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class CriadorGrupo
     {
         private readonly RepositorioGrupos _repositorioGrupos;
-        private readonly IMapper _mapeador;
+        private readonly FabricaGrupo _fabricaGrupo;
 
-        public CriadorGrupo(RepositorioGrupos repositorioGrupos, IMapper mapeador)
+        public CriadorGrupo(RepositorioGrupos repositorioGrupos, FabricaGrupo fabricaGrupo)
         {
             _repositorioGrupos = repositorioGrupos;
-            _mapeador = mapeador;
+            _fabricaGrupo = fabricaGrupo;
         }
 
         public Grupo Criar(GrupoDto grupoDto)
         {
             Validar(grupoDto);
 
-            var grupo = _mapeador.ParaEntidade<Grupo, GrupoDto>(grupoDto);
+            var grupo = _fabricaGrupo.Criar(Guid.NewGuid(), grupoDto);
             _repositorioGrupos.Inserir(grupo);
             return grupo;
         }

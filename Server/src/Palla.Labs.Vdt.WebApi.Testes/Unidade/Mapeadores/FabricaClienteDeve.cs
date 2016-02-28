@@ -1,14 +1,12 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using Palla.Labs.Vdt.App.Dominio.Modelos;
-using Palla.Labs.Vdt.App.Infraestrutura.AutoMapper;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.WebApi.Testes.Fabricas;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Mapeadores
 {
     [TestFixture]
-    public class MapeadorClienteDeve //usado apenas para aprender sobre o automapper. Pouco valor...
+    public class FabricaClienteDeve
     {
         [Test]
         public void ConseguirGerarCorretamenteUmDtoComBaseNaEntidade() 
@@ -17,7 +15,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Mapeadores
             var cliente = new ConstrutorCliente().Construir();
 
             //Act
-            var clienteDto = ConfiguraAutoMapper.Mapeador.Map<ClienteDto>(cliente);
+            var clienteDto = new FabricaClienteDto().Criar(cliente);
 
             //Asserts
             clienteDto.Logradouro.Should().Be(cliente.Endereco.Logradouro);
@@ -31,10 +29,10 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Mapeadores
         {
             //Arrange
             var clienteOriginal = new ConstrutorCliente().Construir();
-            var clienteDto = ConfiguraAutoMapper.Mapeador.Map<ClienteDto>(clienteOriginal);
+            var clienteDto = new FabricaClienteDto().Criar(clienteOriginal);
 
             //Act
-            var clienteGerado = ConfiguraAutoMapper.Mapeador.Map<Cliente>(clienteDto);
+            var clienteGerado = new FabricaCliente().Criar(clienteDto);
             
             //Asserts
             clienteDto.Logradouro.Should().Be(clienteGerado.Endereco.Logradouro);

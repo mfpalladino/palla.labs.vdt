@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MongoDB.Driver;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
 
@@ -26,7 +27,13 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
                 Builders<Equipamento>.Update.AddToSet(x => x.Manutencoes, manutencao));
         }
 
-        public Equipamento ListarPorId(Guid id)
+        public IEnumerable<Equipamento> Buscar()
+        {
+            var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);
+            return colecao.Find(x => true).ToList();
+        }
+
+        public Equipamento BuscarPorId(Guid id)
         {
             var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);
             return colecao.Find(x => x.Id == id).FirstOrDefault();

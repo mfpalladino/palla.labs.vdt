@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
 {
@@ -20,7 +20,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
         public void GerarExcecaoQuandoIdNaoForValido()
         {
             //Arrange
-            Action acao = () => new LocalizadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<IMapper>().Object).Localizar("qualquer coisa");
+            Action acao = () => new LocalizadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<FabricaGrupoDto>().Object).Localizar("qualquer coisa");
 
             //Asserts
             acao.ShouldThrow<FormatoInvalido>();
@@ -35,7 +35,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             repositorio.Setup(x => x.BuscarPorId(new Guid(id))).Throws<RecursoNaoEncontrado>();
 
             //Action
-            Action acao = () => new LocalizadorGrupo(repositorio.Object, new Mock<IMapper>().Object).Localizar(id);
+            Action acao = () => new LocalizadorGrupo(repositorio.Object, new Mock<FabricaGrupoDto>().Object).Localizar(id);
 
             //Asserts
             acao.ShouldThrow<RecursoNaoEncontrado>();
@@ -46,14 +46,14 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
         {
             //Arrange
             var repositorio = new Mock<RepositorioGrupos>();
-            var mapper = new Mock<IMapper>();
+            var mapper = new Mock<FabricaGrupoDto>();
 
             var id = Guid.NewGuid();
             var grupoEsperado = new Grupo(id, "Grupo");
             var grupoRetornadoMapper = new GrupoDto { Id = grupoEsperado.Id, Nome = grupoEsperado.Nome };
 
             repositorio.Setup(x => x.BuscarPorId(It.IsAny<Guid>())).Returns(grupoEsperado);
-            mapper.Setup(x => x.Map<GrupoDto>(It.IsAny<Grupo>())).Returns(grupoRetornadoMapper);
+            mapper.Setup(x => x.Criar(It.IsAny<Grupo>())).Returns(grupoRetornadoMapper);
 
             //Action
             var grupoRetornado = new LocalizadorGrupo(repositorio.Object, mapper.Object).Localizar(id.ToString());
@@ -68,7 +68,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
         {
             //Arrange
             var repositorio = new Mock<RepositorioGrupos>();
-            var mapper = new Mock<IMapper>();
+            var mapper = new Mock<FabricaGrupoDto>();
 
             var id = Guid.NewGuid();
             var grupoRetornadoDoBanco = new Grupo(id, "Grupo");
@@ -77,7 +77,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             var gruposRetornadosMapper = new List<GrupoDto> { grupoRetornadoMapper };
 
             repositorio.Setup(x => x.Buscar()).Returns(gruposRetornadosDoBanco);
-            mapper.Setup(x => x.Map<IEnumerable<GrupoDto>>(It.IsAny<IEnumerable<Grupo>>())).Returns(gruposRetornadosMapper);
+            mapper.Setup(x => x.Criar(It.IsAny<IEnumerable<Grupo>>())).Returns(gruposRetornadosMapper);
 
             //Action
             var gruposRetornados = new LocalizadorGrupo(repositorio.Object, mapper.Object).Localizar();

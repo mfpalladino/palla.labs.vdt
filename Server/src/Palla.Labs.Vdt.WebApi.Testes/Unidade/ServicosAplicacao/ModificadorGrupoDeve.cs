@@ -1,13 +1,12 @@
 ﻿using System;
-using AutoMapper;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
-using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 using Palla.Labs.Vdt.WebApi.Testes.Fabricas;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
@@ -19,7 +18,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
         public void GerarExcecaoQuandoIdNaoForValido()
         {
             //Arrange
-            Action acao = () => new ModificadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<IMapper>().Object).Modificar("qualquer coisa", new GrupoDto());
+            Action acao = () => new ModificadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<FabricaGrupo>().Object).Modificar("qualquer coisa", new GrupoDto());
 
             //Asserts
             acao.ShouldThrow<FormatoInvalido>();
@@ -34,7 +33,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             repositorio.Setup(x => x.BuscarPorId(new Guid(id))).Throws<RecursoNaoEncontrado>();
 
             //Action
-            Action acao = () => new ModificadorGrupo(repositorio.Object, new Mock<IMapper>().Object).Modificar(id, new GrupoDto());
+            Action acao = () => new ModificadorGrupo(repositorio.Object, new Mock<FabricaGrupo>().Object).Modificar(id, new GrupoDto());
 
             //Asserts
             acao.ShouldThrow<RecursoNaoEncontrado>();
@@ -45,7 +44,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
         {
             //Arrange
             var repositorio = new Mock<RepositorioGrupos>();
-            var mapper = new Mock<IMapper>();
+            var mapper = new Mock<FabricaGrupo>();
 
             var id = Guid.NewGuid();
             var grupoEsperado = new ConstrutorGrupo().Construir();
@@ -53,7 +52,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
 
             repositorio.Setup(x => x.BuscarPorId(It.IsAny<Guid>())).Returns(grupoEsperado);
             repositorio.Setup(x => x.Editar(grupoEsperado));
-            mapper.Setup(x => x.Map<Grupo>(grupoRecebido)).Returns(grupoEsperado);
+            mapper.Setup(x => x.Criar(grupoRecebido)).Returns(grupoEsperado);
 
             //Action
             Action acao = () => new ModificadorGrupo(repositorio.Object, mapper.Object).Modificar(id.ToString(), grupoRecebido);

@@ -1,6 +1,9 @@
 ﻿using System.Web.Http;
-using Palla.Labs.Vdt.App.Infraestrutura.AutoMapper;
+using System.Web.Http.ModelBinding;
+using System.Web.Http.ModelBinding.Binders;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
+using Palla.Labs.Vdt.App.Infraestrutura.Mvc;
 using Palla.Labs.Vdt.Excecoes;
 
 namespace Palla.Labs.Vdt
@@ -20,8 +23,10 @@ namespace Palla.Labs.Vdt
             ConfiguraJson.Configurar(config);
             ConfiguraPoliticaExcecoes.Configurar(config);
             ConfiguraMongo.Configurar();
-            var mapperConfiguration = ConfiguraAutoMapper.Configurar();
-            ConfiguraIoC.Configurar(config, mapperConfiguration);
+            ConfiguraIoC.Configurar(config);
+
+            var provider = new SimpleModelBinderProvider(typeof(EquipamentoDto), new EquipamentoDtoModelBinder());
+            config.Services.Insert(typeof(ModelBinderProvider), 0, provider);
         }
     }
 }

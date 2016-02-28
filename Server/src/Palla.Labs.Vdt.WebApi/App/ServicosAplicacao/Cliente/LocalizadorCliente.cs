@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using AutoMapper;
 using Palla.Labs.Vdt.App.Compartilhado;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
-using Palla.Labs.Vdt.App.ServicosAplicacao.Dtos;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.ServicosAplicacao
@@ -12,23 +12,23 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class LocalizadorCliente
     {
         private readonly RepositorioClientes _repositorioClientes;
-        private readonly IMapper _mapeador;
+        private readonly FabricaClienteDto _fabricaClienteDto;
 
-        public LocalizadorCliente(RepositorioClientes repositorioClientes, IMapper mapeador)
+        public LocalizadorCliente(RepositorioClientes repositorioClientes, FabricaClienteDto fabricaClienteDto)
         {
             _repositorioClientes = repositorioClientes;
-            _mapeador = mapeador;
+            _fabricaClienteDto = fabricaClienteDto;
         }
 
         public ClienteDto Localizar(string id)
         {
             Validar(id);
-            return _mapeador.Map<ClienteDto>(_repositorioClientes.BuscarPorId(new Guid(id)));
+            return _fabricaClienteDto.Criar(_repositorioClientes.BuscarPorId(new Guid(id)));
         }
 
         public IEnumerable<ClienteDto> Localizar()
         {
-            return _mapeador.Map<IEnumerable<ClienteDto>>(_repositorioClientes.Buscar());
+            return _fabricaClienteDto.Criar(_repositorioClientes.Buscar());
         }
 
         private void Validar(string id)
