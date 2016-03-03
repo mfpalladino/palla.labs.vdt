@@ -1,46 +1,47 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.ModelBinding;
+using Newtonsoft.Json;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
+using Palla.Labs.Vdt.App.Dominio.Excecoes;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.Mvc
 {
     public class EquipamentoDtoModelBinder : IModelBinder
     {
-        public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
+        private ModelBindingContext _bindingContext;
+
+        public bool BindModel(HttpActionContext actionContext, ModelBindingContext
+            bindingContext)
         {
-            var type = bindingContext.ModelName + "." + "tipo";
+            _bindingContext = bindingContext;
+            actionContext.Request.Content.ReadAsStringAsync().ContinueWith(Deserializar).Wait();
+            return true;
+        }
 
-            Type typeToInstantiate;
+        private void Deserializar(Task<string> content)
+        {
+            var contentData = content.Result;
 
-            switch ((TipoEquipamento)bindingContext.ValueProvider.GetValue(type).RawValue)
+            var equipamentoBase = JsonConvert.DeserializeObject<EquipamentoDto>(contentData);
+
+            switch (equipamentoBase.Tipo)
             {
-                case TipoEquipamento.Extintor:
-                    {
-                        typeToInstantiate = typeof(ExtintorDto);
-
-                        return true;
-                    }
-                case TipoEquipamento.Mangueira:
-                    {
-                        typeToInstantiate = typeof(MangueiraDto);
-                        return true;
-                    }
-                case TipoEquipamento.CentralAlarme:
-                    {
-                        typeToInstantiate = typeof(CentralAlarmeDto);
-                        return true;
-                    }
-                case TipoEquipamento.SistemaContraIncendioEmCoifa:
-                    {
-                        typeToInstantiate = typeof(SistemaContraIncendioEmCoifaDto);
-                        return true;
-                    }
+                case (int)TipoEquipamento.Extintor:
+                    _bindingContext.Model = JsonConvert.DeserializeObject<ExtintorDto>(contentData);
+                    break;
+                case (int)TipoEquipamento.Mangueira:
+                    _bindingContext.Model = JsonConvert.DeserializeObject<MangueiraDto>(contentData);
+                    break;
+                case (int)TipoEquipamento.CentralAlarme:
+                    _bindingContext.Model = JsonConvert.DeserializeObject<CentralAlarmeDto>(contentData);
+                    break;
+                case (int)TipoEquipamento.SistemaContraIncendioEmCoifa:
+                    _bindingContext.Model = JsonConvert.DeserializeObject<SistemaContraIncendioEmCoifaDto>(contentData);
+                    break;
                 default:
-                    {
-                        throw new Exception("O equipamento não pode funcionar no model binder conforme seu tipo.");
-                    }
+                    throw new FormatoInvalido("O tipo do equipamento não é válido.");
             }
         }
     }

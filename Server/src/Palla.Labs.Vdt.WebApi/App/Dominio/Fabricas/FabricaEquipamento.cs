@@ -17,13 +17,13 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
         {
             switch (equipamentoDto.Tipo)
             {
-                case TipoEquipamento.Extintor:
+                case (int)TipoEquipamento.Extintor:
                     return CriarExtintor(id, equipamentoDto as ExtintorDto);
-                case TipoEquipamento.Mangueira:
+                case (int)TipoEquipamento.Mangueira:
                     return CriarMangueira(id, equipamentoDto as MangueiraDto);
-                case TipoEquipamento.CentralAlarme:
+                case (int)TipoEquipamento.CentralAlarme:
                     return CriarCentralAlarme(id, equipamentoDto as CentralAlarmeDto);
-                case TipoEquipamento.SistemaContraIncendioEmCoifa:
+                case (int)TipoEquipamento.SistemaContraIncendioEmCoifa:
                     return CriarSistemaContraIncendioEmCoifa(id, equipamentoDto as SistemaContraIncendioEmCoifaDto);
             }
 

@@ -59,9 +59,9 @@
       <HintPath>..\packages\NUnit3TestAdapter.3.0.8-ctp-8\lib\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.engine">
       <HintPath>..\packages\NUnit3TestAdapter.3.0.8-ctp-8\lib\nunit.engine.dll</HintPath>
@@ -205,6 +205,7 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
     <Compile Include="App\Infraestrutura\Mvc\EquipamentoDtoModelBinder.cs" />
+    <Compile Include="App\Infraestrutura\Mvc\EquipamentoDtoModelBinderProvider.cs" />
     <Compile Include="App\ServicosAplicacao\Cliente\CriadorCliente.cs" />
     <Compile Include="App\ServicosAplicacao\Cliente\LocalizadorCliente.cs" />
     <Compile Include="App\Dominio\Dtos\Cliente\ClienteDto.cs" />
