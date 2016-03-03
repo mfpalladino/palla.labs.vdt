@@ -22,6 +22,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             _tipoMangueira = tipoMangueira;
             _diametro = diametro;
             _comprimento = comprimento;
+
+            Validar();
         }
 
         public TipoMangueira TipoMangueira
@@ -37,6 +39,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public ComprimentoMangueira Comprimento
         {
             get { return _comprimento; }
+        }
+
+        private void Validar()
+        {
         }
     }
 }

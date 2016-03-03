@@ -23,7 +23,7 @@ namespace Palla.Labs.Vdt
             ConfiguraJson.Configurar(config);
             ConfiguraPoliticaExcecoes.Configurar(config);
             ConfiguraMongo.Configurar();
-            ConfiguraIoC.Configurar(config);
+            IoC.Configurar(config);
 
             var provider = new SimpleModelBinderProvider(typeof(EquipamentoDto), new EquipamentoDtoModelBinder());
             config.Services.Insert(typeof(ModelBinderProvider), 0, provider);

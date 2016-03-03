@@ -5,7 +5,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Dtos
 {
     public class EquipamentoDto : DtoBase<Guid>
     {
-        public Guid ClienteId { get; set; }
+        public string ClienteId { get; set; }
 
         public int Tipo { get; set; }
     }

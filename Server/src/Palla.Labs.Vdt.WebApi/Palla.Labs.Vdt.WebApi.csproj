@@ -180,6 +180,7 @@
     <Compile Include="App\Dominio\Fabricas\FabricaGrupo.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaGrupoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaParametrosManutencao.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaValidadorEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cliente.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cnpj.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\CorreioEletronico.cs" />
@@ -223,6 +224,16 @@
     <Compile Include="App\Infraestrutura\Mongo\RepositorioGrupos.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\CriadorEquipamento.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\LocalizadorEquipamento.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\IValidadorEquipamento.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorEquipamentoBase.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorModificacaoCentralAmarme.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorCriacaoCentralAmarme.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorModificacaoExtintor.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorModificacaoMangueira.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorCriacaoMangueira.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorModificacaoSistemaContraIncendioEmCoifa.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorCriacaoSistemaContraIncendioEmCoifa.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorCriacaoExtintor.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\CriadorGrupo.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\CriadorManutencao.cs" />
     <Compile Include="App\Infraestrutura\Mongo\ConfiguracoesParaAcesso\IConfigBancoDados.cs" />
@@ -240,7 +251,7 @@
     <Compile Include="App_Start\Excecoes\FiltroExcecoes.cs" />
     <Compile Include="App_Start\Excecoes\ConfiguraPoliticaExcecoes.cs" />
     <Compile Include="App_Start\ConfiguraFiltros.cs" />
-    <Compile Include="App_Start\ConfiguraIoC.cs" />
+    <Compile Include="App_Start\IoC.cs" />
     <Compile Include="App_Start\ConfiguraWebApi.cs" />
     <Compile Include="Controllers\EquipamentosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />

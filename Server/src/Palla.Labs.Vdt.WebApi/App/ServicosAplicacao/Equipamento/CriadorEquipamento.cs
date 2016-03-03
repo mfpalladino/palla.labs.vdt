@@ -1,6 +1,5 @@
 ﻿using System;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
-using Palla.Labs.Vdt.App.Dominio.Excecoes;
 using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
@@ -12,26 +11,24 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     {
         private readonly RepositorioEquipamentos _repositorioEquipamentos;
         private readonly FabricaEquipamento _fabricaEquipamento;
+        private readonly FabricaValidadorEquipamento _fabricaValidadorEquipamento;
 
-        public CriadorEquipamento(RepositorioEquipamentos repositorioEquipamentos, FabricaEquipamento fabricaEquipamento)
+        public CriadorEquipamento(RepositorioEquipamentos repositorioEquipamentos, FabricaEquipamento fabricaEquipamento, FabricaValidadorEquipamento fabricaValidadorEquipamento)
         {
             _repositorioEquipamentos = repositorioEquipamentos;
             _fabricaEquipamento = fabricaEquipamento;
+            _fabricaValidadorEquipamento = fabricaValidadorEquipamento;
         }
 
         public Equipamento Criar(EquipamentoDto equipamentoDto)
         {
-            Validar(equipamentoDto);
+            _fabricaValidadorEquipamento
+                .CriarValidadorCriacao(equipamentoDto)
+                .Validar(equipamentoDto);
 
             var equipamento = _fabricaEquipamento.Criar(Guid.NewGuid(), equipamentoDto);
             _repositorioEquipamentos.Inserir(equipamento);
             return equipamento;
-        }
-
-        private static void Validar(EquipamentoDto equipamentoDto)
-        {
-            if (equipamentoDto.Id != Guid.Empty)
-                throw new FormatoInvalido("O identificador de equipamento não deve ser informado neste contexto.");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Palla.Labs.Vdt.App.Dominio.Excecoes;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
@@ -50,6 +51,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             _detectorEnderecavel = detectorEnderecavel;
             _quantidadeAcionadores = quantidadeAcionadores;
             _quantidadeSirenes = quantidadeSirenes;
+
+            Validar();
         }
 
         public string Fabricante
@@ -65,6 +68,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         {
             get { return _tipoCentralAlarme; }
         }
+
         public int QuantidadeDetectores
         {
             get { return _quantidadeDetectores; }
@@ -83,6 +87,30 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public int QuantidadeSirenes
         {
             get { return _quantidadeSirenes; }
+        }
+
+        private void Validar()
+        {
+            if (String.IsNullOrWhiteSpace(Fabricante))
+                throw new FormatoInvalido("O fabricante da central de alarme deve ser informado.");
+
+            if (Fabricante.Length > 120)
+                throw new FormatoInvalido("O fabricante da central de alarme não pode ter mais de 120 caracteres.");
+
+            if (String.IsNullOrWhiteSpace(Modelo))
+                throw new FormatoInvalido("O modelo da central de alarme deve ser informado.");
+
+            if (Modelo.Length > 150)
+                throw new FormatoInvalido("O modelo da central de alarme não pode ter mais de 150 caracteres.");
+
+            if (QuantidadeDetectores < 0)
+                throw new FormatoInvalido("A quantidade de detectores da central de alarme não pode ser menor que zero.");
+
+            if (QuantidadeAcionadores < 0)
+                throw new FormatoInvalido("A quantidade de acionadores da central de alarme não pode ser menor que zero.");
+
+            if (QuantidadeSirenes < 0)
+                throw new FormatoInvalido("A quantidade de sirenes da central de alarme não pode ser menor que zero.");
         }
     }
 }

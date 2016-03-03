@@ -3,8 +3,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.ModelBinding;
 using Newtonsoft.Json;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
-using Palla.Labs.Vdt.App.Dominio.Excecoes;
-using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.Mvc
 {
@@ -22,27 +21,10 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mvc
 
         private void Deserializar(Task<string> content)
         {
-            var contentData = content.Result;
+            var json = content.Result;
 
-            var equipamentoBase = JsonConvert.DeserializeObject<EquipamentoDto>(contentData);
-
-            switch (equipamentoBase.Tipo)
-            {
-                case (int)TipoEquipamento.Extintor:
-                    _bindingContext.Model = JsonConvert.DeserializeObject<ExtintorDto>(contentData);
-                    break;
-                case (int)TipoEquipamento.Mangueira:
-                    _bindingContext.Model = JsonConvert.DeserializeObject<MangueiraDto>(contentData);
-                    break;
-                case (int)TipoEquipamento.CentralAlarme:
-                    _bindingContext.Model = JsonConvert.DeserializeObject<CentralAlarmeDto>(contentData);
-                    break;
-                case (int)TipoEquipamento.SistemaContraIncendioEmCoifa:
-                    _bindingContext.Model = JsonConvert.DeserializeObject<SistemaContraIncendioEmCoifaDto>(contentData);
-                    break;
-                default:
-                    throw new FormatoInvalido("O tipo do equipamento não é válido.");
-            }
+            var equipamentoBase = JsonConvert.DeserializeObject<EquipamentoDto>(json);
+            _bindingContext.Model = new FabricaEquipamentoDto().Criar(equipamentoBase.Tipo, json);
         }
     }
 }

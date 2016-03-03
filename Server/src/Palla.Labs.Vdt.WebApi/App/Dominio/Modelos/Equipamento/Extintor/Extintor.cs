@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Palla.Labs.Vdt.App.Dominio.Excecoes;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
@@ -25,6 +26,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             _agente = agente;
             _localizacao = localizacao;
             _fabricadoEm = fabricadoEm;
+
+            Validar();
         }
 
         public string NumeroCilindro
@@ -45,6 +48,30 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public DateTime FabricadoEm
         {
             get { return _fabricadoEm; }
+        }
+
+        private void Validar()
+        {
+            if (String.IsNullOrWhiteSpace(NumeroCilindro))
+                throw new FormatoInvalido("O número do cilindro do extintor deve ser informado.");
+
+            if (NumeroCilindro.Length > 50)
+                throw new FormatoInvalido("O número do cilindro do extintor não pode ter mais de 50 caracteres.");
+
+            if (String.IsNullOrWhiteSpace(Agente))
+                throw new FormatoInvalido("O agente do extintor deve ser informado.");
+
+            if (Agente.Length > 100)
+                throw new FormatoInvalido("O agente do extintor não pode ter mais de 100 caracteres.");
+
+            if (String.IsNullOrWhiteSpace(Localizacao))
+                throw new FormatoInvalido("A localização do extintor deve ser informada.");
+
+            if (Localizacao.Length > 200)
+                throw new FormatoInvalido("A localização do extintor não pode ter mais de 200 caracteres.");
+
+            if (FabricadoEm == DateTime.MinValue)
+                throw new FormatoInvalido("A data da fabricação do extintor não é válida.");
         }
     }
 }
