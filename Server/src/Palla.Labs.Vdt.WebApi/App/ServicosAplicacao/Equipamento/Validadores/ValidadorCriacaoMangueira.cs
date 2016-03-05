@@ -1,5 +1,7 @@
 using System;
+using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
+using Palla.Labs.Vdt.App.Dominio.Excecoes;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 // ReSharper disable once CheckNamespace
@@ -7,6 +9,11 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
 {
     public class ValidadorCriacaoMangueira : ValidadorEquipamentoBase
     {
+        public ValidadorCriacaoMangueira(RepositorioClientes repositorioClientes, RepositorioEquipamentos repositorioEquipamentos)
+            : base(repositorioClientes, repositorioEquipamentos)
+        {
+        }
+
         public override void Validar(EquipamentoDto equipamentoDto)
         {
             base.Validar(equipamentoDto);
@@ -16,18 +23,19 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (equipamentoEspecifico == null)
                 throw new Exception("Não é possível validar o equipamento (problema de conversão).");
 
-            ValidarAtributosMangueira(equipamentoEspecifico.Comprimento,
-                equipamentoEspecifico.Diametro,
-                equipamentoEspecifico.TipoMangueira);
+            if (!equipamentoEspecifico.Comprimento.ComprimentoMangueiraValido())
+                throw new FormatoInvalido("O comprimento da mangueira não é válido.");
+
+            if (!equipamentoEspecifico.Diametro.DiametroMangueiraValido())
+                throw new FormatoInvalido("O diâmetro da mangueira não é válido.");
+
+            if (!equipamentoEspecifico.TipoMangueira.TipoMangueiraValido())
+                throw new FormatoInvalido("O tipo da mangueira não é válido.");
         }
 
-        public override bool EValidadorDeCriacao
+        public override bool ValidadorDeCriacao
         {
             get { return true; }
-        }
-
-        public ValidadorCriacaoMangueira(RepositorioClientes repositorioClientes) : base(repositorioClientes)
-        {
         }
     }
 }

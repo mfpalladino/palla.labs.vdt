@@ -13,11 +13,13 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     {
         private readonly RepositorioEquipamentos _repositorioEquipamentos;
         private readonly FabricaEquipamentoDto _fabricaEquipamentoDto;
+        private readonly FabricaManutencaoDto _fabricaManutencaoDto;
 
-        public LocalizadorEquipamento(RepositorioEquipamentos repositorioEquipamentos, FabricaEquipamentoDto fabricaEquipamentoDto)
+        public LocalizadorEquipamento(RepositorioEquipamentos repositorioEquipamentos, FabricaEquipamentoDto fabricaEquipamentoDto, FabricaManutencaoDto fabricaManutencaoDto)
         {
             _repositorioEquipamentos = repositorioEquipamentos;
             _fabricaEquipamentoDto = fabricaEquipamentoDto;
+            _fabricaManutencaoDto = fabricaManutencaoDto;
         }
 
         public EquipamentoDto Localizar(string id)
@@ -29,6 +31,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
         public IEnumerable<EquipamentoDto> Localizar()
         {
             return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.Buscar());
+        }
+
+        public IEnumerable<ManutencaoDto> LocalizarManutencoes(string id)
+        {
+            Validar(id);
+            return _fabricaManutencaoDto.Criar(_repositorioEquipamentos.BuscarPorId(new Guid(id)).Manutencoes);
         }
 
         private void Validar(string id)

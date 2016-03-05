@@ -40,7 +40,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Servicos
                     continue;
 
                 //"-2" porque vai começar a "alarmar" dois meses antes do período de manutenção
-                var dataLimiteSemAvisos = ultimaManutencao.Data.AddMonths(periodoParaManutencaoEmMeses - 2);
+                var dataLimiteSemAvisos = ultimaManutencao.Data.APartirDeUnixTime().AddMonths(periodoParaManutencaoEmMeses - 2);
 
                 if (dataReferencia.Date >= dataLimiteSemAvisos.AddMonths(1) ||
                     dataReferencia.Date >= dataLimiteSemAvisos.AddMonths(2).PrimeiroDiaDoMes())

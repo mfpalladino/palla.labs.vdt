@@ -10,16 +10,16 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private readonly string _numeroCilindro;
         private readonly string _agente;
         private readonly string _localizacao;
-        private readonly DateTime _fabricadoEm;
+        private readonly long _fabricadoEm;
 
         public Extintor(Guid clienteId, string numeroCilindro,
-            string agente, string localizacao, DateTime fabricadoEm, IList<Manutencao> manutencoes)
+            string agente, string localizacao, long fabricadoEm, IList<Manutencao> manutencoes)
             : this(Guid.NewGuid(), clienteId, numeroCilindro, agente, localizacao, fabricadoEm, manutencoes)
         {
         }
 
         public Extintor(Guid id, Guid clienteId, string numeroCilindro,
-            string agente, string localizacao, DateTime fabricadoEm, IList<Manutencao> manutencoes)
+            string agente, string localizacao, long fabricadoEm, IList<Manutencao> manutencoes)
             : base(id, clienteId, manutencoes, TipoEquipamento.Extintor)
         {
             _numeroCilindro = numeroCilindro;
@@ -45,7 +45,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             get { return _localizacao; }
         }
 
-        public DateTime FabricadoEm
+        public long FabricadoEm
         {
             get { return _fabricadoEm; }
         }
@@ -70,7 +70,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             if (Localizacao.Length > 200)
                 throw new FormatoInvalido("A localização do extintor não pode ter mais de 200 caracteres.");
 
-            if (FabricadoEm == DateTime.MinValue)
+            if (FabricadoEm < 0)
                 throw new FormatoInvalido("A data da fabricação do extintor não é válida.");
         }
     }

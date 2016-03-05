@@ -1,33 +1,18 @@
-using System;
-using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.ServicosAplicacao
 {
-    public class ValidadorModificacaoMangueira : ValidadorEquipamentoBase
+    public class ValidadorModificacaoMangueira : ValidadorCriacaoMangueira
     {
-        public override void Validar(EquipamentoDto equipamentoDto)
+        public ValidadorModificacaoMangueira(RepositorioClientes repositorioClientes, RepositorioEquipamentos repositorioEquipamentos)
+            : base(repositorioClientes, repositorioEquipamentos)
         {
-            base.Validar(equipamentoDto);
-
-            var equipamentoEspecifico = equipamentoDto as MangueiraDto;
-
-            if (equipamentoEspecifico == null)
-                throw new Exception("Não é possível validar o equipamento (problema de conversão).");
-
-            ValidarAtributosMangueira(equipamentoEspecifico.Comprimento,
-                equipamentoEspecifico.Diametro,
-                equipamentoEspecifico.TipoMangueira);
         }
 
-        public override bool EValidadorDeCriacao
+        public override bool ValidadorDeCriacao
         {
             get { return false; }
-        }
-
-        public ValidadorModificacaoMangueira(RepositorioClientes repositorioClientes) : base(repositorioClientes)
-        {
         }
     }
 }

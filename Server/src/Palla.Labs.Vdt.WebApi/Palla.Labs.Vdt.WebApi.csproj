@@ -168,7 +168,9 @@
   <ItemGroup>
     <Compile Include="App\Compartilhado\ExtensoesDeBoolean.cs" />
     <Compile Include="App\Compartilhado\ExtensoesDeDateTime.cs" />
+    <Compile Include="App\Compartilhado\ExtensoesDeInt.cs" />
     <Compile Include="App\Compartilhado\ExtensoesDeString.cs" />
+    <Compile Include="App\Dominio\Dtos\Equipamento\ManutencaoDto.cs" />
     <Compile Include="App\Dominio\Excecoes\ExcecaoBase.cs" />
     <Compile Include="App\Dominio\Excecoes\JaExisteUmRecursoComEstasCaracteristicas.cs" />
     <Compile Include="App\Dominio\Excecoes\MapeadorParaHttpStatusCode\ExcecaoDominioParaHttpStatusCode.cs" />
@@ -179,6 +181,8 @@
     <Compile Include="App\Dominio\Fabricas\FabricaEquipamento.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaGrupo.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaGrupoDto.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaManutencao.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaManutencaoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaParametrosManutencao.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaValidadorEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cliente.cs" />
@@ -205,6 +209,8 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\ParteEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
+    <Compile Include="App\Infraestrutura\Json\ConversorDeJson.cs" />
+    <Compile Include="App\Infraestrutura\SimpleInjector\BuscadorDeInstancias.cs" />
     <Compile Include="App\Infraestrutura\Mvc\EquipamentoDtoModelBinder.cs" />
     <Compile Include="App\Infraestrutura\Mvc\EquipamentoDtoModelBinderProvider.cs" />
     <Compile Include="App\ServicosAplicacao\Cliente\CriadorCliente.cs" />
@@ -224,6 +230,7 @@
     <Compile Include="App\Infraestrutura\Mongo\RepositorioGrupos.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\CriadorEquipamento.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\LocalizadorEquipamento.cs" />
+    <Compile Include="App\ServicosAplicacao\Equipamento\ModificadorEquipamento.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\IValidadorEquipamento.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorEquipamentoBase.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\Validadores\ValidadorModificacaoCentralAmarme.cs" />
@@ -251,7 +258,7 @@
     <Compile Include="App_Start\Excecoes\FiltroExcecoes.cs" />
     <Compile Include="App_Start\Excecoes\ConfiguraPoliticaExcecoes.cs" />
     <Compile Include="App_Start\ConfiguraFiltros.cs" />
-    <Compile Include="App_Start\IoC.cs" />
+    <Compile Include="App_Start\ConfiguraIoC.cs" />
     <Compile Include="App_Start\ConfiguraWebApi.cs" />
     <Compile Include="Controllers\EquipamentosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />

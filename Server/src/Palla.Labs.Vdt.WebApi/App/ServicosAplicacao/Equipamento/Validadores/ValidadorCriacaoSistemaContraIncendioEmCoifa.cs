@@ -7,6 +7,11 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
 {
     public class ValidadorCriacaoSistemaContraIncendioEmCoifa : ValidadorEquipamentoBase
     {
+        public ValidadorCriacaoSistemaContraIncendioEmCoifa(RepositorioClientes repositorioClientes, RepositorioEquipamentos repositorioEquipamentos)
+            : base(repositorioClientes, repositorioEquipamentos)
+        {
+        }
+
         public override void Validar(EquipamentoDto equipamentoDto)
         {
             base.Validar(equipamentoDto);
@@ -17,13 +22,9 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
                 throw new Exception("Não é possível validar o equipamento (problema de conversão).");
        }
 
-        public override bool EValidadorDeCriacao
+        public override bool ValidadorDeCriacao
         {
             get { return true; }
-        }
-
-        public ValidadorCriacaoSistemaContraIncendioEmCoifa(RepositorioClientes repositorioClientes) : base(repositorioClientes)
-        {
         }
     }
 }

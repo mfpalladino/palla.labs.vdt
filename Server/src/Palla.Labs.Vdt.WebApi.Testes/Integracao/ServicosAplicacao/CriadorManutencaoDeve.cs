@@ -1,7 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using FluentAssertions;
 using MongoDB.Driver;
 using NUnit.Framework;
+using Palla.Labs.Vdt.App.Compartilhado;
+using Palla.Labs.Vdt.App.Dominio.Dtos;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
@@ -17,7 +21,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.ServicosAplicacao
         {
             var leitorConfiguracoes = new ConfigBancoDadosVariavelAmbienteTestes();
             var repositorio = new RepositorioEquipamentos(new MongoClient(leitorConfiguracoes.StringConexao), leitorConfiguracoes);
-            var servico = new CriadorManutencao(repositorio);
+            var servico = new CriadorManutencao(repositorio, new FabricaManutencao());
 
             Extintor extintor = null;
             try
@@ -26,7 +30,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.ServicosAplicacao
                 repositorio.Inserir(extintor);
 
                 var nomeParteParaManutencao = extintor.ParametrosManutencao.Partes.First().Nome;
-                servico.Criar(extintor.Id, nomeParteParaManutencao);
+                servico.Criar(extintor.Id.ToString(), new ManutencaoDto { Data = DateTime.Now.ParaUnixTime(), Parte = nomeParteParaManutencao });
 
                 var extintorAposAManutencao = repositorio.BuscarPorId(extintor.Id);
 

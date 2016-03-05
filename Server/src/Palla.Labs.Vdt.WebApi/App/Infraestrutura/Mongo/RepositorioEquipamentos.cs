@@ -20,6 +20,13 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             colecao.InsertOne(equipamento);
         }
 
+        public virtual void Editar(Equipamento equipamento)
+        {
+            var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);
+            colecao.ReplaceOne(Builders<Equipamento>.Filter.Eq(x => x.Id, equipamento.Id), equipamento);
+
+        }
+
         public void InserirManutencao(Equipamento equipamento, Manutencao manutencao)
         {
             var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);

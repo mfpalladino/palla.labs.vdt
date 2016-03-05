@@ -11,12 +11,17 @@ namespace Palla.Labs.Vdt.Controllers
     public class EquipamentosController : ApiController
     {
         private readonly CriadorEquipamento _criadorEquipamento;
+        private readonly ModificadorEquipamento _modificadorEquipamento;
         private readonly LocalizadorEquipamento _localizadorEquipamento;
+        private readonly CriadorManutencao _criadorManutencao;
 
-        public EquipamentosController(CriadorEquipamento criadorEquipamento, LocalizadorEquipamento localizadorEquipamento)
+        public EquipamentosController(CriadorEquipamento criadorEquipamento, ModificadorEquipamento modificadorEquipamento, 
+            LocalizadorEquipamento localizadorEquipamento, CriadorManutencao criadorManutencao)
         {
             _criadorEquipamento = criadorEquipamento;
+            _modificadorEquipamento = modificadorEquipamento;
             _localizadorEquipamento = localizadorEquipamento;
+            _criadorManutencao = criadorManutencao;
         }
 
         [HttpPost]
@@ -25,6 +30,15 @@ namespace Palla.Labs.Vdt.Controllers
             var equipamentoSalvo = _criadorEquipamento.Criar(equipamentoDto);
             var response = Request.CreateResponse(HttpStatusCode.Created);
             response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = equipamentoSalvo.Id }));
+            return response;
+        }
+
+        [HttpPut]
+        [Route("equipamentos/{id}")]
+        public HttpResponseMessage Put([FromUri] string id, [ModelBinder] EquipamentoDto equipamentoDto)
+        {
+            _modificadorEquipamento.Modificar(id, equipamentoDto);
+            var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
 
@@ -41,5 +55,20 @@ namespace Palla.Labs.Vdt.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar());
         }
 
+        [HttpPost]
+        [Route("equipamentos/{id}/manutencoes")]
+        public HttpResponseMessage Post([FromUri] string id, [FromBody] ManutencaoDto manutencaoDto)
+        {
+            _criadorManutencao.Criar(id, manutencaoDto);
+            var response = Request.CreateResponse(HttpStatusCode.Created);
+            return response;
+        }
+
+        [HttpGet]
+        [Route("equipamentos/{id}/manutencoes")]
+        public HttpResponseMessage GetManutencoes(string id)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.LocalizarManutencoes(id));
+        }
     }
 }

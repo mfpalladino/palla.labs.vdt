@@ -5,8 +5,13 @@ using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.ServicosAplicacao
 {
-    public class ValidadorModificacaoSistemaContraIncendioEmCoifa : ValidadorEquipamentoBase
+    public class ValidadorModificacaoSistemaContraIncendioEmCoifa : ValidadorCriacaoSistemaContraIncendioEmCoifa
     {
+        public ValidadorModificacaoSistemaContraIncendioEmCoifa(RepositorioClientes repositorioClientes, RepositorioEquipamentos repositorioEquipamentos)
+            : base(repositorioClientes, repositorioEquipamentos)
+        {
+        }
+
         public override void Validar(EquipamentoDto equipamentoDto)
         {
             base.Validar(equipamentoDto);
@@ -17,13 +22,9 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
                 throw new Exception("Não é possível validar o equipamento (problema de conversão).");
         }
 
-        public override bool EValidadorDeCriacao
+        public override bool ValidadorDeCriacao
         {
             get { return false; }
-        }
-
-        public ValidadorModificacaoSistemaContraIncendioEmCoifa(RepositorioClientes repositorioClientes) : base(repositorioClientes)
-        {
         }
     }
 }

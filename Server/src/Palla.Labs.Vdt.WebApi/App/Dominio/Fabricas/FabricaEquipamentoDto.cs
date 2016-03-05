@@ -1,15 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
-using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.Infraestrutura.Json;
 
 namespace Palla.Labs.Vdt.App.Dominio.Fabricas
 {
     public class FabricaEquipamentoDto
     {
+        private readonly ConversorDeJson _conversorDeJson;
+
+        public FabricaEquipamentoDto(ConversorDeJson conversorDeJson)
+        {
+            _conversorDeJson = conversorDeJson;
+        }
+
         public virtual IEnumerable<EquipamentoDto> Criar(IEnumerable<Equipamento> equipamentos)
         {
             return equipamentos.Select(Criar);
@@ -37,13 +43,13 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
             switch (tipo)
             {
                 case (int)TipoEquipamento.Extintor:
-                    return JsonConvert.DeserializeObject<ExtintorDto>(json);
+                    return _conversorDeJson.Deserializar<ExtintorDto>(json);
                 case (int)TipoEquipamento.Mangueira:
-                    return JsonConvert.DeserializeObject<MangueiraDto>(json);
+                    return _conversorDeJson.Deserializar<MangueiraDto>(json);
                 case (int)TipoEquipamento.CentralAlarme:
-                    return JsonConvert.DeserializeObject<CentralAlarmeDto>(json);
+                    return _conversorDeJson.Deserializar<CentralAlarmeDto>(json);
                 case (int)TipoEquipamento.SistemaContraIncendioEmCoifa:
-                    return JsonConvert.DeserializeObject<SistemaContraIncendioEmCoifaDto>(json);
+                    return _conversorDeJson.Deserializar<SistemaContraIncendioEmCoifaDto>(json);
             }
 
             throw new Exception("Equipamento não pode ser mapeado em um dto conforme seu tipo");
@@ -99,7 +105,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
             {
                 Id = extintor.Id,
                 Agente = extintor.Agente,
-                FabricadoEm = extintor.FabricadoEm.ParaUnixTime(),
+                FabricadoEm = extintor.FabricadoEm,
                 Localizacao = extintor.Localizacao,
                 ClienteId = extintor.ClienteId.ToString(),
                 NumeroCilindro = extintor.NumeroCilindro,

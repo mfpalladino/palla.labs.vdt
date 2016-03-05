@@ -1,24 +1,32 @@
 ﻿using System;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.Infraestrutura.SimpleInjector;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
 
 namespace Palla.Labs.Vdt.App.Dominio.Fabricas
 {
     public class FabricaValidadorEquipamento
     {
+        private readonly BuscadorDeInstancias _buscadorDeInstancias;
+
+        public FabricaValidadorEquipamento(BuscadorDeInstancias buscadorDeInstancias)
+        {
+            _buscadorDeInstancias = buscadorDeInstancias;
+        }
+
         public virtual IValidadorEquipamento CriarValidadorCriacao(EquipamentoDto equipamentoDto)
         {
             switch (equipamentoDto.Tipo)
             {
                 case (int)TipoEquipamento.Extintor:
-                    return IoC.GetInstance<ValidadorCriacaoExtintor>();
+                    return _buscadorDeInstancias.Buscar<ValidadorCriacaoExtintor>();
                 case (int)TipoEquipamento.Mangueira:
-                    return IoC.GetInstance<ValidadorCriacaoMangueira>();
+                    return _buscadorDeInstancias.Buscar<ValidadorCriacaoMangueira>();
                 case (int)TipoEquipamento.CentralAlarme:
-                    return IoC.GetInstance<ValidadorCriacaoCentralAmarme>();
+                    return _buscadorDeInstancias.Buscar<ValidadorCriacaoCentralAmarme>();
                 case (int)TipoEquipamento.SistemaContraIncendioEmCoifa:
-                    return IoC.GetInstance<ValidadorCriacaoSistemaContraIncendioEmCoifa>();
+                    return _buscadorDeInstancias.Buscar<ValidadorCriacaoSistemaContraIncendioEmCoifa>();
             }
 
             throw new Exception("Validador não pode ser criado conforme tipo do equipamento");
@@ -29,13 +37,13 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
             switch (equipamentoDto.Tipo)
             {
                 case (int)TipoEquipamento.Extintor:
-                    return IoC.GetInstance<ValidadorModificacaoExtintor>();
+                    return _buscadorDeInstancias.Buscar<ValidadorModificacaoExtintor>();
                 case (int)TipoEquipamento.Mangueira:
-                    return IoC.GetInstance<ValidadorModificacaoMangueira>();
+                    return _buscadorDeInstancias.Buscar<ValidadorModificacaoMangueira>();
                 case (int)TipoEquipamento.CentralAlarme:
-                    return IoC.GetInstance<ValidadorModificacaoCentralAmarme>();
+                    return _buscadorDeInstancias.Buscar<ValidadorModificacaoCentralAmarme>();
                 case (int)TipoEquipamento.SistemaContraIncendioEmCoifa:
-                    return IoC.GetInstance<ValidadorModificacaoSistemaContraIncendioEmCoifa>();
+                    return _buscadorDeInstancias.Buscar<ValidadorModificacaoSistemaContraIncendioEmCoifa>();
             }
 
             throw new Exception("Validador não pode ser criado conforme tipo do equipamento");

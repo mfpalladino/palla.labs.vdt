@@ -7,6 +7,6 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     {
         void Validar(EquipamentoDto equipamentoDto);
 
-        bool EValidadorDeCriacao { get; }
+        bool ValidadorDeCriacao { get; }
     }
 }
