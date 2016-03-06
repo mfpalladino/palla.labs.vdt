@@ -7,28 +7,21 @@ namespace Palla.Labs.Vdt.App.Dominio.Servicos
 {
     public class CalculadoraSituacaoManutencao
     {
-        private readonly Equipamento _equipamento;
-
-        public CalculadoraSituacaoManutencao(Equipamento equipamento)
+        public SituacaoManutencao Calcular(Equipamento equipamento)
         {
-            if (equipamento == null)
-                throw new ArgumentNullException("equipamento");
-
-            _equipamento = equipamento;
+            return Calcular(equipamento, DateTime.Now.ParaUnixTime());
         }
 
-        public SituacaoManutencao Calcular()
+        public SituacaoManutencao Calcular(Equipamento equipamento, long dataReferencia)
         {
-            return Calcular(DateTime.Now);
-        }
-
-        public SituacaoManutencao Calcular(DateTime dataReferencia)
-        {
-            var parametrosManutencao = _equipamento.ParametrosManutencao;
-            var manutencoes = _equipamento.Manutencoes; 
+            var parametrosManutencao = equipamento.ParametrosManutencao;
+            var manutencoes = equipamento.Manutencoes; 
 
             if (!parametrosManutencao.ControladaPelasPartes)
                 return SituacaoManutencao.Ok;
+
+            if (manutencoes == null || manutencoes.Count == 0)
+                return SituacaoManutencao.Inconclusivo;
 
             foreach (var parte in parametrosManutencao.Partes)
             {
@@ -42,12 +35,12 @@ namespace Palla.Labs.Vdt.App.Dominio.Servicos
                 //"-2" porque vai começar a "alarmar" dois meses antes do período de manutenção
                 var dataLimiteSemAvisos = ultimaManutencao.Data.APartirDeUnixTime().AddMonths(periodoParaManutencaoEmMeses - 2);
 
-                if (dataReferencia.Date >= dataLimiteSemAvisos.AddMonths(1) ||
-                    dataReferencia.Date >= dataLimiteSemAvisos.AddMonths(2).PrimeiroDiaDoMes())
+                if (dataReferencia.APartirDeUnixTime().Date >= dataLimiteSemAvisos.AddMonths(1) ||
+                    dataReferencia.APartirDeUnixTime().Date >= dataLimiteSemAvisos.AddMonths(2).PrimeiroDiaDoMes())
                     return SituacaoManutencao.EstadoCritico;
 
-                if (dataReferencia.Date >= dataLimiteSemAvisos.AddDays(1) &&
-                    dataReferencia.Date <= dataLimiteSemAvisos.AddMonths(1).UltimoDiaDoMes())
+                if (dataReferencia.APartirDeUnixTime().Date >= dataLimiteSemAvisos.AddDays(1) &&
+                    dataReferencia.APartirDeUnixTime().Date <= dataLimiteSemAvisos.AddMonths(1).UltimoDiaDoMes())
                     return SituacaoManutencao.EstadoDeAtencao;
             }
 

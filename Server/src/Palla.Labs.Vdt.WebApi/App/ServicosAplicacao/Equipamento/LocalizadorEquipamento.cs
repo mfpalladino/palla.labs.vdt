@@ -22,15 +22,15 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _fabricaManutencaoDto = fabricaManutencaoDto;
         }
 
-        public EquipamentoDto Localizar(string id)
+        public EquipamentoDto Localizar(string id, long? referenciaSituacao)
         {
             Validar(id);
-            return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.BuscarPorId(new Guid(id)));
+            return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.BuscarPorId(new Guid(id)), referenciaSituacao);
         }
 
-        public IEnumerable<EquipamentoDto> Localizar()
+        public IEnumerable<EquipamentoDto> Localizar(long? referenciaSituacao)
         {
-            return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.Buscar());
+            return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.Buscar(), referenciaSituacao);
         }
 
         public IEnumerable<ManutencaoDto> LocalizarManutencoes(string id)

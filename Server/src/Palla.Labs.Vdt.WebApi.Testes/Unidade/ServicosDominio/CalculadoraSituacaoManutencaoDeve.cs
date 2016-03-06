@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
+using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Dominio.Servicos;
 using Palla.Labs.Vdt.WebApi.Testes.Fabricas;
@@ -19,7 +20,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosDominio
             var equipamento = new ConstrutorCentralAlarme().Construir();
 
             //Action
-            var situacaoCalculada = new CalculadoraSituacaoManutencao(equipamento).Calcular();
+            var situacaoCalculada = new CalculadoraSituacaoManutencao().Calcular(equipamento);
 
             //Asserts
             situacaoCalculada.Should().Be(SituacaoManutencao.Ok);
@@ -81,8 +82,8 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosDominio
                 var situacaoEsperada = caso.Value;
 
                 //Action
-                var situacaoCalculada = new CalculadoraSituacaoManutencao(equipamento)
-                    .Calcular(dataReferenciaParaCalculoSituacao);
+                var situacaoCalculada = new CalculadoraSituacaoManutencao()
+                    .Calcular(equipamento, dataReferenciaParaCalculoSituacao.ParaUnixTime());
 
                 //Asserts
                 situacaoCalculada.Should().Be(situacaoEsperada, descricaoCasoDeTeste);

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.Dominio.Servicos;
 using Palla.Labs.Vdt.App.Infraestrutura.Json;
 
 namespace Palla.Labs.Vdt.App.Dominio.Fabricas
@@ -10,32 +12,54 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
     public class FabricaEquipamentoDto
     {
         private readonly ConversorDeJson _conversorDeJson;
+        private readonly CalculadoraSituacaoManutencao _calculadoraSituacaoManutencao;
 
-        public FabricaEquipamentoDto(ConversorDeJson conversorDeJson)
+        public FabricaEquipamentoDto(ConversorDeJson conversorDeJson, CalculadoraSituacaoManutencao calculadoraSituacaoManutencao)
         {
             _conversorDeJson = conversorDeJson;
+            _calculadoraSituacaoManutencao = calculadoraSituacaoManutencao;
         }
 
         public virtual IEnumerable<EquipamentoDto> Criar(IEnumerable<Equipamento> equipamentos)
         {
-            return equipamentos.Select(Criar);
+            return Criar(equipamentos, DateTime.Now.ParaUnixTime());
+        }
+
+        public virtual IEnumerable<EquipamentoDto> Criar(IEnumerable<Equipamento> equipamentos, long? dataReferenciaSituacao)
+        {
+            return equipamentos.Select(x => Criar(x, dataReferenciaSituacao ?? DateTime.Now.ParaUnixTime()));
         }
 
         public virtual EquipamentoDto Criar(Equipamento equipamento)
         {
+            return Criar(equipamento, DateTime.Now.ParaUnixTime());
+        }
+
+        public virtual EquipamentoDto Criar(Equipamento equipamento, long? dataReferenciaSituacao)
+        {
+            EquipamentoDto equipamentoResultante;
             switch (equipamento.Tipo)
             {
                 case TipoEquipamento.Extintor:
-                    return CriarExtintor(equipamento as Extintor);
+                    equipamentoResultante = CriarExtintor(equipamento as Extintor);
+                    break;
                 case TipoEquipamento.Mangueira:
-                    return CriarMangueira(equipamento as Mangueira);
+                    equipamentoResultante = CriarMangueira(equipamento as Mangueira);
+                    break;
                 case TipoEquipamento.CentralAlarme:
-                    return CriarCentralAlarme(equipamento as CentralAlarme);
+                    equipamentoResultante = CriarCentralAlarme(equipamento as CentralAlarme);
+                    break;
                 case TipoEquipamento.SistemaContraIncendioEmCoifa:
-                    return CriarSistemaContraIncendioEmCoifa(equipamento as SistemaContraIncendioEmCoifa);
+                    equipamentoResultante = CriarSistemaContraIncendioEmCoifa(equipamento as SistemaContraIncendioEmCoifa);
+                    break;
+                default:
+                    throw new Exception("Equipamento não pode ser mapeado em um dto conforme seu tipo");
             }
 
-            throw new Exception("Equipamento não pode ser mapeado em um dto conforme seu tipo");
+            equipamentoResultante.SituacaoManutencao = 
+                (int)_calculadoraSituacaoManutencao.Calcular(equipamento, dataReferenciaSituacao ?? DateTime.Now.ParaUnixTime());
+
+            return equipamentoResultante;
         }
 
         public virtual EquipamentoDto Criar(int tipo, string json)
@@ -66,6 +90,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 QuantidadeCilindroCo2 = sistemaContraIncendioEmCoifa.QuantidadeCilindroCo2,
                 QuantidadeCilindroSaponificante = sistemaContraIncendioEmCoifa.QuantidadeCilindroSaponificante,
                 Tipo = (int)sistemaContraIncendioEmCoifa.Tipo
+                
             };
         }
 

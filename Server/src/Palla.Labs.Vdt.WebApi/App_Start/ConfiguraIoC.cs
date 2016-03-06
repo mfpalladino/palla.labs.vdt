@@ -1,6 +1,7 @@
 using System.Web.Http;
 using MongoDB.Driver;
 using Palla.Labs.Vdt.App.Dominio.Fabricas;
+using Palla.Labs.Vdt.App.Dominio.Servicos;
 using Palla.Labs.Vdt.App.Infraestrutura.Json;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.Infraestrutura.SimpleInjector;
@@ -32,6 +33,7 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<FabricaEquipamentoDto, FabricaEquipamentoDto>();
             container.RegisterSingle<FabricaManutencao, FabricaManutencao>();
             container.RegisterSingle<FabricaManutencaoDto, FabricaManutencaoDto>();
+            container.RegisterSingle<CalculadoraSituacaoManutencao, CalculadoraSituacaoManutencao>();
 
             container.RegisterSingle<RepositorioEquipamentos, RepositorioEquipamentos>();
             container.RegisterSingle<RepositorioGrupos, RepositorioGrupos>();

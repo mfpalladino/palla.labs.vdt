@@ -1,7 +1,6 @@
 ﻿using System;
 using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
-using Palla.Labs.Vdt.App.Dominio.Excecoes;
 using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 

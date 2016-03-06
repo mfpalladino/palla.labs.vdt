@@ -4,6 +4,7 @@ using System.Web.Http.ModelBinding;
 using Newtonsoft.Json;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Fabricas;
+using Palla.Labs.Vdt.App.Dominio.Servicos;
 using Palla.Labs.Vdt.App.Infraestrutura.Json;
 using Palla.Labs.Vdt.App.Infraestrutura.SimpleInjector;
 
@@ -26,7 +27,8 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mvc
             var json = content.Result;
 
             var equipamentoBase = JsonConvert.DeserializeObject<EquipamentoDto>(json);
-            _bindingContext.Model = new FabricaEquipamentoDto(BuscadorDeInstancias.BuscarEstatico<ConversorDeJson>()).Criar(equipamentoBase.Tipo, json);
+            _bindingContext.Model = new FabricaEquipamentoDto(BuscadorDeInstancias.BuscarEstatico<ConversorDeJson>(),
+                BuscadorDeInstancias.BuscarEstatico<CalculadoraSituacaoManutencao>()).Criar(equipamentoBase.Tipo, json);
         }
     }
 }

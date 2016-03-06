@@ -44,15 +44,15 @@ namespace Palla.Labs.Vdt.Controllers
 
         [HttpGet]
         [Route("equipamentos/{id}")]
-        public HttpResponseMessage Get(string id)
+        public HttpResponseMessage Get(string id, long? referenciaSituacao = null)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(id));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(id, referenciaSituacao));
         }
 
         [HttpGet]
-        public HttpResponseMessage Get()
+        public HttpResponseMessage Get(long? referenciaSituacao = null)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar());
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(referenciaSituacao));
         }
 
         [HttpPost]
