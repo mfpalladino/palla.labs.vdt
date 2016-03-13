@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B055A2
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palla.Labs.Vdt.WebApi", "Server\src\Palla.Labs.Vdt.WebApi\Palla.Labs.Vdt.WebApi.csproj", "{7AD51A5E-F7AF-4D05-A87D-BACA686F1D6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palla.Labs.Vdt.WebApi", "Palla.Labs.Vdt.WebApi\Palla.Labs.Vdt.WebApi.csproj", "{7AD51A5E-F7AF-4D05-A87D-BACA686F1D6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palla.Labs.Vdt.WebApi.Testes", "Server\src\Palla.Labs.Vdt.WebApi.Testes\Palla.Labs.Vdt.WebApi.Testes.csproj", "{A9E19B65-57FD-481D-AD97-C441680F2D98}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Palla.Labs.Vdt.WebApi.Testes", "Palla.Labs.Vdt.WebApi.Testes\Palla.Labs.Vdt.WebApi.Testes.csproj", "{A9E19B65-57FD-481D-AD97-C441680F2D98}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{D14573E8-486C-42BF-9652-31E26B652086}"
 EndProject
@@ -57,7 +57,6 @@ Global
 		{A9E19B65-57FD-481D-AD97-C441680F2D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9E19B65-57FD-481D-AD97-C441680F2D98}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1308D4A5-362A-4062-B4CB-682DC70C2831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1308D4A5-362A-4062-B4CB-682DC70C2831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1308D4A5-362A-4062-B4CB-682DC70C2831}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
