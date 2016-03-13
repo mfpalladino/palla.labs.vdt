@@ -15,9 +15,9 @@ environment:
   COVERALLS_REPO_TOKEN:
     secure: 1pEehKZ9pOnrg3Ourxfwa7bjGYyVUR5McWlgjQ5W36ZWnEBCjqkuTBXHHdrNM+is
 before_build:
-  - nuget restore ".\Server\src\Palla.Labs.Vdt.sln"
+  - nuget restore ".\Palla.Labs.Vdt.sln"
 build:
-  project: .\Server\src\Palla.Labs.Vdt.sln
+  project: .\Palla.Labs.Vdt.sln
   publish_wap_xcopy: true
   verbosity: normal
 test_script:

@@ -37,6 +37,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Client", "http://localhost:
 		SlnRelativePath = "Client\"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E8186F65-592B-4D1D-92C7-7F51502B6885}"
+	ProjectSection(SolutionItems) = preProject
+		WebEssentials-Settings.json = WebEssentials-Settings.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

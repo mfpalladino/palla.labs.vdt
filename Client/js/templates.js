@@ -22,7 +22,7 @@ angular.module('sceiAdmin').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('template/header.html',
-    "<ul class=\"header-inner clearfix\"><li id=\"menu-trigger\" data-target=\"mainmenu\" data-toggle-sidebar data-model-left=\"sceiCtrl.sidebarToggle.left\" data-ng-class=\"{ 'open': sceiCtrl.sidebarToggle.left === true }\"><div class=\"line-wrap\"><div class=\"line top\"></div><div class=\"line center\"></div><div class=\"line bottom\"></div></div></li><li class=\"logo hidden-xs\"><a data-ui-sref=\"home\" data-ng-click=\"sceiCtrl.sidebarStat($event)\">SCEI - painel de administração</a></li><li class=\"pull-right\"><ul class=\"top-menu\"></ul></li></ul>"
+    "<ul class=\"header-inner clearfix\"><li id=\"menu-trigger\" data-target=\"mainmenu\" data-toggle-sidebar data-model-left=\"sceiCtrl.sidebarToggle.left\" data-ng-class=\"{ 'open': sceiCtrl.sidebarToggle.left === true }\"><div class=\"line-wrap\"><div class=\"line top\"></div><div class=\"line center\"></div><div class=\"line bottom\"></div></div></li><li class=\"logo\"><a data-ui-sref=\"home\" data-ng-click=\"sceiCtrl.sidebarStat($event)\">SCEI</a></li><li class=\"pull-right\"><ul class=\"top-menu\"></ul></li></ul>"
   );
 
 
@@ -34,4 +34,5 @@ angular.module('sceiAdmin').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/sidebar-left.html',
     "<div class=\"sidebar-inner c-overflow\"><div class=\"profile-menu\"><a href=\"\" toggle-submenu><div class=\"profile-pic\"></div><div class=\"profile-info\">Nome do usuário logado <i class=\"zmdi zmdi-caret-down\"></i></div></a><ul class=\"main-menu\"><li><a href=\"\"><i class=\"zmdi zmdi-time-restore\"></i> Sair</a></li></ul></div><ul class=\"main-menu\"><li data-ui-sref-active=\"active\"><a data-ui-sref=\"inicio\" data-ng-click=\"sceiCtrl.sidebarStat($event)\"><i class=\"zmdi zmdi-home\"></i> Início</a></li><li data-ui-sref-active=\"active\"><a data-ui-sref=\"grupoClientes\" data-ng-click=\"sceiCtrl.sidebarStat($event)\"><i class=\"zmdi zmdi-accounts\"></i> Grupos de clientes</a></li><li data-ui-sref-active=\"active\"><a data-ui-sref=\"clientes\" data-ng-click=\"sceiCtrl.sidebarStat($event)\"><i class=\"zmdi zmdi-account-add\"></i> Clientes</a></li><li data-ui-sref-active=\"active\"><a data-ui-sref=\"equipamentos\" data-ng-click=\"sceiCtrl.sidebarStat($event)\"><i class=\"zmdi zmdi-toys\"></i> Equipamentos</a></li><li data-ui-sref-active=\"active\"><a data-ui-sref=\"manutencoes\" data-ng-click=\"sceiCtrl.sidebarStat($event)\"><i class=\"zmdi zmdi-wrench\"></i> Manutenção</a></li></ul></div>"
   );
+
 }]);
