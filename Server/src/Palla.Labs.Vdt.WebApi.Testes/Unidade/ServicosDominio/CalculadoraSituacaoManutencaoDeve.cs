@@ -41,7 +41,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosDominio
                     new Tuple<Equipamento, DateTime, string>(
                         new ConstrutorExtintor().Construir(), 
                         DateTime.Now,
-                        "Equipamento sem nenhuma manutenção deve retornar ok"), SituacaoManutencao.Ok
+                        "Equipamento sem nenhuma manutenção deve retornar inconclusivo"), SituacaoManutencao.Inconclusivo
                 },
 
                 {
