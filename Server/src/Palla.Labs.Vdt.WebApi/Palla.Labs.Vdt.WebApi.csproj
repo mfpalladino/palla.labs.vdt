@@ -289,6 +289,10 @@
   <ItemGroup>
     <Content Include="palla.labs.vdt.webapi-log4net.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\vendeta - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\vendeta - Web Deploy.pubxml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
