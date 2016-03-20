@@ -30,5 +30,11 @@ sceiAdmin
     .controller('headerCtrl', function() {
     })
 
+    .controller('resumoGrupoClientesCtrl', function (resumoGrupoClientesService) {
+
+        this.gruposClientes = resumoGrupoClientesService.pegaGruposClientes();
+    })
+
+
 
 

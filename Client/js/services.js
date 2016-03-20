@@ -1,9 +1,5 @@
 sceiAdmin
 
-    // =========================================================================
-    // Header Messages and Notifications list Data
-    // =========================================================================
-
     .service('messageService', ['$resource', function($resource){
         this.getMessage = function(img, user, text) {
             var gmList = $resource("data/messages-notifications.json");
@@ -71,3 +67,11 @@ sceiAdmin
         
         return gs;
     })
+
+    .service('resumoGrupoClientesService', ['$resource', function ($resource) {
+
+        this.pegaGruposClientes = function () {
+            var gruposClientes = $resource('http://vendeta.azurewebsites.net/server/grupos/:id'); 
+            return gruposClientes.query(function() {});
+        }
+    }])

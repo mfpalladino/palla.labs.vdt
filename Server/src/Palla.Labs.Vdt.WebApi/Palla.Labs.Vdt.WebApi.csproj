@@ -254,6 +254,7 @@
     <Compile Include="App\ServicosAplicacao\Grupo\LocalizadorGrupo.cs" />
     <Compile Include="App\ServicosAplicacao\Cliente\ModificadorCliente.cs" />
     <Compile Include="App\ServicosAplicacao\Grupo\ModificadorGrupo.cs" />
+    <Compile Include="App_Start\AllowCrossSiteJsonAttribute.cs" />
     <Compile Include="App_Start\ConfiguraJson.cs" />
     <Compile Include="App_Start\Excecoes\FiltroExcecoes.cs" />
     <Compile Include="App_Start\Excecoes\ConfiguraPoliticaExcecoes.cs" />
