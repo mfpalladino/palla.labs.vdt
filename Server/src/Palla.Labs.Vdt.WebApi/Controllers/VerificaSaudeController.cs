@@ -15,6 +15,7 @@ namespace Palla.Labs.Vdt.Controllers
             _repositorioEquipamentos = repositorioEquipamentos;
         }
 
+        [AllowCrossSiteJsonAttribute]
         public HttpResponseMessage Get()
         {
             _repositorioEquipamentos.BuscarPorId(Guid.NewGuid()); //Verifica se consigo chegar no banco de dados

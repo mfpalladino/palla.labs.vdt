@@ -25,6 +25,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPost]
+        [AllowCrossSiteJsonAttribute]
         public HttpResponseMessage Post([ModelBinder] EquipamentoDto equipamentoDto)
         {
             var equipamentoSalvo = _criadorEquipamento.Criar(equipamentoDto);
@@ -34,6 +35,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPut]
+        [AllowCrossSiteJsonAttribute]
         [Route("equipamentos/{id}")]
         public HttpResponseMessage Put([FromUri] string id, [ModelBinder] EquipamentoDto equipamentoDto)
         {
@@ -43,6 +45,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AllowCrossSiteJsonAttribute]
         [Route("equipamentos/{id}")]
         public HttpResponseMessage Get(string id, long? referenciaSituacao = null)
         {
@@ -50,12 +53,14 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AllowCrossSiteJsonAttribute]
         public HttpResponseMessage Get(long? referenciaSituacao = null)
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(referenciaSituacao));
         }
 
         [HttpPost]
+        [AllowCrossSiteJsonAttribute]
         [Route("equipamentos/{id}/manutencoes")]
         public HttpResponseMessage Post([FromUri] string id, [FromBody] ManutencaoDto manutencaoDto)
         {
@@ -65,6 +70,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AllowCrossSiteJsonAttribute]
         [Route("equipamentos/{id}/manutencoes")]
         public HttpResponseMessage GetManutencoes(string id)
         {

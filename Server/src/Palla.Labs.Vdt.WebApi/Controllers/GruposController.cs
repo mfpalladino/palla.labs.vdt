@@ -21,6 +21,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPost]
+        [AllowCrossSiteJsonAttribute]
         public HttpResponseMessage Post([FromBody] GrupoDto grupoDto)
         {
             var grupoSalvo = _criadorGrupo.Criar(grupoDto);
@@ -30,6 +31,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPut]
+        [AllowCrossSiteJsonAttribute]
         [Route("grupos/{id}")]
         public HttpResponseMessage Put([FromUri] string id, [FromBody] GrupoDto grupoDto)
         {
@@ -39,6 +41,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AllowCrossSiteJsonAttribute]
         [Route("grupos/{id}")]
         public HttpResponseMessage Get(string id)
         {
@@ -46,6 +49,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AllowCrossSiteJsonAttribute]
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.Localizar());
