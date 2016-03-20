@@ -9,7 +9,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
     {
         public virtual IEnumerable<GrupoDto> Criar(IEnumerable<Grupo> grupos)
         {
-            return grupos.Select(Criar);
+            return grupos.Select(Criar).OrderBy(x => x.Nome);
         }
 
         public virtual GrupoDto Criar(Grupo grupo)

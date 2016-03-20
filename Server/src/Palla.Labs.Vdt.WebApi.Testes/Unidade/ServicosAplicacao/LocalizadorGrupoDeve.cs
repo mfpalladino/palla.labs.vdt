@@ -20,7 +20,8 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
         public void GerarExcecaoQuandoIdNaoForValido()
         {
             //Arrange
-            Action acao = () => new LocalizadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<FabricaGrupoDto>().Object).Localizar("qualquer coisa");
+            Action acao = () => new LocalizadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<FabricaGrupoDto>().Object,
+                new Mock<FabricaSumarioSituacaoDto>().Object).Localizar("qualquer coisa");
 
             //Asserts
             acao.ShouldThrow<FormatoInvalido>();
@@ -35,7 +36,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             repositorio.Setup(x => x.BuscarPorId(new Guid(id))).Throws<RecursoNaoEncontrado>();
 
             //Action
-            Action acao = () => new LocalizadorGrupo(repositorio.Object, new Mock<FabricaGrupoDto>().Object).Localizar(id);
+            Action acao = () => new LocalizadorGrupo(repositorio.Object, new Mock<FabricaGrupoDto>().Object, new Mock<FabricaSumarioSituacaoDto>().Object).Localizar(id);
 
             //Asserts
             acao.ShouldThrow<RecursoNaoEncontrado>();
@@ -56,7 +57,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             mapper.Setup(x => x.Criar(It.IsAny<Grupo>())).Returns(grupoRetornadoMapper);
 
             //Action
-            var grupoRetornado = new LocalizadorGrupo(repositorio.Object, mapper.Object).Localizar(id.ToString());
+            var grupoRetornado = new LocalizadorGrupo(repositorio.Object, mapper.Object, new Mock<FabricaSumarioSituacaoDto>().Object).Localizar(id.ToString());
 
             //Asserts
             grupoRetornado.Id.Should().Be(grupoEsperado.Id);
@@ -80,7 +81,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             mapper.Setup(x => x.Criar(It.IsAny<IEnumerable<Grupo>>())).Returns(gruposRetornadosMapper);
 
             //Action
-            var gruposRetornados = new LocalizadorGrupo(repositorio.Object, mapper.Object).Localizar();
+            var gruposRetornados = new LocalizadorGrupo(repositorio.Object, mapper.Object, new Mock<FabricaSumarioSituacaoDto>().Object).Localizar();
 
             //Asserts
             gruposRetornados.Where(x => x.Id == grupoRetornadoDoBanco.Id).Should().NotBeNullOrEmpty();

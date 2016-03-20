@@ -33,8 +33,9 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<FabricaEquipamentoDto, FabricaEquipamentoDto>();
             container.RegisterSingle<FabricaManutencao, FabricaManutencao>();
             container.RegisterSingle<FabricaManutencaoDto, FabricaManutencaoDto>();
+            container.RegisterSingle<FabricaSumarioSituacaoDto, FabricaSumarioSituacaoDto>();
             container.RegisterSingle<CalculadoraSituacaoManutencao, CalculadoraSituacaoManutencao>();
-
+            
             container.RegisterSingle<RepositorioEquipamentos, RepositorioEquipamentos>();
             container.RegisterSingle<RepositorioGrupos, RepositorioGrupos>();
 

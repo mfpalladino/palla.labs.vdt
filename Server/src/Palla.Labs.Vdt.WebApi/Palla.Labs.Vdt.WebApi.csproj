@@ -179,6 +179,7 @@
     <Compile Include="App\Compartilhado\ExtensoesDeInt.cs" />
     <Compile Include="App\Compartilhado\ExtensoesDeString.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\ManutencaoDto.cs" />
+    <Compile Include="App\Dominio\Dtos\Equipamento\SumarioSituacaoDto.cs" />
     <Compile Include="App\Dominio\Excecoes\ExcecaoBase.cs" />
     <Compile Include="App\Dominio\Excecoes\JaExisteUmRecursoComEstasCaracteristicas.cs" />
     <Compile Include="App\Dominio\Excecoes\MapeadorParaHttpStatusCode\ExcecaoDominioParaHttpStatusCode.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="App\Dominio\Fabricas\FabricaManutencao.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaManutencaoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaParametrosManutencao.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaSumarioSituacaoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaValidadorEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cliente.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cnpj.cs" />

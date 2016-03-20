@@ -12,6 +12,7 @@ namespace Palla.Labs.Vdt.Controllers
         private readonly CriadorGrupo _criadorGrupo;
         private readonly ModificadorGrupo _modificadorGrupo;
         private readonly LocalizadorGrupo _localizadorGrupo;
+        private readonly LocalizadorEquipamento _localizadorEquipamento;
 
         public GruposController(CriadorGrupo criadorGrupo, ModificadorGrupo modificadorGrupo, LocalizadorGrupo localizadorGrupo)
         {
@@ -49,6 +50,14 @@ namespace Palla.Labs.Vdt.Controllers
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.Localizar());
+        }
+
+        [HttpGet]
+        [Route("grupos/{id}/sumariosituacao")]
+        public HttpResponseMessage SumarioSituacao(string id)
+        {
+            var equipamentosDoGrupo = _localizadorEquipamento.LocalizarPorGrupo(id);
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.SumarioSituacao(equipamentosDoGrupo));
         }
     }
 }

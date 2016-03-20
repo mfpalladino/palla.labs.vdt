@@ -33,6 +33,15 @@ sceiAdmin
     .controller('resumoGrupoClientesCtrl', function (resumoGrupoClientesService) {
 
         this.gruposClientes = resumoGrupoClientesService.pegaGruposClientes();
+
+        this.pegaSumarioSituacaoGrupo = function (grupoId) {
+            return resumoGrupoClientesService.pegaSumarioSituacaoGrupo(grupoId);
+        };
+
+        this.pegaCorParaGrupo = function () {
+            var cores = ["bgm-pink", "bgm-bluegray"];
+            return cores[1].toString();
+        };
     })
 
 

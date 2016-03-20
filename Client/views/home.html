@@ -9,15 +9,14 @@
             <div class="block-header">
                 <h2>RESUMO DAS SITUAÇÕES DOS EQUIPAMENTOS</h2>
             </div>
-
             <div class="dash-widgets">
                 <div class="row">
 
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-3 col-sm-6" data-ng-repeat="grupo in resumoGrupoClientesController.gruposClientes">
                         <div id="pie-charts" class="dash-widget-item">
-                            <div class="bgm-pink">
+                            <div class="{{resumoGrupoClientesController.pegaCorParaGrupo()}}">
                                 <div class="dash-widget-header">
-                                    <div class="dash-widget-title">Outback</div>
+                                    <div class="dash-widget-title">{{grupo.nome}}</div>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -37,36 +36,6 @@
                                 </div>
                                 <div class="easy-pie sub-pie-2" data-percent="50" data-easypie-chart>
                                     <div class="percent">50</div>
-                                    <div class="pie-title">CRÍTICO</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6">
-                        <div id="pie-charts" class="dash-widget-item">
-                            <div class="bgm-bluegray">
-                                <div class="dash-widget-header">
-                                    <div class="dash-widget-title">Habib's</div>
-                                </div>
-
-                                <div class="clearfix"></div>
-
-                                <div class="text-center p-20 m-t-25">
-                                    <div class="easy-pie main-pie" data-percent="90" data-easypie-chart>
-                                        <div class="percent">90</div>
-                                        <div class="pie-title">OK</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="p-t-20 p-b-20 text-center">
-                                <div class="easy-pie sub-pie-1" data-percent="0" data-easypie-chart>
-                                    <div class="percent">0</div>
-                                    <div class="pie-title">ATENÇÃO</div>
-                                </div>
-                                <div class="easy-pie sub-pie-2" data-percent="10" data-easypie-chart>
-                                    <div class="percent">10</div>
                                     <div class="pie-title">CRÍTICO</div>
                                 </div>
                             </div>
