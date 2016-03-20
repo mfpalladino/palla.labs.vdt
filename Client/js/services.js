@@ -71,7 +71,7 @@ sceiAdmin
     .service('resumoGrupoClientesService', ['$resource', function ($resource) {
 
         this.pegaGruposClientes = function () {
-            var gruposClientes = $resource('http://vendeta.azurewebsites.net/server/grupos/:id'); 
+            var gruposClientes = $resource('http://localhost:52300/grupos/:id');
             return gruposClientes.query(function() {});
         }
     }])
