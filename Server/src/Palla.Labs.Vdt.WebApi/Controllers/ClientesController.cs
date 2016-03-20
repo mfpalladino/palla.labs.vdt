@@ -21,7 +21,6 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPost]
-        [AllowCrossSiteJsonAttribute]
         public HttpResponseMessage Post([FromBody] ClienteDto clienteDto)
         {
             var clienteSalvo = _criadorCliente.Criar(clienteDto);
@@ -31,7 +30,6 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPut]
-        [AllowCrossSiteJsonAttribute]
         [Route("clientes/{id}")]
         public HttpResponseMessage Put([FromUri] string id, [FromBody] ClienteDto clienteDto)
         {
@@ -41,7 +39,6 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
-        [AllowCrossSiteJsonAttribute]
         [Route("clientes/{id}")]
         public HttpResponseMessage Get(string id)
         {
@@ -49,7 +46,6 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
-        [AllowCrossSiteJsonAttribute]
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorCliente.Localizar());

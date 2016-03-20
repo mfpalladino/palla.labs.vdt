@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.ModelBinding.Binders;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
@@ -12,6 +13,9 @@ namespace Palla.Labs.Vdt
     {
         public static void Register(HttpConfiguration config)
         {
+            var corsAttr = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(corsAttr);
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

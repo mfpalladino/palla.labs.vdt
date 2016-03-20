@@ -7,7 +7,6 @@ namespace Palla.Labs.Vdt
         public static void Configurar(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new AllowCrossSiteJsonAttribute());
         }
     }
 }
