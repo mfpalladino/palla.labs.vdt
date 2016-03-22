@@ -14,11 +14,12 @@ namespace Palla.Labs.Vdt.Controllers
         private readonly LocalizadorGrupo _localizadorGrupo;
         private readonly LocalizadorEquipamento _localizadorEquipamento;
 
-        public GruposController(CriadorGrupo criadorGrupo, ModificadorGrupo modificadorGrupo, LocalizadorGrupo localizadorGrupo)
+        public GruposController(CriadorGrupo criadorGrupo, ModificadorGrupo modificadorGrupo, LocalizadorGrupo localizadorGrupo, LocalizadorEquipamento localizadorEquipamento)
         {
             _criadorGrupo = criadorGrupo;
             _modificadorGrupo = modificadorGrupo;
             _localizadorGrupo = localizadorGrupo;
+            _localizadorEquipamento = localizadorEquipamento;
         }
 
         [HttpPost]

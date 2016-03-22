@@ -12,7 +12,7 @@
             <div class="dash-widgets">
                 <div class="row">
 
-                    <div class="col-md-3 col-sm-6" data-ng-repeat="grupo in resumoGrupoClientesController.gruposClientes">
+                    <div class="col-md-3 col-sm-6" data-ng-repeat="grupo in resumoGrupoClientesController.grupos">
                         <div id="pie-charts" class="dash-widget-item">
                             <div class="{{resumoGrupoClientesController.pegaCorParaGrupo()}}">
                                 <div class="dash-widget-header">
@@ -22,20 +22,20 @@
                                 <div class="clearfix"></div>
 
                                 <div class="text-center p-20 m-t-25">
-                                    <div class="easy-pie main-pie" data-percent="45" data-easypie-chart>
-                                        <div class="percent">45</div>
+                                    <div class="easy-pie main-pie" data-percent="{{grupo.sumarioSituacao.percentualOk}}" data-easypie-chart>
+                                        <div class="percent">{{grupo.sumarioSituacao.percentualOk}}</div>
                                         <div class="pie-title">OK</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="p-t-20 p-b-20 text-center">
-                                <div class="easy-pie sub-pie-1" data-percent="5" data-easypie-chart>
-                                    <div class="percent">5</div>
+                                <div class="easy-pie sub-pie-1" data-percent="{{grupo.sumarioSituacao.percentualAtencao}}" data-easypie-chart>
+                                    <div class="percent">{{grupo.sumarioSituacao.percentualAtencao}}</div>
                                     <div class="pie-title">ATENÇÃO</div>
                                 </div>
-                                <div class="easy-pie sub-pie-2" data-percent="50" data-easypie-chart>
-                                    <div class="percent">50</div>
+                                <div class="easy-pie sub-pie-2" data-percent="{{grupo.sumarioSituacao.percentualCritico}}" data-easypie-chart>
+                                    <div class="percent">{{grupo.sumarioSituacao.percentualCritico}}</div>
                                     <div class="pie-title">CRÍTICO</div>
                                 </div>
                             </div>

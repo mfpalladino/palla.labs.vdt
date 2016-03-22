@@ -32,11 +32,7 @@ sceiAdmin
 
     .controller('resumoGrupoClientesCtrl', function (resumoGrupoClientesService) {
 
-        this.gruposClientes = resumoGrupoClientesService.pegaGruposClientes();
-
-        this.pegaSumarioSituacaoGrupo = function (grupoId) {
-            return resumoGrupoClientesService.pegaSumarioSituacaoGrupo(grupoId);
-        };
+        this.grupos = resumoGrupoClientesService.pegaTodosGrupos();
 
         this.pegaCorParaGrupo = function () {
             var cores = ["bgm-pink", "bgm-bluegray"];

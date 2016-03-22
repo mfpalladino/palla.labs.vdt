@@ -68,16 +68,22 @@ sceiAdmin
         return gs;
     })
 
-    .service('resumoGrupoClientesService', ['$resource', function ($resource) {
-
-        this.pegaGruposClientes = function () {
-            var gruposClientes = $resource('http://vendeta.azurewebsites.net/server/grupos/:id');
-            return gruposClientes.query(function() {});
+    .factory('grupoResource', function($resource) {
+        return {
+            listaGrupos: $resource('http://localhost:52300/grupos'),
+            sumarioSituacao: $resource('http://localhost:52300/grupos/:id/sumariosituacao')
         }
+    })
 
-        this.pegaSumarioSituacaoGrupo = function (grupoId) {
-            var gruposClientes = $resource('http://vendeta.azurewebsites.net/server/grupos/:id/sumariosituacao');
-            return gruposClientes.get({ id: grupoId }, function () { });
+    .service('resumoGrupoClientesService', ['$resource','grupoResource',  function ($resource, grupoResource) {
+
+        this.pegaTodosGrupos = function () {
+            return grupoResource.listaGrupos.query(function(grupos) {
+                grupos.forEach(function(item) {
+                    grupoResource.sumarioSituacao.get({ id: item.id }, function (sumarioSituacao) {
+                        item.sumarioSituacao = sumarioSituacao;
+                    });
+                });
+            });
         }
-
     }])
