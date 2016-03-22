@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
@@ -27,10 +28,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
 
         private static int CalculaPercentual(int total, int valor)
         {
-            if (total > 0)
-                return (valor/total)*100;
-
-            return 0;
+            return total > 0 ? Convert.ToInt32(((float)valor / (float)total) * 100) : 0;
         }
     }
 }
