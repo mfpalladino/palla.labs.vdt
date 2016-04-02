@@ -1,20 +1,16 @@
 ﻿<header id="header" data-current-skin={{sceiCtrl.currentSkin}} data-ng-include="'template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
-
 <section id="main">
     <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiCtrl.sidebarToggle.left === true }"></aside>
-
     <section id="content">
-
-        <div class="container" data-ng-controller="resumoGrupoClientesCtrl as resumoGrupoClientesController">
+        <div class="container" data-ng-controller="resumoGrupoCtrl as resumoGrupoController">
             <div class="block-header">
                 <h2>RESUMO DAS SITUAÇÕES DOS EQUIPAMENTOS</h2>
             </div>
             <div class="dash-widgets">
                 <div class="row">
-
-                    <div class="col-md-3 col-sm-6" data-ng-repeat="grupo in resumoGrupoClientesController.grupos">
-                        <div id="pie-charts" class="dash-widget-item">
-                            <div class="{{resumoGrupoClientesController.pegaCorParaGrupo()}}">
+                    <div class="col-md-5 col-sm-6" data-ng-repeat="grupo in resumoGrupoController.grupos">
+                        <div id="pie-charts" class="dash-widget-item grupo-{{grupo.id}}">
+                            <div class="bgm-bluegray">
                                 <div class="dash-widget-header">
                                     <div class="dash-widget-title">{{grupo.nome}}</div>
                                 </div>
@@ -22,27 +18,28 @@
                                 <div class="clearfix"></div>
 
                                 <div class="text-center p-20 m-t-25">
-                                    <div class="easy-pie main-pie" data-percent="{{grupo.sumarioSituacao.percentualOk}}" data-easypie-chart>
+                                    <div class="easy-pie ok-pie" data-percent="0" data-easypie-chart>
                                         <div class="percent">{{grupo.sumarioSituacao.percentualOk}}</div>
                                         <div class="pie-title">OK</div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="p-t-20 p-b-20 text-center">
-                                <div class="easy-pie sub-pie-1" data-percent="{{grupo.sumarioSituacao.percentualAtencao}}" data-easypie-chart>
+                                <div class="easy-pie atencao-pie" data-percent="0" data-easypie-chart>
                                     <div class="percent">{{grupo.sumarioSituacao.percentualAtencao}}</div>
                                     <div class="pie-title">ATENÇÃO</div>
                                 </div>
-                                <div class="easy-pie sub-pie-2" data-percent="{{grupo.sumarioSituacao.percentualCritico}}" data-easypie-chart>
+                                <div class="easy-pie critico-pie" data-percent="0" data-easypie-chart>
                                     <div class="percent">{{grupo.sumarioSituacao.percentualCritico}}</div>
                                     <div class="pie-title">CRÍTICO</div>
+                                </div>
+                                <div class="easy-pie inconclusivo-pie" data-percent="0" data-easypie-chart>
+                                    <div class="percent">{{grupo.sumarioSituacao.percentualInconclusivo}}</div>
+                                    <div class="pie-title">INCONCLUSIVO</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

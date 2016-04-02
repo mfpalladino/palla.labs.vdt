@@ -82,31 +82,6 @@
 }
 
 /*
- * Sparkline Tooltip
- */
-#jqstooltip {
-    min-width: 21px;
-    min-height: 23px;
-    text-align: center;
-    border: 0;
-    background: #fff;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    background-color: #fff;
-
-    .jqsfield {
-        font-size: 12px;
-        font-weight: 700;
-        font-family: inherit;
-        text-align: center;
-        color: #333;
-
-        & > span {
-            display: none;
-        }
-    }
-}
-
-/*
  * Easy Pie Charts
  */
 
@@ -135,7 +110,7 @@
         } 
     }
     
-    &.main-pie {
+    &.ok-pie {
         .percent {
             margin-top: 49px;
             font-size: 50px;
@@ -155,7 +130,7 @@
         }
     }
     
-    &:not(.main-pie) {
+    &:not(.ok-pie) {
         .percent {
             font-size: 26px;
             margin-top: 37px;
@@ -170,77 +145,9 @@
         position: absolute;
         width: 100%;
         text-align: center;
-        bottom: -3px;
+        bottom: -9px;
+        font-size: 15px;
         left: 0;
     }
     
 }
-
-/*
- * Recet Items Table Chart
- */
-#recent-items-chart {
-    width: ~"calc(100% + 19px)";
-    height: 150px;
-    margin: -20px -10px 0;
-    bottom: -10px;
-
-}
-
-/*
- * Flot Chart
- */
-[class*="flot-chart"] {
-    width: 100%;
-    display: block;
-}
-
-.flot-chart {
-    height: 200px;
-}
-
-.flot-chart-pie {
-    height: 300px;
-    
-    @media (min-width: @screen-sm-min) {
-        margin-bottom: 20px;
-    }
-}
-
-.flot-tooltip, #flotTip {
-    position: absolute;
-    color: #333;
-    display: none;
-    font-size: 12px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    padding: 3px 10px;
-    background-color: #fff;
-    z-index: 99999;
-}
-
-[class*="flc-"] {
-    text-align: center;
-    margin: 10px 0 5px;
-    
-    table {
-        display: inline-block;
-    }
-    
-    .legendColorBox {
-        & > div {
-            border: #fff !important;
-            
-            & > div {
-                border-radius: 50%;
-            }
-        }
-    }
-    
-    .legendLabel {
-        padding: 0 8px 0 3px;
-    }
-}
-
-
-
-    

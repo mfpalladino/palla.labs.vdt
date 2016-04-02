@@ -30,14 +30,24 @@ sceiAdmin
     .controller('headerCtrl', function() {
     })
 
-    .controller('resumoGrupoClientesCtrl', function (resumoGrupoClientesService) {
+    // =========================================================================
+    // Resumoo grupo
+    // =========================================================================
+    .controller('resumoGrupoCtrl', function (resumoGrupoService) {
 
-        this.grupos = resumoGrupoClientesService.pegaTodosGrupos();
+        function aoCompletarSumarioSituacao(grupo) {
+            var classeGraficoOk = '.grupo-' + grupo.id + ' .ok-pie';
+            var classeGraficoAtencao = '.grupo-' + grupo.id + ' .atencao-pie';
+            var classeGraficoCritico = '.grupo-' + grupo.id + ' .critico-pie';
+            var classeGraficoInconclusivo = '.grupo-' + grupo.id + ' .inconclusivo-pie';
 
-        this.pegaCorParaGrupo = function () {
-            var cores = ["bgm-pink", "bgm-bluegray"];
-            return cores[1].toString();
-        };
+            $(classeGraficoOk).data('easyPieChart').update(grupo.sumarioSituacao.percentualOk);
+            $(classeGraficoAtencao).data('easyPieChart').update(grupo.sumarioSituacao.percentualAtencao);
+            $(classeGraficoCritico).data('easyPieChart').update(grupo.sumarioSituacao.percentualCritico);
+            $(classeGraficoInconclusivo).data('easyPieChart').update(grupo.sumarioSituacao.percentualInconclusivo);
+        }
+
+        this.grupos = resumoGrupoService.pegaTodosGrupos(aoCompletarSumarioSituacao);
     })
 
 

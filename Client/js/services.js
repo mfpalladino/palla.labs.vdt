@@ -1,21 +1,5 @@
 sceiAdmin
 
-    .service('messageService', ['$resource', function($resource){
-        this.getMessage = function(img, user, text) {
-            var gmList = $resource("data/messages-notifications.json");
-            
-            return gmList.get({
-                img: img,
-                user: user,
-                text: text
-            });
-        }
-    }])
-    
-
-    // =========================================================================
-    // Malihu Scroll - Custom Scroll bars
-    // =========================================================================
     .service('scrollService', function() {
         var ss = {};
         ss.malihuScroll = function scrollBar(selector, theme, mousewheelaxis) {
@@ -33,11 +17,6 @@ sceiAdmin
         
         return ss;
     })
-
-
-    //==============================================
-    // BOOTSTRAP GROWL
-    //==============================================
 
     .service('growlService', function(){
         var gs = {};
@@ -68,20 +47,20 @@ sceiAdmin
         return gs;
     })
 
-    .factory('grupoResource', function($resource) {
+    .factory('grupoResource', function ($resource, constantsService) {
         return {
-            listaGrupos: $resource('http://localhost:52300/grupos'),
-            sumarioSituacao: $resource('http://localhost:52300/grupos/:id/sumariosituacao')
+            listaGrupos: $resource(constantsService.baseUrl() + 'grupos'),
+            sumarioSituacao: $resource(constantsService.baseUrl() + 'grupos/:id/sumariosituacao')
         }
     })
 
-    .service('resumoGrupoClientesService', ['$resource','grupoResource',  function ($resource, grupoResource) {
-
-        this.pegaTodosGrupos = function () {
+    .service('resumoGrupoService', ['$resource','grupoResource',  function ($resource, grupoResource) {
+        this.pegaTodosGrupos = function (aoCompletarSumarioSituacao) {
             return grupoResource.listaGrupos.query(function(grupos) {
                 grupos.forEach(function(item) {
                     grupoResource.sumarioSituacao.get({ id: item.id }, function (sumarioSituacao) {
                         item.sumarioSituacao = sumarioSituacao;
+                        aoCompletarSumarioSituacao(item);
                     });
                 });
             });
