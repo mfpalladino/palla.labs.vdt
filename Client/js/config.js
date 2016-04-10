@@ -7,10 +7,6 @@
             $urlRouterProvider.otherwise("/home");
 
             $stateProvider
-
-                //------------------------------
-                // HOME
-                //------------------------------
                 .state("home", {
                     url: "/home",
                     templateUrl: "views/home.html",
@@ -36,11 +32,6 @@
                         }
                     }
                 })
-
-
-                //------------------------------
-                // HEADERS
-                //------------------------------
                 .state("headers", {
                     url: "/headers",
                     templateUrl: "views/common-2.html"
@@ -56,6 +47,10 @@
                 .state("headers.mainmenu-on-top", {
                     url: "/mainmenu-on-top",
                     templateUrl: "views/mainmenu-on-top.html"
+                })
+                .state("grupos", {
+                    url: "/grupos",
+                    templateUrl: "views/grupos.html"
                 });
         });
 })();
