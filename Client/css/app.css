@@ -14015,7 +14015,7 @@ select.chosen {
   position: absolute;
   left: 16px;
   top: 5px;
-  z-index: 12;
+  z-index: 4;
 }
 .ng-table-pagination > li:first-child > a,
 .ng-table-pagination > li:last-child > a {

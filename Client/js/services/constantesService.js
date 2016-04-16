@@ -6,7 +6,7 @@
         .service("constantesService", [
             function() {
                 this.baseUrl = function() {
-                    return "ALTERAR/";
+                    return "FAZER/";
                 }
             }
         ]);
