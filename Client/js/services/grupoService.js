@@ -6,11 +6,17 @@
         .service("grupoService", [
             "$resource", "grupoResourceFactory", function($resource, grupoResourceFactory) {
                 this.listar = function() {
-                    return grupoResourceFactory.listar.query();
+                    return grupoResourceFactory.grupos.query();
                 };
 
                 this.atualizar = function(grupo) {
-                    return grupoResourceFactory.atualizar.update({ id: grupo.id }, grupo);
+                    return grupoResourceFactory.grupos.update({ id: grupo.id }, grupo);
+                };
+
+                this.inserir = function (grupo) {
+                    return grupoResourceFactory.grupos.save(grupo, function (value, responseHeaders) {
+                        console.log("AQUI");
+                    });
                 };
             }
         ]);

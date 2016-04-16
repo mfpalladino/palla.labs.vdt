@@ -3,7 +3,7 @@
     <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
     <section id="content">
 
-        <div class="container" data-ng-controller="grupoController as grupo">
+        <div class="container" data-ng-controller="grupoController as grupoCtrl">
 
             <div class="block-header">
                 <h2>Grupos de clientes <small>Utilize este cadastro para agrupar clientes e permitir a visualização unificada da situação de seus equipamentos.</small></h2>
@@ -12,23 +12,27 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-
-                        <table ng-table="grupo.tabela" class="table table-striped table-vmiddle" show-filter="true">
+                        <div class="pull-right">
+                            <button class="btn btn-default" ng-click="grupoCtrl.adicionar()">
+                                <span class="zmdi zmdi-plus-circle"></span>
+                            </button>
+                        </div>
+                        <table ng-table="grupoCtrl.parametrosTabela" class="table table-striped" show-filter="true">
                             <colgroup>
                                 <col width="90%" />
                                 <col width="10%" />
                             </colgroup>
-                            <tr ng-repeat="row in $data" ng-form="rowForm" demo-tracked-table-row="row">
-                                <td title="'Nome'" filter="{nome: 'text'}" sortable="'nome'" ng-switch="row.isEditing" ng-class="nome.$dirty ? 'bg-warning' : ''" ng-form="nome">
-                                    <span ng-switch-default class="editable-text">{{row.nome}}</span>
+                            <tr ng-repeat="row in $data" ng-form="rowForm">
+                                <td title="'Nome'" filter="{nome: 'text'}" ng-switch="row.estaEditando" ng-class="nome.$dirty ? 'bg-warning' : ''" ng-form="nome">
+                                    <span ng-switch-default>{{row.nome}}</span>
                                     <div class="controls" ng-class="nome.$invalid && nome.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                                        <input type="text" name="nome" ng-model="row.nome" class="editable-input form-control input-sm" />
+                                        <input type="text" name="nome" ng-model="row.nome" class="form-control input-sm" />
                                     </div>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm" ng-click="grupo.salvar(row, rowForm)" ng-if="row.isEditing" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="zmdi zmdi-check"></span></button>
-                                    <button class="btn btn-warning btn-sm" ng-click="grupo.cancelar(row, rowForm)" ng-if="row.isEditing"><span class="zmdi zmdi-mail-reply"></span></button>
-                                    <button class="btn btn-default btn-sm" ng-click="row.isEditing = true" ng-if="!row.isEditing"><span class="zmdi zmdi-edit"></span></button>
+                                    <button class="btn btn-primary btn-sm" ng-click="grupoCtrl.salvar(row, rowForm)" ng-if="row.estaEditando" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="zmdi zmdi-check"></span></button>
+                                    <button class="btn btn-warning btn-sm" ng-click="grupoCtrl.cancelar(row, rowForm)" ng-if="row.estaEditando"><span class="zmdi zmdi-mail-reply"></span></button>
+                                    <button class="btn btn-default btn-sm" ng-click="row.estaEditando = true" ng-if="!row.estaEditando"><span class="zmdi zmdi-edit"></span></button>
                                 </td>
                             </tr>
                         </table>

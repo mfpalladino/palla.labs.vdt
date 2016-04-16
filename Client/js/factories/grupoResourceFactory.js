@@ -5,8 +5,9 @@
         .module("sceiAdmin")
         .factory("grupoResourceFactory", function($resource, constantesService) {
             return {
-                atualizar: $resource(constantesService.baseUrl() + "grupos/:id", null, { 'update': { method: "PUT" } }),
-                listar: $resource(constantesService.baseUrl() + "grupos"),
+                grupos: $resource(constantesService.baseUrl() + "grupos/:id", null,
+                    { 'update': { method: "PUT" } }),
+
                 sumarioSituacao: $resource(constantesService.baseUrl() + "grupos/:id/sumariosituacao")
             }
         });

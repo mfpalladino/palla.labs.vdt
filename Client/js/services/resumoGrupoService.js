@@ -6,7 +6,7 @@
         .service("resumoGrupoService", [
             "$resource", "grupoResourceFactory", function ($resource, grupoResourceFactory) {
                 this.pegaTodosGrupos = function(recuperouSumarioSituacao) {
-                    return grupoResourceFactory.listaGrupos.query(function (grupos) {
+                    return grupoResourceFactory.grupos.query(function (grupos) {
                         grupos.forEach(function(item) {
                             grupoResourceFactory.sumarioSituacao.get({ id: item.id }, function (sumarioSituacao) {
                                 item.sumarioSituacao = sumarioSituacao;

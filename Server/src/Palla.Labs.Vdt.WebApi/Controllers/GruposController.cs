@@ -14,7 +14,10 @@ namespace Palla.Labs.Vdt.Controllers
         private readonly LocalizadorGrupo _localizadorGrupo;
         private readonly LocalizadorEquipamento _localizadorEquipamento;
 
-        public GruposController(CriadorGrupo criadorGrupo, ModificadorGrupo modificadorGrupo, LocalizadorGrupo localizadorGrupo, LocalizadorEquipamento localizadorEquipamento)
+        public GruposController(CriadorGrupo criadorGrupo, 
+            ModificadorGrupo modificadorGrupo, 
+            LocalizadorGrupo localizadorGrupo, 
+            LocalizadorEquipamento localizadorEquipamento)
         {
             _criadorGrupo = criadorGrupo;
             _modificadorGrupo = modificadorGrupo;
@@ -26,7 +29,7 @@ namespace Palla.Labs.Vdt.Controllers
         public HttpResponseMessage Post([FromBody] GrupoDto grupoDto)
         {
             var grupoSalvo = _criadorGrupo.Criar(grupoDto);
-            var response = Request.CreateResponse(HttpStatusCode.Created);
+            var response = Request.CreateResponse(HttpStatusCode.Created, grupoSalvo);
             response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = grupoSalvo.Id }));
             return response;
         }
