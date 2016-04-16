@@ -6,7 +6,7 @@
         .service("constantesService", [
             function() {
                 this.baseUrl = function() {
-                    return "http://vendeta.azurewebsites.net/server/";
+                    return "ALTERAR/";
                 }
             }
         ]);

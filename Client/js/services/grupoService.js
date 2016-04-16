@@ -14,9 +14,7 @@
                 };
 
                 this.inserir = function (grupo) {
-                    return grupoResourceFactory.grupos.save(grupo, function (value, responseHeaders) {
-                        console.log("AQUI");
-                    });
+                    return grupoResourceFactory.grupos.save(grupo);
                 };
             }
         ]);

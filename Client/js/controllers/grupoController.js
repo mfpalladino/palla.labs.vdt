@@ -91,9 +91,11 @@
                     id: "",
                     nome: grupo.nome
                 }).$promise.then(
-                    function(resultado) {
-                        var grupoOriginal = tratarGrupoEditado(grupo, formularioGrupo, false);
-                        angular.extend(grupoOriginal, grupo);
+                    function(grupoInserido) {
+                        var grupoQueDeveSerConsiderado = tratarGrupoEditado(grupo, formularioGrupo, false);
+                        grupoQueDeveSerConsiderado.id = grupoInserido.id;
+                        grupoQueDeveSerConsiderado.novo = false;
+                        angular.extend(grupoQueDeveSerConsiderado, grupo);
                         growlService.growlSuccess("Inclusão efetuada com sucesso.");
                     },
                     function(erro) {
