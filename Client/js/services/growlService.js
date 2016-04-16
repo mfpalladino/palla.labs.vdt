@@ -5,7 +5,16 @@
         .module("sceiAdmin")
         .service("growlService", function() {
             var gs = {};
-            gs.growl = function(message, type) {
+
+            gs.growlError = function(message) {
+                return gs.growl(message, "danger");
+            }
+
+            gs.growlSuccess = function (message) {
+                return gs.growl(message, "success");
+            }
+
+            gs.growl = function (message, type) {
                 $.growl({
                     message: message
                 }, {
