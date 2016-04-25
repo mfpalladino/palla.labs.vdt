@@ -51,6 +51,11 @@
                 .state("grupos", {
                     url: "/grupos",
                     templateUrl: "views/grupos.html"
+                })
+                .state("clientes", {
+                    url: "/clientes",
+                    templateUrl: "views/clientes.html"
                 });
+
         });
 })();

@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 using Palla.Labs.Vdt.App.Dominio.Fabricas;
+using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.WebApi.Testes.Fabricas;
 
 namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Mapeadores
@@ -15,7 +17,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Mapeadores
             var cliente = new ConstrutorCliente().Construir();
 
             //Act
-            var clienteDto = new FabricaClienteDto().Criar(cliente);
+            var clienteDto = new FabricaClienteDto(new Mock<RepositorioGrupos>().Object).Criar(cliente);
 
             //Asserts
             clienteDto.Logradouro.Should().Be(cliente.Endereco.Logradouro);
@@ -29,7 +31,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Mapeadores
         {
             //Arrange
             var clienteOriginal = new ConstrutorCliente().Construir();
-            var clienteDto = new FabricaClienteDto().Criar(clienteOriginal);
+            var clienteDto = new FabricaClienteDto(new Mock<RepositorioGrupos>().Object).Criar(clienteOriginal);
 
             //Act
             var clienteGerado = new FabricaCliente().Criar(clienteDto);

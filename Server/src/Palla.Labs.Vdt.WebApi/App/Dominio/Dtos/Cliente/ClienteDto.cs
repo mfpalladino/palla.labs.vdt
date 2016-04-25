@@ -13,6 +13,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Dtos
 
         public string GrupoId  { get; set; }
 
+        public string GrupoNome { get; set; }
+
         public string Logradouro  { get; set; }
 
         public string Numero { get; set; }

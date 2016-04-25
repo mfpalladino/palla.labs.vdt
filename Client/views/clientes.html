@@ -1,0 +1,53 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+
+        <div class="container" data-ng-controller="clienteController as clienteCtrl">
+
+            <div class="block-header">
+                <h2>Clientes <small>Utilize este cadastro para manter em dia as informações de seus clientes.</small></h2>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="pull-right">
+                            <button title="Adicionar um novo cliente" class="btn btn-default" ng-click="clienteCtrl.adicionar()">
+                                <span class="zmdi zmdi-plus-circle"></span>
+                            </button>
+                        </div>
+                        <table ng-table="clienteCtrl.parametrosTabela" class="table table-striped" show-filter="true">
+                            <colgroup>
+                                <col width="30%" />
+                                <col width="60%"/>
+                                <col width="10%"/>
+                            </colgroup>
+                            <tr ng-repeat="row in $data" ng-form="rowForm">
+                                <td title="'Grupo'" filter="{grupoNome: 'text'}" ng-form="grupoNome">
+                                    <span>{{row.grupoNome}}</span>
+                                </td>
+                                <td title="'Nome'" filter="{nome: 'text'}" ng-form="nome">
+                                    <span>{{row.nome}}</span>
+                                </td>
+                                <td>
+                                    <button title="Editar este cliente" class="btn btn-default btn-sm"><span class="zmdi zmdi-edit"></span></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+
+
+
+
+
+
+
