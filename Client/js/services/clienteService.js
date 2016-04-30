@@ -4,7 +4,12 @@
     angular
         .module("sceiAdmin")
         .service("clienteService", [
-            "$resource", "clienteResourceFactory", function($resource, clienteResourceFactory) {
+            "$resource", "clienteResourceFactory", function ($resource, clienteResourceFactory) {
+
+                this.listarPorId = function (id) {
+                    return clienteResourceFactory.clientes.get({ id: id });
+                };
+
                 this.listar = function() {
                     return clienteResourceFactory.clientes.query();
                 };

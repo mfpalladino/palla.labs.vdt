@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="pull-right">
-                            <button title="Adicionar um novo cliente" class="btn btn-default" ng-click="clienteCtrl.adicionar()">
+                            <button title="Adicionar um novo cliente" class="btn btn-default" data-ui-sref="adicionarClientes" ng-click="sceiCtrl.sidebarStat($event)">
                                 <span class="zmdi zmdi-plus-circle"></span>
                             </button>
                         </div>
@@ -31,7 +31,7 @@
                                     <span>{{row.nome}}</span>
                                 </td>
                                 <td>
-                                    <button title="Editar este cliente" class="btn btn-default btn-sm"><span class="zmdi zmdi-edit"></span></button>
+                                    <button title="Editar este cliente" class="btn btn-default btn-sm" data-ui-sref="editarClientes({ clienteId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-edit"></span></button>
                                 </td>
                             </tr>
                         </table>

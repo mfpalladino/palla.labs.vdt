@@ -1,0 +1,102 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+        <div class="container" data-ng-controller="clienteManterController as clienteManterCtrl">
+            <div class="block-header">
+                <h2>Clientes <small>Por favor informe os dados do cliente e pressione o botão 'confirmar' para gravar as alterações.</small>
+                </h2>
+            </div>
+            <div class="card">
+                <div class="card-body card-padding">
+                    <form role="form">
+
+                        <div class=" form-group fg-line">
+                            <label for="grupo">Grupo</label>
+                            <select chosen data-placeholder="Selecione um grupo..." class="w-100 form-control input-sm" id="grupo" 
+                                    data-ng-model="clienteManterCtrl.cliente.grupoId" data-ng-options="grupo.id as grupo.nome for grupo in clienteManterCtrl.grupos"></select>
+                        </div>
+
+                        <div class=" form-group fg-line">
+                            <label for="cnpj">CNPJ</label>
+                            <input type="text" class="form-control input-sm" id="cnpj" data-ng-model="clienteManterCtrl.cliente.cnpj">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control input-sm" id="nome" data-ng-model="clienteManterCtrl.cliente.nome">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="codigo">Código</label>
+                            <input type="text" class="form-control input-sm" id="codigo" data-ng-model="clienteManterCtrl.cliente.codigo">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="logradouro">Logradouro</label>
+                            <input type="text" class="form-control input-sm" id="logradouro" data-ng-model="clienteManterCtrl.cliente.logradouro">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="numero">Número</label>
+                            <input type="text" class="form-control input-sm" id="numero" data-ng-model="clienteManterCtrl.cliente.numero">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" class="form-control input-sm" id="complemento" data-ng-model="clienteManterCtrl.cliente.complemento">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="bairro">Bairro</label>
+                            <input type="text" class="form-control input-sm" id="bairro" data-ng-model="clienteManterCtrl.cliente.bairro">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" class="form-control input-sm" id="cidade" data-ng-model="clienteManterCtrl.cliente.cidade">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="estado">Estado</label>
+                            <input type="text" class="form-control input-sm" id="estado" data-ng-model="clienteManterCtrl.cliente.estado">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="cep">CEP</label>
+                            <input type="text" class="form-control input-sm" id="cep" data-ng-model="clienteManterCtrl.cliente.cep">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="correioEletronicoLoja">Email da loja</label>
+                            <input type="text" class="form-control input-sm" id="correioEletronicoLoja" data-ng-model="clienteManterCtrl.cliente.correioEletronicoLoja">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="correioEletronicoManutencao">Email da manutenção</label>
+                            <input type="text" class="form-control input-sm" id="correioEletronicoManutencao" data-ng-model="clienteManterCtrl.cliente.correioEletronicoManutencao">
+                        </div>
+
+                        <div class="form-group fg-line">
+                            <label for="correioEletronicoAdministracao">Email da administração</label>
+                            <input type="text" class="form-control input-sm" id="correioEletronicoAdministracao" data-ng-model="clienteManterCtrl.cliente.correioEletronicoAdministracao">
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-sm m-t-10" ng-click="clienteManterCtrl.salvar()">Confirmar</button>
+                        <button type="button" class="btn btn-warning btn-sm m-t-10" ng-click="clienteManterCtrl.cancelar()">Cancelar</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+
+
+
+
+
+
+
