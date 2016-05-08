@@ -6,6 +6,7 @@ using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Dominio.Servicos;
 using Palla.Labs.Vdt.App.Infraestrutura.Json;
+using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.Infraestrutura.SimpleInjector;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.Mvc
@@ -28,7 +29,8 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mvc
 
             var equipamentoBase = JsonConvert.DeserializeObject<EquipamentoDto>(json);
             _bindingContext.Model = new FabricaEquipamentoDto(BuscadorDeInstancias.BuscarEstatico<ConversorDeJson>(),
-                BuscadorDeInstancias.BuscarEstatico<CalculadoraSituacaoManutencao>()).Criar(equipamentoBase.Tipo, json);
+                BuscadorDeInstancias.BuscarEstatico<CalculadoraSituacaoManutencao>(),
+                BuscadorDeInstancias.BuscarEstatico<RepositorioClientes>()).Criar(equipamentoBase.Tipo, json);
         }
     }
 }

@@ -112,5 +112,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             if (QuantidadeSirenes < 0)
                 throw new FormatoInvalido("A quantidade de sirenes da central de alarme não pode ser menor que zero.");
         }
+
+        public override string Nome
+        {
+            get { return String.Format("Central de alarme (Fab: {0} Mod: {1})", Fabricante, Modelo); }
+        }
     }
 }

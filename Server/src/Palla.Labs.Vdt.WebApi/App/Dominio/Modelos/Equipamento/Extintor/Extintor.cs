@@ -73,5 +73,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             if (FabricadoEm < 0)
                 throw new FormatoInvalido("A data da fabricação do extintor não é válida.");
         }
+
+        public override string Nome
+        {
+            get { return String.Format("Extintor (cilindro: {0})", NumeroCilindro); }
+        }
     }
 }

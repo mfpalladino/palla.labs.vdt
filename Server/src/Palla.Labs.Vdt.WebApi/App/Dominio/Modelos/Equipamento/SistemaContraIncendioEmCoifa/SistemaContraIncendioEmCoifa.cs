@@ -67,5 +67,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             if (QuantidadeCilindroSaponificante < 0)
                 throw new FormatoInvalido("A quantidade de cilindros saponificantes do sistema contra incêndio não pode ser menor que zero.");
         }
+
+        public override string Nome
+        {
+            get { return String.Format("Sistema contra incêndio em coifa (Central: {0})", Central); }
+        }
     }
 }

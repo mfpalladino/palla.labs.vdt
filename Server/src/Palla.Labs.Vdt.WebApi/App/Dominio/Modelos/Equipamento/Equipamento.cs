@@ -30,6 +30,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             get { return _tipo; }
         }
 
+        public abstract string Nome { get; }
+
         public IReadOnlyList<Manutencao> Manutencoes
         {
             get { return new ReadOnlyCollection<Manutencao>(_manutencoes); }

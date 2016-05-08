@@ -1,0 +1,52 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+
+        <div class="container" data-ng-controller="equipamentoController as equipamentoCtrl">
+
+            <div class="block-header">
+                <h2>Equipamentos <small>Utilize este cadastro para manter em dia as informações dos equipamentos.</small></h2>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="pull-right">
+                            <button title="Adicionar um novo equipamento" class="btn btn-default" data-ui-sref="adicionarEquipamentos" ng-click="sceiCtrl.sidebarStat($event)">
+                                <span class="zmdi zmdi-plus-circle"></span>
+                            </button>
+                        </div>
+                        <table ng-table="equipamentoCtrl.parametrosTabela" class="table table-striped" show-filter="true">
+                            <colgroup>
+                                <col width="50%" />
+                                <col width="50%"/>
+                            </colgroup>
+                            <tr ng-repeat="row in $data" ng-form="rowForm">
+                                <td title="'Cliente'" filter="{clienteNome: 'text'}" ng-form="clienteNome">
+                                    <span>{{row.clienteNome}}</span>
+                                </td>
+                                <td title="'Nome'" filter="{nome: 'text'}" ng-form="nome">
+                                    <span>{{row.nome}}</span>
+                                </td>
+                                <td>
+                                    <button title="Editar este equipamento" class="btn btn-default btn-sm" data-ui-sref="editarEquipamentos({ equipamentoId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-edit"></span></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+
+
+
+
+
+
+

@@ -44,5 +44,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private void Validar()
         {
         }
+
+        public override string Nome
+        {
+            get { return "Mangueira"; }
+        }
     }
 }

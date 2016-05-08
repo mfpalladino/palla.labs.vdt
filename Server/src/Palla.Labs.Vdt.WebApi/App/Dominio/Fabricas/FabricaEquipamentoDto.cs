@@ -6,6 +6,7 @@ using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Dominio.Servicos;
 using Palla.Labs.Vdt.App.Infraestrutura.Json;
+using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 namespace Palla.Labs.Vdt.App.Dominio.Fabricas
 {
@@ -13,11 +14,13 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
     {
         private readonly ConversorDeJson _conversorDeJson;
         private readonly CalculadoraSituacaoManutencao _calculadoraSituacaoManutencao;
+        private readonly RepositorioClientes _repositorioClientes;
 
-        public FabricaEquipamentoDto(ConversorDeJson conversorDeJson, CalculadoraSituacaoManutencao calculadoraSituacaoManutencao)
+        public FabricaEquipamentoDto(ConversorDeJson conversorDeJson, CalculadoraSituacaoManutencao calculadoraSituacaoManutencao, RepositorioClientes repositorioClientes)
         {
             _conversorDeJson = conversorDeJson;
             _calculadoraSituacaoManutencao = calculadoraSituacaoManutencao;
+            _repositorioClientes = repositorioClientes;
         }
 
         public virtual IEnumerable<EquipamentoDto> Criar(IEnumerable<Equipamento> equipamentos)
@@ -56,6 +59,9 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                     throw new Exception("Equipamento não pode ser mapeado em um dto conforme seu tipo");
             }
 
+            var cliente = _repositorioClientes.BuscarPorId(equipamentoResultante.ClienteId.ParaGuid());
+            equipamentoResultante.ClienteNome = cliente != null ? cliente.Nome : String.Empty;
+
             equipamentoResultante.SituacaoManutencao = 
                 (int)_calculadoraSituacaoManutencao.Calcular(equipamento, dataReferenciaSituacao ?? DateTime.Now.ParaUnixTime());
 
@@ -89,8 +95,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 PesoCilindroCo2 = sistemaContraIncendioEmCoifa.PesoCilindroCo2,
                 QuantidadeCilindroCo2 = sistemaContraIncendioEmCoifa.QuantidadeCilindroCo2,
                 QuantidadeCilindroSaponificante = sistemaContraIncendioEmCoifa.QuantidadeCilindroSaponificante,
-                Tipo = (int)sistemaContraIncendioEmCoifa.Tipo
-                
+                Tipo = (int)sistemaContraIncendioEmCoifa.Tipo,
+                Nome = sistemaContraIncendioEmCoifa.Nome
             };
         }
 
@@ -107,7 +113,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 QuantidadeDetectores = centralAlarme.QuantidadeDetectores,
                 QuantidadeSirenes = centralAlarme.QuantidadeSirenes,
                 TipoCentralAlarme = (int)centralAlarme.TipoCentralAlarme,
-                Tipo = (int)centralAlarme.Tipo
+                Tipo = (int)centralAlarme.Tipo,
+                Nome = centralAlarme.Nome
             };
         }
 
@@ -120,7 +127,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 Comprimento = (int)mangueira.Comprimento,
                 Diametro = (int)mangueira.Diametro,
                 TipoMangueira = (int)mangueira.TipoMangueira,
-                Tipo = (int)mangueira.Tipo
+                Tipo = (int)mangueira.Tipo,
+                Nome = mangueira.Nome
             };
         }
 
@@ -134,7 +142,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 Localizacao = extintor.Localizacao,
                 ClienteId = extintor.ClienteId.ToString(),
                 NumeroCilindro = extintor.NumeroCilindro,
-                Tipo = (int)extintor.Tipo
+                Tipo = (int)extintor.Tipo,
+                Nome = extintor.Nome
             };
         }
     }
