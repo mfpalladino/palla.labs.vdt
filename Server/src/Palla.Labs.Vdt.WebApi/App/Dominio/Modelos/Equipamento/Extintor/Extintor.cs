@@ -70,7 +70,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             if (Localizacao.Length > 200)
                 throw new FormatoInvalido("A localização do extintor não pode ter mais de 200 caracteres.");
 
-            if (FabricadoEm < 0)
+            if (FabricadoEm <= 0)
                 throw new FormatoInvalido("A data da fabricação do extintor não é válida.");
         }
 

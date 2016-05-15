@@ -1,0 +1,138 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+        <div class="container" data-ng-controller="equipamentoManterController as equipamentoManterCtrl">
+            <div class="block-header">
+                <h2>Equipamentos <small>Por favor informe os dados do equipamento e pressione o botão 'confirmar' para gravar as informações.</small>
+                </h2>
+            </div>
+            <div class="card">
+                <div class="card-body card-padding">
+                    <form role="form">
+
+                        <div class=" form-group fg-line">
+                            <label for="tipo">Tipo do equipamento</label>
+                            <select ng-disabled="equipamentoManterCtrl.algumTipoSelecionado()"
+                                    chosen data-placeholder="Selecione um tipo..." class="w-100 form-control input-sm" id="tipo"
+                                    data-ng-model="equipamentoManterCtrl.equipamento.tipo" data-ng-options="tipo.id as tipo.nome for tipo in equipamentoManterCtrl.tipos"></select>
+                        </div>
+
+                        <div class=" form-group fg-line">
+                            <label for="cliente">Cliente</label>
+                            <select chosen data-placeholder="Selecione um cliente..." class="w-100 form-control input-sm" id="cliente"
+                                    data-ng-model="equipamentoManterCtrl.equipamento.clienteId" data-ng-options="cliente.id as cliente.nome for cliente in equipamentoManterCtrl.clientes"></select>
+                        </div>
+
+                        <div ng-show="equipamentoManterCtrl.tipoExtintorEstaSelecionado()">
+                            <div class=" form-group fg-line">
+                                <label for="numeroCilindro">Número do cilindro</label>
+                                <input type="text" class="form-control input-sm" id="numeroCilindro" data-ng-model="equipamentoManterCtrl.equipamento.numeroCilindro">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="agente">Agente</label>
+                                <input type="text" class="form-control input-sm" id="agente" data-ng-model="equipamentoManterCtrl.equipamento.agente">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="localizacao">Localizacao</label>
+                                <input type="text" class="form-control input-sm" id="localizacao" data-ng-model="equipamentoManterCtrl.equipamento.localizacao">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="fabricadoEm">Data de fabricação</label>
+                                <input type="date" class="form-control input-sm" id="fabricadoEm" data-ng-model="equipamentoManterCtrl.equipamento.fabricadoEmComoData">
+                            </div>
+                        </div>
+
+                        <div ng-show="equipamentoManterCtrl.tipoMangueiraEstaSelecionado()">
+                            <div class=" form-group fg-line">
+                                <label for="tipoMangueira">Tipo</label>
+                                <select chosen data-placeholder="Selecione..." class="w-100 form-control input-sm" id="tipoMangueira"
+                                        data-ng-model="equipamentoManterCtrl.equipamento.tipoMangueira" data-ng-options="tipoMangueira.id as tipoMangueira.nome for tipoMangueira in equipamentoManterCtrl.tiposMangueiras"></select>
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="diametro">Diâmetro</label>
+                                <select chosen data-placeholder="Selecione..." class="w-100 form-control input-sm" id="diametro"
+                                        data-ng-model="equipamentoManterCtrl.equipamento.diametro" data-ng-options="diametro.id as diametro.nome for diametro in equipamentoManterCtrl.diametrosMangueiras"></select>
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="comprimento">Comprimento</label>
+                                <select chosen data-placeholder="Selecione..." class="w-100 form-control input-sm" id="comprimento"
+                                        data-ng-model="equipamentoManterCtrl.equipamento.comprimento" data-ng-options="comprimento.id as comprimento.nome for comprimento in equipamentoManterCtrl.comprimentosMangueiras"></select>
+                            </div>
+                        </div>
+
+                        <div ng-show="equipamentoManterCtrl.tipoCentralAlarmeEstaSelecionado()">
+                            <div class=" form-group fg-line">
+                                <label for="tipoCentralAlarme">Tipo</label>
+                                <select chosen data-placeholder="Selecione..." class="w-100 form-control input-sm" id="tipoCentralAlarme"
+                                        data-ng-model="equipamentoManterCtrl.equipamento.tipoCentralAlarme" data-ng-options="tipoCentralAlarme.id as tipoCentralAlarme.nome for tipoCentralAlarme in equipamentoManterCtrl.tiposCentralAlarmes"></select>
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="fabricante">Fabricante</label>
+                                <input type="text" class="form-control input-sm" id="fabricante" data-ng-model="equipamentoManterCtrl.equipamento.fabricante">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="modelo">Modelo</label>
+                                <input type="text" class="form-control input-sm" id="modelo" data-ng-model="equipamentoManterCtrl.equipamento.modelo">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="quantidadeDetectores">Quantidade de detectores</label>
+                                <input type="number" min="0" step="1" class="form-control input-sm" id="quantidadeDetectores" data-ng-model="equipamentoManterCtrl.equipamento.quantidadeDetectores">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="quantidadeAcionadores">Quantidade de acionadores</label>
+                                <input type="number" min="0" step="1" class="form-control input-sm" id="quantidadeAcionadores" data-ng-model="equipamentoManterCtrl.equipamento.quantidadeAcionadores">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="quantidadeSirenes">Quantidade de sirenes</label>
+                                <input type="number" min="0" step="1" class="form-control input-sm" id="quantidadeSirenes" data-ng-model="equipamentoManterCtrl.equipamento.quantidadeSirenes">
+                            </div>
+
+                            <div class=" form-group fg-line">
+                                <div class="checkbox m-b-15">
+                                    <label>
+                                        <input type="checkbox" data-ng-model="equipamentoManterCtrl.equipamento.detectorEnderecavel">
+                                        <i class="input-helper"></i>
+                                        Detector endereçável?
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="equipamentoManterCtrl.tipoSistemaContraIncendioEmCoifaEstaSelecionado()">
+                            <div class=" form-group fg-line">
+                                <label for="central">Central</label>
+                                <input type="text" class="form-control input-sm" id="central" data-ng-model="equipamentoManterCtrl.equipamento.central">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="quantidadeCilindroCo2">Quantidade de cilindros CO2</label>
+                                <input type="number" min="0" step="1" class="form-control input-sm" id="quantidadeCilindroCo2" data-ng-model="equipamentoManterCtrl.equipamento.quantidadeCilindroCo2">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="pesoCilindroCo2">Peso dos cilindros CO2</label>
+                                <input type="number" min="0" step="1" class="form-control input-sm" id="pesoCilindroCo2" data-ng-model="equipamentoManterCtrl.equipamento.pesoCilindroCo2">
+                            </div>
+                            <div class=" form-group fg-line">
+                                <label for="quantidadeCilindroSaponificante">Quantidade de cilindros saponificantes</label>
+                                <input type="number" min="0" step="1" class="form-control input-sm" id="quantidadeCilindroSaponificante" data-ng-model="equipamentoManterCtrl.equipamento.quantidadeCilindroSaponificante">
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-sm m-t-10" ng-click="equipamentoManterCtrl.salvar()">Confirmar</button>
+                        <button type="button" class="btn btn-warning btn-sm m-t-10" ng-click="equipamentoManterCtrl.cancelar()">Cancelar</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+
+
+
+
+
+
+
