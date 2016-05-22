@@ -14,7 +14,15 @@
                     return equipamentoResourceFactory.equipamentos.query();
                 };
 
-                this.atualizar = function(equipamento) {
+                this.listarPorCliente = function (clienteId) {
+                    return equipamentoResourceFactory.equipamentos.query({ clienteId: clienteId });
+                };
+
+                this.listarManutencoes = function (id) {
+                    return equipamentoResourceFactory.manutencoes.query({ id: id });
+                };
+
+                this.atualizar = function (equipamento) {
                     return equipamentoResourceFactory.equipamentos.update({ id: equipamento.id }, equipamento);
                 };
 

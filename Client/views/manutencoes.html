@@ -1,0 +1,67 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+
+        <div class="container" data-ng-controller="manutencaoController as manutencaoCtrl">
+            <div class="block-header">
+                <h2>Manutenções <small>Utilize este formulário para informar as manutenções dos equipamentos.</small></h2>
+            </div>
+            <div class="card">
+                <div class="card-body card-padding">
+                    <div class=" form-group fg-line">
+                        <label for="cliente">Cliente</label>
+                        <select chosen data-placeholder="Selecione um cliente..." class="w-100 form-control input-sm" id="cliente"
+                                data-ng-model="manutencaoCtrl.clienteSelecionadoId"
+                                data-ng-options="cliente.id as cliente.nome for cliente in manutencaoCtrl.clientes"
+                                data-ng-change="manutencaoCtrl.clienteSelecionadoMudou()"></select>
+                    </div>
+
+                    <div class=" form-group fg-line" ng-show="manutencaoCtrl.clienteEstaSelecionado()">
+                        <label for="equipamento">Equipamento</label>
+                        <select chosen data-placeholder="Selecione um equipamento..." class="w-100 form-control input-sm" id="equipamento"
+                                data-ng-model="manutencaoCtrl.equipamentoSelecionadoId"
+                                data-ng-options="equipamento.id as equipamento.nome for equipamento in manutencaoCtrl.equipamentos"
+                                data-ng-change="manutencaoCtrl.equipamentoSelecionadoMudou()"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" ng-show="manutencaoCtrl.equipamentoEstaSelecionado()">
+                <div class="card-header">
+                    <h2>Manutenções <small>Nesta lista você pode visualizar as datas e partes que sofreram manutenção no equipamento selecionado.</small></h2>
+                </div>
+                <div class="card-body card-padding" ng-show="manutencaoCtrl.equipamentoSelecionadoContemManutencoes()">
+                    <div class=" table-responsive">
+                        <table ng-table="manutencaoCtrl.parametrosTabela" class="table table-striped" show-filter="true">
+                            <colgroup>
+                                <col width="50%"/>
+                                <col width="50%"/>
+                            </colgroup>
+                            <tr ng-repeat="row in $data" ng-form="rowForm">
+                                <td title="'Data'">
+                                    <span>{{row.dataComoData}}</span>
+                                </td>
+                                <td title="'Parte'">
+                                    <span>{{row.parte}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card-body card-padding" ng-show="manutencaoCtrl.equipamentoSelecionadoNaoContemManutencoes()">
+                        Este aquipamento não contém manutenções.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+
+
+
+
+
+
+

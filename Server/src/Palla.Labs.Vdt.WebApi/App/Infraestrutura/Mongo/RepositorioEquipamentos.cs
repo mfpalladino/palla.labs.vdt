@@ -57,6 +57,12 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             return colecaoEquipamentos.Find(Builders<Equipamento>.Filter.In(x => x.ClienteId, idsClientes)).ToList();
         }
 
+        public IEnumerable<Equipamento> BuscarPorCliente(Guid clienteId)
+        {
+            var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);
+            return colecao.Find(x => x.ClienteId == clienteId).ToList();
+        }
+
         public void Remover(Guid id)
         {
             var colecao = MongoDatabase.GetCollection<Equipamento>(NOME_COLECAO);

@@ -39,6 +39,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.BuscarPorGrupo(grupoId.ParaGuid()), null);
         }
 
+        public IEnumerable<EquipamentoDto> LocalizarPorCliente(string clienteId)
+        {
+            ValidarIdCliente(clienteId);
+            return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.BuscarPorCliente(clienteId.ParaGuid()), null);
+        }
+
         public IEnumerable<ManutencaoDto> LocalizarManutencoes(string id)
         {
             Validar(id);
@@ -49,6 +55,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
         {
             if (!grupoId.GuidValido())
                 throw new FormatoInvalido("O identificador do grupo informado não é válido.");
+        }
+
+        private void ValidarIdCliente(string clienteId)
+        {
+            if (!clienteId.GuidValido())
+                throw new FormatoInvalido("O identificador do cliente informado não é válido.");
         }
 
         private void Validar(string id)
