@@ -60,7 +60,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
             }
 
             var cliente = _repositorioClientes.BuscarPorId(equipamentoResultante.ClienteId.ParaGuid());
-            equipamentoResultante.ClienteNome = cliente != null ? cliente.Nome : String.Empty;
+            equipamentoResultante.ClienteNome = cliente != null ? cliente.Nome : string.Empty;
+            equipamentoResultante.PartesParaManutencao = equipamento.ParametrosManutencao.Partes.Select(x => x.Nome).ToArray();
 
             equipamentoResultante.SituacaoManutencao = 
                 (int)_calculadoraSituacaoManutencao.Calcular(equipamento, dataReferenciaSituacao ?? DateTime.Now.ParaUnixTime());

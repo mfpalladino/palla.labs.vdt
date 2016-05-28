@@ -14,7 +14,9 @@
                         <select chosen data-placeholder="Selecione um cliente..." class="w-100 form-control input-sm" id="cliente"
                                 data-ng-model="manutencaoCtrl.clienteSelecionadoId"
                                 data-ng-options="cliente.id as cliente.nome for cliente in manutencaoCtrl.clientes"
-                                data-ng-change="manutencaoCtrl.clienteSelecionadoMudou()"></select>
+                                data-ng-change="manutencaoCtrl.clienteSelecionadoMudou()">
+                            <option value=""></option>
+                        </select>
                     </div>
 
                     <div class=" form-group fg-line" ng-show="manutencaoCtrl.clienteEstaSelecionado()">
@@ -22,7 +24,9 @@
                         <select chosen data-placeholder="Selecione um equipamento..." class="w-100 form-control input-sm" id="equipamento"
                                 data-ng-model="manutencaoCtrl.equipamentoSelecionadoId"
                                 data-ng-options="equipamento.id as equipamento.nome for equipamento in manutencaoCtrl.equipamentos"
-                                data-ng-change="manutencaoCtrl.equipamentoSelecionadoMudou()"></select>
+                                data-ng-change="manutencaoCtrl.equipamentoSelecionadoMudou()">
+                            <option value=""></option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -31,7 +35,9 @@
                 <div class="card-header">
                     <h2>Manutenções <small>Nesta lista você pode visualizar as datas e partes que sofreram manutenção no equipamento selecionado.</small></h2>
                 </div>
+
                 <div class="card-body card-padding" ng-show="manutencaoCtrl.equipamentoSelecionadoContemManutencoes()">
+                    <button style="margin-bottom: 20px" type="button" class="btn btn-primary btn-sm m-t-10" ui-sref="criarManutencao(manutencaoCtrl.configuraParametrosManutencao())">Informar manutenção</button>
                     <div class=" table-responsive">
                         <table ng-table="manutencaoCtrl.parametrosTabela" class="table table-striped" show-filter="true">
                             <colgroup>
@@ -48,9 +54,10 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="card-body card-padding" ng-show="manutencaoCtrl.equipamentoSelecionadoNaoContemManutencoes()">
-                        Este aquipamento não contém manutenções.
-                    </div>
+                </div>
+                <div class="card-body card-padding" ng-show="manutencaoCtrl.equipamentoSelecionadoNaoContemManutencoes()">
+                    <button style="margin-bottom: 20px" type="button" class="btn btn-primary btn-sm m-t-10" ui-sref="criarManutencao(manutencaoCtrl.configuraParametrosManutencao())">Informar manutenção</button>
+                    <div>(Este aquipamento não contém manutenções)</div>
                 </div>
             </div>
         </div>

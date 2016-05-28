@@ -3,7 +3,7 @@
 
     angular
         .module("sceiAdmin")
-        .controller("manutencaoController", function ($filter, $sce, ngTableParams, growlService, clienteService, equipamentoService, dataHoraService, manutencaoService) {
+        .controller("manutencaoController", function ($filter, $sce, ngTableParams, growlService, clienteService, equipamentoService, manutencaoService, dataHoraService) {
             var vm = this;
             vm.clientes = null;
             vm.equipamentos = null;
@@ -17,6 +17,7 @@
             vm.equipamentoSelecionadoContemManutencoes = equipamentoSelecionadoContemManutencoes;
             vm.equipamentoSelecionadoNaoContemManutencoes = equipamentoSelecionadoNaoContemManutencoes;
             vm.parametrosTabela = null;
+            vm.configuraParametrosManutencao = configuraParametrosManutencao;
 
             montaDadosIniciais();
 
@@ -42,7 +43,7 @@
 
             function equipamentoSelecionadoMudou() {
                 if (vm.equipamentoSelecionadoId != null) {
-                    equipamentoService.listarManutencoes(vm.equipamentoSelecionadoId).$promise
+                    manutencaoService.listar(vm.equipamentoSelecionadoId).$promise
                         .then(function(resultado) {
                             for (var i = 0; i < resultado.length; i++) {
                                 resultado[i].dataComoData = (new Date(dataHoraService.unixDateToDate(resultado[i].data))).toLocaleDateString();
@@ -82,6 +83,12 @@
 
             function equipamentoSelecionadoNaoContemManutencoes() {
                 return vm.manutencoes == null || vm.manutencoes.length === 0;
+            }
+
+            function configuraParametrosManutencao() {
+                return {
+                    equipamentoId: vm.equipamentoSelecionadoId
+                };
             }
         });
 })();

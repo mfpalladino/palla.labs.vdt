@@ -1,0 +1,40 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+        <div class="container" data-ng-controller="manutencaoManterController as manutencaoManterCtrl">
+            <div class="block-header">
+                <h2>Nova manutenção <small>Por favor informe os dados para manutenção do equipamento.</small>
+                </h2>
+            </div>
+            <div class="card">
+                <div class="card-body card-padding">
+                    <form role="form">
+                        <div class=" form-group fg-line">
+                            <label for="parte">Parte</label>
+                            <select chosen data-placeholder="Selecione a parte..." class="w-100 form-control input-sm" id="parte"
+                                    data-ng-model="manutencaoManterCtrl.manutencao.parte" data-ng-options="s for s in manutencaoManterCtrl.partesParaManutencao">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class=" form-group fg-line">
+                            <label for="data">Data</label>
+                            <input type="date" class="form-control input-sm" id="data" data-ng-model="manutencaoManterCtrl.manutencao.dataComoData">
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm m-t-10" ng-click="manutencaoManterCtrl.salvar()">Confirmar</button>
+                        <button type="button" class="btn btn-warning btn-sm m-t-10" ng-click="manutencaoManterCtrl.cancelar()">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+
+
+
+
+
+
+

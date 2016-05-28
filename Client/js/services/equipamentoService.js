@@ -4,7 +4,7 @@
     angular
         .module("sceiAdmin")
         .service("equipamentoService", [
-            "$resource", "equipamentoResourceFactory", function ($resource, equipamentoResourceFactory) {
+            "$resource", "equipamentoResourceFactory", "manutencaoResourceFactory", function ($resource, equipamentoResourceFactory) {
 
                 this.listarPorId = function (id) {
                     return equipamentoResourceFactory.equipamentos.get({ id: id });
@@ -16,10 +16,6 @@
 
                 this.listarPorCliente = function (clienteId) {
                     return equipamentoResourceFactory.equipamentos.query({ clienteId: clienteId });
-                };
-
-                this.listarManutencoes = function (id) {
-                    return equipamentoResourceFactory.manutencoes.query({ id: id });
                 };
 
                 this.atualizar = function (equipamento) {
