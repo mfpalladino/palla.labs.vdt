@@ -5,7 +5,12 @@
         .module("sceiAdmin")
         .service("grupoService", [
             "$resource", "grupoResourceFactory", function($resource, grupoResourceFactory) {
-                this.listar = function() {
+
+                this.listarPorId = function (id) {
+                    return grupoResourceFactory.grupos.get({ id: id });
+                };
+
+                this.listar = function () {
                     return grupoResourceFactory.grupos.query();
                 };
 

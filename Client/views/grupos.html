@@ -6,33 +6,23 @@
         <div class="container" data-ng-controller="grupoController as grupoCtrl">
 
             <div class="block-header">
-                <h2>Grupos de clientes <small>Utilize este cadastro para agrupar clientes e permitir a visualização unificada da situação de seus equipamentos.</small></h2>
+                <h2>Grupos <small>Utilize este cadastro para os grupos de clientes.</small></h2>
             </div>
 
             <div class="card">
+                <button style="margin-left: 10px; margin-bottom: 20px" type="button" class="btn btn-primary btn-sm m-t-10" ui-sref="adicionarGrupos" ng-click="sceiCtrl.sidebarStat($event)">Novo</button>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <div class="pull-right">
-                            <button title="Adicionar um novo grupo" class="btn btn-default" ng-click="grupoCtrl.adicionar()">
-                                <span class="zmdi zmdi-plus-circle"></span>
-                            </button>
-                        </div>
                         <table ng-table="grupoCtrl.parametrosTabela" class="table table-striped" show-filter="true">
                             <colgroup>
-                                <col width="90%" />
-                                <col width="10%" />
+                                <col width="100%"/>
                             </colgroup>
                             <tr ng-repeat="row in $data" ng-form="rowForm">
-                                <td title="'Nome'" filter="{nome: 'text'}" ng-switch="row.estaEditando" ng-class="nome.$dirty ? 'bg-warning' : ''" ng-form="nome">
-                                    <span ng-switch-default>{{row.nome}}</span>
-                                    <div class="controls" ng-class="nome.$invalid && nome.$dirty ? 'has-error' : ''" ng-switch-when="true">
-                                        <input type="text" name="nome" ng-model="row.nome" class="form-control input-sm" placeholder="Informe o nome do grupo" />
-                                    </div>
+                                <td title="'Nome'" filter="{nome: 'text'}" ng-form="nome">
+                                    <span>{{row.nome}}</span>
                                 </td>
                                 <td>
-                                    <button title="Confirmar alterações neste grupo" class="btn btn-primary btn-sm" ng-click="grupoCtrl.salvar(row, rowForm)" ng-if="row.estaEditando" ng-disabled="rowForm.$pristine || rowForm.$invalid"><span class="zmdi zmdi-check"></span></button>
-                                    <button title="Cancelar alterações neste grupo" class="btn btn-warning btn-sm" ng-click="grupoCtrl.cancelar(row, rowForm)" ng-if="row.estaEditando"><span class="zmdi zmdi-mail-reply"></span></button>
-                                    <button title="Editar este grupo" class="btn btn-default btn-sm" ng-click="row.estaEditando = true" ng-if="!row.estaEditando"><span class="zmdi zmdi-edit"></span></button>
+                                    <button title="Editar este grupo" class="btn btn-default btn-sm" data-ui-sref="editarGrupos({ grupoId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-edit"></span></button>
                                 </td>
                             </tr>
                         </table>

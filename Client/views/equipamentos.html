@@ -10,16 +10,12 @@
             </div>
 
             <div class="card">
+                <button style="margin-left: 10px; margin-bottom: 20px" type="button" class="btn btn-primary btn-sm m-t-10" ui-sref="adicionarEquipamentos" ng-click="sceiCtrl.sidebarStat($event)">Novo</button>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <div class="pull-right">
-                            <button title="Adicionar um novo equipamento" class="btn btn-default" data-ui-sref="adicionarEquipamentos" ng-click="sceiCtrl.sidebarStat($event)">
-                                <span class="zmdi zmdi-plus-circle"></span>
-                            </button>
-                        </div>
                         <table ng-table="equipamentoCtrl.parametrosTabela" class="table table-striped" show-filter="true">
                             <colgroup>
-                                <col width="50%" />
+                                <col width="50%"/>
                                 <col width="50%"/>
                             </colgroup>
                             <tr ng-repeat="row in $data" ng-form="rowForm">

@@ -52,6 +52,14 @@
                     url: "/grupos",
                     templateUrl: "views/grupos.html"
                 })
+                .state("adicionarGrupos", {
+                    url: "/grupos/novo",
+                    templateUrl: "views/grupos-manter.html"
+                })
+                .state("editarGrupos", {
+                    url: "/grupos/:grupoId",
+                    templateUrl: "views/grupos-manter.html"
+                })
                 .state("clientes", {
                     url: "/clientes",
                     templateUrl: "views/clientes.html"

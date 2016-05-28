@@ -1,0 +1,35 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+        <div class="container" data-ng-controller="grupoManterController as grupoManterCtrl">
+            <div class="block-header">
+                <h2>Grupos <small>Por favor informe os dados do grupo e pressione o botão 'confirmar' para gravar as alterações.</small>
+                </h2>
+            </div>
+            <div class="card">
+                <div class="card-body card-padding">
+                    <form role="form">
+
+                        <div class="form-group fg-line">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control input-sm" id="nome" data-ng-model="grupoManterCtrl.grupo.nome">
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-sm m-t-10" ng-click="grupoManterCtrl.salvar()">Confirmar</button>
+                        <button type="button" class="btn btn-warning btn-sm m-t-10" ng-click="grupoManterCtrl.cancelar()">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+
+
+
+
+
+
+

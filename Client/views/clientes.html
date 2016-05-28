@@ -8,18 +8,13 @@
             <div class="block-header">
                 <h2>Clientes <small>Utilize este cadastro para manter em dia as informações de seus clientes.</small></h2>
             </div>
-
             <div class="card">
+                <button style="margin-left: 10px; margin-bottom: 20px" type="button" class="btn btn-primary btn-sm m-t-10" ui-sref="adicionarClientes" ng-click="sceiCtrl.sidebarStat($event)">Novo</button>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <div class="pull-right">
-                            <button title="Adicionar um novo cliente" class="btn btn-default" data-ui-sref="adicionarClientes" ng-click="sceiCtrl.sidebarStat($event)">
-                                <span class="zmdi zmdi-plus-circle"></span>
-                            </button>
-                        </div>
                         <table ng-table="clienteCtrl.parametrosTabela" class="table table-striped" show-filter="true">
                             <colgroup>
-                                <col width="30%" />
+                                <col width="30%"/>
                                 <col width="60%"/>
                                 <col width="10%"/>
                             </colgroup>
