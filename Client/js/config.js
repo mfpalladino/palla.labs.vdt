@@ -3,10 +3,38 @@
 
     angular
         .module("sceiAdmin")
-        .config(function($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise("/home");
+        .config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
+
+            $urlRouterProvider.otherwise("/login");
+
+            $httpProvider.interceptors.push(function ($location, $q) {
+                return {
+                    'responseError': function (rejection) {
+                        if (rejection.status === 401) {
+                            localStorage.token = ""; //todo acessar loginService?
+                            $location.path("/login");
+                        }
+
+                        return $q.reject(rejection);
+                    }
+                }
+            });
+
+            $httpProvider.interceptors.push(function () {
+                return {
+                    'request': function (config) {
+                        config.headers["Authorization"] = "SCEI-Token " + localStorage.token; //todo acessar loginService?
+                        return config;
+                    }
+                }
+            });
 
             $stateProvider
+                .state("login", {
+                    url: "/login",
+                    templateUrl: "login.html"
+                })
+
                 .state("home", {
                     url: "/home",
                     templateUrl: "views/home.html",

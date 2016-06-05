@@ -3,10 +3,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
+using Palla.Labs.Vdt.App.Infraestrutura.Web;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
 
 namespace Palla.Labs.Vdt.Controllers
 {
+    [AtributoValidadorDeToken]
     public class ClientesController : ApiController
     {
         private readonly CriadorCliente _criadorCliente;

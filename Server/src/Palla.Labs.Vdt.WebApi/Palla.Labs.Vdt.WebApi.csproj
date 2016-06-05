@@ -180,6 +180,7 @@
     <Compile Include="App\Compartilhado\ExtensoesDeString.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\ManutencaoDto.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\SumarioSituacaoDto.cs" />
+    <Compile Include="App\Dominio\Dtos\LoginDto.cs" />
     <Compile Include="App\Dominio\Excecoes\ExcecaoBase.cs" />
     <Compile Include="App\Dominio\Excecoes\JaExisteUmRecursoComEstasCaracteristicas.cs" />
     <Compile Include="App\Dominio\Excecoes\MapeadorParaHttpStatusCode\ExcecaoDominioParaHttpStatusCode.cs" />
@@ -220,9 +221,15 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
     <Compile Include="App\Infraestrutura\Json\ConversorDeJson.cs" />
+    <Compile Include="App\Infraestrutura\Seguranca\ConfigSeguranca.cs" />
+    <Compile Include="App\Infraestrutura\Seguranca\GeradorDeSenha.cs" />
+    <Compile Include="App\Infraestrutura\Seguranca\ValidadorDeToken.cs" />
+    <Compile Include="App\Infraestrutura\Web\ExtensoesHttpRequestMessage.cs" />
+    <Compile Include="App\Infraestrutura\Web\AtributoValidadorDeToken.cs" />
     <Compile Include="App\Infraestrutura\SimpleInjector\BuscadorDeInstancias.cs" />
-    <Compile Include="App\Infraestrutura\Mvc\EquipamentoDtoModelBinder.cs" />
-    <Compile Include="App\Infraestrutura\Mvc\EquipamentoDtoModelBinderProvider.cs" />
+    <Compile Include="App\Infraestrutura\Web\EquipamentoDtoModelBinder.cs" />
+    <Compile Include="App\Infraestrutura\Web\EquipamentoDtoModelBinderProvider.cs" />
+    <Compile Include="App\Infraestrutura\Seguranca\GeradorDeToken.cs" />
     <Compile Include="App\ServicosAplicacao\Cliente\CriadorCliente.cs" />
     <Compile Include="App\ServicosAplicacao\Cliente\LocalizadorCliente.cs" />
     <Compile Include="App\Dominio\Dtos\Cliente\ClienteDto.cs" />
@@ -238,6 +245,7 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamentoExtensoes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioClientes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioGrupos.cs" />
+    <Compile Include="App\ServicosAplicacao\Login.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\CriadorEquipamento.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\LocalizadorEquipamento.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\ModificadorEquipamento.cs" />
@@ -273,6 +281,7 @@
     <Compile Include="Controllers\EquipamentosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\VerificaSaudeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

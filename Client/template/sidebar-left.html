@@ -5,15 +5,14 @@
             </div>
 
             <div class="profile-info">
-                Nome do usuário logado
-
+                {{sceiAdmin.usuarioLogado()}}
                 <i class="zmdi zmdi-caret-down"></i>
             </div>
         </a>
 
         <ul class="main-menu">
             <li>
-                <a href=""><i class="zmdi zmdi-time-restore"></i> Sair</a>
+                <a data-ng-click="sceiAdmin.deslogar()"><i class="zmdi zmdi-time-restore"></i> Sair</a>
             </li>
         </ul>
     </div>

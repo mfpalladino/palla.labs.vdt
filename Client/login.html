@@ -1,0 +1,28 @@
+﻿<div class="login-content-parent" data-ng-controller="loginController as loginCtrl">
+    <div class="login-content">
+        <div class="lc-block toggled" id="l-login">
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-accounts"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Domínio" data-ng-model="loginCtrl.login.dominio">
+                </div>
+            </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Usuário" data-ng-model="loginCtrl.login.usuario">
+                </div>
+            </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-lock"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" placeholder="Senha" data-ng-model="loginCtrl.login.senha">
+                </div>
+            </div>
+            <a href="" class="btn btn-login btn-danger btn-float" ng-click="loginCtrl.logar()"><i class="zmdi zmdi-arrow-forward"></i></a>
+        </div>
+    </div>
+</div>
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+
+

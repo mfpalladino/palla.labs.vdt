@@ -17,7 +17,7 @@
     <link href="css/app.min.1.css" rel="stylesheet" id="app-level">
     <link href="css/app.min.2.css" rel="stylesheet">
 </head>
-<body data-ng-class="{ 'sw-toggled': sceiAdmin.layoutType === '1'}">
+<body data-ng-class="{ 'sw-toggled': sceiAdmin.layoutType() === '1'}">
 <data ui-view></data>
 
 <!-- Core -->
@@ -58,6 +58,7 @@
 <script src="js/factories/clienteResourceFactory.js"></script>
 <script src="js/factories/equipamentoResourceFactory.js"></script>
 <script src="js/factories/manutencaoResourceFactory.js"></script>
+<script src="js/factories/loginResourceFactory.js"></script>
 <script src="js/services/constantesService.js"></script>
 <script src="js/services/growlService.js"></script>
 <script src="js/services/dataHoraService.js"></script>
@@ -67,6 +68,7 @@
 <script src="js/services/clienteService.js"></script>
 <script src="js/services/equipamentoService.js"></script>
 <script src="js/services/manutencaoService.js"></script>
+<script src="js/services/loginService.js"></script>
 <script src="js/controllers/sceiAdminController.js"></script>
 <script src="js/controllers/resumoGrupoController.js"></script>
 <script src="js/controllers/grupoController.js"></script>
@@ -77,6 +79,7 @@
 <script src="js/controllers/equipamentoManterController.js"></script>
 <script src="js/controllers/manutencaoController.js"></script>
 <script src="js/controllers/manutencaoManterController.js"></script>
+<script src="js/controllers/loginController.js"></script>
 </body>
 </html>
 

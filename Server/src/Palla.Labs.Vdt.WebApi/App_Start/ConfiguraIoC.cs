@@ -4,6 +4,7 @@ using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Dominio.Servicos;
 using Palla.Labs.Vdt.App.Infraestrutura.Json;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
+using Palla.Labs.Vdt.App.Infraestrutura.Seguranca;
 using Palla.Labs.Vdt.App.Infraestrutura.SimpleInjector;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
 using SimpleInjector;
@@ -50,6 +51,12 @@ namespace Palla.Labs.Vdt
 
             container.RegisterSingle<CriadorEquipamento, CriadorEquipamento>();
             container.RegisterSingle<LocalizadorEquipamento, LocalizadorEquipamento>();
+
+            container.RegisterSingle<ConfigSeguranca, ConfigSeguranca>();
+            container.RegisterSingle<GeradorDeSenha, GeradorDeSenha>();
+            container.RegisterSingle<GeradorDeToken, GeradorDeToken>();
+            container.RegisterSingle<ValidadorDeToken, ValidadorDeToken>();
+            container.RegisterSingle<Login, Login>();
 
             container.RegisterWebApiControllers(config);
 

@@ -8121,6 +8121,7 @@ h6 small,
 }
 .logo a {
   color: #fff;
+  text-transform: uppercase;
   display: block;
   font-size: 16px;
 }
@@ -8671,6 +8672,7 @@ h6 small,
 .main-menu > li > a:hover {
   color: #262626;
   background-color: #f7f7f7;
+  cursor: pointer;
 }
 .main-menu > li > a > i {
   position: absolute;
@@ -10729,13 +10731,11 @@ a.thumbnail.active {
 .four-zero footer > a:hover {
   background: rgba(0, 0, 0, 0.2);
 }
-.login-content {
+.login-content-parent {
   overflow: hidden;
-  height: 100%;
 }
 .lc-block {
   background: #fff;
-  box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
   border-radius: 2px;
   width: 500px;
   display: inline-block;
@@ -10767,91 +10767,22 @@ a.thumbnail.active {
 .lc-block.toggled {
   z-index: 10;
 }
-.login-navigation {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  left: 0%;
-  bottom: -45px;
-}
-.login-navigation > li {
-  display: inline-block;
-  margin: 0 2px;
-  -webkit-transition: all;
-  -o-transition: all;
-  transition: all;
-  -webkit-transition-duration: 150ms;
-  transition-duration: 150ms;
-  cursor: pointer;
-  vertical-align: top;
-  color: #fff;
-  line-height: 16px;
-  min-width: 16px;
-  min-height: 16px;
-  text-transform: uppercase;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-.login-navigation > li > span {
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
-.login-navigation > li:not(:hover) {
-  font-size: 0px;
-  border-radius: 100%;
-}
-.login-navigation > li:hover {
-  border-radius: 10px;
-  padding: 0 5px;
-  font-size: 8px;
-}
-.login-navigation > li:hover > span {
-  opacity: 1;
-  filter: alpha(opacity=100);
-}
-.lcb-alt {
-  padding: 70px 55px 60px;
-}
-.lcb-alt .btn-login {
-  bottom: -25px;
-  left: 50%;
-  margin-left: -25px;
-}
-.lcb-alt .login-navigation {
-  bottom: -75px;
-}
-.lcb-user {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 5px solid #fff;
-  position: absolute;
-  top: -50px;
-  left: 50%;
-  margin-left: -50px;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.18);
-}
-body.login-content {
+div.login-content {
   text-align: center;
 }
-body.login-content:after {
+div.login-content:after {
   content: "";
   vertical-align: middle;
   display: inline-block;
   width: 1px;
   height: 100%;
 }
-body.login-content:before {
+div.login-content:before {
   height: 50%;
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  background: #00BCD4;
   content: "";
   z-index: 0;
 }
