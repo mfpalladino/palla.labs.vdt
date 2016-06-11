@@ -39,6 +39,9 @@ namespace Palla.Labs.Vdt
             
             container.RegisterSingle<RepositorioEquipamentos, RepositorioEquipamentos>();
             container.RegisterSingle<RepositorioGrupos, RepositorioGrupos>();
+            container.RegisterSingle<RepositorioUsuarios, RepositorioUsuarios>();
+            container.RegisterSingle<RepositorioSites, RepositorioSites>();
+            container.RegisterSingle<RepositorioClientes, RepositorioClientes>();
 
             container.RegisterSingle<CriadorGrupo, CriadorGrupo>();
             container.RegisterSingle<ModificadorGrupo, ModificadorGrupo>();

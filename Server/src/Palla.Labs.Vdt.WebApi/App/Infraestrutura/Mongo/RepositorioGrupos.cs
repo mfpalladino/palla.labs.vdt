@@ -7,7 +7,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 {
     public class RepositorioGrupos : RepositorioBase
     {
-        private const string NOME_COLECAO = "grupos";
+        private const string NomeColecao = "grupos";
 
         protected RepositorioGrupos() //usado penas para testes
         {
@@ -20,32 +20,32 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
         public void Inserir(Grupo grupo)
         {
-            var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
+            var colecao = MongoDatabase.GetCollection<Grupo>(NomeColecao);
             colecao.InsertOne(grupo);
         }
 
         public virtual void Editar(Grupo grupo)
         {
-            var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
+            var colecao = MongoDatabase.GetCollection<Grupo>(NomeColecao);
             colecao.ReplaceOne(Builders<Grupo>.Filter.Eq(x => x.Id, grupo.Id), grupo);
 
         }
 
         public virtual IEnumerable<Grupo> Buscar()
         {
-            var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
+            var colecao = MongoDatabase.GetCollection<Grupo>(NomeColecao);
             return colecao.Find(x => true).SortBy(x => x.Nome).ToList();
         }
 
         public virtual Grupo BuscarPorId(Guid id)
         {
-            var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
+            var colecao = MongoDatabase.GetCollection<Grupo>(NomeColecao);
             return colecao.Find(x => x.Id == id).FirstOrDefault();
         }
 
         public void Remover(Guid id)
         {
-            var colecao = MongoDatabase.GetCollection<Grupo>(NOME_COLECAO);
+            var colecao = MongoDatabase.GetCollection<Grupo>(NomeColecao);
             colecao.DeleteOne(x => x.Id == id);
         }
     }

@@ -196,6 +196,7 @@
     <Compile Include="App\Dominio\Fabricas\FabricaParametrosManutencao.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaSumarioSituacaoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaValidadorEquipamento.cs" />
+    <Compile Include="App\Dominio\Modelos\Cliente.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cliente.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cnpj.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\CorreioEletronico.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="App\Dominio\Excecoes\FormatoInvalido.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Grupo.cs" />
     <Compile Include="App\Dominio\Modelos\EntidadeBase.cs" />
+    <Compile Include="App\Dominio\Modelos\Site.cs" />
     <Compile Include="App\Dominio\Servicos\CalculadoraSituacaoManutencao.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\CentralAlarme.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\CentralAlarme\TipoCentralAlarme.cs" />
@@ -221,6 +223,8 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
     <Compile Include="App\Infraestrutura\Json\ConversorDeJson.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\RepositorioSites.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\RepositorioUsuarios.cs" />
     <Compile Include="App\Infraestrutura\Seguranca\ConfigSeguranca.cs" />
     <Compile Include="App\Infraestrutura\Seguranca\GeradorDeSenha.cs" />
     <Compile Include="App\Infraestrutura\Seguranca\ValidadorDeToken.cs" />

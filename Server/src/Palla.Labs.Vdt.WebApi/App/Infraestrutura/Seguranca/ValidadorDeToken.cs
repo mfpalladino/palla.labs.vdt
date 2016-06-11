@@ -1,55 +1,56 @@
 using System;
 using System.Text;
+using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.Seguranca
 {
     public class ValidadorDeToken
     {
         private readonly GeradorDeToken _geradorDeToken;
+        private readonly RepositorioUsuarios _repositorioUsuarios;
         private const int MinutosParaExpirar = 60;
 
-        public ValidadorDeToken(GeradorDeToken geradorDeToken)
+        public ValidadorDeToken(GeradorDeToken geradorDeToken, RepositorioUsuarios repositorioUsuarios)
         {
             _geradorDeToken = geradorDeToken;
+            _repositorioUsuarios = repositorioUsuarios;
         }
 
         public bool Validar(string token, string ip, string userAgent)
         {
-            var result = false;
+            var resultado = false;
             const short numeroDePartesDoToken = 4;
 
             try
             {
-                var key = Encoding.UTF8.GetString(Convert.FromBase64String(token));
+                var chave = Encoding.UTF8.GetString(Convert.FromBase64String(token));
 
-                var parts = key.Split(':');
-                if (parts.Length == numeroDePartesDoToken)
+                var partesDaChave = chave.Split(':');
+                if (partesDaChave.Length == numeroDePartesDoToken)
                 {
-                    var siteId = parts[1];
-                    var username = parts[2];
-                    var ticks = long.Parse(parts[3]);
+                    var siteIdToken = new Guid(partesDaChave[1]);
+                    var nomeUsuarioToken = partesDaChave[2];
+                    var ticks = long.Parse(partesDaChave[3]);
                     var timeStamp = new DateTime(ticks);
 
-                    var expired = Math.Abs((DateTime.UtcNow - timeStamp).TotalMinutes) > MinutosParaExpirar;
-                    if (!expired)
+                    var tokenExpirou = Math.Abs((DateTime.UtcNow - timeStamp).TotalMinutes) > MinutosParaExpirar;
+                    if (!tokenExpirou)
                     {
-                        if (username == "teste") //todo acertar
+                        var usuario = _repositorioUsuarios.BuscarPorNome(siteIdToken, nomeUsuarioToken);
+                        if (usuario != null)
                         {
-                            const string password = "teste"; //todo acertar
-
-                            var computedToken = _geradorDeToken.Gerar(new Guid(siteId), username, password, ip, userAgent, ticks);
-
-                            result = token == computedToken;
+                            var tokenCalculado = _geradorDeToken.Gerar(siteIdToken, nomeUsuarioToken, usuario.Senha, ip, userAgent, ticks);
+                            resultado = token == tokenCalculado;
                         }
                     }
                 }
             }
             catch
             {
-                result = false;
+                resultado = false;
             }
 
-            return result;
+            return resultado;
         }        
     }
 }

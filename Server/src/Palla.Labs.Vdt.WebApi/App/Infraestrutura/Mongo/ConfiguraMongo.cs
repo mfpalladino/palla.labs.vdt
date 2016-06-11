@@ -14,6 +14,20 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
                 cm.MapIdField(c => c.Id);
             });
 
+            BsonClassMap.RegisterClassMap<Site>(cm =>
+            {
+                cm.MapCreator(x => new Site(x.Id, x.Nome));
+                cm.MapField(c => c.Nome);
+            });
+
+            BsonClassMap.RegisterClassMap<Usuario>(cm =>
+            {
+                cm.MapCreator(x => new Usuario(x.Id, x.SiteId, x.Nome, x.Senha));
+                cm.MapField(c => c.SiteId);
+                cm.MapField(c => c.Nome);
+                cm.MapField(c => c.Senha);
+            });
+
             ConfigurarEquipamentos();
             ConfigurarClientes();
         }
