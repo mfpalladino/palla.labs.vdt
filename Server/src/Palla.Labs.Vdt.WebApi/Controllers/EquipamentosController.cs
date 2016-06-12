@@ -29,7 +29,7 @@ namespace Palla.Labs.Vdt.Controllers
         [HttpPost]
         public HttpResponseMessage Post([ModelBinder] EquipamentoDto equipamentoDto)
         {
-            var equipamentoSalvo = _criadorEquipamento.Criar(equipamentoDto);
+            var equipamentoSalvo = _criadorEquipamento.Criar(Request.PegarSiteIdDoUsuario(), equipamentoDto);
             var response = Request.CreateResponse(HttpStatusCode.Created);
             response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = equipamentoSalvo.Id }));
             return response;
@@ -39,7 +39,7 @@ namespace Palla.Labs.Vdt.Controllers
         [Route("equipamentos/{id}")]
         public HttpResponseMessage Put([FromUri] string id, [ModelBinder] EquipamentoDto equipamentoDto)
         {
-            _modificadorEquipamento.Modificar(id, equipamentoDto);
+            _modificadorEquipamento.Modificar(Request.PegarSiteIdDoUsuario(), id, equipamentoDto);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
@@ -48,39 +48,39 @@ namespace Palla.Labs.Vdt.Controllers
         [Route("equipamentos/{id}")]
         public HttpResponseMessage Get(string id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(id, null));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(Request.PegarSiteIdDoUsuario(), id, null));
         }
 
         [HttpGet]
         [Route("equipamentos/{id}")]
         public HttpResponseMessage Get(string id, long referenciaSituacao)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(id, referenciaSituacao));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(Request.PegarSiteIdDoUsuario(), id, referenciaSituacao));
         }
 
         [HttpGet]
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(null));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(Request.PegarSiteIdDoUsuario(), null));
         }
 
         [HttpGet]
         public HttpResponseMessage Get(long referenciaSituacao)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(referenciaSituacao));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(Request.PegarSiteIdDoUsuario(), referenciaSituacao));
         }
 
         [HttpGet]
         public HttpResponseMessage Get(Guid clienteId)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.LocalizarPorCliente(clienteId.ToString()));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.LocalizarPorCliente(Request.PegarSiteIdDoUsuario(), clienteId.ToString()));
         }
 
         [HttpPost]
         [Route("equipamentos/{id}/manutencoes")]
         public HttpResponseMessage Post([FromUri] string id, [FromBody] ManutencaoDto manutencaoDto)
         {
-            _criadorManutencao.Criar(id, manutencaoDto);
+            _criadorManutencao.Criar(Request.PegarSiteIdDoUsuario(), id, manutencaoDto);
             var response = Request.CreateResponse(HttpStatusCode.Created);
             return response;
         }
@@ -89,7 +89,7 @@ namespace Palla.Labs.Vdt.Controllers
         [Route("equipamentos/{id}/manutencoes")]
         public HttpResponseMessage GetManutencoes(string id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.LocalizarManutencoes(id));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.LocalizarManutencoes(Request.PegarSiteIdDoUsuario(), id));
         }
     }
 }

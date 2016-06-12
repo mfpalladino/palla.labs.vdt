@@ -7,6 +7,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
     public class Cliente : EntidadeBase<Guid>
     {
         private readonly string _nome;
+        private readonly Guid _siteId;
         private readonly Cnpj _cnpj;
         private readonly string _codigo;
         private readonly Endereco _endereco;
@@ -20,6 +21,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         }
 
         public Cliente(
+            Guid siteId,
             Guid grupoId,
             Cnpj cnpj,
             string nome, 
@@ -28,11 +30,13 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             CorreioEletronico correioEletronicoLoja,
             CorreioEletronico correioEletronicoManutencao,
             CorreioEletronico correioEletronicoAdministracao)
-            : this(Guid.NewGuid(), grupoId, cnpj, nome, codigo, endereco, correioEletronicoLoja, correioEletronicoManutencao, correioEletronicoAdministracao)
+            : this(siteId, Guid.NewGuid(), grupoId, cnpj, nome, codigo, endereco, correioEletronicoLoja, correioEletronicoManutencao, correioEletronicoAdministracao)
         {
         }
 
-        public Cliente(Guid id,
+        public Cliente(
+            Guid siteId,
+            Guid id,
             Guid grupoId,
             Cnpj cnpj,
             string nome, 
@@ -42,6 +46,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             CorreioEletronico correioEletronicoManutencao,
             CorreioEletronico correioEletronicoAdministracao):base(id)
         {
+            _siteId = siteId;
             _grupoId = grupoId;
             _cnpj = cnpj;
             _nome = nome;
@@ -52,6 +57,11 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             _correioEletronicoAdministracao = correioEletronicoAdministracao;
 
             Validar();
+        }
+
+        public Guid SiteId
+        {
+            get { return _siteId; }
         }
 
         public string Nome

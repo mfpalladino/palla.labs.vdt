@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using MongoDB.Driver;
 using NUnit.Framework;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
@@ -23,9 +24,9 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
                 grupo = new ConstrutorGrupo().Construir();
                 repositorio.Inserir(grupo);
 
-                var grupoRecuperado = repositorio.BuscarPorId(grupo.Id);
+                var grupoRecuperado = repositorio.BuscarPorId(Guid.NewGuid(), grupo.Id);
 
-                var todosOsGrupos = repositorio.Buscar();
+                var todosOsGrupos = repositorio.Buscar(Guid.NewGuid());
 
                 grupoRecuperado.Id.Should().Be(grupo.Id);
                 grupoRecuperado.Nome.Should().BeEquivalentTo(grupo.Nome);

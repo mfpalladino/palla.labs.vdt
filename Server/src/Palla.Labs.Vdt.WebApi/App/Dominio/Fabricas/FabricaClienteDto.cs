@@ -16,14 +16,14 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
             _repositorioGrupos = repositorioGrupos;
         }
 
-        public virtual IEnumerable<ClienteDto> Criar(IEnumerable<Cliente> clientes)
+        public virtual IEnumerable<ClienteDto> Criar(Guid siteId, IEnumerable<Cliente> clientes)
         {
-            return clientes.Select(Criar);
+            return clientes.Select(x => Criar(siteId, x));
         }
 
-        public virtual ClienteDto Criar(Cliente cliente)
+        public virtual ClienteDto Criar(Guid siteId, Cliente cliente)
         {
-            var grupo = _repositorioGrupos.BuscarPorId(cliente.GrupoId);
+            var grupo = _repositorioGrupos.BuscarPorId(siteId, cliente.GrupoId);
 
             return new ClienteDto
             {

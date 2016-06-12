@@ -19,18 +19,18 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _fabricaGrupo = fabricaGrupo;
         }
 
-        public void Modificar(string id, GrupoDto grupoDto)
+        public void Modificar(Guid siteId, string id, GrupoDto grupoDto)
         {
-            Validar(id);
-            _repositorioGrupos.Editar(_fabricaGrupo.Criar(id.ParaGuid(), grupoDto));
+            Validar(siteId, id);
+            _repositorioGrupos.Editar(_fabricaGrupo.Criar(siteId, id.ParaGuid(), grupoDto));
         }
 
-        private void Validar(string id)
+        private void Validar(Guid siteId, string id)
         {
             if (!id.GuidValido())
                 throw new FormatoInvalido("O identificador de grupo informado não é válido.");
 
-            if (_repositorioGrupos.BuscarPorId(new Guid(id)) == null)
+            if (_repositorioGrupos.BuscarPorId(siteId, new Guid(id)) == null)
                 throw new RecursoNaoEncontrado("Grupo não encontrado");
         }
     }

@@ -7,14 +7,15 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
 {
     public class FabricaCliente
     {
-        public virtual Cliente Criar(ClienteDto clienteDto)
+        public virtual Cliente Criar(Guid siteId, ClienteDto clienteDto)
         {
-            return Criar(clienteDto.Id, clienteDto);
+            return Criar(siteId, clienteDto.Id, clienteDto);
         }
 
-        public virtual Cliente Criar(Guid id, ClienteDto clienteDto)
+        public virtual Cliente Criar(Guid siteId, Guid id, ClienteDto clienteDto)
         {
             return new Cliente(
+                    siteId, 
                     id,
                     clienteDto.GrupoId.ParaGuid(),
                     new Cnpj(clienteDto.Cnpj),

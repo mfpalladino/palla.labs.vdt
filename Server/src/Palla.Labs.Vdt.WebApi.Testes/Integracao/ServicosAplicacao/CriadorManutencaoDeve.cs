@@ -30,9 +30,9 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.ServicosAplicacao
                 repositorio.Inserir(extintor);
 
                 var nomeParteParaManutencao = extintor.ParametrosManutencao.Partes.First().Nome;
-                servico.Criar(extintor.Id.ToString(), new ManutencaoDto { Data = DateTime.Now.ParaUnixTime(), Parte = nomeParteParaManutencao });
+                servico.Criar(Guid.NewGuid(), extintor.Id.ToString(), new ManutencaoDto { Data = DateTime.Now.ParaUnixTime(), Parte = nomeParteParaManutencao });
 
-                var extintorAposAManutencao = repositorio.BuscarPorId(extintor.Id);
+                var extintorAposAManutencao = repositorio.BuscarPorId(Guid.NewGuid(), extintor.Id);
 
                 extintorAposAManutencao.Manutencoes.Should().HaveCount(1);
                 extintorAposAManutencao.Manutencoes.First().Parte.Should().Be(nomeParteParaManutencao);

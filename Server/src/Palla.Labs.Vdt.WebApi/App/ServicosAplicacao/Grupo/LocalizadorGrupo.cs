@@ -22,15 +22,15 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _fabricaSumarioSituacaoDto = fabricaSumarioSituacaoDto;
         }
 
-        public GrupoDto Localizar(string id)
+        public GrupoDto Localizar(Guid siteId, string id)
         {
-            Validar(id);
-            return _fabricaGrupoDto.Criar(_repositorioGrupos.BuscarPorId(new Guid(id)));
+            Validar(siteId, id);
+            return _fabricaGrupoDto.Criar(_repositorioGrupos.BuscarPorId(siteId, new Guid(id)));
         }
 
-        public IEnumerable<GrupoDto> Localizar()
+        public IEnumerable<GrupoDto> Localizar(Guid siteId)
         {
-            return _fabricaGrupoDto.Criar(_repositorioGrupos.Buscar());
+            return _fabricaGrupoDto.Criar(_repositorioGrupos.Buscar(siteId));
         }
 
         public SumarioSituacaoDto SumarioSituacao(IEnumerable<EquipamentoDto> equipamentos)
@@ -38,12 +38,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             return _fabricaSumarioSituacaoDto.Criar(equipamentos);
         }
 
-        private void Validar(string id)
+        private void Validar(Guid siteId, string id)
         {
             if (!id.GuidValido())
                 throw new FormatoInvalido("O identificador de grupo informado não é válido.");
 
-            if (_repositorioGrupos.BuscarPorId(new Guid(id)) == null)
+            if (_repositorioGrupos.BuscarPorId(siteId, new Guid(id)) == null)
                 throw new RecursoNaoEncontrado("Grupo não encontrado");
         }
     }

@@ -22,7 +22,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
             BsonClassMap.RegisterClassMap<Usuario>(cm =>
             {
-                cm.MapCreator(x => new Usuario(x.Id, x.SiteId, x.Nome, x.Senha));
+                cm.MapCreator(x => new Usuario(x.SiteId, x.Id, x.Nome, x.Senha));
                 cm.MapField(c => c.SiteId);
                 cm.MapField(c => c.Nome);
                 cm.MapField(c => c.Senha);
@@ -37,6 +37,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             BsonClassMap.RegisterClassMap<Equipamento>(cm =>
             {
                 cm.SetIsRootClass(true);
+                cm.MapField(c => c.SiteId);
                 cm.MapField(c => c.ClienteId);
                 cm.MapField(c => c.Tipo);
                 cm.MapField(c => c.Manutencoes);
@@ -45,7 +46,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
             BsonClassMap.RegisterClassMap<Extintor>(cm =>
             {
-                cm.MapCreator(x => new Extintor(x.Id, x.ClienteId, x.NumeroCilindro, x.Agente, x.Localizacao, x.FabricadoEm, x.Manutencoes.ToList()));
+                cm.MapCreator(x => new Extintor(x.SiteId, x.Id, x.ClienteId, x.NumeroCilindro, x.Agente, x.Localizacao, x.FabricadoEm, x.Manutencoes.ToList()));
                 cm.MapField(c => c.Agente);
                 cm.MapField(c => c.FabricadoEm);
                 cm.MapField(c => c.Localizacao);
@@ -54,7 +55,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
             BsonClassMap.RegisterClassMap<Mangueira>(cm =>
             {
-                cm.MapCreator(x => new Mangueira(x.Id, x.ClienteId, x.TipoMangueira, x.Diametro, x.Comprimento, x.Manutencoes.ToList()));
+                cm.MapCreator(x => new Mangueira(x.SiteId, x.Id, x.ClienteId, x.TipoMangueira, x.Diametro, x.Comprimento, x.Manutencoes.ToList()));
                 cm.MapField(c => c.Comprimento);
                 cm.MapField(c => c.Diametro);
                 cm.MapField(c => c.TipoMangueira);
@@ -62,7 +63,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
             BsonClassMap.RegisterClassMap<SistemaContraIncendioEmCoifa>(cm =>
             {
-                cm.MapCreator(x => new SistemaContraIncendioEmCoifa(x.Id, x.ClienteId, x.Central, x.QuantidadeCilindroCo2, x.PesoCilindroCo2, x.QuantidadeCilindroSaponificante, x.Manutencoes.ToList()));
+                cm.MapCreator(x => new SistemaContraIncendioEmCoifa(x.SiteId, x.Id, x.ClienteId, x.Central, x.QuantidadeCilindroCo2, x.PesoCilindroCo2, x.QuantidadeCilindroSaponificante, x.Manutencoes.ToList()));
                 cm.MapField(c => c.Central);
                 cm.MapField(c => c.QuantidadeCilindroCo2);
                 cm.MapField(c => c.PesoCilindroCo2);
@@ -71,7 +72,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
             BsonClassMap.RegisterClassMap<CentralAlarme>(cm =>
             {
-                cm.MapCreator(x => new CentralAlarme(x.Id, x.ClienteId, x.Fabricante, x.Modelo, x.TipoCentralAlarme, x.QuantidadeDetectores, x.DetectorEnderecavel, x.QuantidadeAcionadores, x.QuantidadeSirenes, x.Manutencoes.ToList()));
+                cm.MapCreator(x => new CentralAlarme(x.SiteId, x.Id, x.ClienteId, x.Fabricante, x.Modelo, x.TipoCentralAlarme, x.QuantidadeDetectores, x.DetectorEnderecavel, x.QuantidadeAcionadores, x.QuantidadeSirenes, x.Manutencoes.ToList()));
                 cm.MapField(c => c.DetectorEnderecavel);
                 cm.MapField(c => c.Fabricante);
                 cm.MapField(c => c.Modelo);
@@ -93,8 +94,9 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
         {
             BsonClassMap.RegisterClassMap<Grupo>(cm =>
             {
-                cm.MapCreator(x => new Grupo(x.Id, x.Nome));
+                cm.MapCreator(x => new Grupo(x.SiteId, x.Id, x.Nome));
                 cm.MapField(c => c.Nome);
+                cm.MapField(c => c.SiteId);
             });
 
             BsonClassMap.RegisterClassMap<Endereco>(cm =>
@@ -123,7 +125,8 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
             BsonClassMap.RegisterClassMap<Cliente>(cm =>
             {
-                cm.MapCreator(x => new Cliente(x.Id, x.GrupoId, x.Cnpj, x.Nome, x.Codigo, x.Endereco, x.CorreioEletronicoLoja, x.CorreioEletronicoManutencao, x.CorreioEletronicoAdministracao));
+                cm.MapCreator(x => new Cliente(x.SiteId, x.Id, x.GrupoId, x.Cnpj, x.Nome, x.Codigo, x.Endereco, x.CorreioEletronicoLoja, x.CorreioEletronicoManutencao, x.CorreioEletronicoAdministracao));
+                cm.MapField(c => c.SiteId);
                 cm.MapField(c => c.GrupoId);
                 cm.MapField(c => c.Cnpj);
                 cm.MapField(c => c.Nome);

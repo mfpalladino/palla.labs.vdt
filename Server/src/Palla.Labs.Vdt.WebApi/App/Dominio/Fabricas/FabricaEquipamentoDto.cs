@@ -23,22 +23,22 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
             _repositorioClientes = repositorioClientes;
         }
 
-        public virtual IEnumerable<EquipamentoDto> Criar(IEnumerable<Equipamento> equipamentos)
+        public virtual IEnumerable<EquipamentoDto> Criar(Guid siteId, IEnumerable<Equipamento> equipamentos)
         {
-            return Criar(equipamentos, DateTime.Now.ParaUnixTime());
+            return Criar(siteId, equipamentos, DateTime.Now.ParaUnixTime());
         }
 
-        public virtual IEnumerable<EquipamentoDto> Criar(IEnumerable<Equipamento> equipamentos, long? dataReferenciaSituacao)
+        public virtual IEnumerable<EquipamentoDto> Criar(Guid siteId, IEnumerable<Equipamento> equipamentos, long? dataReferenciaSituacao)
         {
-            return equipamentos.Select(x => Criar(x, dataReferenciaSituacao ?? DateTime.Now.ParaUnixTime()));
+            return equipamentos.Select(x => Criar(siteId, x, dataReferenciaSituacao ?? DateTime.Now.ParaUnixTime()));
         }
 
-        public virtual EquipamentoDto Criar(Equipamento equipamento)
+        public virtual EquipamentoDto Criar(Guid siteId, Equipamento equipamento)
         {
-            return Criar(equipamento, DateTime.Now.ParaUnixTime());
+            return Criar(siteId, equipamento, DateTime.Now.ParaUnixTime());
         }
 
-        public virtual EquipamentoDto Criar(Equipamento equipamento, long? dataReferenciaSituacao)
+        public virtual EquipamentoDto Criar(Guid siteId, Equipamento equipamento, long? dataReferenciaSituacao)
         {
             EquipamentoDto equipamentoResultante;
             switch (equipamento.Tipo)
@@ -59,7 +59,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                     throw new Exception("Equipamento não pode ser mapeado em um dto conforme seu tipo");
             }
 
-            var cliente = _repositorioClientes.BuscarPorId(equipamentoResultante.ClienteId.ParaGuid());
+            var cliente = _repositorioClientes.BuscarPorId(siteId, equipamentoResultante.ClienteId.ParaGuid());
             equipamentoResultante.ClienteNome = cliente != null ? cliente.Nome : string.Empty;
             equipamentoResultante.PartesParaManutencao = equipamento.ParametrosManutencao.Partes.Select(x => x.Nome).ToArray();
 

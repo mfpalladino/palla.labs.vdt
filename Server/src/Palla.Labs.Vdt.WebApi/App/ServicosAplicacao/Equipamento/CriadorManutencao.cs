@@ -21,7 +21,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _fabricaManutencao = fabricaManutencao;
         }
 
-        public Manutencao Criar(string idEquipamento, ManutencaoDto manutencaoDto)
+        public Manutencao Criar(Guid siteId, string idEquipamento, ManutencaoDto manutencaoDto)
         {
             if (!idEquipamento.GuidValido())
                 throw new FormatoInvalido("O identificador do equipamento deve ser informado.");
@@ -32,7 +32,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (manutencaoDto.Data < 0)
                 throw new FormatoInvalido("A data da manutenção da parte do equipamento não é válida.");
 
-            var equipamento = _repositorioEquipamentos.BuscarPorId(idEquipamento.ParaGuid());
+            var equipamento = _repositorioEquipamentos.BuscarPorId(siteId, idEquipamento.ParaGuid());
 
             if (equipamento == null)
                 throw new RecursoNaoEncontrado("Equipamento não encontrado.");

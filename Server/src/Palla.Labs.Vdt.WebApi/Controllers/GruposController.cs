@@ -30,7 +30,7 @@ namespace Palla.Labs.Vdt.Controllers
         [HttpPost]
         public HttpResponseMessage Post([FromBody] GrupoDto grupoDto)
         {
-            var grupoSalvo = _criadorGrupo.Criar(grupoDto);
+            var grupoSalvo = _criadorGrupo.Criar(Request.PegarSiteIdDoUsuario(), grupoDto);
             var response = Request.CreateResponse(HttpStatusCode.Created, grupoSalvo);
             response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = grupoSalvo.Id }));
             return response;
@@ -40,7 +40,7 @@ namespace Palla.Labs.Vdt.Controllers
         [Route("grupos/{id}")]
         public HttpResponseMessage Put([FromUri] string id, [FromBody] GrupoDto grupoDto)
         {
-            _modificadorGrupo.Modificar(id, grupoDto);
+            _modificadorGrupo.Modificar(Request.PegarSiteIdDoUsuario(), id, grupoDto);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
@@ -49,20 +49,20 @@ namespace Palla.Labs.Vdt.Controllers
         [Route("grupos/{id}")]
         public HttpResponseMessage Get(string id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.Localizar(id));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.Localizar(Request.PegarSiteIdDoUsuario(), id));
         }
 
         [HttpGet]
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.Localizar());
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.Localizar(Request.PegarSiteIdDoUsuario()));
         }
 
         [HttpGet]
         [Route("grupos/{id}/sumariosituacao")]
         public HttpResponseMessage SumarioSituacao(string id)
         {
-            var equipamentosDoGrupo = _localizadorEquipamento.LocalizarPorGrupo(id);
+            var equipamentosDoGrupo = _localizadorEquipamento.LocalizarPorGrupo(Request.PegarSiteIdDoUsuario(), id);
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.SumarioSituacao(equipamentosDoGrupo));
         }
     }

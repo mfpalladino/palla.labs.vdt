@@ -20,13 +20,13 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _fabricaValidadorEquipamento = fabricaValidadorEquipamento;
         }
 
-        public Equipamento Criar(EquipamentoDto equipamentoDto)
+        public Equipamento Criar(Guid siteId, EquipamentoDto equipamentoDto)
         {
             _fabricaValidadorEquipamento
                 .CriarValidadorCriacao(equipamentoDto)
-                .Validar(equipamentoDto);
+                .Validar(siteId, equipamentoDto);
 
-            var equipamento = _fabricaEquipamento.Criar(Guid.NewGuid(), equipamentoDto);
+            var equipamento = _fabricaEquipamento.Criar(siteId, Guid.NewGuid(), equipamentoDto);
             _repositorioEquipamentos.Inserir(equipamento);
             return equipamento;
         }

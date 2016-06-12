@@ -25,7 +25,7 @@ namespace Palla.Labs.Vdt.Controllers
         [HttpPost]
         public HttpResponseMessage Post([FromBody] ClienteDto clienteDto)
         {
-            var clienteSalvo = _criadorCliente.Criar(clienteDto);
+            var clienteSalvo = _criadorCliente.Criar(Request.PegarSiteIdDoUsuario(), clienteDto);
             var response = Request.CreateResponse(HttpStatusCode.Created);
             response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = clienteSalvo.Id }));
             return response;
@@ -35,7 +35,7 @@ namespace Palla.Labs.Vdt.Controllers
         [Route("clientes/{id}")]
         public HttpResponseMessage Put([FromUri] string id, [FromBody] ClienteDto clienteDto)
         {
-            _modificadorCliente.Modificar(id, clienteDto);
+            _modificadorCliente.Modificar(Request.PegarSiteIdDoUsuario(), id, clienteDto);
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
@@ -44,13 +44,13 @@ namespace Palla.Labs.Vdt.Controllers
         [Route("clientes/{id}")]
         public HttpResponseMessage Get(string id)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorCliente.Localizar(id));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorCliente.Localizar(Request.PegarSiteIdDoUsuario(), id));
         }
 
         [HttpGet]
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorCliente.Localizar());
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorCliente.Localizar(Request.PegarSiteIdDoUsuario()));
         }
     }
 }

@@ -18,12 +18,13 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             Guid siteId,
             string nome,
             string senha)
-            : this(Guid.NewGuid(), siteId, nome, senha)
+            : this(siteId, Guid.NewGuid(), nome, senha)
         {
         }
 
-        public Usuario(Guid id,
+        public Usuario(
             Guid siteId,
+            Guid id,
             string nome, 
             string senha):base(id)
         {

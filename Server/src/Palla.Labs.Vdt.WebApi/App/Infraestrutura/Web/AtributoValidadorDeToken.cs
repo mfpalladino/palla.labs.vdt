@@ -26,7 +26,14 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Web
                 var userAgent = request.PegarUserAgentDoUsuario();
 
                 var validadorDeToken = BuscadorDeInstancias.BuscarEstatico<ValidadorDeToken>();
-                return validadorDeToken.Validar(token, ip, userAgent);
+                Guid siteId;
+                if (validadorDeToken.Validar(token, ip, userAgent, out siteId))
+                {
+                    request.SetarSiteIdDoUsuario(siteId);
+                    return true;
+                }
+
+                return false;
             }
             catch (Exception)
             {

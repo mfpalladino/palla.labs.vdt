@@ -16,10 +16,11 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Seguranca
             _repositorioUsuarios = repositorioUsuarios;
         }
 
-        public bool Validar(string token, string ip, string userAgent)
+        public bool Validar(string token, string ip, string userAgent, out Guid siteId)
         {
             var resultado = false;
             const short numeroDePartesDoToken = 4;
+            var siteIdToken = Guid.Empty;
 
             try
             {
@@ -28,7 +29,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Seguranca
                 var partesDaChave = chave.Split(':');
                 if (partesDaChave.Length == numeroDePartesDoToken)
                 {
-                    var siteIdToken = new Guid(partesDaChave[1]);
+                    siteIdToken = new Guid(partesDaChave[1]);
                     var nomeUsuarioToken = partesDaChave[2];
                     var ticks = long.Parse(partesDaChave[3]);
                     var timeStamp = new DateTime(ticks);
@@ -50,6 +51,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Seguranca
                 resultado = false;
             }
 
+            siteId = siteIdToken;
             return resultado;
         }        
     }

@@ -18,7 +18,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _repositorioEquipamentos = repositorioEquipamentos;
         }
 
-        public virtual void Validar(EquipamentoDto equipamentoDto)
+        public virtual void Validar(Guid siteId, EquipamentoDto equipamentoDto)
         {
             if (!equipamentoDto.Tipo.TipoDeEquipamentoValido())
                 throw new FormatoInvalido("O tipo do equipamento não é válido.");
@@ -29,7 +29,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (!equipamentoDto.ClienteId.GuidValido())
                 throw new FormatoInvalido("O identificador do cliente do equipamento não é válido.");
 
-            if (_repositorioClientes.BuscarPorId(equipamentoDto.ClienteId.ParaGuid()) == null)
+            if (_repositorioClientes.BuscarPorId(siteId, equipamentoDto.ClienteId.ParaGuid()) == null)
                 throw new FormatoInvalido("O cliente do equipamento não foi encontrado.");
 
             if (ValidadorDeCriacao)
@@ -42,7 +42,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
                 if (equipamentoDto.Id == Guid.Empty)
                     throw new FormatoInvalido("O identificador do equipamento deve ser informado.");
 
-                var equipamentoExistente = _repositorioEquipamentos.BuscarPorId(equipamentoDto.Id);
+                var equipamentoExistente = _repositorioEquipamentos.BuscarPorId(siteId, equipamentoDto.Id);
                 if (equipamentoExistente == null)
                     throw new RecursoNaoEncontrado("Equipamento não encontrado.");
 
@@ -51,7 +51,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             }
         }
 
-        public virtual void Validar(String id, EquipamentoDto equipamentoDto)
+        public virtual void Validar(Guid siteId, String id, EquipamentoDto equipamentoDto)
         {
             if (ValidadorDeCriacao)
             {
@@ -73,7 +73,7 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (!equipamentoDto.ClienteId.GuidValido())
                 throw new FormatoInvalido("O identificador do cliente do equipamento não é válido.");
 
-            if (_repositorioClientes.BuscarPorId(equipamentoDto.ClienteId.ParaGuid()) == null)
+            if (_repositorioClientes.BuscarPorId(siteId, equipamentoDto.ClienteId.ParaGuid()) == null)
                 throw new FormatoInvalido("O cliente do equipamento não foi encontrado.");
         }
 

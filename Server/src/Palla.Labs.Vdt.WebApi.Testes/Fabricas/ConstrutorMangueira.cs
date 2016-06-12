@@ -8,7 +8,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
     {
         public Mangueira Construir()
         {
-            return new Mangueira(Guid.NewGuid(), TipoMangueira.Tipo1, DiametroMangueira.DoisMetrosEMeio, ComprimentoMangueira.TrintaMetros, new List<Manutencao>());
+            return new Mangueira(Guid.NewGuid(), Guid.NewGuid(), TipoMangueira.Tipo1, DiametroMangueira.DoisMetrosEMeio, ComprimentoMangueira.TrintaMetros, new List<Manutencao>());
         }
     }
 }

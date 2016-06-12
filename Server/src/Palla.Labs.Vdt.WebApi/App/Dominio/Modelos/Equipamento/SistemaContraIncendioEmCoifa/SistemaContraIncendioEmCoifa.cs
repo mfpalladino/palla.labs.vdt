@@ -12,15 +12,15 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private readonly int _pesoCilindroCo2;
         private readonly int _quantidadeCilindroSaponificante;
 
-        public SistemaContraIncendioEmCoifa(Guid clienteId, string central,
+        public SistemaContraIncendioEmCoifa(Guid siteId, Guid clienteId, string central,
             int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante, IList<Manutencao> manutencoes)
-            : this(Guid.NewGuid(), clienteId, central, quantidadeCilindroCo2, pesoCilindroCo2, quantidadeCilindroSaponificante, manutencoes)
+            : this(siteId, Guid.NewGuid(), clienteId, central, quantidadeCilindroCo2, pesoCilindroCo2, quantidadeCilindroSaponificante, manutencoes)
         {
         }
 
-        public SistemaContraIncendioEmCoifa(Guid id, Guid clienteId, string central,
+        public SistemaContraIncendioEmCoifa(Guid siteId, Guid id, Guid clienteId, string central,
             int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante, IList<Manutencao> manutencoes)
-            : base(id, clienteId, manutencoes, TipoEquipamento.SistemaContraIncendioEmCoifa)
+            : base(siteId, id, clienteId, manutencoes, TipoEquipamento.SistemaContraIncendioEmCoifa)
         {
             _central = central;
             _quantidadeCilindroCo2 = quantidadeCilindroCo2;

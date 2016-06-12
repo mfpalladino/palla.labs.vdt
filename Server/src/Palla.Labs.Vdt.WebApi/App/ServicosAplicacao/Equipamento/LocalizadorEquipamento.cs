@@ -22,33 +22,33 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _fabricaManutencaoDto = fabricaManutencaoDto;
         }
 
-        public EquipamentoDto Localizar(string id, long? referenciaSituacao)
+        public EquipamentoDto Localizar(Guid siteId, string id, long? referenciaSituacao)
         {
-            Validar(id);
-            return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.BuscarPorId(new Guid(id)), referenciaSituacao);
+            Validar(siteId, id);
+            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.BuscarPorId(siteId, new Guid(id)), referenciaSituacao);
         }
 
-        public IEnumerable<EquipamentoDto> Localizar(long? referenciaSituacao)
+        public IEnumerable<EquipamentoDto> Localizar(Guid siteId, long? referenciaSituacao)
         {
-            return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.Buscar(), referenciaSituacao);
+            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.Buscar(siteId), referenciaSituacao);
         }
 
-        public IEnumerable<EquipamentoDto> LocalizarPorGrupo(string grupoId)
+        public IEnumerable<EquipamentoDto> LocalizarPorGrupo(Guid siteId, string grupoId)
         {
             ValidarIdGrupo(grupoId);
-            return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.BuscarPorGrupo(grupoId.ParaGuid()), null);
+            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.BuscarPorGrupo(siteId, grupoId.ParaGuid()), null);
         }
 
-        public IEnumerable<EquipamentoDto> LocalizarPorCliente(string clienteId)
+        public IEnumerable<EquipamentoDto> LocalizarPorCliente(Guid siteId, string clienteId)
         {
             ValidarIdCliente(clienteId);
-            return _fabricaEquipamentoDto.Criar(_repositorioEquipamentos.BuscarPorCliente(clienteId.ParaGuid()), null);
+            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.BuscarPorCliente(siteId, clienteId.ParaGuid()), null);
         }
 
-        public IEnumerable<ManutencaoDto> LocalizarManutencoes(string id)
+        public IEnumerable<ManutencaoDto> LocalizarManutencoes(Guid siteId, string id)
         {
-            Validar(id);
-            return _fabricaManutencaoDto.Criar(_repositorioEquipamentos.BuscarPorId(new Guid(id)).Manutencoes);
+            Validar(siteId, id);
+            return _fabricaManutencaoDto.Criar(_repositorioEquipamentos.BuscarPorId(siteId, new Guid(id)).Manutencoes);
         }
 
         private void ValidarIdGrupo(string grupoId)
@@ -63,12 +63,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
                 throw new FormatoInvalido("O identificador do cliente informado não é válido.");
         }
 
-        private void Validar(string id)
+        private void Validar(Guid siteId, string id)
         {
             if (!id.GuidValido())
                 throw new FormatoInvalido("O identificador de equipamento informado não é válido.");
 
-            if (_repositorioEquipamentos.BuscarPorId(new Guid(id)) == null)
+            if (_repositorioEquipamentos.BuscarPorId(siteId, new Guid(id)) == null)
                 throw new RecursoNaoEncontrado("Equipamento não encontrado");
         }
     }

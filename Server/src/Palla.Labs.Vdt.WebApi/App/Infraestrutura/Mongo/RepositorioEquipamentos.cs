@@ -9,7 +9,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
     public class RepositorioEquipamentos : RepositorioBase
     {
         private const string NomeColecao = "equipamentos";
-        private const string NOME_COLECAO_CLIENTES = "clientes";
+        private const string NomeColecaoClientes = "clientes";
 
         public RepositorioEquipamentos(IMongoClient mongoClient, IConfigBancoDados configBancoDados)
             : base(mongoClient, configBancoDados)
@@ -36,31 +36,31 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
                 Builders<Equipamento>.Update.AddToSet(x => x.Manutencoes, manutencao));
         }
 
-        public IEnumerable<Equipamento> Buscar()
+        public IEnumerable<Equipamento> Buscar(Guid siteId)
         {
             var colecao = MongoDatabase.GetCollection<Equipamento>(NomeColecao);
-            return colecao.Find(x => true).ToList();
+            return colecao.Find(x => x.SiteId == siteId).ToList();
         }
 
-        public Equipamento BuscarPorId(Guid id)
+        public Equipamento BuscarPorId(Guid siteId, Guid id)
         {
             var colecao = MongoDatabase.GetCollection<Equipamento>(NomeColecao);
-            return colecao.Find(x => x.Id == id).FirstOrDefault();
+            return colecao.Find(x => x.SiteId == siteId && x.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<Equipamento> BuscarPorGrupo(Guid grupoId)
+        public IEnumerable<Equipamento> BuscarPorGrupo(Guid siteId, Guid grupoId)
         {
-            var colecaoClientes = MongoDatabase.GetCollection<Cliente>(NOME_COLECAO_CLIENTES);
-            var idsClientes = colecaoClientes.Find(x => x.GrupoId == grupoId).ToList().Select(x => x.Id);
+            var colecaoClientes = MongoDatabase.GetCollection<Cliente>(NomeColecaoClientes);
+            var idsClientes = colecaoClientes.Find(x => x.SiteId == siteId && x.GrupoId == grupoId).ToList().Select(x => x.Id);
 
             var colecaoEquipamentos = MongoDatabase.GetCollection<Equipamento>(NomeColecao);
             return colecaoEquipamentos.Find(Builders<Equipamento>.Filter.In(x => x.ClienteId, idsClientes)).ToList();
         }
 
-        public IEnumerable<Equipamento> BuscarPorCliente(Guid clienteId)
+        public IEnumerable<Equipamento> BuscarPorCliente(Guid siteId, Guid clienteId)
         {
             var colecao = MongoDatabase.GetCollection<Equipamento>(NomeColecao);
-            return colecao.Find(x => x.ClienteId == clienteId).ToList();
+            return colecao.Find(x => x.SiteId == siteId && x.ClienteId == clienteId).ToList();
         }
 
         public void Remover(Guid id)

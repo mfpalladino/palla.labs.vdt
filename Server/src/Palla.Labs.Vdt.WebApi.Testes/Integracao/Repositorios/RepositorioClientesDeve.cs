@@ -1,3 +1,4 @@
+using System;
 using FluentAssertions;
 using MongoDB.Driver;
 using NUnit.Framework;
@@ -23,7 +24,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
                 cliente = new ConstrutorCliente().Construir();
                 repositorio.Inserir(cliente);
 
-                var clienteRecuperado = repositorio.BuscarPorId(cliente.Id);
+                var clienteRecuperado = repositorio.BuscarPorId(Guid.NewGuid(), cliente.Id);
 
                 clienteRecuperado.Id.Should().Be(cliente.Id);
                 clienteRecuperado.Nome.Should().BeEquivalentTo(cliente.Nome);

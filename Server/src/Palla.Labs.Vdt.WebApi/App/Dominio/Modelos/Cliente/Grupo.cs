@@ -7,14 +7,18 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
     public class Grupo : EntidadeBase<Guid>
     {
         private readonly string _nome;
+        private readonly Guid _siteId;
 
-        public Grupo(string nome):this(Guid.NewGuid(), nome)
+        public Grupo(Guid siteId, string nome)
+            : this(siteId, Guid.NewGuid(), nome)
         {
         }
 
-        public Grupo(Guid id, string nome) : base(id)
+        public Grupo(Guid siteId, Guid id, string nome)
+            : base(id)
         {
             _nome = nome;
+            _siteId = siteId;
 
             Validar();
         }
@@ -22,6 +26,11 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public string Nome
         {
             get { return _nome; }
+        }
+
+        public Guid SiteId
+        {
+            get { return _siteId; }
         }
 
         private void Validar()

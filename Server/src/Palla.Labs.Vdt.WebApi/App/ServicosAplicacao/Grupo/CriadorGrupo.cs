@@ -22,11 +22,11 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _fabricaGrupoDto = fabricaGrupoDto;
         }
 
-        public GrupoDto Criar(GrupoDto grupoDto)
+        public GrupoDto Criar(Guid siteId, GrupoDto grupoDto)
         {
             Validar(grupoDto);
 
-            var grupo = _fabricaGrupo.Criar(Guid.NewGuid(), grupoDto);
+            var grupo = _fabricaGrupo.Criar(siteId, Guid.NewGuid(), grupoDto);
             _repositorioGrupos.Inserir(grupo);
             return _fabricaGrupoDto.Criar(grupo);
         }

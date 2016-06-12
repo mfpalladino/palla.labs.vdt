@@ -12,17 +12,20 @@
                 this.deslogar = function () {
                     localStorage.removeItem("token");
                     localStorage.removeItem("usuario");
+                    localStorage.removeItem("dominio");
                 };
 
-                this.salvarTokenComUsuarioLocalmente = function (token, usuario) {
+                this.salvarTokenComUsuarioLocalmente = function (token, dominio, usuario) {
                     localStorage.token = token;
                     localStorage.usuario = usuario;
+                    localStorage.dominio = dominio;
                 }
 
                 this.recuperarTokenComUsuarioLocalmente = function () {
                     return {
                         token: localStorage.token,
-                        usuario: localStorage.usuario
+                        usuario: localStorage.usuario,
+                        dominio: localStorage.dominio
                     };
                 }
             }

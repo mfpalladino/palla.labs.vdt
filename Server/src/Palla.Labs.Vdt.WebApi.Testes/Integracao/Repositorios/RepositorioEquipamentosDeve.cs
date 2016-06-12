@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using MongoDB.Driver;
 using NUnit.Framework;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
@@ -35,10 +36,10 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
                 centralAlarme = new ConstrutorCentralAlarme().Construir();
                 repositorio.Inserir(centralAlarme);
 
-                repositorio.BuscarPorId(extintor.Id).Tipo.Should().Be(TipoEquipamento.Extintor);
-                repositorio.BuscarPorId(mangueira.Id).Tipo.Should().Be(TipoEquipamento.Mangueira);
-                repositorio.BuscarPorId(sistemaContraIncendioEmCoifa.Id).Tipo.Should().Be(TipoEquipamento.SistemaContraIncendioEmCoifa);
-                repositorio.BuscarPorId(centralAlarme.Id).Tipo.Should().Be(TipoEquipamento.CentralAlarme);
+                repositorio.BuscarPorId(Guid.NewGuid(), extintor.Id).Tipo.Should().Be(TipoEquipamento.Extintor);
+                repositorio.BuscarPorId(Guid.NewGuid(), mangueira.Id).Tipo.Should().Be(TipoEquipamento.Mangueira);
+                repositorio.BuscarPorId(Guid.NewGuid(), sistemaContraIncendioEmCoifa.Id).Tipo.Should().Be(TipoEquipamento.SistemaContraIncendioEmCoifa);
+                repositorio.BuscarPorId(Guid.NewGuid(), centralAlarme.Id).Tipo.Should().Be(TipoEquipamento.CentralAlarme);
             }
             finally
             {

@@ -36,7 +36,8 @@
             }
 
             function usuarioLogado() {
-                var usuario = loginService.recuperarTokenComUsuarioLocalmente().usuario;
+                var usuario = loginService.recuperarTokenComUsuarioLocalmente().dominio + "\\" + 
+                    loginService.recuperarTokenComUsuarioLocalmente().usuario;
                 return (usuario != null && usuario.length > 0) ? usuario : "(não há)";
             }
 

@@ -14,7 +14,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Modelos
         {
             //Arrange/action
             // ReSharper disable once ObjectCreationAsStatement
-            Action acao = () => new Grupo("");
+            Action acao = () => new Grupo(Guid.NewGuid(), "");
 
             //Asserts
             acao.ShouldThrow<FormatoInvalido>();
@@ -25,7 +25,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.Modelos
         {
             //Arrange/action
             // ReSharper disable once ObjectCreationAsStatement
-            Action acao = () => new Grupo("1".PadRight(51, 'a'));
+            Action acao = () => new Grupo(Guid.NewGuid(), Guid.NewGuid(), "1".PadRight(51, 'a'));
 
             //Asserts
             acao.ShouldThrow<FormatoInvalido>();

@@ -12,9 +12,9 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
         {
         }
 
-        public override void Validar(EquipamentoDto equipamentoDto)
+        public override void Validar(Guid siteId, EquipamentoDto equipamentoDto)
         {
-            base.Validar(equipamentoDto);
+            base.Validar(siteId, equipamentoDto);
 
             var equipamentoEspecifico = equipamentoDto as SistemaContraIncendioEmCoifaDto;
 

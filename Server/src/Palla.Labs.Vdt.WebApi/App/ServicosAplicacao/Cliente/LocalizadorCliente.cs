@@ -20,23 +20,23 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _fabricaClienteDto = fabricaClienteDto;
         }
 
-        public ClienteDto Localizar(string id)
+        public ClienteDto Localizar(Guid siteId, string id)
         {
-            Validar(id);
-            return _fabricaClienteDto.Criar(_repositorioClientes.BuscarPorId(new Guid(id)));
+            Validar(siteId, id);
+            return _fabricaClienteDto.Criar(siteId, _repositorioClientes.BuscarPorId(siteId, new Guid(id)));
         }
 
-        public IEnumerable<ClienteDto> Localizar()
+        public IEnumerable<ClienteDto> Localizar(Guid siteId)
         {
-            return _fabricaClienteDto.Criar(_repositorioClientes.Buscar());
+            return _fabricaClienteDto.Criar(siteId, _repositorioClientes.Buscar(siteId));
         }
 
-        private void Validar(string id)
+        private void Validar(Guid siteId, string id)
         {
             if (!id.GuidValido())
                 throw new FormatoInvalido("O identificador de cliente informado não é válido.");
 
-            if (_repositorioClientes.BuscarPorId(new Guid(id)) == null)
+            if (_repositorioClientes.BuscarPorId(siteId, new Guid(id)) == null)
                 throw new RecursoNaoEncontrado("Cliente não encontrado");
         }
     }

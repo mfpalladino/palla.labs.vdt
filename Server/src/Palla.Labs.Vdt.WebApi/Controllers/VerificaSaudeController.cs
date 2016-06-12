@@ -17,7 +17,7 @@ namespace Palla.Labs.Vdt.Controllers
 
         public HttpResponseMessage Get()
         {
-            _repositorioEquipamentos.BuscarPorId(Guid.NewGuid()); //Verifica se consigo chegar no banco de dados
+            _repositorioEquipamentos.BuscarPorId(Guid.NewGuid(), Guid.NewGuid()); //Verifica se consigo chegar no banco de dados
             return Request.CreateResponse(HttpStatusCode.OK, "Aparentemente está tudo ok...");
         }
     }

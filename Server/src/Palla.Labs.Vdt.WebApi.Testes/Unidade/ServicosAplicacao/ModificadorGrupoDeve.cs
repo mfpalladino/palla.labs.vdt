@@ -18,7 +18,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
         public void GerarExcecaoQuandoIdNaoForValido()
         {
             //Arrange
-            Action acao = () => new ModificadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<FabricaGrupo>().Object).Modificar("qualquer coisa", new GrupoDto());
+            Action acao = () => new ModificadorGrupo(new Mock<RepositorioGrupos>().Object, new Mock<FabricaGrupo>().Object).Modificar(Guid.NewGuid(), "qualquer coisa", new GrupoDto());
 
             //Asserts
             acao.ShouldThrow<FormatoInvalido>();
@@ -30,10 +30,10 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             //Arrange
             var id = Guid.NewGuid().ToString();
             var repositorio = new Mock<RepositorioGrupos>();
-            repositorio.Setup(x => x.BuscarPorId(new Guid(id))).Throws<RecursoNaoEncontrado>();
+            repositorio.Setup(x => x.BuscarPorId(Guid.NewGuid(), new Guid(id))).Throws<RecursoNaoEncontrado>();
 
             //Action
-            Action acao = () => new ModificadorGrupo(repositorio.Object, new Mock<FabricaGrupo>().Object).Modificar(id, new GrupoDto());
+            Action acao = () => new ModificadorGrupo(repositorio.Object, new Mock<FabricaGrupo>().Object).Modificar(Guid.NewGuid(), id, new GrupoDto());
 
             //Asserts
             acao.ShouldThrow<RecursoNaoEncontrado>();
@@ -50,12 +50,12 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             var grupoEsperado = new ConstrutorGrupo().Construir();
             var grupoRecebido = new GrupoDto {Id = id, Nome = "Grupo"};
 
-            repositorio.Setup(x => x.BuscarPorId(It.IsAny<Guid>())).Returns(grupoEsperado);
+            repositorio.Setup(x => x.BuscarPorId(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(grupoEsperado);
             repositorio.Setup(x => x.Editar(grupoEsperado));
-            mapper.Setup(x => x.Criar(grupoRecebido)).Returns(grupoEsperado);
+            mapper.Setup(x => x.Criar(Guid.NewGuid(), grupoRecebido)).Returns(grupoEsperado);
 
             //Action
-            Action acao = () => new ModificadorGrupo(repositorio.Object, mapper.Object).Modificar(id.ToString(), grupoRecebido);
+            Action acao = () => new ModificadorGrupo(repositorio.Object, mapper.Object).Modificar(Guid.NewGuid(), id.ToString(), grupoRecebido);
 
             //Asserts
             acao.ShouldNotThrow();

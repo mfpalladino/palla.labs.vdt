@@ -22,16 +22,16 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             _fabricaCliente = fabricaCliente;
         }
 
-        public Cliente Criar(ClienteDto clienteDto)
+        public Cliente Criar(Guid siteId, ClienteDto clienteDto)
         {
-            Validar(clienteDto);
+            Validar(siteId, clienteDto);
 
-            var cliente = _fabricaCliente.Criar(Guid.NewGuid(), clienteDto);
+            var cliente = _fabricaCliente.Criar(siteId, Guid.NewGuid(), clienteDto);
             _repositorioClientes.Inserir(cliente);
             return cliente;
         }
 
-        private void Validar(ClienteDto clienteDto)
+        private void Validar(Guid siteId, ClienteDto clienteDto)
         {
             if (clienteDto.Id != Guid.Empty)
                 throw new FormatoInvalido("O identificador de cliente não deve ser informado neste contexto.");
@@ -39,16 +39,16 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (!clienteDto.GrupoId.GuidValido())
                 throw new FormatoInvalido("O identificador de grupo do cliente não é válido.");
 
-            if (!String.IsNullOrWhiteSpace(clienteDto.Nome) && _repositorioClientes.BuscarPorNome(clienteDto.Nome) != null)
+            if (!String.IsNullOrWhiteSpace(clienteDto.Nome) && _repositorioClientes.BuscarPorNome(siteId, clienteDto.Nome) != null)
                 throw new JaExisteUmRecursoComEstasCaracteristicas("Já existe um cliente informado com este nome.");
 
-            if (!String.IsNullOrWhiteSpace(clienteDto.Cnpj) && _repositorioClientes.BuscarPorCnpj(clienteDto.Cnpj) != null)
+            if (!String.IsNullOrWhiteSpace(clienteDto.Cnpj) && _repositorioClientes.BuscarPorCnpj(siteId, clienteDto.Cnpj) != null)
                 throw new JaExisteUmRecursoComEstasCaracteristicas("Já existe um cliente informado com este CNPJ.");
 
-            if (!String.IsNullOrWhiteSpace(clienteDto.Codigo) && _repositorioClientes.BuscarPorCodigo(clienteDto.Codigo) != null)
+            if (!String.IsNullOrWhiteSpace(clienteDto.Codigo) && _repositorioClientes.BuscarPorCodigo(siteId, clienteDto.Codigo) != null)
                 throw new JaExisteUmRecursoComEstasCaracteristicas("Já existe um cliente informado com este código.");
 
-            if (clienteDto.GrupoId.GuidValido() && _repositorioGrupos.BuscarPorId(clienteDto.GrupoId.ParaGuid()) == null)
+            if (clienteDto.GrupoId.GuidValido() && _repositorioGrupos.BuscarPorId(siteId, clienteDto.GrupoId.ParaGuid()) == null)
                 throw new FormatoInvalido("O grupo informado para o cliente não existe.");
         }
     }

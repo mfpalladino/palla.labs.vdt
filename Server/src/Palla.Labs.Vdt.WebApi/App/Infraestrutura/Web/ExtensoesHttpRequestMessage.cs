@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Web;
@@ -15,6 +16,16 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Web
         public static string PegarUserAgentDoUsuario(this HttpRequestMessage request)
         {
             return request.Headers.UserAgent.ToString();
+        }
+
+        public static Guid PegarSiteIdDoUsuario(this HttpRequestMessage request)
+        {
+            return new Guid(request.Properties["SiteId"].ToString());
+        }
+
+        public static void SetarSiteIdDoUsuario(this HttpRequestMessage request, Guid siteId)
+        {
+            request.Properties.Add("SiteId", siteId);
         }                    
     }
 }

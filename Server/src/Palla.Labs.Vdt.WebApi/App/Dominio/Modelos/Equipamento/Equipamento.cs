@@ -8,16 +8,23 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
     public abstract class Equipamento : EntidadeBase<Guid>
     {
+        private readonly Guid _siteId;
         private readonly Guid _clienteId;
         private readonly TipoEquipamento _tipo;
         private ParametrosManutencao _parametrosManutencao;
         private readonly IList<Manutencao> _manutencoes;
 
-        protected Equipamento(Guid id, Guid clienteId, IList<Manutencao> manutencoes, TipoEquipamento tipo) : base(id)
+        protected Equipamento(Guid siteId, Guid id, Guid clienteId, IList<Manutencao> manutencoes, TipoEquipamento tipo) : base(id)
         {
+            _siteId = siteId;
             _clienteId = clienteId;
             _manutencoes = manutencoes;
             _tipo = tipo;
+        }
+
+        public Guid SiteId
+        {
+            get { return _siteId; }
         }
 
         public Guid ClienteId
