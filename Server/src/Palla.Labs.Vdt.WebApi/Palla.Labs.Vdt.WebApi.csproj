@@ -180,6 +180,7 @@
     <Compile Include="App\Compartilhado\ExtensoesDeString.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\ManutencaoDto.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\SumarioSituacaoDto.cs" />
+    <Compile Include="App\Dominio\Dtos\UsuarioDto.cs" />
     <Compile Include="App\Dominio\Dtos\LoginDto.cs" />
     <Compile Include="App\Dominio\Excecoes\ExcecaoBase.cs" />
     <Compile Include="App\Dominio\Excecoes\JaExisteUmRecursoComEstasCaracteristicas.cs" />
@@ -189,14 +190,17 @@
     <Compile Include="App\Dominio\Fabricas\FabricaEquipamentoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaClienteDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaEquipamento.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaUsuario.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaGrupo.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaUsuarioDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaGrupoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaManutencao.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaManutencaoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaParametrosManutencao.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaSumarioSituacaoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaValidadorEquipamento.cs" />
-    <Compile Include="App\Dominio\Modelos\Cliente.cs" />
+    <Compile Include="App\Dominio\Modelos\TipoUsuario.cs" />
+    <Compile Include="App\Dominio\Modelos\Usuario.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cliente.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\Cnpj.cs" />
     <Compile Include="App\Dominio\Modelos\Cliente\CorreioEletronico.cs" />
@@ -249,6 +253,9 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\TipoEquipamentoExtensoes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioClientes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioGrupos.cs" />
+    <Compile Include="App\ServicosAplicacao\Usuario\CriadorUsuario.cs" />
+    <Compile Include="App\ServicosAplicacao\Usuario\LocalizadorGrupo.cs" />
+    <Compile Include="App\ServicosAplicacao\Usuario\ModificadorUsuario.cs" />
     <Compile Include="App\ServicosAplicacao\Login.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\CriadorEquipamento.cs" />
     <Compile Include="App\ServicosAplicacao\Equipamento\LocalizadorEquipamento.cs" />
@@ -284,6 +291,7 @@
     <Compile Include="App_Start\ConfiguraWebApi.cs" />
     <Compile Include="Controllers\EquipamentosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\VerificaSaudeController.cs" />

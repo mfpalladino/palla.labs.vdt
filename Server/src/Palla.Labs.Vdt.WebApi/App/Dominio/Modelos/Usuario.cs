@@ -8,6 +8,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
     {
         private readonly string _nome;
         private readonly string _senha;
+        private readonly TipoUsuario _tipoUsuario;
+        private readonly Guid[] _grupos;
         private readonly Guid _siteId;
 
         protected Usuario() //usado apenas para mapeamento e testes
@@ -17,8 +19,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public Usuario(
             Guid siteId,
             string nome,
-            string senha)
-            : this(siteId, Guid.NewGuid(), nome, senha)
+            string senha,
+            TipoUsuario tipoUsuario,
+            Guid[] grupos)
+            : this(siteId, Guid.NewGuid(), nome, senha, tipoUsuario, grupos)
         {
         }
 
@@ -26,11 +30,16 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             Guid siteId,
             Guid id,
             string nome, 
-            string senha):base(id)
+            string senha,
+            TipoUsuario tipoUsuario,
+            Guid[] grupos)
+            : base(id)
         {
             _siteId = siteId;
             _nome = nome;
             _senha = senha;
+            _tipoUsuario = tipoUsuario;
+            _grupos = grupos;
 
             Validar();
         }
@@ -48,6 +57,16 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public Guid SiteId
         {
             get { return _siteId; }
+        }
+
+        public TipoUsuario TipoUsuario
+        {
+            get { return _tipoUsuario; }
+        }
+
+        public Guid[] Grupos
+        {
+            get { return _grupos; }
         }
 
         private void Validar()
