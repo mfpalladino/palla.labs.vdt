@@ -34,7 +34,6 @@
                     url: "/login",
                     templateUrl: "login.html"
                 })
-
                 .state("home", {
                     url: "/home",
                     templateUrl: "views/home.html",
@@ -240,7 +239,7 @@
                     url: "/equipamentos/:equipamentoId/manutencao",
                     templateUrl: "views/equipamentos-manter-manutencao.html",
                     resolve: {
-                        loadPlugin: function ($ocLazyLoad) {
+                        loadPlugin: function($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -275,7 +274,81 @@
                     url: "/manutencoes",
                     templateUrl: "views/manutencoes.html",
                     resolve: {
-                        loadPlugin: function ($ocLazyLoad) {
+                        loadPlugin: function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    name: "css",
+                                    insertBefore: "#app-level",
+                                    files: [
+                                        "vendors/bower_components/nouislider/jquery.nouislider.css",
+                                        "vendors/farbtastic/farbtastic.css",
+                                        "vendors/bower_components/summernote/dist/summernote.css",
+                                        //"vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
+                                        "vendors/bower_components/chosen/chosen.min.css"
+                                    ]
+                                },
+                                {
+                                    name: "vendors",
+                                    files: [
+                                        "vendors/input-mask/input-mask.min.js",
+                                        "vendors/bower_components/nouislider/jquery.nouislider.min.js",
+                                        "vendors/bower_components/moment/min/moment.min.js",
+                                        //"vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
+                                        "vendors/bower_components/summernote/dist/summernote.min.js",
+                                        "vendors/fileinput/fileinput.min.js",
+                                        "vendors/bower_components/chosen/chosen.jquery.js",
+                                        "vendors/bower_components/angular-chosen-localytics/chosen.js",
+                                        "vendors/bower_components/angular-farbtastic/angular-farbtastic.js"
+                                    ]
+                                }
+                            ]);
+                        }
+                    }
+                })
+                .state("usuarios", {
+                    url: "/usuarios",
+                    templateUrl: "views/usuarios.html"
+                })
+                .state("adicionarUsuarios", {
+                    url: "/usuarios/novo",
+                    templateUrl: "views/usuarios-manter.html",
+                    resolve: {
+                        loadPlugin: function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                {
+                                    name: "css",
+                                    insertBefore: "#app-level",
+                                    files: [
+                                        "vendors/bower_components/nouislider/jquery.nouislider.css",
+                                        "vendors/farbtastic/farbtastic.css",
+                                        "vendors/bower_components/summernote/dist/summernote.css",
+                                        //"vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css",
+                                        "vendors/bower_components/chosen/chosen.min.css"
+                                    ]
+                                },
+                                {
+                                    name: "vendors",
+                                    files: [
+                                        "vendors/input-mask/input-mask.min.js",
+                                        "vendors/bower_components/nouislider/jquery.nouislider.min.js",
+                                        "vendors/bower_components/moment/min/moment.min.js",
+                                        //"vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
+                                        "vendors/bower_components/summernote/dist/summernote.min.js",
+                                        "vendors/fileinput/fileinput.min.js",
+                                        "vendors/bower_components/chosen/chosen.jquery.js",
+                                        "vendors/bower_components/angular-chosen-localytics/chosen.js",
+                                        "vendors/bower_components/angular-farbtastic/angular-farbtastic.js"
+                                    ]
+                                }
+                            ]);
+                        }
+                    }
+                })
+                .state("editarUsuarios", {
+                    url: "/usuarios/:usuarioId",
+                    templateUrl: "views/usuarios-manter.html",
+                    resolve: {
+                        loadPlugin: function($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",

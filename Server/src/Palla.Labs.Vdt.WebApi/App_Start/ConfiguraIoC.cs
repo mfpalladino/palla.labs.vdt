@@ -28,6 +28,8 @@ namespace Palla.Labs.Vdt
 
             container.RegisterSingle<FabricaGrupo, FabricaGrupo>();
             container.RegisterSingle<FabricaGrupoDto, FabricaGrupoDto>();
+            container.RegisterSingle<FabricaUsuario, FabricaUsuario>();
+            container.RegisterSingle<FabricaUsuarioDto, FabricaUsuarioDto>();
             container.RegisterSingle<FabricaCliente, FabricaCliente>();
             container.RegisterSingle<FabricaClienteDto, FabricaClienteDto>();
             container.RegisterSingle<FabricaEquipamento, FabricaEquipamento>();
@@ -46,14 +48,17 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<CriadorGrupo, CriadorGrupo>();
             container.RegisterSingle<ModificadorGrupo, ModificadorGrupo>();
             container.RegisterSingle<LocalizadorGrupo, LocalizadorGrupo>();
+            container.RegisterSingle<CriadorUsuario, CriadorUsuario>();
+            container.RegisterSingle<ModificadorUsuario, ModificadorUsuario>();
+            container.RegisterSingle<LocalizadorUsuario, LocalizadorUsuario>();
             container.RegisterSingle<CriadorCliente, CriadorCliente>();
             container.RegisterSingle<ModificadorCliente, ModificadorCliente>();
             container.RegisterSingle<LocalizadorCliente, LocalizadorCliente>();
+            container.RegisterSingle<CriadorEquipamento, CriadorEquipamento>();
+            container.RegisterSingle<ModificadorEquipamento, ModificadorEquipamento>();
+            container.RegisterSingle<LocalizadorEquipamento, LocalizadorEquipamento>();
 
             container.RegisterSingle<FabricaValidadorEquipamento, FabricaValidadorEquipamento>();
-
-            container.RegisterSingle<CriadorEquipamento, CriadorEquipamento>();
-            container.RegisterSingle<LocalizadorEquipamento, LocalizadorEquipamento>();
 
             container.RegisterSingle<ConfigSeguranca, ConfigSeguranca>();
             container.RegisterSingle<GeradorDeSenha, GeradorDeSenha>();

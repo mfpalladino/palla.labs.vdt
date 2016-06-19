@@ -1,0 +1,37 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+        <div class="container" data-ng-controller="usuarioController as usuarioCtrl">
+            <div class="block-header">
+                <h2>Usuários <small>Utilize este cadastro para manter administradores, nanutenedores e consumidores.</small></h2>
+            </div>
+            <div class="card">
+                <button style="margin-left: 10px; margin-bottom: 20px" type="button" class="btn btn-primary btn-sm m-t-10" ui-sref="adicionarUsuarios" ng-click="sceiCtrl.sidebarStat($event)">Novo</button>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table ng-table="usuarioCtrl.parametrosTabela" class="table table-striped" show-filter="true">
+                            <colgroup>
+                                <col width="30%"/>
+                                <col width="60%"/>
+                                <col width="10%"/>
+                            </colgroup>
+                            <tr ng-repeat="row in $data" ng-form="rowForm">
+                                <td title="'Tipo'" filter="{tipoNome: 'text'}" ng-form="tipoNome">
+                                    <span>{{row.tipoNome}}</span>
+                                </td>
+                                <td title="'Nome'" filter="{nome: 'text'}" ng-form="nome">
+                                    <span>{{row.nome}}</span>
+                                </td>
+                                <td>
+                                    <button title="Editar este usuário" class="btn btn-default btn-sm" data-ui-sref="editarUsuarios({ usuarioId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-edit"></span></button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>

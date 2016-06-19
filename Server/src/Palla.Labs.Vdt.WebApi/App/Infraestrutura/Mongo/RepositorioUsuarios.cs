@@ -43,5 +43,11 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             var colecao = MongoDatabase.GetCollection<Usuario>(NomeColecao);
             return colecao.Find(x => x.SiteId == siteId && x.Nome.ToLower() == nome.ToLower()).FirstOrDefault();
         }
+
+        public Usuario BuscarPorNomeExcetoId(Guid siteId, string nome, Guid excetoId)
+        {
+            var colecao = MongoDatabase.GetCollection<Usuario>(NomeColecao);
+            return colecao.Find(x => x.SiteId == siteId && x.Nome.ToLower() == nome.ToLower() && x.Id != excetoId).FirstOrDefault();
+        }
     }
 }

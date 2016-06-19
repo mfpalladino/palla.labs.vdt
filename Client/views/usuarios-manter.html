@@ -1,0 +1,45 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+        <div class="container" data-ng-controller="usuarioManterController as usuarioManterCtrl">
+            <div class="block-header">
+                <h2>Usuários <small>Por favor informe os dados do usuário e pressione o botão 'confirmar' para gravar as alterações.</small>
+                </h2>
+            </div>
+            <div class="card">
+                <div class="card-body card-padding">
+                    <form role="form" autocomplete="off">
+                        <div class="form-group fg-line">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control input-sm" id="nome" data-ng-model="usuarioManterCtrl.usuario.nome">
+                        </div>
+                        <div class="form-group fg-line" ng-show="usuarioManterCtrl.deveMostrarSenha()">
+                            <label for="nome">Senha</label>
+                            <input type="password" class="form-control input-sm" id="senha" data-ng-model="usuarioManterCtrl.usuario.senha">
+                        </div>
+                        <div class=" form-group fg-line">
+                            <label for="tipo">Tipo</label>
+                            <select chosen data-placeholder="Selecione um tipo..." class="w-100 form-control input-sm" id="tipo"
+                                    data-ng-model="usuarioManterCtrl.usuario.tipo" data-ng-options="tipo.id as tipo.nome for tipo in usuarioManterCtrl.tipos">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class=" form-group fg-line" ng-show="usuarioManterCtrl.devePermitirSelecaoGrupos()">
+                            <label for="grupo">Grupos</label>
+                            <select chosen multiple data-placeholder="Selecione os grupos que podem ser visualizados pelo consumidor..." class="w-100 form-control input-sm" id="grupo"
+                                    data-ng-model="usuarioManterCtrl.usuario.grupos" data-ng-options="grupo.id as grupo.nome for grupo in usuarioManterCtrl.grupos">
+                                <option value=""></option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-sm m-t-10" ng-click="usuarioManterCtrl.salvar()">Confirmar</button>
+                        <button type="button" class="btn btn-warning btn-sm m-t-10" ng-click="usuarioManterCtrl.cancelar()">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>

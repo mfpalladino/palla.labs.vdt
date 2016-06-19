@@ -29,6 +29,15 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public Usuario(
             Guid siteId,
             Guid id,
+            string nome,
+            string senha)
+            : this(siteId, id, nome, senha, TipoUsuario.Dono, new Guid[]{})
+        {
+        }
+
+        public Usuario(
+            Guid siteId,
+            Guid id,
             string nome, 
             string senha,
             TipoUsuario tipoUsuario,

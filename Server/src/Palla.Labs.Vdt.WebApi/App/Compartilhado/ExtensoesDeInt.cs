@@ -28,5 +28,17 @@ namespace Palla.Labs.Vdt.App.Compartilhado
         {
             return tipoCentralAlarme == (int)TipoCentralAlarme.Analogico || tipoCentralAlarme == (int)TipoCentralAlarme.Digital;
         }
+
+        public static bool TipoUsuarioValido(this int tipoUsuario)
+        {
+            return tipoUsuario == (int) TipoUsuario.Dono ||
+                   tipoUsuario == (int) TipoUsuario.Manutenedor ||
+                   tipoUsuario == (int) TipoUsuario.Consumidor;
+        }
+
+        public static bool TipoUsuarioObrigaGrupos(this int tipoUsuario)
+        {
+            return tipoUsuario == (int)TipoUsuario.Consumidor;
+        }
     }
 }
