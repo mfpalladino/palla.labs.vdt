@@ -180,6 +180,8 @@
     <Compile Include="App\Compartilhado\ExtensoesDeString.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\ManutencaoDto.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\SumarioSituacaoDto.cs" />
+    <Compile Include="App\Dominio\Dtos\PermissoesDto.cs" />
+    <Compile Include="App\Dominio\Dtos\ResultadoLoginDto.cs" />
     <Compile Include="App\Dominio\Dtos\UsuarioDto.cs" />
     <Compile Include="App\Dominio\Dtos\LoginDto.cs" />
     <Compile Include="App\Dominio\Excecoes\ExcecaoBase.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="App\Dominio\Fabricas\FabricaEquipamento.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaUsuario.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaGrupo.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaPermissoesDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaUsuarioDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaGrupoDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaManutencao.cs" />
@@ -232,6 +235,7 @@
     <Compile Include="App\Infraestrutura\Seguranca\ConfigSeguranca.cs" />
     <Compile Include="App\Infraestrutura\Seguranca\GeradorDeSenha.cs" />
     <Compile Include="App\Infraestrutura\Seguranca\ValidadorDeToken.cs" />
+    <Compile Include="App\Infraestrutura\Web\AtributoValidadorDePerfil.cs" />
     <Compile Include="App\Infraestrutura\Web\ExtensoesHttpRequestMessage.cs" />
     <Compile Include="App\Infraestrutura\Web\AtributoValidadorDeToken.cs" />
     <Compile Include="App\Infraestrutura\SimpleInjector\BuscadorDeInstancias.cs" />

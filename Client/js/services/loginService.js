@@ -13,19 +13,22 @@
                     localStorage.removeItem("token");
                     localStorage.removeItem("usuario");
                     localStorage.removeItem("dominio");
+                    localStorage.removeItem("permissoes");
                 };
 
-                this.salvarTokenComUsuarioLocalmente = function (token, dominio, usuario) {
+                this.salvarDadosLogin = function (token, dominio, usuario, permissoes) {
                     localStorage.token = token;
                     localStorage.usuario = usuario;
                     localStorage.dominio = dominio;
+                    localStorage.permissoes = JSON.stringify(permissoes);
                 }
 
-                this.recuperarTokenComUsuarioLocalmente = function () {
+                this.recuperarDadosLogin = function () {
                     return {
                         token: localStorage.token,
                         usuario: localStorage.usuario,
-                        dominio: localStorage.dominio
+                        dominio: localStorage.dominio,
+                        permissoes: JSON.parse(localStorage.permissoes)
                     };
                 }
             }

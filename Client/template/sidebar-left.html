@@ -21,19 +21,19 @@
         <li data-ui-sref-active="active">
             <a data-ui-sref="home" data-ng-click="sceiCtrl.sidebarStat($event)"><i class="zmdi zmdi-home"></i> Início</a>
         </li>
-        <li data-ui-sref-active="active">
+        <li data-ui-sref-active="active" ng-show="sceiAdmin.usuarioPodeAcessarUsuarios()">
             <a data-ui-sref="usuarios" data-ng-click="sceiCtrl.sidebarStat($event)"><i class="zmdi zmdi-group-work"></i> Usuários</a>
         </li>
-        <li data-ui-sref-active="active">
+        <li data-ui-sref-active="active" ng-show="sceiAdmin.usuarioPodeAcessarGruposClientes()">
             <a data-ui-sref="grupos" data-ng-click="sceiCtrl.sidebarStat($event)"><i class="zmdi zmdi-accounts"></i> Grupos de clientes</a>
         </li>
-        <li data-ui-sref-active="active">
+        <li data-ui-sref-active="active" ng-show="sceiAdmin.usuarioPodeAcessarClientes()">
             <a data-ui-sref="clientes" data-ng-click="sceiCtrl.sidebarStat($event)"><i class="zmdi zmdi-account-add"></i> Clientes</a>
         </li>
-        <li data-ui-sref-active="active">
+        <li data-ui-sref-active="active" ng-show="sceiAdmin.usuarioPodeAcessarEquipamentos()">
             <a data-ui-sref="equipamentos" data-ng-click="sceiCtrl.sidebarStat($event)"><i class="zmdi zmdi-toys"></i> Equipamentos</a>
         </li>
-        <li data-ui-sref-active="active">
+        <li data-ui-sref-active="active" ng-show="sceiAdmin.usuarioPodeAcessarManutencoes()">
             <a data-ui-sref="manutencoes" data-ng-click="sceiCtrl.sidebarStat($event)"><i class="zmdi zmdi-wrench"></i> Manutenção</a>
         </li>
     </ul>

@@ -19,8 +19,8 @@ namespace Palla.Labs.Vdt.Controllers
         [HttpPost]
         public HttpResponseMessage Post([FromBody] LoginDto login)
         {
-            var token = _login.Logar(login, Request.PegarIpDoUsuario(), Request.PegarUserAgentDoUsuario());
-            var response = Request.CreateResponse(HttpStatusCode.OK, new {token, usuario = login.Usuario});
+            var resultadoLogin = _login.Logar(login, Request.PegarIpDoUsuario(), Request.PegarUserAgentDoUsuario());
+            var response = Request.CreateResponse(HttpStatusCode.OK, new { token = resultadoLogin.Token, usuario = login.Usuario, permissoes = resultadoLogin.Permissoes });
             return response;
         }
     }

@@ -6,6 +6,11 @@
         .controller("sceiAdminController", function ($timeout, $state, $location, loginService) {
             var vm = this;
             vm.usuarioLogado = usuarioLogado;
+            vm.usuarioPodeAcessarUsuarios = usuarioPodeAcessarUsuarios;
+            vm.usuarioPodeAcessarClientes = usuarioPodeAcessarClientes;
+            vm.usuarioPodeAcessarGruposClientes = usuarioPodeAcessarGruposClientes;
+            vm.usuarioPodeAcessarEquipamentos = usuarioPodeAcessarEquipamentos;
+            vm.usuarioPodeAcessarManutencoes = usuarioPodeAcessarManutencoes;
             vm.deslogar = deslogar;
 
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -31,14 +36,39 @@
             }
 
             function estaLogado() {
-                var token = loginService.recuperarTokenComUsuarioLocalmente().token;
+                var token = loginService.recuperarDadosLogin().token;
                 return token != null && token.length > 0;
             }
 
             function usuarioLogado() {
-                var usuario = loginService.recuperarTokenComUsuarioLocalmente().dominio + "\\" + 
-                    loginService.recuperarTokenComUsuarioLocalmente().usuario;
+                var usuario = loginService.recuperarDadosLogin().dominio + "\\" +
+                    loginService.recuperarDadosLogin().usuario;
                 return (usuario != null && usuario.length > 0) ? usuario : "(não há)";
+            }
+
+            function usuarioPodeAcessarUsuarios() {
+                var permissoes = loginService.recuperarDadosLogin().permissoes;
+                return permissoes.podeAcessarUsuarios;
+            }
+
+            function usuarioPodeAcessarClientes() {
+                var permissoes = loginService.recuperarDadosLogin().permissoes;
+                return permissoes.podeAcessarClientes;
+            }
+
+            function usuarioPodeAcessarGruposClientes() {
+                var permissoes = loginService.recuperarDadosLogin().permissoes;
+                return permissoes.podeAcessarGruposClientes;
+            }
+
+            function usuarioPodeAcessarEquipamentos() {
+                var permissoes = loginService.recuperarDadosLogin().permissoes;
+                return permissoes.podeAcessarEquipamentos;
+            }
+
+            function usuarioPodeAcessarManutencoes() {
+                var permissoes = loginService.recuperarDadosLogin().permissoes;
+                return permissoes.podeAcessarManutencoes;
             }
 
             function deslogar() {

@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Web;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
 
@@ -28,6 +29,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPost]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         public HttpResponseMessage Post([FromBody] GrupoDto grupoDto)
         {
             var grupoSalvo = _criadorGrupo.Criar(Request.PegarSiteIdDoUsuario(), grupoDto);
@@ -38,6 +40,7 @@ namespace Palla.Labs.Vdt.Controllers
 
         [HttpPut]
         [Route("grupos/{id}")]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         public HttpResponseMessage Put([FromUri] string id, [FromBody] GrupoDto grupoDto)
         {
             _modificadorGrupo.Modificar(Request.PegarSiteIdDoUsuario(), id, grupoDto);
@@ -47,18 +50,21 @@ namespace Palla.Labs.Vdt.Controllers
 
         [HttpGet]
         [Route("grupos/{id}")]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         public HttpResponseMessage Get(string id)
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.Localizar(Request.PegarSiteIdDoUsuario(), id));
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Consumidor)]
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.Localizar(Request.PegarSiteIdDoUsuario()));
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Consumidor)]
         [Route("grupos/{id}/sumariosituacao")]
         public HttpResponseMessage SumarioSituacao(string id)
         {

@@ -4,12 +4,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Web;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
 
 namespace Palla.Labs.Vdt.Controllers
 {
     [AtributoValidadorDeToken]
+    [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
     public class EquipamentosController : ApiController
     {
         private readonly CriadorEquipamento _criadorEquipamento;

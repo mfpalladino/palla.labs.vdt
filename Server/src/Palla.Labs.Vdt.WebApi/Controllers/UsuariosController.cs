@@ -3,12 +3,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Web;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
 
 namespace Palla.Labs.Vdt.Controllers
 {
     [AtributoValidadorDeToken]
+    [AtributoValidadorDePerfil(TipoUsuario.Dono)]
     public class UsuariosController : ApiController
     {
         private readonly CriadorUsuario _criadorUsuario;

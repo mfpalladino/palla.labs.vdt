@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.Seguranca
@@ -16,11 +17,12 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Seguranca
             _repositorioUsuarios = repositorioUsuarios;
         }
 
-        public bool Validar(string token, string ip, string userAgent, out Guid siteId)
+        public bool Validar(string token, string ip, string userAgent, out Guid siteId, out Usuario usuario)
         {
             var resultado = false;
             const short numeroDePartesDoToken = 4;
             var siteIdToken = Guid.Empty;
+            Usuario usuarioToken = null;
 
             try
             {
@@ -37,10 +39,10 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Seguranca
                     var tokenExpirou = Math.Abs((DateTime.UtcNow - timeStamp).TotalMinutes) > MinutosParaExpirar;
                     if (!tokenExpirou)
                     {
-                        var usuario = _repositorioUsuarios.BuscarPorNome(siteIdToken, nomeUsuarioToken);
-                        if (usuario != null)
+                        usuarioToken = _repositorioUsuarios.BuscarPorNome(siteIdToken, nomeUsuarioToken);
+                        if (usuarioToken != null)
                         {
-                            var tokenCalculado = _geradorDeToken.Gerar(siteIdToken, nomeUsuarioToken, usuario.Senha, ip, userAgent, ticks);
+                            var tokenCalculado = _geradorDeToken.Gerar(siteIdToken, nomeUsuarioToken, usuarioToken.Senha, ip, userAgent, ticks);
                             resultado = token == tokenCalculado;
                         }
                     }
@@ -52,6 +54,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Seguranca
             }
 
             siteId = siteIdToken;
+            usuario = usuarioToken;
             return resultado;
         }        
     }

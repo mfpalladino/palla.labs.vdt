@@ -1,6 +1,7 @@
 using System;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Seguranca;
 using Palla.Labs.Vdt.App.Infraestrutura.SimpleInjector;
 
@@ -27,9 +28,11 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Web
 
                 var validadorDeToken = BuscadorDeInstancias.BuscarEstatico<ValidadorDeToken>();
                 Guid siteId;
-                if (validadorDeToken.Validar(token, ip, userAgent, out siteId))
+                Usuario usuario;
+                if (validadorDeToken.Validar(token, ip, userAgent, out siteId, out usuario))
                 {
                     request.SetarSiteIdDoUsuario(siteId);
+                    request.SetarUsuario(usuario);
                     return true;
                 }
 

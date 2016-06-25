@@ -1,6 +1,8 @@
 ﻿using System;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
+using Palla.Labs.Vdt.App.Dominio.Fabricas;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.Infraestrutura.Seguranca;
 
@@ -13,18 +15,22 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
         private readonly GeradorDeSenha _geradorDeSenha;
         private readonly RepositorioSites _repositorioSites;
         private readonly RepositorioUsuarios _repositorioUsuarios;
+        private readonly FabricaPermissoesDto _fabricaPermissoesDto;
 
         public Login(GeradorDeToken geradorDeToken,
             GeradorDeSenha geradorDeSenha, 
-            RepositorioSites repositorioSites, RepositorioUsuarios repositorioUsuarios)
+            RepositorioSites repositorioSites, 
+            RepositorioUsuarios repositorioUsuarios,
+            FabricaPermissoesDto fabricaPermissoesDto)
         {
             _geradorDeToken = geradorDeToken;
             _geradorDeSenha = geradorDeSenha;
             _repositorioSites = repositorioSites;
             _repositorioUsuarios = repositorioUsuarios;
+            _fabricaPermissoesDto = fabricaPermissoesDto;
         }
 
-        public string Logar(LoginDto login, string ip, string userAgent)
+        public ResultadoLoginDto Logar(LoginDto login, string ip, string userAgent)
         {
             Validar(login);
 
@@ -40,7 +46,11 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (senha != usuario.Senha)
                 throw new FormatoInvalido("As credenciais informadas não são válidas.");
 
-            return _geradorDeToken.Gerar(site.Id, login.Usuario, usuario.Senha, ip, userAgent, DateTime.UtcNow.Ticks);
+            return new ResultadoLoginDto
+            {
+                Token = _geradorDeToken.Gerar(site.Id, login.Usuario, usuario.Senha, ip, userAgent, DateTime.UtcNow.Ticks),
+                Permissoes = _fabricaPermissoesDto.Criar(usuario)
+            };
         }
 
         private static void Validar(LoginDto login)

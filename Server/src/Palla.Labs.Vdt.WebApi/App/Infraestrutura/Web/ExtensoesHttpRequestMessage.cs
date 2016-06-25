@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.Web
 {
@@ -23,9 +24,19 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Web
             return new Guid(request.Properties["SiteId"].ToString());
         }
 
+        public static Usuario PegarUsuario(this HttpRequestMessage request)
+        {
+            return request.Properties["Usuario"] as Usuario;
+        }
+
         public static void SetarSiteIdDoUsuario(this HttpRequestMessage request, Guid siteId)
         {
             request.Properties.Add("SiteId", siteId);
+        }
+
+        public static void SetarUsuario(this HttpRequestMessage request, Usuario usuario)
+        {
+            request.Properties.Add("Usuario", usuario);
         }                    
     }
 }

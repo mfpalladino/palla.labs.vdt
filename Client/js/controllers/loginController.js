@@ -12,7 +12,7 @@
                 loginService.logar(vm.login)
                     .$promise.then(
                         function (resultado) {
-                            loginService.salvarTokenComUsuarioLocalmente(resultado.token, vm.login.dominio, resultado.usuario);
+                            loginService.salvarDadosLogin(resultado.token, vm.login.dominio, resultado.usuario, resultado.permissoes);
                             var mensagemDeBoasVindas = "Olá, " + resultado.usuario + ".";
                             growlService.growlSuccess(mensagemDeBoasVindas);
                             $location.path("/home");
