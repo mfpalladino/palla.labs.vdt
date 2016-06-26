@@ -23,12 +23,13 @@
                     localStorage.permissoes = JSON.stringify(permissoes);
                 }
 
-                this.recuperarDadosLogin = function () {
+                this.recuperarDadosLogin = function() {
                     return {
                         token: localStorage.token,
                         usuario: localStorage.usuario,
                         dominio: localStorage.dominio,
-                        permissoes: JSON.parse(localStorage.permissoes)
+                        permissoes: (localStorage.permissoes != null && localStorage.permissoes.length > 0) ?
+                            JSON.parse(localStorage.permissoes) : null
                     };
                 }
             }

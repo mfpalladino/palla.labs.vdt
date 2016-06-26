@@ -31,10 +31,18 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
         }
 
-        public virtual IEnumerable<Grupo> Buscar(Guid siteId)
+        public virtual IEnumerable<Grupo> Buscar(Guid siteId, Guid[] gruposId = null)
         {
             var colecao = MongoDatabase.GetCollection<Grupo>(NomeColecao);
-            return colecao.Find(x => x.SiteId == siteId).SortBy(x => x.Nome).ToList();
+
+            if (gruposId == null)
+                return colecao.Find(x => x.SiteId == siteId).SortBy(x => x.Nome).ToList();
+
+            return colecao.Find(Builders<Grupo>.Filter
+                .And(
+                    Builders<Grupo>.Filter.Eq(y=>y.SiteId, siteId),
+                    Builders<Grupo>.Filter.In(y => y.Id, gruposId)
+                )).ToList();
         }
 
         public virtual Grupo BuscarPorId(Guid siteId, Guid id)

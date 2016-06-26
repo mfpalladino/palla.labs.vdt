@@ -77,7 +77,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosAplicacao
             var grupoRetornadoMapper = new GrupoDto { Id = grupoRetornadoDoBanco.Id, Nome = grupoRetornadoDoBanco.Nome };
             var gruposRetornadosMapper = new List<GrupoDto> { grupoRetornadoMapper };
 
-            repositorio.Setup(x => x.Buscar(Guid.NewGuid())).Returns(gruposRetornadosDoBanco);
+            repositorio.Setup(x => x.Buscar(Guid.NewGuid(), null)).Returns(gruposRetornadosDoBanco);
             mapper.Setup(x => x.Criar(It.IsAny<IEnumerable<Grupo>>())).Returns(gruposRetornadosMapper);
 
             //Action

@@ -48,27 +48,27 @@
 
             function usuarioPodeAcessarUsuarios() {
                 var permissoes = loginService.recuperarDadosLogin().permissoes;
-                return permissoes.podeAcessarUsuarios;
+                return permissoes != null ? permissoes.podeAcessarUsuarios : false;
             }
 
             function usuarioPodeAcessarClientes() {
                 var permissoes = loginService.recuperarDadosLogin().permissoes;
-                return permissoes.podeAcessarClientes;
+                return permissoes != null ? permissoes.podeAcessarClientes : false;
             }
 
             function usuarioPodeAcessarGruposClientes() {
                 var permissoes = loginService.recuperarDadosLogin().permissoes;
-                return permissoes.podeAcessarGruposClientes;
+                return permissoes != null ? permissoes.podeAcessarGruposClientes : false;
             }
 
             function usuarioPodeAcessarEquipamentos() {
                 var permissoes = loginService.recuperarDadosLogin().permissoes;
-                return permissoes.podeAcessarEquipamentos;
+                return permissoes != null ? permissoes.podeAcessarEquipamentos : false;
             }
 
             function usuarioPodeAcessarManutencoes() {
                 var permissoes = loginService.recuperarDadosLogin().permissoes;
-                return permissoes.podeAcessarManutencoes;
+                return permissoes != null ? permissoes.podeAcessarManutencoes : false;
             }
 
             function deslogar() {

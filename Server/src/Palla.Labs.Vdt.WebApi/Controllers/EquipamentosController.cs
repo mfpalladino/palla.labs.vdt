@@ -11,7 +11,6 @@ using Palla.Labs.Vdt.App.ServicosAplicacao;
 namespace Palla.Labs.Vdt.Controllers
 {
     [AtributoValidadorDeToken]
-    [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
     public class EquipamentosController : ApiController
     {
         private readonly CriadorEquipamento _criadorEquipamento;
@@ -29,6 +28,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPost]
+        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         public HttpResponseMessage Post([ModelBinder] EquipamentoDto equipamentoDto)
         {
             var equipamentoSalvo = _criadorEquipamento.Criar(Request.PegarSiteIdDoUsuario(), equipamentoDto);
@@ -38,6 +38,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPut]
+        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         [Route("equipamentos/{id}")]
         public HttpResponseMessage Put([FromUri] string id, [ModelBinder] EquipamentoDto equipamentoDto)
         {
@@ -47,6 +48,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         [Route("equipamentos/{id}")]
         public HttpResponseMessage Get(string id)
         {
@@ -54,6 +56,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         [Route("equipamentos/{id}")]
         public HttpResponseMessage Get(string id, long referenciaSituacao)
         {
@@ -61,24 +64,28 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(Request.PegarSiteIdDoUsuario(), null));
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         public HttpResponseMessage Get(long referenciaSituacao)
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(Request.PegarSiteIdDoUsuario(), referenciaSituacao));
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         public HttpResponseMessage Get(Guid clienteId)
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.LocalizarPorCliente(Request.PegarSiteIdDoUsuario(), clienteId.ToString()));
         }
 
         [HttpPost]
+        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         [Route("equipamentos/{id}/manutencoes")]
         public HttpResponseMessage Post([FromUri] string id, [FromBody] ManutencaoDto manutencaoDto)
         {
@@ -88,6 +95,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         [Route("equipamentos/{id}/manutencoes")]
         public HttpResponseMessage GetManutencoes(string id)
         {

@@ -28,9 +28,9 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             return _fabricaGrupoDto.Criar(_repositorioGrupos.BuscarPorId(siteId, new Guid(id)));
         }
 
-        public IEnumerable<GrupoDto> Localizar(Guid siteId)
+        public IEnumerable<GrupoDto> Localizar(Guid siteId, Guid[] gruposId = null)
         {
-            return _fabricaGrupoDto.Criar(_repositorioGrupos.Buscar(siteId));
+            return _fabricaGrupoDto.Criar(_repositorioGrupos.Buscar(siteId, gruposId));
         }
 
         public SumarioSituacaoDto SumarioSituacao(IEnumerable<EquipamentoDto> equipamentos)

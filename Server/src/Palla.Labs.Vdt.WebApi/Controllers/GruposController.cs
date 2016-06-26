@@ -60,7 +60,12 @@ namespace Palla.Labs.Vdt.Controllers
         [AtributoValidadorDePerfil(TipoUsuario.Consumidor)]
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.Localizar(Request.PegarSiteIdDoUsuario()));
+            var usuario = Request.PegarUsuario();
+
+            return Request.CreateResponse(HttpStatusCode.OK,
+                _localizadorGrupo.Localizar(
+                    Request.PegarSiteIdDoUsuario(),
+                    usuario.TipoUsuario == TipoUsuario.Consumidor ? usuario.Grupos : null));
         }
 
         [HttpGet]

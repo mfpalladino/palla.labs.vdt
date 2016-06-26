@@ -10,7 +10,6 @@ using Palla.Labs.Vdt.App.ServicosAplicacao;
 namespace Palla.Labs.Vdt.Controllers
 {
     [AtributoValidadorDeToken]
-    [AtributoValidadorDePerfil(TipoUsuario.Dono)]
     public class UsuariosController : ApiController
     {
         private readonly CriadorUsuario _criadorUsuario;
@@ -27,6 +26,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPost]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         public HttpResponseMessage Post([FromBody] UsuarioDto usuarioDto)
         {
             var usuarioSalvo = _criadorUsuario.Criar(Request.PegarSiteIdDoUsuario(), usuarioDto);
@@ -36,6 +36,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpPut]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         [Route("usuarios/{id}")]
         public HttpResponseMessage Put([FromUri] string id, [FromBody] UsuarioDto usuarioDto)
         {
@@ -45,6 +46,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         [Route("usuarios/{id}")]
         public HttpResponseMessage Get(string id)
         {
@@ -52,6 +54,7 @@ namespace Palla.Labs.Vdt.Controllers
         }
 
         [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         public HttpResponseMessage Get()
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorUsuario.Localizar(Request.PegarSiteIdDoUsuario()));
