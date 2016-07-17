@@ -5,12 +5,37 @@
         <div class="container" data-ng-controller="resumoGrupoController as resumoGrupo">
             <div class="block-header">
                 <h2>RESUMO DAS SITUAÇÕES DOS EQUIPAMENTOS</h2>
+                <div style="margin-left: -20px">
+                    <small>(mostrando grupos conforme seleção abaixo)</small>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="resumoGrupo.mostrarOK">
+                            <i class=" input-helper"></i>
+                            Tudo bem <small>(OK maior que 75%)</small>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="resumoGrupo.mostrarAtencao">
+                            <i class="input-helper"></i>
+                            Merece atenção <small>(OK variando entre 51% e 75%)</small>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="resumoGrupo.mostrarCritico">
+                            <i class="input-helper"></i>
+                            Estado crítico <small>(OK menor que 51%)</small>
+                        </label>
+                    </div>
+
+                </div>
             </div>
             <div class="dash-widgets">
                 <div class="row">
-                    <div class="col-md-5 col-sm-6" data-ng-repeat="grupo in resumoGrupo.grupos">
+                    <div class="col-md-5 col-sm-6" data-ng-repeat="grupo in resumoGrupo.grupos" ng-show="resumoGrupo.deveMostrarGrupo(grupo)">
                         <div id="pie-charts" class="dash-widget-item grupo-{{grupo.id}}">
-                            <div class="bgm-bluegray">
+                            <div ng-class="resumoGrupo.classeDoGrupo(grupo)">
                                 <div class="dash-widget-header">
                                     <div class="dash-widget-title">{{grupo.nome}}</div>
                                 </div>
