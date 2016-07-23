@@ -9098,6 +9098,19 @@ body:not(.sw-toggled) #sidebar {
   padding: 30px 20px;
   text-align: center;
 }
+.group-filter {
+  text-align: center;
+  width: 150px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+}
+.group-filter > .btn {
+  margin-left: 10px;
+}
+.group-filter > .btn > i {
+  color: #edecec;
+}
 .easy-pie {
   display: inline-block;
   position: relative;
@@ -9127,6 +9140,11 @@ body:not(.sw-toggled) #sidebar {
 .easy-pie.ok-pie .pie-title {
   color: #fff;
 }
+.easy-pie.ok-pie .pie-title > a {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: underline;
+}
 .easy-pie:not(.ok-pie) .percent {
   font-size: 26px;
   margin-top: 37px;
@@ -9141,6 +9159,11 @@ body:not(.sw-toggled) #sidebar {
   bottom: -9px;
   font-size: 15px;
   left: 0;
+}
+.easy-pie .pie-title > a {
+  color: #5E5E5E;
+  cursor: pointer;
+  text-decoration: underline;
 }
 .btn {
   border: 0;

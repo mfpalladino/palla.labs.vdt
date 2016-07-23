@@ -93,6 +93,22 @@
     text-align: center;
 }
 
+.group-filter {
+    text-align: center;
+    width: 150px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+
+    & > .btn {
+        margin-left: 10px;
+
+        & > i {
+            color:#edecec;
+        }
+    }
+}
+
 .easy-pie {
     display: inline-block;
     position: relative;
@@ -127,6 +143,12 @@
         
         .pie-title {
             color: #fff;
+
+            & > a {
+                color: #fff;
+                cursor: pointer;
+                text-decoration: underline;
+            }
         }
     }
     
@@ -148,6 +170,12 @@
         bottom: -9px;
         font-size: 15px;
         left: 0;
+
+        & > a {
+            color:#5E5E5E;
+            cursor: pointer;
+            text-decoration: underline;
+        }
     }
     
 }

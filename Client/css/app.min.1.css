@@ -11117,6 +11117,22 @@ body:not(.sw-toggled) #sidebar {
   text-align: center;
 }
 
+.group-filter {
+  text-align: center;
+  width: 150px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+}
+
+.group-filter > .btn {
+  margin-left: 10px;
+}
+
+.group-filter > .btn > i {
+  color: #edecec;
+}
+
 .easy-pie {
   display: inline-block;
   position: relative;
@@ -11153,6 +11169,12 @@ body:not(.sw-toggled) #sidebar {
   color: #fff;
 }
 
+.easy-pie.ok-pie .pie-title > a {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .easy-pie:not(.ok-pie) .percent {
   font-size: 26px;
   margin-top: 37px;
@@ -11169,6 +11191,12 @@ body:not(.sw-toggled) #sidebar {
   bottom: -9px;
   font-size: 15px;
   left: 0;
+}
+
+.easy-pie .pie-title > a {
+  color: #5E5E5E;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .btn {
@@ -15495,33 +15523,4 @@ div.login-content:before {
 
 .mejs-container .mejs-controls .mejs-play button {
   background-image: url("../img/icons/play.png");
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  .mejs-container .mejs-controls .mejs-play button {
-    background-image: url("../img/icons/play@2x.png");
-    background-size: 15px 15px;
-  }
-}
-
-.mejs-container .mejs-controls .mejs-pause button {
-  background-image: url("../img/icons/pause.png");
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  .mejs-container .mejs-controls .mejs-pause button {
-    background-image: url("../img/icons/pause@2x.png");
-    background-size: 15px 15px;
-  }
-}
-
-.mejs-container .mejs-controls .mejs-mute button {
-  background-image: url("../img/icons/speaker.png");
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-  .mejs-container .mejs-controls .mejs-mute button {
-    background-image: url("../img/icons/speaker@2x.png");
-    background-size: 15px 15px;
-  }
 }

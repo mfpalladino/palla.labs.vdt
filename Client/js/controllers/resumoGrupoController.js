@@ -1,9 +1,9 @@
-(function() {
+﻿(function() {
     "use strict";
 
     angular
         .module("sceiAdmin")
-        .controller("resumoGrupoController", function (resumoGrupoService) {
+        .controller("resumoGrupoController", function ($uibModal, resumoGrupoService) {
             var vm = this;
             vm.classeDoGrupo = classeDoGrupo;
             vm.grupos = grupos();
@@ -11,6 +11,13 @@
             vm.mostrarOK = true;
             vm.mostrarAtencao = true;
             vm.mostrarCritico = true;
+            vm.filtrarOk = filtrarOk;
+            vm.filtrarAtencao = filtrarAtencao;
+            vm.filtrarCritico = filtrarCritico;
+            vm.mostraDetalhesOk = mostraDetalhesOk;
+            vm.mostraDetalhesAtencao = mostraDetalhesAtencao;
+            vm.mostraDetalhesCritico = mostraDetalhesCritico;
+            vm.mostraDetalhesInconclusivo = mostraDetalhesInconclusivo;
 
             ////////////
 
@@ -54,5 +61,51 @@
                 return false;
             }
 
+            function filtrarOk() {
+                vm.mostrarOK = !vm.mostrarOK;
+            }
+
+            function filtrarAtencao() {
+                vm.mostrarAtencao = !vm.mostrarAtencao;
+            }
+
+            function filtrarCritico() {
+                vm.mostrarCritico = !vm.mostrarCritico;
+            }
+
+            function mostraDetalhesOk(grupo) {
+                mostraDetalhesGrupo(grupo, "OK");
+            }
+
+            function mostraDetalhesAtencao(grupo) {
+                mostraDetalhesGrupo(grupo, "Atenção");
+            }
+
+            function mostraDetalhesCritico(grupo) {
+                mostraDetalhesGrupo(grupo, "Crítico");
+            }
+
+            function mostraDetalhesInconclusivo(grupo) {
+                mostraDetalhesGrupo(grupo, "Inconclusivo");
+            }
+
+            function mostraDetalhesGrupo(grupo, estado) {
+                var modalInstance = $uibModal.open({
+                    animation: true,
+                    templateUrl: "detalheDoGrupo.html",
+                    controller: "detalheGrupoController",
+                    size: "lg",
+                    backdrop: true,
+                    keyboard: true,
+                    resolve: {
+                        parametros: function () {
+                            return {
+                                grupo: grupo,
+                                estado: estado
+                            };
+                        }
+                    }
+                });
+            }
         });
 })();

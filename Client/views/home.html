@@ -4,31 +4,15 @@
     <section id="content">
         <div class="container" data-ng-controller="resumoGrupoController as resumoGrupo">
             <div class="block-header">
-                <h2>RESUMO DAS SITUAÇÕES DOS EQUIPAMENTOS</h2>
-                <div style="margin-left: -20px">
-                    <small>(mostrando grupos conforme seleção abaixo)</small>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" data-ng-model="resumoGrupo.mostrarOK">
-                            <i class=" input-helper"></i>
-                            Tudo bem <small>(OK maior que 75%)</small>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" data-ng-model="resumoGrupo.mostrarAtencao">
-                            <i class="input-helper"></i>
-                            Merece atenção <small>(OK variando entre 51% e 75%)</small>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" data-ng-model="resumoGrupo.mostrarCritico">
-                            <i class="input-helper"></i>
-                            Estado crítico <small>(OK menor que 51%)</small>
-                        </label>
-                    </div>
-
+                <h2>
+                    RESUMO DAS SITUAÇÕES DOS EQUIPAMENTOS
+                    <small>(mostrando grupos conforme os filtros selecionados)</small>
+                </h2>
+                
+                <div class="group-filter">
+                    <button tooltip-placement="left" uib-tooltip="Mostrar/esconder grupos em que está tudo bem: OK maior que 75%" data-ng-class="resumoGrupo.mostrarOK ? 'btn bgm-lightgreen btn-icon waves-effect waves-circle':'btn bgm-gray btn-icon waves-effect waves-circle'" data-ng-click="resumoGrupo.filtrarOk()"><i data-ng-class="resumoGrupo.mostrarOK ? 'zmdi zmdi-check':'zmdi zmdi-close'"></i></button>
+                    <button tooltip-placement="bottom" uib-tooltip="Mostrar/esconder grupos que merecem atenção: OK variando entre 51% e 75%" data-ng-class="resumoGrupo.mostrarAtencao ? 'btn bgm-amber btn-icon waves-effect waves-circle':'btn bgm-gray btn-icon waves-effect waves-circle'" data-ng-click="resumoGrupo.filtrarAtencao()"><i data-ng-class="resumoGrupo.mostrarAtencao ? 'zmdi zmdi-check':'zmdi zmdi-close'"></i></button>
+                    <button tooltip-placement="right" uib-tooltip="Mostrar/esconder grupos que estão em estado crítico: OK menor que 51%" data-ng-class="resumoGrupo.mostrarCritico ? 'btn bgm-red btn-icon waves-effect waves-circle':'btn bgm-gray btn-icon waves-effect waves-circle'" data-ng-click="resumoGrupo.filtrarCritico()"><i data-ng-class="resumoGrupo.mostrarCritico ? 'zmdi zmdi-check':'zmdi zmdi-close'"></i></button>
                 </div>
             </div>
             <div class="dash-widgets">
@@ -45,22 +29,22 @@
                                 <div class="text-center p-20 m-t-25">
                                     <div class="easy-pie ok-pie" data-percent="0" data-easypie-chart>
                                         <div class="percent">{{grupo.sumarioSituacao.percentualOk}}</div>
-                                        <div class="pie-title">OK</div>
+                                        <div class="pie-title"><a ng-click="resumoGrupo.mostraDetalhesOk(grupo)">OK</a></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="p-t-20 p-b-20 text-center">
                                 <div class="easy-pie atencao-pie" data-percent="0" data-easypie-chart>
                                     <div class="percent">{{grupo.sumarioSituacao.percentualAtencao}}</div>
-                                    <div class="pie-title">ATENÇÃO</div>
+                                    <div class="pie-title"><a ng-click="resumoGrupo.mostraDetalhesAtencao(grupo)">ATENÇÃO</a></div>
                                 </div>
                                 <div class="easy-pie critico-pie" data-percent="0" data-easypie-chart>
                                     <div class="percent">{{grupo.sumarioSituacao.percentualCritico}}</div>
-                                    <div class="pie-title">CRÍTICO</div>
+                                    <div class="pie-title"><a ng-click="resumoGrupo.mostraDetalhesCritico(grupo)">CRÍTICO</a></div>
                                 </div>
                                 <div class="easy-pie inconclusivo-pie" data-percent="0" data-easypie-chart>
                                     <div class="percent">{{grupo.sumarioSituacao.percentualInconclusivo}}</div>
-                                    <div class="pie-title">INCONCLUSIVO</div>
+                                    <div class="pie-title"><a ng-click="resumoGrupo.mostraDetalhesInconclusivo(grupo)">INCONCLUSIVO</a></div>
                                 </div>
                             </div>
                         </div>
@@ -70,5 +54,18 @@
         </div>
     </section>
 </section>
+
+<script type="text/ng-template" id="detalheDoGrupo.html">
+    <div class="modal-header">
+        <h4 class="modal-title">{{grupo.nome}}, somente equipamentos com estado '{{estado}}'</h4>
+    </div>
+    <div class="modal-body">
+        <p>Os detalhes vão entrar aqui!</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link" ng-click="fecharDetalhes()">Fechar</button>
+    </div>
+
+</script>
 
 <footer id="footer" data-ng-include="'template/footer.html'"></footer>
