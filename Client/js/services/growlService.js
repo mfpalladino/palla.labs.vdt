@@ -7,14 +7,18 @@
             var gs = {};
 
             gs.growlError = function(message) {
-                return gs.growl(message, "danger");
+                return gs.growl(message, "danger", "animated bounceIn", "animated bounceOut");
             }
 
             gs.growlSuccess = function (message) {
-                return gs.growl(message, "success");
+                return gs.growl(message, "success", "animated bounceIn", "animated bounceOut");
             }
 
-            gs.growl = function (message, type) {
+            gs.growlWelcome = function (message) {
+                return gs.growl(message, "inverse", "animated flipInY", "animated flipOutY");
+            }
+
+            gs.growl = function (message, type, animatedEnter, animatedExit) {
                 $.growl({
                     message: message
                 }, {
@@ -28,8 +32,8 @@
                     },
                     delay: 2500,
                     animate: {
-                        enter: "animated bounceIn",
-                        exit: "animated bounceOut"
+                        enter: animatedEnter,
+                        exit: animatedExit
                     },
                     offset: {
                         x: 20,

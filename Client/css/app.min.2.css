@@ -1,3 +1,12 @@
+.mejs-container .mejs-controls .mejs-volume-button {
+  position: absolute;
+  right: 35px;
+}
+
+.mejs-container .mejs-controls .mejs-play button {
+  background-image: url("../img/icons/play.png");
+}
+
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .mejs-container .mejs-controls .mejs-play button {
     background-image: url("../img/icons/play@2x.png");

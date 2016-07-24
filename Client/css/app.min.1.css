@@ -11118,10 +11118,7 @@ body:not(.sw-toggled) #sidebar {
 }
 
 .group-filter {
-  text-align: center;
-  width: 150px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-left: -23px;
   display: flex;
 }
 
@@ -13269,9 +13266,24 @@ div.login-content:before {
  * Used for Heading outside the Cards.
  */
 
-.block-header {
+#header-dashboard > .block-header {
+  margin-left: -5px;
+  padding: 0 22px;
   margin-bottom: 25px;
-  position: relative;
+  position: fixed;
+  height: 115px;
+  top: 70px;
+  width: 100%;
+  z-index: 4;
+  background-color: #edecec;
+}
+
+#header-dashboard > .block-header > h2 {
+  margin-top: 10px;
+}
+
+#header-dashboard > .dash-widgets {
+  margin-top: 100px;
 }
 
 @media screen and (min-width: 768px) {
@@ -15514,13 +15526,4 @@ div.login-content:before {
 
 .mejs-container .mejs-controls .mejs-button button:focus {
   outline: none !important;
-}
-
-.mejs-container .mejs-controls .mejs-volume-button {
-  position: absolute;
-  right: 35px;
-}
-
-.mejs-container .mejs-controls .mejs-play button {
-  background-image: url("../img/icons/play.png");
 }

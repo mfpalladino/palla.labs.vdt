@@ -11,8 +11,6 @@
 
                 this.deslogar = function () {
                     localStorage.removeItem("token");
-                    localStorage.removeItem("usuario");
-                    localStorage.removeItem("dominio");
                     localStorage.removeItem("permissoes");
                 };
 

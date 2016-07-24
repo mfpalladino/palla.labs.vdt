@@ -2,6 +2,30 @@
  * Block Header
  * Used for Heading outside the Cards.
  */
+
+#header-dashboard {
+    & > .block-header{
+        margin-left: -5px;
+        padding: 0 22px;
+        margin-bottom: 25px;
+        position: fixed;
+        height: 115px;
+        top: 70px;
+        width: 100%;
+        z-index: 4;
+        background-color: #edecec;
+
+        & > h2{
+            margin-top:10px;
+        }
+    }
+
+    & > .dash-widgets{
+        margin-top: 100px;
+    }
+
+}
+
 .block-header {
     @media screen and (min-width: @screen-sm-min) {
         padding: 0 22px;
@@ -10,9 +34,6 @@
     @media screen and (max-width: @screen-sm-max) {
         padding: 0 18px;
     }
-
-    margin-bottom: 25px;
-    position: relative;
 
     & > h2 {
         font-size: 15px;
