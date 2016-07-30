@@ -4,6 +4,7 @@ using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Excecoes;
 using Palla.Labs.Vdt.App.Dominio.Fabricas;
+using Palla.Labs.Vdt.App.Dominio.Modelos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 // ReSharper disable once CheckNamespace
@@ -28,21 +29,21 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.BuscarPorId(siteId, new Guid(id)), referenciaSituacao);
         }
 
-        public IEnumerable<EquipamentoDto> Localizar(Guid siteId, long? referenciaSituacao)
+        public IEnumerable<EquipamentoDto> Localizar(Guid siteId, long? referenciaSituacao, SituacaoManutencao situacaoManutencao)
         {
-            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.Buscar(siteId), referenciaSituacao);
+            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.Buscar(siteId), referenciaSituacao, situacaoManutencao);
         }
 
-        public IEnumerable<EquipamentoDto> LocalizarPorGrupo(Guid siteId, string grupoId)
+        public IEnumerable<EquipamentoDto> LocalizarPorGrupo(Guid siteId, string grupoId, SituacaoManutencao situacaoManutencao)
         {
             ValidarIdGrupo(grupoId);
-            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.BuscarPorGrupo(siteId, grupoId.ParaGuid()), null);
+            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.BuscarPorGrupo(siteId, grupoId.ParaGuid()), situacaoManutencao);
         }
 
         public IEnumerable<EquipamentoDto> LocalizarPorCliente(Guid siteId, string clienteId)
         {
             ValidarIdCliente(clienteId);
-            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.BuscarPorCliente(siteId, clienteId.ParaGuid()), null);
+            return _fabricaEquipamentoDto.Criar(siteId, _repositorioEquipamentos.BuscarPorCliente(siteId, clienteId.ParaGuid()));
         }
 
         public IEnumerable<ManutencaoDto> LocalizarManutencoes(Guid siteId, string id)

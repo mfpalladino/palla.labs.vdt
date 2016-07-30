@@ -74,22 +74,22 @@
             }
 
             function mostraDetalhesOk(grupo) {
-                mostraDetalhesGrupo(grupo, "OK");
+                mostraDetalhesGrupo(grupo, "OK", 1);
             }
 
             function mostraDetalhesAtencao(grupo) {
-                mostraDetalhesGrupo(grupo, "Atenção");
+                mostraDetalhesGrupo(grupo, "Atenção", 2);
             }
 
             function mostraDetalhesCritico(grupo) {
-                mostraDetalhesGrupo(grupo, "Crítico");
+                mostraDetalhesGrupo(grupo, "Crítico", 3);
             }
 
             function mostraDetalhesInconclusivo(grupo) {
-                mostraDetalhesGrupo(grupo, "Inconclusivo");
+                mostraDetalhesGrupo(grupo, "Inconclusivo", 4);
             }
 
-            function mostraDetalhesGrupo(grupo, estado) {
+            function mostraDetalhesGrupo(grupo, situacaoNome, situacaoId) {
                 var modalInstance = $uibModal.open({
                     animation: true,
                     templateUrl: "detalheDoGrupo.html",
@@ -101,7 +101,8 @@
                         parametros: function () {
                             return {
                                 grupo: grupo,
-                                estado: estado
+                                situacaoNome: situacaoNome,
+                                situacaoId: situacaoId
                             };
                         }
                     }

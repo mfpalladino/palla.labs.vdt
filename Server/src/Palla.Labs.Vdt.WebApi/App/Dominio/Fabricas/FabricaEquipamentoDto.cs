@@ -25,12 +25,18 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
 
         public virtual IEnumerable<EquipamentoDto> Criar(Guid siteId, IEnumerable<Equipamento> equipamentos)
         {
-            return Criar(siteId, equipamentos, DateTime.Now.ParaUnixTime());
+            return Criar(siteId, equipamentos, DateTime.Now.ParaUnixTime(), SituacaoManutencao.Todos);
         }
 
-        public virtual IEnumerable<EquipamentoDto> Criar(Guid siteId, IEnumerable<Equipamento> equipamentos, long? dataReferenciaSituacao)
+        public virtual IEnumerable<EquipamentoDto> Criar(Guid siteId, IEnumerable<Equipamento> equipamentos, SituacaoManutencao situacaoManutencao)
         {
-            return equipamentos.Select(x => Criar(siteId, x, dataReferenciaSituacao ?? DateTime.Now.ParaUnixTime()));
+            return Criar(siteId, equipamentos, DateTime.Now.ParaUnixTime(), situacaoManutencao);
+        }
+
+        public virtual IEnumerable<EquipamentoDto> Criar(Guid siteId, IEnumerable<Equipamento> equipamentos, long? dataReferenciaSituacao, SituacaoManutencao situacaoManutencao)
+        {
+            var resultado = equipamentos.Select(x => Criar(siteId, x, dataReferenciaSituacao != null && dataReferenciaSituacao > -1 ? dataReferenciaSituacao.Value : DateTime.Now.ParaUnixTime()));
+            return situacaoManutencao == SituacaoManutencao.Todos ? resultado : resultado.Where(x=>x.SituacaoManutencao == (int)situacaoManutencao);
         }
 
         public virtual EquipamentoDto Criar(Guid siteId, Equipamento equipamento)

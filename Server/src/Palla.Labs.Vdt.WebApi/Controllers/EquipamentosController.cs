@@ -67,14 +67,14 @@ namespace Palla.Labs.Vdt.Controllers
         [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
         public HttpResponseMessage Get()
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(Request.PegarSiteIdDoUsuario(), null));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(Request.PegarSiteIdDoUsuario(), null, SituacaoManutencao.Todos));
         }
 
         [HttpGet]
-        [AtributoValidadorDePerfil(TipoUsuario.Manutenedor)]
-        public HttpResponseMessage Get(long referenciaSituacao)
+        [AtributoValidadorDePerfil(TipoUsuario.Consumidor)]
+        public HttpResponseMessage Get(long referenciaSituacao, Guid grupoId, int situacaoId)
         {
-            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.Localizar(Request.PegarSiteIdDoUsuario(), referenciaSituacao));
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorEquipamento.LocalizarPorGrupo(Request.PegarSiteIdDoUsuario(), grupoId.ToString(), (SituacaoManutencao)situacaoId));
         }
 
         [HttpGet]

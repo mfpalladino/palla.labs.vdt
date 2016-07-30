@@ -73,7 +73,7 @@ namespace Palla.Labs.Vdt.Controllers
         [Route("grupos/{id}/sumariosituacao")]
         public HttpResponseMessage SumarioSituacao(string id)
         {
-            var equipamentosDoGrupo = _localizadorEquipamento.LocalizarPorGrupo(Request.PegarSiteIdDoUsuario(), id);
+            var equipamentosDoGrupo = _localizadorEquipamento.LocalizarPorGrupo(Request.PegarSiteIdDoUsuario(), id, SituacaoManutencao.Todos);
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorGrupo.SumarioSituacao(equipamentosDoGrupo));
         }
     }

@@ -14,6 +14,17 @@
                     return equipamentoResourceFactory.equipamentos.query();
                 };
 
+                this.listarPorSituacaoDoGrupo = function (grupoId, situacaoId) {
+                    if (situacaoId === 1)
+                        return equipamentoResourceFactory.equipamentosOk.query({ grupoId: grupoId });
+                    if (situacaoId === 2)
+                        return equipamentoResourceFactory.equipamentosAtencao.query({ grupoId: grupoId });
+                    if (situacaoId === 3)
+                        return equipamentoResourceFactory.equipamentosCritico.query({ grupoId: grupoId });
+
+                    return equipamentoResourceFactory.equipamentosInconclusivo.query({ grupoId: grupoId });
+                };
+
                 this.listarPorCliente = function (clienteId) {
                     return equipamentoResourceFactory.equipamentos.query({ clienteId: clienteId });
                 };

@@ -57,10 +57,37 @@
 
 <script type="text/ng-template" id="detalheDoGrupo.html">
     <div class="modal-header">
-        <h4 class="modal-title">{{grupo.nome}}, somente equipamentos com estado '{{estado}}'</h4>
+        <h4 class="modal-title">{{grupo.nome}}, somente equipamentos com estado '{{situacaoNome}}'</h4>
     </div>
     <div class="modal-body">
-        <p>Os detalhes vão entrar aqui!</p>
+
+        <div class="table-responsive" ng-show="haDetalhes()">
+            <table ng-table="parametrosTabela" class="table table-striped" show-filter="false">
+                <colgroup>
+                    <col width="45%" />
+                    <col width="45%" />
+                    <col width="5%" />
+                    <col width="5%" />
+                </colgroup>
+                <tr ng-repeat="row in equipamentos" ng-form="rowForm">
+                    <td title="'Cliente'" filter="{clienteNome: 'text'}" ng-form="clienteNome">
+                        <span>{{row.clienteNome}}</span>
+                    </td>
+                    <td title="'Nome'" filter="{nome: 'text'}" ng-form="nome">
+                        <span>{{row.nome}}</span>
+                    </td>
+                    <td>
+                        <button ng-show="usuarioPodeAcessarEquipamentos()" title="Editar este equipamento" class="btn btn-default btn-sm" data-ui-sref="editarEquipamentos({ equipamentoId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-toys"></span></button>
+                    </td>
+                    <td>
+                        <button ng-show="usuarioPodeAcessarManutencoes()" title="Informar manutenção para este equipamento" class="btn btn-default btn-sm" data-ui-sref="criarManutencao({ equipamentoId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-wrench"></span></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div ng-hide="haDetalhes()">
+            <div>(Não há equipamentos deste grupo na situação selecionada)</div>
+        </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-link" ng-click="fecharDetalhes()">Fechar</button>

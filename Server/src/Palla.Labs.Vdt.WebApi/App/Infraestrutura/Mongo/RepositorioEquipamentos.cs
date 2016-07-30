@@ -54,6 +54,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             var idsClientes = colecaoClientes.Find(x => x.SiteId == siteId && x.GrupoId == grupoId).ToList().Select(x => x.Id);
 
             var colecaoEquipamentos = MongoDatabase.GetCollection<Equipamento>(NomeColecao);
+            
             return colecaoEquipamentos.Find(Builders<Equipamento>.Filter.In(x => x.ClienteId, idsClientes)).ToList();
         }
 
