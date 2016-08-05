@@ -272,6 +272,9 @@ bower_components
 node_modules
 jspm_packages
 
+# Builded webapp
+public
+
 # Optional npm cache directory
 .npm
 

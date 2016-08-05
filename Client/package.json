@@ -1,16 +1,32 @@
 {
-  "name": "scei-admin",
-  "version": "0.1.0",
+    "name": "Client",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors --port 3000 --config webpack.config.dev.js",
+        "build": "webpack --verbose --colors --display-error-details --config webpack.config.js"
+    },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
   "devDependencies": {
-    "beefy": "^2.1.6",
-    "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "^0.8.0",
-    "grunt-csssplit": "^0.4.0"
-  },
-  "dependencies": {
-    "angular-animate": "^1.4.3",
-    "ng-if-bootstrap-grid": "^0.1.0"
+    "clean-webpack-plugin": "^0.1.10",
+    "copy-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.23.1",
+    "eslint": "^3.2.2",
+    "eslint-loader": "^1.5.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "open-browser-webpack-plugin": "0.0.2",
+    "style-loader": "^0.13.1",
+    "transfer-webpack-plugin": "^0.1.4",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.12.2"
   }
 }

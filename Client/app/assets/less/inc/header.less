@@ -134,33 +134,6 @@
     }
 }
 
-#notifications {
-    position: relative;
-
-    .lv-body {
-        overflow-x: hidden;
-    }
-
-    &:before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: ~"calc(100% - 70px)";
-        background: url(../img/notifications.png) no-repeat center;
-        .transition(all);
-        .transition-duration(400ms);
-        .scale-rotate(0, -180deg);
-        .opacity(0);
-        top: 42px;
-    }
-
-    &.empty:before {
-        .scale-rotate(1, 0deg);
-        .opacity(1);
-    }
-
-}
-
 /* Full Screen */
 :-webkit-full-screen [data-action="fullscreen"] { display: none; }
 :-moz-full-screen [data-action="fullscreen"] { display: none; }

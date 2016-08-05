@@ -1,0 +1,49 @@
+.dash-widget-item {
+    position: relative;
+    min-height: 380px;
+    margin-bottom: 30px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); 
+    
+    .dash-widget-header {
+        position: relative;
+        
+        .actions {
+            display: none;
+            position: absolute; 
+            right: 4px;
+            top: 6px;
+        }
+    }
+    
+    .dash-widget-footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+    
+    .dash-widget-title {
+        padding: 12px 20px;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        font-weight: 400; 
+    }
+    
+    &:hover {
+        .dash-widget-header .actions {
+            display: block;
+        }
+    }
+}
+
+/*
+ * Pie Charts
+ */
+#pie-charts {
+    background: #fff;
+    
+    .dash-widget-header {
+        color: rgba(255, 255, 255, 0.9);
+    }
+}

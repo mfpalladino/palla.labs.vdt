@@ -1,0 +1,50 @@
+{
+  "name": "SCEI",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "mfpalladino"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.7",
+    "angular-animate": "1.4.8",
+    "angular-chosen-localytics": "1.0.7",
+    "angular-bootstrap": "0.14.3",
+    "angular-loading-bar": "0.8.0",
+    "angular-nouislider": "0.3.1",
+    "angular-resource": "1.4.8",
+    "angular-ui-router": "ui-router#0.2.15",
+    "animate.css": "daneden/animate.css#3.3.0",
+    "bootstrap-sweetalert": "0.4.5",
+    "eonasdan-bootstrap-datetimepicker": "Eonasdan/bootstrap-datetimepicker#4.7.14",
+    "flot-orderBars": "emmerich/flot-orderBars",
+    "flot.curvedlines": "MichaelZinsmaier/CurvedLines#1.1.1",
+    "flot.tooltip": "0.8.5",
+    "jquery-placeholder": "2.1.2",
+    "jquery.easy-pie-chart": "2.1.6",
+    "jquery.nicescroll": "inuyaksa/jquery.nicescroll#3.6.0",
+    "malihu-custom-scrollbar-plugin": "3.1.0",
+    "material-design-iconic-font": "2.1.1",
+    "material-shadows": "2.0.1",
+    "oclazyload": "1.0.9",
+    "Waves": "waves#0.7.4",
+    "bootstrap-growl": "^1.1.0",
+    "sparklines": "^1.0.0",
+    "fullcalendar": "^2.9.0",
+    "ng-table": "0.8.3",
+    "bootstrap": "^3.3.7",
+    "angular-farbtastic": "*"
+  },
+  "resolutions": {
+    "angular": "1.4.7",
+    "ng-table": "0.8.3"
+  }
+}
