@@ -1,12 +1,12 @@
 {
-    "name": "Client",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors --port 3000 --config webpack.config.dev.js",
-        "build": "webpack --verbose --colors --display-error-details --config webpack.config.js"
-    },
+  "name": "Client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors --port 3000 --config webpack.config.dev.js",
+    "build": "webpack --verbose --colors --display-error-details --config webpack.config.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "eslint-loader": "^1.5.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "graceful-fs": "^4.1.5",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "open-browser-webpack-plugin": "0.0.2",

@@ -3,6 +3,10 @@ const Webpack = require('webpack'),
 	  CleanWebpackPlugin = require('clean-webpack-plugin'),
 	  CopyWebpackPlugin = require('copy-webpack-plugin');
 
+var realFs = require('fs')
+var gracefulFs = require('graceful-fs')
+gracefulFs.gracefulify(realFs)
+
 module.exports = {
     entry: ['./app/app.js'],
     devtool: 'source-map',
@@ -17,11 +21,9 @@ module.exports = {
           new CleanWebpackPlugin(['public'], {}),
           new ExtractTextPlugin('/assets/[name].css'),
 		  new Webpack.optimize.UglifyJsPlugin({
-		      minimize: true,
-		      compress: {
-		          warnings: false
-		      }
-		  }),
+			sourceMap: false,
+			mangle: false
+		  }),		  
           new CopyWebpackPlugin(
           [
               { from: 'app/views', to: 'views' },
