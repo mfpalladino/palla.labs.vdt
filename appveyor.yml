@@ -14,9 +14,6 @@ environment:
     secure: pZxBKcuTkC2DMElcMW1wpbuRKSERSlge8SUtf1PY/CAySF5+E6WF3rF4Y6/Z4i14GY5HwFeQBD1Im+ForReZCe8oJ7xLJyjc7pTAN8JrWSGrdR7WbrFjQVlA3/vQu33g2BNLRLo6H7ll6gFG2TT3fg==
   COVERALLS_REPO_TOKEN:
     secure: 1pEehKZ9pOnrg3Ourxfwa7bjGYyVUR5McWlgjQ5W36ZWnEBCjqkuTBXHHdrNM+is
-install:
-	- ps: if (Test-Path 'C:\Tools\NuGet3') { $nugetDir = 'C:\Tools\NuGet3' } else { $nugetDir = 'C:\Tools\NuGet' }
-	- ps: (New-Object Net.WebClient).DownloadFile('https://dist.nuget.org/win-x86-commandline/v3.3.0/nuget.exe', "$nugetDir\NuGet.exe")
 before_build:
   - "$nugetDir\NuGet.exe" restore ".\Server\src\Palla.Labs.Vdt.Server.sln"
 build:
