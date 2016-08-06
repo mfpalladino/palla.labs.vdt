@@ -103,7 +103,7 @@
                                     files: [
                                         "bower_components/nouislider/jquery.nouislider.css",
                                         "custom_components/farbtastic/farbtastic.css",
-                                        "bower_components/chosen/chosen.min.css"
+                                        "custom_components/chosen/chosen.min.css"
                                     ]
                                 },
                                 {
@@ -113,7 +113,7 @@
                                         "bower_components/nouislider/jquery.nouislider.min.js",
                                         "bower_components/moment/min/moment.min.js",
                                         "custom_components/fileinput/fileinput.min.js",
-                                        "bower_components/chosen/chosen.jquery.js",
+                                        "custom_components/chosen/chosen.jquery.js",
                                         "bower_components/angular-chosen-localytics/chosen.js",
                                         "bower_components/angular-farbtastic/angular-farbtastic.js"
                                     ]
@@ -134,7 +134,7 @@
                                     files: [
                                         "bower_components/nouislider/jquery.nouislider.css",
                                         "custom_components/farbtastic/farbtastic.css",
-                                        "bower_components/chosen/chosen.min.css"
+                                        "custom_components/chosen/chosen.min.css"
                                     ]
                                 },
                                 {
@@ -144,7 +144,7 @@
                                         "bower_components/nouislider/jquery.nouislider.min.js",
                                         "bower_components/moment/min/moment.min.js",
                                         "custom_components/fileinput/fileinput.min.js",
-                                        "bower_components/chosen/chosen.jquery.js",
+                                        "custom_components/chosen/chosen.jquery.js",
                                         "bower_components/angular-chosen-localytics/chosen.js",
                                         "bower_components/angular-farbtastic/angular-farbtastic.js"
                                     ]
@@ -169,7 +169,7 @@
                                     files: [
                                         "bower_components/nouislider/jquery.nouislider.css",
                                         "custom_components/farbtastic/farbtastic.css",
-                                        "bower_components/chosen/chosen.min.css"
+                                        "custom_components/chosen/chosen.min.css"
                                     ]
                                 },
                                 {
@@ -179,7 +179,7 @@
                                         "bower_components/nouislider/jquery.nouislider.min.js",
                                         "bower_components/moment/min/moment.min.js",
                                         "custom_components/fileinput/fileinput.min.js",
-                                        "bower_components/chosen/chosen.jquery.js",
+                                        "custom_components/chosen/chosen.jquery.js",
                                         "bower_components/angular-chosen-localytics/chosen.js",
                                         "bower_components/angular-farbtastic/angular-farbtastic.js"
                                     ]
@@ -200,7 +200,7 @@
                                     files: [
                                         "bower_components/nouislider/jquery.nouislider.css",
                                         "custom_components/farbtastic/farbtastic.css",
-                                        "bower_components/chosen/chosen.min.css"
+                                        "custom_components/chosen/chosen.min.css"
                                     ]
                                 },
                                 {
@@ -210,7 +210,7 @@
                                         "bower_components/nouislider/jquery.nouislider.min.js",
                                         "bower_components/moment/min/moment.min.js",
                                         "custom_components/fileinput/fileinput.min.js",
-                                        "bower_components/chosen/chosen.jquery.js",
+                                        "custom_components/chosen/chosen.jquery.js",
                                         "bower_components/angular-chosen-localytics/chosen.js",
                                         "bower_components/angular-farbtastic/angular-farbtastic.js"
                                     ]
@@ -231,7 +231,7 @@
                                     files: [
                                         "bower_components/nouislider/jquery.nouislider.css",
                                         "custom_components/farbtastic/farbtastic.css",
-                                        "bower_components/chosen/chosen.min.css"
+                                        "custom_components/chosen/chosen.min.css"
                                     ]
                                 },
                                 {
@@ -241,7 +241,7 @@
                                         "bower_components/nouislider/jquery.nouislider.min.js",
                                         "bower_components/moment/min/moment.min.js",
                                         "custom_components/fileinput/fileinput.min.js",
-                                        "bower_components/chosen/chosen.jquery.js",
+                                        "custom_components/chosen/chosen.jquery.js",
                                         "bower_components/angular-chosen-localytics/chosen.js",
                                         "bower_components/angular-farbtastic/angular-farbtastic.js"
                                     ]
@@ -262,7 +262,7 @@
                                     files: [
                                         "bower_components/nouislider/jquery.nouislider.css",
                                         "custom_components/farbtastic/farbtastic.css",
-                                        "bower_components/chosen/chosen.min.css"
+                                        "custom_components/chosen/chosen.min.css"
                                     ]
                                 },
                                 {
@@ -272,7 +272,7 @@
                                         "bower_components/nouislider/jquery.nouislider.min.js",
                                         "bower_components/moment/min/moment.min.js",
                                         "custom_components/fileinput/fileinput.min.js",
-                                        "bower_components/chosen/chosen.jquery.js",
+                                        "custom_components/chosen/chosen.jquery.js",
                                         "bower_components/angular-chosen-localytics/chosen.js",
                                         "bower_components/angular-farbtastic/angular-farbtastic.js"
                                     ]
@@ -297,7 +297,7 @@
                                     files: [
                                         "bower_components/nouislider/jquery.nouislider.css",
                                         "custom_components/farbtastic/farbtastic.css",
-                                        "bower_components/chosen/chosen.min.css"
+                                        "custom_components/chosen/chosen.min.css"
                                     ]
                                 },
                                 {
@@ -307,7 +307,7 @@
                                         "bower_components/nouislider/jquery.nouislider.min.js",
                                         "bower_components/moment/min/moment.min.js",
                                         "custom_components/fileinput/fileinput.min.js",
-                                        "bower_components/chosen/chosen.jquery.js",
+                                        "custom_components/chosen/chosen.jquery.js",
                                         "bower_components/angular-chosen-localytics/chosen.js",
                                         "bower_components/angular-farbtastic/angular-farbtastic.js"
                                     ]
@@ -328,7 +328,7 @@
                                     files: [
                                         "bower_components/nouislider/jquery.nouislider.css",
                                         "custom_components/farbtastic/farbtastic.css",
-                                        "bower_components/chosen/chosen.min.css"
+                                        "custom_components/chosen/chosen.min.css"
                                     ]
                                 },
                                 {
@@ -338,7 +338,7 @@
                                         "bower_components/nouislider/jquery.nouislider.min.js",
                                         "bower_components/moment/min/moment.min.js",
                                         "custom_components/fileinput/fileinput.min.js",
-                                        "bower_components/chosen/chosen.jquery.js",
+                                        "custom_components/chosen/chosen.jquery.js",
                                         "bower_components/angular-chosen-localytics/chosen.js",
                                         "bower_components/angular-farbtastic/angular-farbtastic.js"
                                     ]

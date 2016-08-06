@@ -1,14 +1,15 @@
 {
-  "name": "Client",
+  "name": "scei",
   "version": "1.0.0",
-  "description": "",
+  "description": "algumas brincadeiras com desenvolvimento web",
   "main": "index.js",
   "scripts": {
+	"install_build_deploy": "npm install && bower install && npm run deploy",
     "start": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors --port 3000 --config webpack.config.dev.js",
-    "build": "webpack --verbose --colors --display-error-details --config webpack.config.js"
+    "deploy": "webpack --verbose --colors --display-error-details --config webpack.config.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "mfpalladino",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
@@ -23,6 +24,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "open-browser-webpack-plugin": "0.0.2",
+    "optimize-css-assets-webpack-plugin": "^1.3.0",
     "style-loader": "^0.13.1",
     "transfer-webpack-plugin": "^0.1.4",
     "url-loader": "^0.5.7",

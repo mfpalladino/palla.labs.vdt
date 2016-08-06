@@ -1,6 +1,7 @@
 const Webpack = require('webpack'),
 	  ExtractTextPlugin = require('extract-text-webpack-plugin'),
 	  CleanWebpackPlugin = require('clean-webpack-plugin'),
+	  OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
 	  CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var realFs = require('fs')
@@ -22,7 +23,17 @@ module.exports = {
           new ExtractTextPlugin('/assets/[name].css'),
 		  new Webpack.optimize.UglifyJsPlugin({
 			sourceMap: false,
-			mangle: false
+			mangle: false,
+			minimize: true,
+			compress:{
+				warnings: false
+			}			
+		  }),		  
+		  new OptimizeCssAssetsPlugin({
+			  assetNameRegExp: /\.css$/g,
+			  cssProcessor: require('cssnano'),
+			  cssProcessorOptions: { discardComments: {removeAll: true } },
+			  canPrint: true
 		  }),		  
           new CopyWebpackPlugin(
           [

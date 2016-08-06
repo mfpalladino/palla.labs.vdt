@@ -1,6 +1,6 @@
 {
-  "name": "SCEI",
-  "description": "",
+  "name": "scei",
+  "description": "algumas brincadeiras com desenvolvimento web",
   "main": "index.js",
   "authors": [
     "mfpalladino"
