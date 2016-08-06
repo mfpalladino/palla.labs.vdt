@@ -41,4 +41,6 @@ after_build:
   - cd ..
 deploy:
 - provider: Environment
-  name: Palla.Labs.Vdt.WebApi (azure)
+  name: Palla.Labs.Vdt.WebApi (server)
+- provider: Environment
+  name: Palla.Labs.Vdt.WebApi (client)
