@@ -39,7 +39,7 @@ after_build:
   - cd .\Client
   - npm run install_build_deploy
   - cd ..
-  - 7z a client.zip %APPVEYOR_BUILD_FOLDER%\client\public
+  - 7z a client.zip %APPVEYOR_BUILD_FOLDER%\client\public\*.*
 artifacts:
   - path: client.zip
     name: client
