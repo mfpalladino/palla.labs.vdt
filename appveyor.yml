@@ -17,8 +17,8 @@ environment:
     secure: 1pEehKZ9pOnrg3Ourxfwa7bjGYyVUR5McWlgjQ5W36ZWnEBCjqkuTBXHHdrNM+is
 install:
   # Get the latest stable version of Node.js or io.js
-  - ps: >- 
-		Install-Product node $env:nodejs_version
+  - ps: Install-Product node $env:nodejs_version
+
 before_build:
   - .\Server\src\.nuget\nuget.exe restore ".\Server\src\Palla.Labs.Vdt.Server.sln"
 build:
