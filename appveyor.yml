@@ -44,8 +44,6 @@ artifacts:
   - path: client.zip
     name: client
 deploy:
-- provider: Environment
-  name: Palla.Labs.Vdt.WebApi (server)
 - provider: WebDeploy
   server: https://waws-prod-sn1-019.publish.azurewebsites.windows.net:443/msdeploy.axd?site=vendeta
   website: vendeta
@@ -55,3 +53,5 @@ deploy:
   remove_files: true
   app_offline: true
   artifact: client.zip
+- provider: Environment
+  name: Palla.Labs.Vdt.WebApi (server)
