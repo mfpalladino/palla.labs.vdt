@@ -46,7 +46,6 @@ artifacts:
 deploy:
 - provider: Environment
   name: Palla.Labs.Vdt.WebApi (server)
-deploy:
 - provider: WebDeploy
   server: https://vendeta.scm.azurewebsites.net:443/client/msdeploy.axd?site=vendeta
   website: vendeta
