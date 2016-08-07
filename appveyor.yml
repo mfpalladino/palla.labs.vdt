@@ -47,7 +47,7 @@ deploy:
 - provider: Environment
   name: Palla.Labs.Vdt.WebApi (server)
 - provider: WebDeploy
-  server: https://waws-prod-sn1-019.publish.azurewebsites.windows.net:443/client/msdeploy.axd?site=vendeta
+  server: https://waws-prod-sn1-019.publish.azurewebsites.windows.net:443/msdeploy.axd?site=vendeta
   website: vendeta
   username: $vendeta
   password:
