@@ -21,10 +21,11 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
 
             try
             {
-                cliente = new ConstrutorCliente().Construir();
+                var siteId = Guid.NewGuid();
+                cliente = new ConstrutorCliente().NoSite(siteId).Construir();
                 repositorio.Inserir(cliente);
 
-                var clienteRecuperado = repositorio.BuscarPorId(Guid.NewGuid(), cliente.Id);
+                var clienteRecuperado = repositorio.BuscarPorId(siteId, cliente.Id);
 
                 clienteRecuperado.Id.Should().Be(cliente.Id);
                 clienteRecuperado.Nome.Should().BeEquivalentTo(cliente.Nome);

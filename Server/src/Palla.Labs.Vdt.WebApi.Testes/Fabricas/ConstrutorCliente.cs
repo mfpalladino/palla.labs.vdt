@@ -5,9 +5,17 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
 {
     public class ConstrutorCliente
     {
+        private Guid _siteId;
+
+        public ConstrutorCliente NoSite(Guid siteId)
+        {
+            _siteId = siteId;
+            return this;
+        }
+
         public Cliente Construir()
         {
-            return new Cliente(Guid.NewGuid(),
+            return new Cliente(_siteId,
                 Guid.NewGuid(), 
                 new ConstrutorCnpj().Construir(),
                 "cliente",

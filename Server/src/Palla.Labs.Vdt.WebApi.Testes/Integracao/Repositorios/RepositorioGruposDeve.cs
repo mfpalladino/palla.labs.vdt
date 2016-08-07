@@ -21,12 +21,13 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
 
             try
             {
-                grupo = new ConstrutorGrupo().Construir();
+                var siteId = Guid.NewGuid();
+                grupo = new ConstrutorGrupo().NoSite(siteId).Construir();
                 repositorio.Inserir(grupo);
 
-                var grupoRecuperado = repositorio.BuscarPorId(Guid.NewGuid(), grupo.Id);
+                var grupoRecuperado = repositorio.BuscarPorId(siteId, grupo.Id);
 
-                var todosOsGrupos = repositorio.Buscar(Guid.NewGuid());
+                var todosOsGrupos = repositorio.Buscar(siteId);
 
                 grupoRecuperado.Id.Should().Be(grupo.Id);
                 grupoRecuperado.Nome.Should().BeEquivalentTo(grupo.Nome);

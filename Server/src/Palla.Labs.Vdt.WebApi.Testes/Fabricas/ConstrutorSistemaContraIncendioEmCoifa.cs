@@ -6,9 +6,17 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
 {
     public class ConstrutorSistemaContraIncendioEmCoifa
     {
+        private Guid _siteId;
+
+        public ConstrutorSistemaContraIncendioEmCoifa NoSite(Guid siteId)
+        {
+            _siteId = siteId;
+            return this;
+        }
+
         public SistemaContraIncendioEmCoifa Construir()
         {
-            return new SistemaContraIncendioEmCoifa(Guid.NewGuid(), Guid.NewGuid(), "central", 2, 2, 2, new List<Manutencao>());
+            return new SistemaContraIncendioEmCoifa(_siteId, Guid.NewGuid(), "central", 2, 2, 2, new List<Manutencao>());
         }
     }
 }

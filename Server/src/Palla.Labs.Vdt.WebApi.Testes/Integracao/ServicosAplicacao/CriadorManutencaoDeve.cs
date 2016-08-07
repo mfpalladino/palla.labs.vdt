@@ -26,13 +26,14 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.ServicosAplicacao
             Extintor extintor = null;
             try
             {
-                extintor = new ConstrutorExtintor().Construir();
+                var siteId = Guid.NewGuid();
+                extintor = new ConstrutorExtintor().NoSite(siteId).Construir();
                 repositorio.Inserir(extintor);
 
                 var nomeParteParaManutencao = extintor.ParametrosManutencao.Partes.First().Nome;
-                servico.Criar(Guid.NewGuid(), extintor.Id.ToString(), new ManutencaoDto { Data = DateTime.Now.ParaUnixTime(), Parte = nomeParteParaManutencao });
+                servico.Criar(siteId, extintor.Id.ToString(), new ManutencaoDto { Data = DateTime.Now.ParaUnixTime(), Parte = nomeParteParaManutencao });
 
-                var extintorAposAManutencao = repositorio.BuscarPorId(Guid.NewGuid(), extintor.Id);
+                var extintorAposAManutencao = repositorio.BuscarPorId(siteId, extintor.Id);
 
                 extintorAposAManutencao.Manutencoes.Should().HaveCount(1);
                 extintorAposAManutencao.Manutencoes.First().Parte.Should().Be(nomeParteParaManutencao);

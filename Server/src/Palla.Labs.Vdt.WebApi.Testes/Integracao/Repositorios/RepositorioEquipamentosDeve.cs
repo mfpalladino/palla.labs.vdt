@@ -24,22 +24,23 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Integracao.Repositorios
 
             try
             {
-                extintor = new ConstrutorExtintor().Construir();
+                var siteId = Guid.NewGuid();
+                extintor = new ConstrutorExtintor().NoSite(siteId).Construir();
                 repositorio.Inserir(extintor);
 
-                mangueira = new ConstrutorMangueira().Construir();
+                mangueira = new ConstrutorMangueira().NoSite(siteId).Construir();
                 repositorio.Inserir(mangueira);
 
-                sistemaContraIncendioEmCoifa = new ConstrutorSistemaContraIncendioEmCoifa().Construir();
+                sistemaContraIncendioEmCoifa = new ConstrutorSistemaContraIncendioEmCoifa().NoSite(siteId).Construir();
                 repositorio.Inserir(sistemaContraIncendioEmCoifa);
 
-                centralAlarme = new ConstrutorCentralAlarme().Construir();
+                centralAlarme = new ConstrutorCentralAlarme().NoSite(siteId).Construir();
                 repositorio.Inserir(centralAlarme);
 
-                repositorio.BuscarPorId(Guid.NewGuid(), extintor.Id).Tipo.Should().Be(TipoEquipamento.Extintor);
-                repositorio.BuscarPorId(Guid.NewGuid(), mangueira.Id).Tipo.Should().Be(TipoEquipamento.Mangueira);
-                repositorio.BuscarPorId(Guid.NewGuid(), sistemaContraIncendioEmCoifa.Id).Tipo.Should().Be(TipoEquipamento.SistemaContraIncendioEmCoifa);
-                repositorio.BuscarPorId(Guid.NewGuid(), centralAlarme.Id).Tipo.Should().Be(TipoEquipamento.CentralAlarme);
+                repositorio.BuscarPorId(siteId, extintor.Id).Tipo.Should().Be(TipoEquipamento.Extintor);
+                repositorio.BuscarPorId(siteId, mangueira.Id).Tipo.Should().Be(TipoEquipamento.Mangueira);
+                repositorio.BuscarPorId(siteId, sistemaContraIncendioEmCoifa.Id).Tipo.Should().Be(TipoEquipamento.SistemaContraIncendioEmCoifa);
+                repositorio.BuscarPorId(siteId, centralAlarme.Id).Tipo.Should().Be(TipoEquipamento.CentralAlarme);
             }
             finally
             {
