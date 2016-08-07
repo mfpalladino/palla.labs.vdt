@@ -50,7 +50,7 @@ deploy:
   username: $vendeta
   password:
     secure: O+4FhMOsiTKCWKQBCjrDhLfwWEf+d+FX0R7mk9gr4FYAH8aVbub0I1wulFuASBUS4C8BnBOfG8kWk4hbJIV6Tg==
-  remove_files: true
+  remove_files: false
   app_offline: true
   artifact: client.zip
 - provider: Environment
