@@ -6,7 +6,7 @@
         .service("constantesService", [
             function () {
                 this.baseUrl = function () {
-                    return "http://localhost:52300/";
+                    return "##endereco_api##";
                 }
             }
         ]);

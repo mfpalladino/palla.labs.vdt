@@ -29,7 +29,15 @@ module.exports = {
     module: {
         loaders: [
           { test: /\.less$/, exclude: '/node_modules/', loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader') },
-          { test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/, exclude: '/node_modules/', loader: 'url-loader?limit=30000&name=/assets/[name]-[hash].[ext]' }
+          { test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/, exclude: '/node_modules/', loader: 'url-loader?limit=30000&name=/assets/[name]-[hash].[ext]' },
+		  {
+			test: /bundle\.js$/,
+			loader: 'string-replace',
+			query: {
+				search: '##endereco_api##',
+				replace: 'http://localhost:52300/'
+			}		  
+		  }
         ]
     },
     devServer: {
