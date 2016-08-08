@@ -17,6 +17,7 @@ Em geral eu passo a maior parte do meu tempo desenvolvendo com tecnologias de ba
 - NUnit
 - Log4net
 - Moq
+- FluentAssertions
 - SimpleInjector
 
 **Frontend:**
@@ -26,10 +27,12 @@ Em geral eu passo a maior parte do meu tempo desenvolvendo com tecnologias de ba
 - Angular animate
 - Bootstrap
 - Material Design Iconic Font
-- npm
-- bower
-- webpack
+- npm (dependências de dev)
+- bower (dependências de front)
+- webpack (construtor de bundle) 
 
+**Serviços:**
 
-
-
+- Azure web apps
+- mLab (Banco de dados como serviço para MongoDB)
+- AppVeyor (integração contínua)
