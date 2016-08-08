@@ -3,19 +3,33 @@
 
 ## Palla.Labs.Vdt
 
-Em geral eu passo a maior parte do meu tempo desenvolvendo com tecnologias de backend e/ou lidando com questıes de design/arquitetura. Sendo assim, este repositÛrio È quase um exercÌcio para me forÁar a lidar com programaÁ„o web, assim como com todo ferramental envolvido deste tipo de desenvolvimento.
+Em geral eu passo a maior parte do meu tempo desenvolvendo com tecnologias de backend e/ou lidando com quest√µes de design/arquitetura. Sendo assim, este reposit√≥rio √© quase um exerc√≠cio para me for√ßar a lidar com programa√ß√£o web, assim como com todo ferramental envolvido deste tipo de desenvolvimento.
 
-## O que est· em uso aqui?
+![](https://github.com/mfpalladino/palla.labs.vdt/blob/master/Docs/screens/dashboard.png)
 
-Backend:
+## O que est√° em uso aqui?
 
-C#
-WebApi
-NUnit
-Log4net
-Moq
-SimpleInjector
-MongoDB
+**Backend:**
 
-Frontend:
+- C#
+- WebApi
+- MongoDB
+- NUnit
+- Log4net
+- Moq
+- SimpleInjector
+
+**Frontend:**
+
+- Angular 1.x
+- Angular bootstrap
+- Angular animate
+- Bootstrap
+- Material Design Iconic Font
+- npm
+- bower
+- webpack
+
+
+
 
