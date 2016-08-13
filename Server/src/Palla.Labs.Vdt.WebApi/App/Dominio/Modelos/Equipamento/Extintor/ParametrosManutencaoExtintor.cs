@@ -6,19 +6,19 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
     public class ParametrosManutencaoExtintor : ParametrosManutencao
     {
-        private readonly long _fabricadoEm;
+        private readonly long _dataBasePrimeiraManutencao;
 
-        public ParametrosManutencaoExtintor(long fabricadoEm)
+        public ParametrosManutencaoExtintor(long dataBasePrimeiraManutencao)
         {
-            _fabricadoEm = fabricadoEm;
+            _dataBasePrimeiraManutencao = dataBasePrimeiraManutencao;
         }
 
-        public override long FabricadoEm
+        public override long DataBasePrimeiraManutencao
         {
-            get { return _fabricadoEm; }
+            get { return _dataBasePrimeiraManutencao; }
         }
 
-        public override bool UtilizaFabricadoEmQuandoNaoHouverManutencoes
+        public override bool UtilizaDataBaseParaPrimeiraMenutencao
         {
             get { return true; }
         }

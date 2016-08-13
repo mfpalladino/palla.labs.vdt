@@ -23,14 +23,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Servicos
 
             if (manutencoes == null || manutencoes.Count == 0)
             {
-                if (parametrosManutencao.UtilizaFabricadoEmQuandoNaoHouverManutencoes)
-                {
-                    var manutencoesParaFabricacao = new List<Manutencao>
-                    {
-                        new Manutencao(parametrosManutencao.FabricadoEm, parametrosManutencao.Partes.First().Nome)
-                    };
-                    manutencoes = manutencoesParaFabricacao;
-                }
+                if (parametrosManutencao.UtilizaDataBaseParaPrimeiraMenutencao)
+                    manutencoes = new List<Manutencao>{ new Manutencao(parametrosManutencao.DataBasePrimeiraManutencao, parametrosManutencao.Partes.First().Nome) };
                 else
                     return SituacaoManutencao.Inconclusivo;
             }
@@ -58,6 +52,5 @@ namespace Palla.Labs.Vdt.App.Dominio.Servicos
 
             return SituacaoManutencao.Ok;
         }
-
     }
 }

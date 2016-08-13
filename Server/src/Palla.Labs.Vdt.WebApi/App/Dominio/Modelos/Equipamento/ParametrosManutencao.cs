@@ -7,12 +7,12 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
     public abstract class ParametrosManutencao
     {
-        public virtual bool UtilizaFabricadoEmQuandoNaoHouverManutencoes
+        public virtual bool UtilizaDataBaseParaPrimeiraMenutencao
         {
             get { return false; }
         }
 
-        public virtual long FabricadoEm
+        public virtual long DataBasePrimeiraManutencao
         {
             get { return DateTime.Now.ParaUnixTime(); }
         }
