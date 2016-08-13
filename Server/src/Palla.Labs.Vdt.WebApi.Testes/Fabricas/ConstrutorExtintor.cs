@@ -9,10 +9,17 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
     {
         private readonly List<Manutencao> _manutencoes = new List<Manutencao>();
         private Guid _siteId;
+        private DateTime _dataFabricacao = DateTime.Now;
 
         public ConstrutorExtintor NoSite(Guid siteId)
         {
             _siteId = siteId;
+            return this;
+        }
+
+        public ConstrutorExtintor ComDataDeFabricacao(DateTime dataFabricacao)
+        {
+            _dataFabricacao = dataFabricacao;
             return this;
         }
 
@@ -24,7 +31,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
 
         public Extintor Construir()
         {
-            return new Extintor(_siteId, Guid.NewGuid(), "111", "agente", "localização", DateTime.Now.ParaUnixTime(), _manutencoes); 
+            return new Extintor(_siteId, Guid.NewGuid(), "111", "agente", "localização", _dataFabricacao.ParaUnixTime(), _manutencoes); 
         }
     }
 }

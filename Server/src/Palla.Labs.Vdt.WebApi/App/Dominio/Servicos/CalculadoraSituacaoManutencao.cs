@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Palla.Labs.Vdt.App.Compartilhado;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
@@ -21,7 +22,18 @@ namespace Palla.Labs.Vdt.App.Dominio.Servicos
                 return SituacaoManutencao.Ok;
 
             if (manutencoes == null || manutencoes.Count == 0)
-                return SituacaoManutencao.Inconclusivo;
+            {
+                if (parametrosManutencao.UtilizaFabricadoEmQuandoNaoHouverManutencoes)
+                {
+                    var manutencoesParaFabricacao = new List<Manutencao>
+                    {
+                        new Manutencao(parametrosManutencao.FabricadoEm, parametrosManutencao.Partes.First().Nome)
+                    };
+                    manutencoes = manutencoesParaFabricacao;
+                }
+                else
+                    return SituacaoManutencao.Inconclusivo;
+            }
 
             foreach (var parte in parametrosManutencao.Partes)
             {

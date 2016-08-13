@@ -49,7 +49,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             get
             {
                 return _parametrosManutencao ??
-                       (_parametrosManutencao = FabricaParametrosManutencao.Criar(_tipo));
+                       (_parametrosManutencao = FabricaParametrosManutencao.Criar(this));
             }
         }
     }

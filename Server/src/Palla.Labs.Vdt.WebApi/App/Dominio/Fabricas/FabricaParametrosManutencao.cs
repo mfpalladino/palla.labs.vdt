@@ -5,15 +5,15 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
 {
     public static class FabricaParametrosManutencao
     {
-        public static ParametrosManutencao Criar(TipoEquipamento tipoEquipamento)
+        public static ParametrosManutencao Criar(Equipamento equipamento)
         {
-            if (tipoEquipamento == TipoEquipamento.Extintor)
-                return new ParametrosManutencaoExtintor();
-            if (tipoEquipamento == TipoEquipamento.Mangueira)
+            if (equipamento.Tipo == TipoEquipamento.Extintor)
+                return new ParametrosManutencaoExtintor(((Extintor)equipamento).FabricadoEm);
+            if (equipamento.Tipo == TipoEquipamento.Mangueira)
                 return new ParametrosManutencaoMangueira();
-            if (tipoEquipamento == TipoEquipamento.CentralAlarme)
+            if (equipamento.Tipo == TipoEquipamento.CentralAlarme)
                 return new ParametrosManutencaoCentralAlarme();
-            if (tipoEquipamento == TipoEquipamento.SistemaContraIncendioEmCoifa)
+            if (equipamento.Tipo == TipoEquipamento.SistemaContraIncendioEmCoifa)
                 return new ParametrosManutencaoSistemaContraIncendioEmCoifa();
 
             throw new Exception("Não existe parâmetros para o tipo especificado");

@@ -39,9 +39,16 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Unidade.ServicosDominio
             {
                 {
                     new Tuple<Equipamento, DateTime, string>(
-                        new ConstrutorExtintor().Construir(), 
+                        new ConstrutorMangueira().Construir(), 
                         DateTime.Now,
-                        "Equipamento sem nenhuma manutenção deve retornar inconclusivo"), SituacaoManutencao.Inconclusivo
+                        "Equipamento (exceto extintor) sem nenhuma manutenção deve retornar inconclusivo"), SituacaoManutencao.Inconclusivo
+                },
+
+                {
+                    new Tuple<Equipamento, DateTime, string>(
+                        new ConstrutorExtintor().ComDataDeFabricacao(new DateTime(2016, 2, 13)).Construir(), 
+                        new DateTime(2017,1,13),
+                        "Equipamento sem nenhuma manutenção deve retornar 'estado crítico' conforme a data de fabricação"), SituacaoManutencao.EstadoCritico
                 },
 
                 {
