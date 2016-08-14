@@ -3,7 +3,7 @@
 
     angular
         .module("sceiAdmin")
-        .controller("equipamentoManterController", function ($filter, $sce, $location, $stateParams, growlService, dataHoraService,
+        .controller("equipamentoManterController", function ($filter, $sce, $location, $stateParams, $scope, growlService, dataHoraService,
             clienteService, equipamentoService) {
             var vm = this;
 

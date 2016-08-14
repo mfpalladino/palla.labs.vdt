@@ -6,7 +6,8 @@
   "scripts": {
     "install_build_deploy": "npm install && bower install && npm run deploy",
     "start": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors --port 3000 --config webpack.config.dev.js",
-    "deploy": "webpack --verbose --colors --display-error-details --config webpack.config.js"
+    "deploy": "webpack --verbose --colors --display-error-details --config webpack.config.js",
+	"deploydev": "webpack --verbose --colors --display-error-details --config webpack.config.dev.js"
   },
   "keywords": [],
   "author": "mfpalladino",
