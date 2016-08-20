@@ -14,13 +14,26 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 
         public Extintor(Guid siteId, Guid clienteId, string numeroCilindro,
             string agente, string localizacao, long fabricadoEm, IList<Manutencao> manutencoes)
-            : this(siteId, Guid.NewGuid(), clienteId, numeroCilindro, agente, localizacao, fabricadoEm, manutencoes)
+            : this(siteId, Guid.NewGuid(), clienteId, numeroCilindro, agente, localizacao, fabricadoEm, manutencoes, true)
+        {
+        }
+
+        public Extintor(Guid siteId, Guid clienteId, string numeroCilindro,
+            string agente, string localizacao, long fabricadoEm, IList<Manutencao> manutencoes, bool estaAtivo)
+            : this(siteId, Guid.NewGuid(), clienteId, numeroCilindro, agente, localizacao, fabricadoEm, manutencoes, estaAtivo)
         {
         }
 
         public Extintor(Guid siteId, Guid id, Guid clienteId, string numeroCilindro,
             string agente, string localizacao, long fabricadoEm, IList<Manutencao> manutencoes)
-            : base(siteId, id, clienteId, manutencoes, TipoEquipamento.Extintor)
+            : this(siteId, id, clienteId, numeroCilindro,
+                agente, localizacao, fabricadoEm, manutencoes, true)
+        {
+        }
+
+        public Extintor(Guid siteId, Guid id, Guid clienteId, string numeroCilindro,
+            string agente, string localizacao, long fabricadoEm, IList<Manutencao> manutencoes, bool estaAtivo)
+            : base(siteId, id, clienteId, manutencoes, TipoEquipamento.Extintor, estaAtivo)
         {
             _numeroCilindro = numeroCilindro;
             _agente = agente;

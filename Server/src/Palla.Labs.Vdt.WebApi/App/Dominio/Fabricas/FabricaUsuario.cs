@@ -30,7 +30,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
             else
                 senha = _repositorioUsuarios.BuscarPorId(siteId, id).Senha;
 
-            return new Usuario(siteId, id, usuarioDto.Nome, senha, (TipoUsuario)usuarioDto.Tipo, usuarioDto.Grupos);
+            return new Usuario(siteId, id, usuarioDto.Nome, senha, (TipoUsuario)usuarioDto.Tipo, usuarioDto.Grupos, usuarioDto.EstaAtivo);
         }
     }
 }

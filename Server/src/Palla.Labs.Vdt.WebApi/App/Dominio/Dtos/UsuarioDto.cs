@@ -9,6 +9,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Dtos
         public int Tipo { get; set; }
         public string Senha { get; set; }
         public Guid[] Grupos { get; set; }
+        public bool EstaAtivo { get; set; }
 
         public string TipoNome
         {

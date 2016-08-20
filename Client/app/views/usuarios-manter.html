@@ -25,6 +25,17 @@
                                 <option value=""></option>
                             </select>
                         </div>
+
+                        <div class=" form-group fg-line">
+                            <label for="ts1">Está ativo?</label>
+                            <div class=" form-group fg-line">
+                                <div class="toggle-switch">
+                                    <input id="ts1" type="checkbox" hidden="hidden" data-ng-model="usuarioManterCtrl.usuario.estaAtivo">
+                                    <label for="ts1" class="ts-helper"></label>
+                                </div>
+                            </div>
+                        </div> 
+
                         <div class=" form-group fg-line" ng-show="usuarioManterCtrl.devePermitirSelecaoGrupos()">
                             <label for="grupo">Grupos</label>
                             <select chosen multiple data-placeholder="Selecione os grupos que podem ser visualizados pelo consumidor..." class="w-100 form-control input-sm" id="grupo"

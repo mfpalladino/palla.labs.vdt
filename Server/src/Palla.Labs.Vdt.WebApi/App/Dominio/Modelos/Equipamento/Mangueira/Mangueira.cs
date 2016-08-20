@@ -11,13 +11,25 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private readonly ComprimentoMangueira _comprimento;
 
         public Mangueira(Guid siteId, Guid clienteId, TipoMangueira tipoMangueira, DiametroMangueira diametro, ComprimentoMangueira comprimento, IList<Manutencao> manutencoes)
-            : this(siteId, Guid.NewGuid(), clienteId, tipoMangueira, diametro, comprimento, manutencoes)
+            : this(siteId, Guid.NewGuid(), clienteId, tipoMangueira, diametro, comprimento, manutencoes, true)
+        {
+        }
+
+        public Mangueira(Guid siteId, Guid clienteId, TipoMangueira tipoMangueira, DiametroMangueira diametro, ComprimentoMangueira comprimento, IList<Manutencao> manutencoes, bool estaAtivo)
+            : this(siteId, Guid.NewGuid(), clienteId, tipoMangueira, diametro, comprimento, manutencoes, estaAtivo)
         {
         }
 
         public Mangueira(Guid siteId, Guid id, Guid clienteId, TipoMangueira tipoMangueira,
             DiametroMangueira diametro, ComprimentoMangueira comprimento, IList<Manutencao> manutencoes)
-            : base(siteId, id, clienteId, manutencoes, TipoEquipamento.Mangueira)
+            : this(siteId, id, clienteId, tipoMangueira,
+            diametro, comprimento, manutencoes, true)
+        {
+        }
+
+        public Mangueira(Guid siteId, Guid id, Guid clienteId, TipoMangueira tipoMangueira,
+            DiametroMangueira diametro, ComprimentoMangueira comprimento, IList<Manutencao> manutencoes, bool estaAtivo)
+            : base(siteId, id, clienteId, manutencoes, TipoEquipamento.Mangueira, estaAtivo)
         {
             _tipoMangueira = tipoMangueira;
             _diametro = diametro;

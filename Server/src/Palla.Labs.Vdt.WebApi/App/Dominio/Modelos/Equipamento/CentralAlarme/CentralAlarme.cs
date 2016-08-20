@@ -30,7 +30,38 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
                 detectorEnderecavel,
                 quantidadeAcionadores,
                 quantidadeSirenes,
-                manutencoes)
+                manutencoes, true)
+        {
+        }
+
+        public CentralAlarme(Guid siteId, Guid clienteId, string fabricante,
+            string modelo,
+            TipoCentralAlarme tipoCentralAlarme,
+            int quantidadeDetectores,
+            bool detectorEnderecavel,
+            int quantidadeAcionadores,
+            int quantidadeSirenes,
+            IList<Manutencao> manutencoes, bool estaAtivo)
+            : this(siteId, Guid.NewGuid(), clienteId, fabricante,
+                modelo,
+                tipoCentralAlarme,
+                quantidadeDetectores,
+                detectorEnderecavel,
+                quantidadeAcionadores,
+                quantidadeSirenes,
+                manutencoes, estaAtivo)
+        {
+        }
+
+        public CentralAlarme(Guid siteId, Guid id, Guid clienteId, string fabricante,
+            string modelo,
+            TipoCentralAlarme tipoCentralAlarme,
+            int quantidadeDetectores,
+            bool detectorEnderecavel,
+            int quantidadeAcionadores,
+            int quantidadeSirenes,
+            IList<Manutencao> manutencoes)
+            : this(siteId, id, clienteId, fabricante, modelo, tipoCentralAlarme, quantidadeDetectores, detectorEnderecavel, quantidadeAcionadores, quantidadeSirenes, manutencoes, true)
         {
         }
 
@@ -41,8 +72,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             bool detectorEnderecavel,
             int quantidadeAcionadores,
             int quantidadeSirenes,
-            IList<Manutencao> manutencoes)
-            : base(siteId, id, clienteId, manutencoes, TipoEquipamento.CentralAlarme)
+            IList<Manutencao> manutencoes, bool estaAtivo)
+            : base(siteId, id, clienteId, manutencoes, TipoEquipamento.CentralAlarme, estaAtivo)
         {
             _fabricante = fabricante;
             _modelo = modelo;

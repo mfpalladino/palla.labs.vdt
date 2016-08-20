@@ -43,6 +43,8 @@
                             vm.equipamento.fabricadoEmComoData = dataHoraService.unixDateToDate(vm.equipamento.fabricadoEm);
                     });
                 }
+                else
+                    vm.equipamento.estaAtivo = true;
 
                 clienteService.listar().$promise
                     .then(function(resultado) {

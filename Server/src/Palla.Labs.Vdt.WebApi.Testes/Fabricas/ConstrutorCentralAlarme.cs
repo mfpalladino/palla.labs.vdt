@@ -16,7 +16,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
 
         public CentralAlarme Construir()
         {
-            return new CentralAlarme(_siteId, Guid.NewGuid(), "fabricante", "modelo", TipoCentralAlarme.Analogico, 2, true, 2, 2, new List<Manutencao>());
+            return new CentralAlarme(_siteId, Guid.NewGuid(), "fabricante", "modelo", TipoCentralAlarme.Analogico, 2, true, 2, 2, new List<Manutencao>(), true);
         }
     }
 }

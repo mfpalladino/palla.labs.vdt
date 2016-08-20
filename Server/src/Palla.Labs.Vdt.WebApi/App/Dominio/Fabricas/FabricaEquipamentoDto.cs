@@ -103,7 +103,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 QuantidadeCilindroCo2 = sistemaContraIncendioEmCoifa.QuantidadeCilindroCo2,
                 QuantidadeCilindroSaponificante = sistemaContraIncendioEmCoifa.QuantidadeCilindroSaponificante,
                 Tipo = (int)sistemaContraIncendioEmCoifa.Tipo,
-                Nome = sistemaContraIncendioEmCoifa.Nome
+                Nome = sistemaContraIncendioEmCoifa.Nome,
+                EstaAtivo = sistemaContraIncendioEmCoifa.EstaAtivo
             };
         }
 
@@ -121,7 +122,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 QuantidadeSirenes = centralAlarme.QuantidadeSirenes,
                 TipoCentralAlarme = (int)centralAlarme.TipoCentralAlarme,
                 Tipo = (int)centralAlarme.Tipo,
-                Nome = centralAlarme.Nome
+                Nome = centralAlarme.Nome,
+                EstaAtivo = centralAlarme.EstaAtivo
             };
         }
 
@@ -135,7 +137,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 Diametro = (int)mangueira.Diametro,
                 TipoMangueira = (int)mangueira.TipoMangueira,
                 Tipo = (int)mangueira.Tipo,
-                Nome = mangueira.Nome
+                Nome = mangueira.Nome,
+                EstaAtivo = mangueira.EstaAtivo
             };
         }
 
@@ -150,7 +153,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 ClienteId = extintor.ClienteId.ToString(),
                 NumeroCilindro = extintor.NumeroCilindro,
                 Tipo = (int)extintor.Tipo,
-                Nome = extintor.Nome
+                Nome = extintor.Nome,
+                EstaAtivo = extintor.EstaAtivo
             };
         }
     }

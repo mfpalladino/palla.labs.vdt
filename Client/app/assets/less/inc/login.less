@@ -4,9 +4,8 @@
 
 .lc-block {
     background: #fff;
-    //box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 2px;
-    width: 500px;
+    width: 300px;
     display: inline-block; 
     margin-top: 42px;
     vertical-align: middle;
@@ -24,16 +23,6 @@
     
     &:not(.toggled) {
         display: none;
-    }
-
-    @media (max-width: @screen-xs-max) {
-        padding: 15px 35px 25px 20px;
-        width: ~"calc(100% - 60px)";
-    }
-
-    .checkbox {
-        margin: 5px 0 0 42px;
-        text-align: left; 
     }
 
     &.toggled {
@@ -58,7 +47,6 @@ div.login-content {
         position: absolute;
         top: 0;
         left: 0;
-        //background: @m-cyan;
         content: "";
         z-index: 0;
     }

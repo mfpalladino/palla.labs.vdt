@@ -19,7 +19,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
                 Id = usuario.Id,
                 Nome = usuario.Nome,
                 Tipo = (int) usuario.TipoUsuario,
-                Grupos = usuario.Grupos
+                Grupos = usuario.Grupos,
+                EstaAtivo = usuario.EstaAtivo
             };
         }
     }

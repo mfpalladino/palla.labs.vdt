@@ -45,6 +45,15 @@
                                 <label for="fabricadoEm">Data de fabricação</label>
                                 <input type="date" class="form-control input-sm" id="fabricadoEm" data-ng-model="equipamentoManterCtrl.equipamento.fabricadoEmComoData">
                             </div>
+                            <div class=" form-group fg-line">
+                                <label for="ts1">Está ativo?</label>
+                                <div class=" form-group fg-line">
+                                    <div class="toggle-switch">
+                                        <input id="ts1" type="checkbox" hidden="hidden" data-ng-model="equipamentoManterCtrl.equipamento.estaAtivo">
+                                        <label for="ts1" class="ts-helper"></label>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
 
                         <div ng-show="equipamentoManterCtrl.tipoMangueiraEstaSelecionado()">
@@ -69,6 +78,15 @@
                                     <option value=""></option>
                                 </select>
                             </div>
+                            <div class=" form-group fg-line">
+                                <label for="ts1">Está ativo?</label>
+                                <div class=" form-group fg-line">
+                                    <div class="toggle-switch">
+                                        <input id="ts1" type="checkbox" hidden="hidden" data-ng-model="equipamentoManterCtrl.equipamento.estaAtivo">
+                                        <label for="ts1" class="ts-helper"></label>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
 
                         <div ng-show="equipamentoManterCtrl.tipoCentralAlarmeEstaSelecionado()">
@@ -99,16 +117,24 @@
                                 <label for="quantidadeSirenes">Quantidade de sirenes</label>
                                 <input type="number" min="0" step="1" class="form-control input-sm" id="quantidadeSirenes" data-ng-model="equipamentoManterCtrl.equipamento.quantidadeSirenes">
                             </div>
-
                             <div class=" form-group fg-line">
-                                <div class="checkbox m-b-15">
-                                    <label>
-                                        <input type="checkbox" data-ng-model="equipamentoManterCtrl.equipamento.detectorEnderecavel">
-                                        <i class="input-helper"></i>
-                                        Detector endereçável?
-                                    </label>
+                                <label for="ts2">Detector endereçável?</label>
+                                <div class=" form-group fg-line">
+                                    <div class="toggle-switch">
+                                        <input id="ts2" type="checkbox" hidden="hidden" data-ng-model="equipamentoManterCtrl.equipamento.detectorEnderecavel">
+                                        <label for="ts2" class="ts-helper"></label>
+                                    </div>
                                 </div>
-                            </div>
+                            </div> 
+                            <div class=" form-group fg-line">
+                                <label for="ts1">Está ativo?</label>
+                                <div class=" form-group fg-line">
+                                    <div class="toggle-switch">
+                                        <input id="ts1" type="checkbox" hidden="hidden" data-ng-model="equipamentoManterCtrl.equipamento.estaAtivo">
+                                        <label for="ts1" class="ts-helper"></label>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
 
                         <div ng-show="equipamentoManterCtrl.tipoSistemaContraIncendioEmCoifaEstaSelecionado()">
@@ -128,6 +154,15 @@
                                 <label for="quantidadeCilindroSaponificante">Quantidade de cilindros saponificantes</label>
                                 <input type="number" min="0" step="1" class="form-control input-sm" id="quantidadeCilindroSaponificante" data-ng-model="equipamentoManterCtrl.equipamento.quantidadeCilindroSaponificante">
                             </div>
+                            <div class=" form-group fg-line">
+                                <label for="ts1">Está ativo?</label>
+                                <div class=" form-group fg-line">
+                                    <div class="toggle-switch">
+                                        <input id="ts1" type="checkbox" hidden="hidden" data-ng-model="equipamentoManterCtrl.equipamento.estaAtivo">
+                                        <label for="ts1" class="ts-helper"></label>
+                                    </div>
+                                </div>
+                            </div> 
                         </div>
 
                         <button type="button" class="btn btn-primary btn-sm m-t-10" ng-click="equipamentoManterCtrl.salvar()">Confirmar</button>

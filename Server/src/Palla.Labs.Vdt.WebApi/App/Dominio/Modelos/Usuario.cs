@@ -10,6 +10,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private readonly string _senha;
         private readonly TipoUsuario _tipoUsuario;
         private readonly Guid[] _grupos;
+        private readonly bool _estaAtivo;
         private readonly Guid _siteId;
 
         protected Usuario() //usado apenas para mapeamento e testes
@@ -22,7 +23,18 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             string senha,
             TipoUsuario tipoUsuario,
             Guid[] grupos)
-            : this(siteId, Guid.NewGuid(), nome, senha, tipoUsuario, grupos)
+            : this(siteId, Guid.NewGuid(), nome, senha, tipoUsuario, grupos, true)
+        {
+        }
+
+        public Usuario(
+            Guid siteId,
+            string nome,
+            string senha,
+            TipoUsuario tipoUsuario,
+            Guid[] grupos,
+            bool estaAtivo)
+            : this(siteId, Guid.NewGuid(), nome, senha, tipoUsuario, grupos, estaAtivo)
         {
         }
 
@@ -31,7 +43,28 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             Guid id,
             string nome,
             string senha)
-            : this(siteId, id, nome, senha, TipoUsuario.Dono, new Guid[]{})
+            : this(siteId, id, nome, senha, TipoUsuario.Dono, new Guid[] { }, true)
+        {
+        }
+
+        public Usuario(
+            Guid siteId,
+            Guid id,
+            string nome,
+            string senha,
+            bool estaAtivo)
+            : this(siteId, id, nome, senha, TipoUsuario.Dono, new Guid[]{}, estaAtivo)
+        {
+        }
+
+        public Usuario(
+            Guid siteId,
+            Guid id,
+            string nome,
+            string senha,
+            TipoUsuario tipoUsuario,
+            Guid[] grupos)
+            : this(siteId, id, nome, senha, tipoUsuario, grupos, true)
         {
         }
 
@@ -41,7 +74,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             string nome, 
             string senha,
             TipoUsuario tipoUsuario,
-            Guid[] grupos)
+            Guid[] grupos,
+            bool estaAtivo)
             : base(id)
         {
             _siteId = siteId;
@@ -49,6 +83,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             _senha = senha;
             _tipoUsuario = tipoUsuario;
             _grupos = grupos;
+            _estaAtivo = estaAtivo;
 
             Validar();
         }
@@ -76,6 +111,11 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public Guid[] Grupos
         {
             get { return _grupos; }
+        }
+
+        public bool EstaAtivo
+        {
+            get { return _estaAtivo; }
         }
 
         private void Validar()

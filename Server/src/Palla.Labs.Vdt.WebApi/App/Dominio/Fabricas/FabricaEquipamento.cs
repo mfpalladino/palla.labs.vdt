@@ -44,22 +44,22 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
 
         private static Equipamento CriarExtintor(Guid siteId, Guid id, ExtintorDto extintorDto, IList<Manutencao> manutencoes)
         {
-            return new Extintor(siteId, id, extintorDto.ClienteId.ParaGuid(), extintorDto.NumeroCilindro, extintorDto.Agente, extintorDto.Localizacao, extintorDto.FabricadoEm, manutencoes);
+            return new Extintor(siteId, id, extintorDto.ClienteId.ParaGuid(), extintorDto.NumeroCilindro, extintorDto.Agente, extintorDto.Localizacao, extintorDto.FabricadoEm, manutencoes, extintorDto.EstaAtivo);
         }
 
         private static Equipamento CriarMangueira(Guid siteId, Guid id, MangueiraDto mangueiraDto, IList<Manutencao> manutencoes)
         {
-            return new Mangueira(siteId, id, mangueiraDto.ClienteId.ParaGuid(), (TipoMangueira)mangueiraDto.TipoMangueira, (DiametroMangueira)mangueiraDto.Diametro, (ComprimentoMangueira)mangueiraDto.Comprimento, manutencoes);
+            return new Mangueira(siteId, id, mangueiraDto.ClienteId.ParaGuid(), (TipoMangueira)mangueiraDto.TipoMangueira, (DiametroMangueira)mangueiraDto.Diametro, (ComprimentoMangueira)mangueiraDto.Comprimento, manutencoes, mangueiraDto.EstaAtivo);
         }
 
         private static Equipamento CriarCentralAlarme(Guid siteId, Guid id, CentralAlarmeDto centralAlarmeDto, IList<Manutencao> manutencoes)
         {
-            return new CentralAlarme(siteId, id, centralAlarmeDto.ClienteId.ParaGuid(), centralAlarmeDto.Fabricante, centralAlarmeDto.Modelo, (TipoCentralAlarme)centralAlarmeDto.TipoCentralAlarme, centralAlarmeDto.QuantidadeDetectores, centralAlarmeDto.DetectorEnderecavel, centralAlarmeDto.QuantidadeAcionadores, centralAlarmeDto.QuantidadeSirenes, manutencoes);
+            return new CentralAlarme(siteId, id, centralAlarmeDto.ClienteId.ParaGuid(), centralAlarmeDto.Fabricante, centralAlarmeDto.Modelo, (TipoCentralAlarme)centralAlarmeDto.TipoCentralAlarme, centralAlarmeDto.QuantidadeDetectores, centralAlarmeDto.DetectorEnderecavel, centralAlarmeDto.QuantidadeAcionadores, centralAlarmeDto.QuantidadeSirenes, manutencoes, centralAlarmeDto.EstaAtivo);
         }
 
         private static Equipamento CriarSistemaContraIncendioEmCoifa(Guid siteId, Guid id, SistemaContraIncendioEmCoifaDto sistemaContraIncendioEmCoifaDto, IList<Manutencao> manutencoes)
         {
-            return new SistemaContraIncendioEmCoifa(siteId, id, sistemaContraIncendioEmCoifaDto.ClienteId.ParaGuid(), sistemaContraIncendioEmCoifaDto.Central, sistemaContraIncendioEmCoifaDto.QuantidadeCilindroCo2, sistemaContraIncendioEmCoifaDto.PesoCilindroCo2, sistemaContraIncendioEmCoifaDto.QuantidadeCilindroSaponificante, manutencoes);
+            return new SistemaContraIncendioEmCoifa(siteId, id, sistemaContraIncendioEmCoifaDto.ClienteId.ParaGuid(), sistemaContraIncendioEmCoifaDto.Central, sistemaContraIncendioEmCoifaDto.QuantidadeCilindroCo2, sistemaContraIncendioEmCoifaDto.PesoCilindroCo2, sistemaContraIncendioEmCoifaDto.QuantidadeCilindroSaponificante, manutencoes, sistemaContraIncendioEmCoifaDto.EstaAtivo);
         }
     }
 }

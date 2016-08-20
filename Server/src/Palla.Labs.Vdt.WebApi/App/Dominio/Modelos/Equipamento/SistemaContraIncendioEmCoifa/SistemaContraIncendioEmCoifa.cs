@@ -14,13 +14,28 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 
         public SistemaContraIncendioEmCoifa(Guid siteId, Guid clienteId, string central,
             int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante, IList<Manutencao> manutencoes)
-            : this(siteId, Guid.NewGuid(), clienteId, central, quantidadeCilindroCo2, pesoCilindroCo2, quantidadeCilindroSaponificante, manutencoes)
+            : this(siteId, Guid.NewGuid(), clienteId, central, quantidadeCilindroCo2, pesoCilindroCo2, quantidadeCilindroSaponificante, manutencoes, true)
+        {
+        }
+
+        public SistemaContraIncendioEmCoifa(Guid siteId, Guid clienteId, string central,
+            int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante, IList<Manutencao> manutencoes, bool estaAtivo)
+            : this(siteId, Guid.NewGuid(), clienteId, central, quantidadeCilindroCo2, pesoCilindroCo2, quantidadeCilindroSaponificante, manutencoes, estaAtivo)
         {
         }
 
         public SistemaContraIncendioEmCoifa(Guid siteId, Guid id, Guid clienteId, string central,
-            int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante, IList<Manutencao> manutencoes)
-            : base(siteId, id, clienteId, manutencoes, TipoEquipamento.SistemaContraIncendioEmCoifa)
+            int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante,
+            IList<Manutencao> manutencoes)
+            : this(siteId, id, clienteId, central,
+            quantidadeCilindroCo2, pesoCilindroCo2, quantidadeCilindroSaponificante,
+            manutencoes, true)
+        {
+        }
+
+        public SistemaContraIncendioEmCoifa(Guid siteId, Guid id, Guid clienteId, string central,
+            int quantidadeCilindroCo2, int pesoCilindroCo2, int quantidadeCilindroSaponificante, IList<Manutencao> manutencoes, bool estaAtivo)
+            : base(siteId, id, clienteId, manutencoes, TipoEquipamento.SistemaContraIncendioEmCoifa, estaAtivo)
         {
             _central = central;
             _quantidadeCilindroCo2 = quantidadeCilindroCo2;

@@ -11,15 +11,17 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private readonly Guid _siteId;
         private readonly Guid _clienteId;
         private readonly TipoEquipamento _tipo;
+        private readonly bool _estaAtivo;
         private ParametrosManutencao _parametrosManutencao;
         private readonly IList<Manutencao> _manutencoes;
 
-        protected Equipamento(Guid siteId, Guid id, Guid clienteId, IList<Manutencao> manutencoes, TipoEquipamento tipo) : base(id)
+        protected Equipamento(Guid siteId, Guid id, Guid clienteId, IList<Manutencao> manutencoes, TipoEquipamento tipo, bool estaAtivo) : base(id)
         {
             _siteId = siteId;
             _clienteId = clienteId;
             _manutencoes = manutencoes;
             _tipo = tipo;
+            _estaAtivo = estaAtivo;
         }
 
         public Guid SiteId
@@ -35,6 +37,11 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public TipoEquipamento Tipo
         {
             get { return _tipo; }
+        }
+
+        public bool EstaAtivo
+        {
+            get { return _estaAtivo; }
         }
 
         public abstract string Nome { get; }

@@ -28,6 +28,8 @@
                             vm.usuario = resultado;
                         });
                 }
+                else
+                    vm.usuario.estaAtivo = true;
 
                 grupoService.listar().$promise
                     .then(function(resultado) {

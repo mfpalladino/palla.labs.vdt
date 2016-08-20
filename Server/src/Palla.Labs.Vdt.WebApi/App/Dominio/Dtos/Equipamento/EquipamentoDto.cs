@@ -16,5 +16,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Dtos
         public int SituacaoManutencao { get; set; }
 
         public string[] PartesParaManutencao { get; set; }
+
+        public bool EstaAtivo { get; set; }
     }
 }

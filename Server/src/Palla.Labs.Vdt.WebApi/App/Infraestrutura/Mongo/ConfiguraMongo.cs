@@ -23,12 +23,15 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             BsonClassMap.RegisterClassMap<Usuario>(cm =>
             {
                 cm.MapCreator(x => new Usuario(x.SiteId, x.Id, x.Nome, x.Senha, x.TipoUsuario, x.Grupos));
+                cm.MapCreator(x => new Usuario(x.SiteId, x.Id, x.Nome, x.Senha, x.TipoUsuario, x.Grupos, x.EstaAtivo));
                 cm.MapCreator(x => new Usuario(x.SiteId, x.Id, x.Nome, x.Senha));
+                cm.MapCreator(x => new Usuario(x.SiteId, x.Id, x.Nome, x.Senha, x.EstaAtivo));
                 cm.MapField(c => c.SiteId);
                 cm.MapField(c => c.Nome);
                 cm.MapField(c => c.Senha);
                 cm.MapField(c => c.TipoUsuario);
                 cm.MapField(c => c.Grupos);
+                cm.MapField(c => c.EstaAtivo);
             });
 
             ConfigurarEquipamentos();
@@ -44,11 +47,13 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
                 cm.MapField(c => c.ClienteId);
                 cm.MapField(c => c.Tipo);
                 cm.MapField(c => c.Manutencoes);
+                cm.MapField(c => c.EstaAtivo);
                 cm.UnmapMember(c => c.ParametrosManutencao);
             });
 
             BsonClassMap.RegisterClassMap<Extintor>(cm =>
             {
+                cm.MapCreator(x => new Extintor(x.SiteId, x.Id, x.ClienteId, x.NumeroCilindro, x.Agente, x.Localizacao, x.FabricadoEm, x.Manutencoes.ToList(), x.EstaAtivo));
                 cm.MapCreator(x => new Extintor(x.SiteId, x.Id, x.ClienteId, x.NumeroCilindro, x.Agente, x.Localizacao, x.FabricadoEm, x.Manutencoes.ToList()));
                 cm.MapField(c => c.Agente);
                 cm.MapField(c => c.FabricadoEm);
@@ -58,6 +63,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
             BsonClassMap.RegisterClassMap<Mangueira>(cm =>
             {
+                cm.MapCreator(x => new Mangueira(x.SiteId, x.Id, x.ClienteId, x.TipoMangueira, x.Diametro, x.Comprimento, x.Manutencoes.ToList(), x.EstaAtivo));
                 cm.MapCreator(x => new Mangueira(x.SiteId, x.Id, x.ClienteId, x.TipoMangueira, x.Diametro, x.Comprimento, x.Manutencoes.ToList()));
                 cm.MapField(c => c.Comprimento);
                 cm.MapField(c => c.Diametro);
@@ -66,6 +72,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
             BsonClassMap.RegisterClassMap<SistemaContraIncendioEmCoifa>(cm =>
             {
+                cm.MapCreator(x => new SistemaContraIncendioEmCoifa(x.SiteId, x.Id, x.ClienteId, x.Central, x.QuantidadeCilindroCo2, x.PesoCilindroCo2, x.QuantidadeCilindroSaponificante, x.Manutencoes.ToList(), x.EstaAtivo));
                 cm.MapCreator(x => new SistemaContraIncendioEmCoifa(x.SiteId, x.Id, x.ClienteId, x.Central, x.QuantidadeCilindroCo2, x.PesoCilindroCo2, x.QuantidadeCilindroSaponificante, x.Manutencoes.ToList()));
                 cm.MapField(c => c.Central);
                 cm.MapField(c => c.QuantidadeCilindroCo2);
@@ -75,6 +82,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
 
             BsonClassMap.RegisterClassMap<CentralAlarme>(cm =>
             {
+                cm.MapCreator(x => new CentralAlarme(x.SiteId, x.Id, x.ClienteId, x.Fabricante, x.Modelo, x.TipoCentralAlarme, x.QuantidadeDetectores, x.DetectorEnderecavel, x.QuantidadeAcionadores, x.QuantidadeSirenes, x.Manutencoes.ToList(), x.EstaAtivo));
                 cm.MapCreator(x => new CentralAlarme(x.SiteId, x.Id, x.ClienteId, x.Fabricante, x.Modelo, x.TipoCentralAlarme, x.QuantidadeDetectores, x.DetectorEnderecavel, x.QuantidadeAcionadores, x.QuantidadeSirenes, x.Manutencoes.ToList()));
                 cm.MapField(c => c.DetectorEnderecavel);
                 cm.MapField(c => c.Fabricante);
