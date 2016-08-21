@@ -38,9 +38,15 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             if (site == null)
                 throw new FormatoInvalido("As credenciais informadas não são válidas.");
 
+            if (!site.EstaAtivo)
+                throw new FormatoInvalido("Esta domínio está desativado.");
+
             var usuario = _repositorioUsuarios.BuscarPorNome(site.Id, login.Usuario);
             if (usuario == null)
                 throw new FormatoInvalido("As credenciais informadas não são válidas.");
+
+            if (!usuario.EstaAtivo)
+                throw new FormatoInvalido("Este usuário está desativado.");
 
             var senha = _geradorDeSenha.Gerar(login.Senha);
             if (senha != usuario.Senha)

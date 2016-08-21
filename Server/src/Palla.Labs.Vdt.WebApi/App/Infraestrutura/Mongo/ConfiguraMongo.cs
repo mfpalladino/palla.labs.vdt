@@ -17,7 +17,9 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             BsonClassMap.RegisterClassMap<Site>(cm =>
             {
                 cm.MapCreator(x => new Site(x.Id, x.Nome));
+                cm.MapCreator(x => new Site(x.Id, x.Nome, x.EstaAtivo));
                 cm.MapField(c => c.Nome);
+                cm.MapField(c => c.EstaAtivo);
             });
 
             BsonClassMap.RegisterClassMap<Usuario>(cm =>

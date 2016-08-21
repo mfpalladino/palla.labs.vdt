@@ -7,15 +7,28 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
     public class Site : EntidadeBase<Guid>
     {
         private readonly string _nome;
+        private readonly bool _estaAtivo;
 
-        public Site(string nome):this(Guid.NewGuid(), nome)
+        public Site(string nome)
+            : this(Guid.NewGuid(), nome, true)
+        {
+        }
+
+        public Site(string nome, bool estaAtivo)
+            : this(Guid.NewGuid(), nome, estaAtivo)
         {
         }
 
         public Site(Guid id, string nome)
+            : this(id, nome, true)
+        {
+        }
+
+        public Site(Guid id, string nome, bool estaAtivo)
             : base(id)
         {
             _nome = nome;
+            _estaAtivo = estaAtivo;
 
             Validar();
         }
@@ -23,6 +36,11 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public string Nome
         {
             get { return _nome; }
+        }
+
+        public bool EstaAtivo
+        {
+            get { return _estaAtivo; }
         }
 
         private void Validar()

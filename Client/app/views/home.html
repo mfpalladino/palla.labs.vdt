@@ -77,10 +77,10 @@
                         <span>{{row.nome}}</span>
                     </td>
                     <td>
-                        <button ng-show="usuarioPodeAcessarEquipamentos()" title="Editar este equipamento" class="btn btn-default btn-sm" data-ui-sref="editarEquipamentos({ equipamentoId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-toys"></span></button>
+                        <button ng-show="usuarioPodeAcessarEquipamentos()" title="Editar este equipamento" class="btn btn-default btn-sm" data-ui-sref="editarEquipamentos({ equipamentoId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-fire"></span></button>
                     </td>
                     <td>
-                        <button ng-show="usuarioPodeAcessarManutencoes()" title="Informar manutenção para este equipamento" class="btn btn-default btn-sm" data-ui-sref="criarManutencao({ equipamentoId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-wrench"></span></button>
+                        <button ng-show="usuarioPodeAcessarManutencoes()" title="Informar manutenção para este equipamento" class="btn btn-default btn-sm" data-ui-sref="criarManutencao({ equipamentoId: &quot;{{row.id}}&quot; })"><span class="zmdi zmdi-edit"></span></button>
                     </td>
                 </tr>
             </table>

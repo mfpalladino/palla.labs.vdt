@@ -40,7 +40,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Seguranca
                     if (!tokenExpirou)
                     {
                         usuarioToken = _repositorioUsuarios.BuscarPorNome(siteIdToken, nomeUsuarioToken);
-                        if (usuarioToken != null)
+                        if (usuarioToken != null && usuarioToken.EstaAtivo)
                         {
                             var tokenCalculado = _geradorDeToken.Gerar(siteIdToken, nomeUsuarioToken, usuarioToken.Senha, ip, userAgent, ticks);
                             resultado = token == tokenCalculado;
