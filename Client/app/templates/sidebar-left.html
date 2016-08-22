@@ -11,6 +11,9 @@
             <li>
                 <a data-ng-click="sceiAdmin.deslogar()"><i class="zmdi zmdi-arrow-left"></i> Sair</a>
             </li>
+            <li data-ui-sref-active="active" ng-show="sceiAdmin.usuarioPodeAcessarFaturamento()">
+                <a data-ui-sref="faturamento" data-ng-click="sceiCtrl.sidebarStat($event)"><i class="zmdi zmdi-money"></i> Faturamento</a>
+            </li>
         </ul>
     </div>
 

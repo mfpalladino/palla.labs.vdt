@@ -11,6 +11,7 @@
             vm.usuarioPodeAcessarGruposClientes = usuarioPodeAcessarGruposClientes;
             vm.usuarioPodeAcessarEquipamentos = usuarioPodeAcessarEquipamentos;
             vm.usuarioPodeAcessarManutencoes = usuarioPodeAcessarManutencoes;
+            vm.usuarioPodeAcessarFaturamento = usuarioPodeAcessarFaturamento;
             vm.deslogar = deslogar;
 
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -43,7 +44,7 @@
             function usuarioLogado() {
                 var usuario = loginService.recuperarDadosLogin().dominio + "\\" +
                     loginService.recuperarDadosLogin().usuario;
-                return (usuario != null && usuario.length > 0) ? usuario : "(não há)";
+                return (usuario != null && usuario.length > 0) ? usuario : "(nï¿½o hï¿½)";
             }
 
             function usuarioPodeAcessarUsuarios() {
@@ -69,6 +70,11 @@
             function usuarioPodeAcessarManutencoes() {
                 var permissoes = loginService.recuperarDadosLogin().permissoes;
                 return permissoes != null ? permissoes.podeAcessarManutencoes : false;
+            }
+
+            function usuarioPodeAcessarFaturamento() {
+                var permissoes = loginService.recuperarDadosLogin().permissoes;
+                return permissoes != null ? permissoes.podeAcessarFaturamento : false;
             }
 
             function deslogar() {
