@@ -2,6 +2,7 @@ using System.Web.Http;
 using MongoDB.Driver;
 using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Dominio.Servicos;
+using Palla.Labs.Vdt.App.Infraestrutura.Faturas;
 using Palla.Labs.Vdt.App.Infraestrutura.Json;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.Infraestrutura.Seguranca;
@@ -38,6 +39,7 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<FabricaManutencaoDto, FabricaManutencaoDto>();
             container.RegisterSingle<FabricaSumarioSituacaoDto, FabricaSumarioSituacaoDto>();
             container.RegisterSingle<FabricaPermissoes, FabricaPermissoes>();
+            container.RegisterSingle<FabricaFatura, FabricaFatura>();
             container.RegisterSingle<CalculadoraSituacaoManutencao, CalculadoraSituacaoManutencao>();
             
             container.RegisterSingle<RepositorioEquipamentos, RepositorioEquipamentos>();
@@ -45,6 +47,7 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<RepositorioUsuarios, RepositorioUsuarios>();
             container.RegisterSingle<RepositorioSites, RepositorioSites>();
             container.RegisterSingle<RepositorioClientes, RepositorioClientes>();
+            container.RegisterSingle<RepositorioFaturas, RepositorioFaturas>();
 
             container.RegisterSingle<CriadorGrupo, CriadorGrupo>();
             container.RegisterSingle<ModificadorGrupo, ModificadorGrupo>();
@@ -66,6 +69,7 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<GeradorDeToken, GeradorDeToken>();
             container.RegisterSingle<ValidadorDeToken, ValidadorDeToken>();
             container.RegisterSingle<Login, Login>();
+            container.RegisterSingle<ConfigFaturas, ConfigFaturas>();
 
             container.RegisterWebApiControllers(config);
 

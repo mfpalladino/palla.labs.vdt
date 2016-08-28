@@ -180,6 +180,8 @@
     <Compile Include="App\Compartilhado\ExtensoesDeString.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\ManutencaoDto.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\SumarioSituacaoDto.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaFatura.cs" />
+    <Compile Include="App\Dominio\Modelos\Fatura.cs" />
     <Compile Include="App\Dominio\Modelos\Permissoes.cs" />
     <Compile Include="App\Dominio\Modelos\ResultadoLogin.cs" />
     <Compile Include="App\Dominio\Dtos\UsuarioDto.cs" />
@@ -229,7 +231,9 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\ParteEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
+    <Compile Include="App\Infraestrutura\Faturas\ConfigFaturas.cs" />
     <Compile Include="App\Infraestrutura\Json\ConversorDeJson.cs" />
+    <Compile Include="App\Infraestrutura\Mongo\RepositorioFaturas.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioSites.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioUsuarios.cs" />
     <Compile Include="App\Infraestrutura\Seguranca\ConfigSeguranca.cs" />
