@@ -40,6 +40,7 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<FabricaSumarioSituacaoDto, FabricaSumarioSituacaoDto>();
             container.RegisterSingle<FabricaPermissoes, FabricaPermissoes>();
             container.RegisterSingle<FabricaFatura, FabricaFatura>();
+            container.RegisterSingle<FabricaFaturaDto, FabricaFaturaDto>();
             container.RegisterSingle<CalculadoraSituacaoManutencao, CalculadoraSituacaoManutencao>();
             
             container.RegisterSingle<RepositorioEquipamentos, RepositorioEquipamentos>();
@@ -61,6 +62,8 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<CriadorEquipamento, CriadorEquipamento>();
             container.RegisterSingle<ModificadorEquipamento, ModificadorEquipamento>();
             container.RegisterSingle<LocalizadorEquipamento, LocalizadorEquipamento>();
+            container.RegisterSingle<CriadorFatura, CriadorFatura>();
+            container.RegisterSingle<LocalizadorFatura, LocalizadorFatura>();
 
             container.RegisterSingle<FabricaValidadorEquipamento, FabricaValidadorEquipamento>();
 

@@ -32,5 +32,17 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
                     .Sort(new SortDefinitionBuilder<Fatura>().Descending(x => x.Ano).Descending(x => x.Mes))
                     .ToList();
         }
+
+        public Fatura BuscarPorMesAno(Guid siteId, int mes, int ano)
+        {
+            var colecao = MongoDatabase.GetCollection<Fatura>(NomeColecao);
+            return colecao.Find(x => x.SiteId == siteId && x.Mes == mes && x.Ano == ano).FirstOrDefault();
+        }
+
+        public Fatura BuscarPorId(Guid siteId, Guid id)
+        {
+            var colecao = MongoDatabase.GetCollection<Fatura>(NomeColecao);
+            return colecao.Find(x => x.SiteId == siteId && x.Id == id).FirstOrDefault();
+        }
     }
 }
