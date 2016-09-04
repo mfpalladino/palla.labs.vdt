@@ -32,7 +32,14 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
 
         public ResultadoLogin Logar(LoginDto login, string ip, string userAgent)
         {
-            Validar(login);
+            if (string.IsNullOrWhiteSpace(login.Dominio))
+                throw new FormatoInvalido("O domínio deve ser informado.");
+
+            if (string.IsNullOrWhiteSpace(login.Usuario))
+                throw new FormatoInvalido("O nome do usuário deve ser informado.");
+
+            if (string.IsNullOrWhiteSpace(login.Senha))
+                throw new FormatoInvalido("A senha deve ser informada.");
 
             var site = _repositorioSites.BuscarPorNome(login.Dominio);
             if (site == null)
@@ -55,18 +62,6 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             return new ResultadoLogin(
                 _geradorDeToken.Gerar(site.Id, login.Usuario, usuario.Senha, ip, userAgent, DateTime.UtcNow.Ticks),
                 _fabricaPermissoesDto.Criar(usuario));
-        }
-
-        private static void Validar(LoginDto login)
-        {
-            if (string.IsNullOrWhiteSpace(login.Dominio))
-                throw new FormatoInvalido("O domínio deve ser informado.");
-
-            if (string.IsNullOrWhiteSpace(login.Usuario))
-                throw new FormatoInvalido("O nome do usuário deve ser informado.");
-
-            if (string.IsNullOrWhiteSpace(login.Senha))
-                throw new FormatoInvalido("A senha deve ser informada.");
         }
     }
 }

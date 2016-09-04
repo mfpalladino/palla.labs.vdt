@@ -25,7 +25,7 @@ namespace Palla.Labs.Vdt.WebApi.Testes.Fabricas
 
         public ConstrutorExtintor ComManutencao(DateTime data)
         {
-            _manutencoes.Add(new Manutencao(data.ParaUnixTime(), ParteEquipamento.EXTINTOR));
+            _manutencoes.Add(new Manutencao(data.ParaUnixTime(), ParteEquipamento.Extintor));
             return this;
         }
 

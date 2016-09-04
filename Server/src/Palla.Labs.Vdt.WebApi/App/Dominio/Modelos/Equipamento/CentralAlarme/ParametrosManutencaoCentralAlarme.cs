@@ -16,7 +16,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             {
                 return new List<ParteEquipamento>
                 {
-                    new ParteEquipamento(ParteEquipamento.CENTRAL_ALARME)
+                    new ParteEquipamento(ParteEquipamento.CentralAlarme)
                 };
             }
         }

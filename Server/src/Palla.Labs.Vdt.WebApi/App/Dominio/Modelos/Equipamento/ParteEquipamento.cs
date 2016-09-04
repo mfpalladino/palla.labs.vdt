@@ -3,11 +3,11 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
     public struct ParteEquipamento
     {
-        public const string CO2 = "CO2";
-        public const string MANGUEIRA = "Mangueira";
-        public const string EXTINTOR = "Extintor";
-        public const string SAPONIFICANTE = "Saponificante";
-        public const string CENTRAL_ALARME = "CentralAlarme";
+        public const string Co2 = "CO2";
+        public const string Mangueira = "Mangueira";
+        public const string Extintor = "Extintor";
+        public const string Saponificante = "Saponificante";
+        public const string CentralAlarme = "CentralAlarme";
 
 
         private readonly string _nome;

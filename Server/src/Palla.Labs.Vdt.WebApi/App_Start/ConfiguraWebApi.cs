@@ -4,7 +4,7 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.ModelBinding.Binders;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
-using Palla.Labs.Vdt.App.Infraestrutura.Mvc;
+using Palla.Labs.Vdt.App.Infraestrutura.Web;
 using Palla.Labs.Vdt.Excecoes;
 
 namespace Palla.Labs.Vdt

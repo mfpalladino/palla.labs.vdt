@@ -24,17 +24,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
 
         public GrupoDto Criar(Guid siteId, GrupoDto grupoDto)
         {
-            Validar(grupoDto);
+            if (grupoDto.Id != Guid.Empty)
+                throw new FormatoInvalido("O identificador de grupo não deve ser informado neste contexto.");
 
             var grupo = _fabricaGrupo.Criar(siteId, Guid.NewGuid(), grupoDto);
             _repositorioGrupos.Inserir(grupo);
             return _fabricaGrupoDto.Criar(grupo);
-        }
-
-        private static void Validar(GrupoDto grupoDto)
-        {
-            if (grupoDto.Id != Guid.Empty)
-                throw new FormatoInvalido("O identificador de grupo não deve ser informado neste contexto.");
         }
     }
 }

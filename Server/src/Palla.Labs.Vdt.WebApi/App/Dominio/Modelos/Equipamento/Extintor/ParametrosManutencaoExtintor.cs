@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 // ReSharper disable once CheckNamespace
 namespace Palla.Labs.Vdt.App.Dominio.Modelos
@@ -29,7 +28,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             {
                 return new List<ParteEquipamento>
                 {
-                    new ParteEquipamento(ParteEquipamento.EXTINTOR, 12)
+                    new ParteEquipamento(ParteEquipamento.Extintor, 12)
                 };
             }
         }

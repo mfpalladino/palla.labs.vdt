@@ -2,7 +2,7 @@ using System;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 
-namespace Palla.Labs.Vdt.App.Infraestrutura.Mvc
+namespace Palla.Labs.Vdt.App.Infraestrutura.Web
 {
     public class EquipamentoDtoModelBinderProvider : ModelBinderProvider
     {

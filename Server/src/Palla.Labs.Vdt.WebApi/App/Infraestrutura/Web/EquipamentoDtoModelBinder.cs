@@ -9,7 +9,7 @@ using Palla.Labs.Vdt.App.Infraestrutura.Json;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.Infraestrutura.SimpleInjector;
 
-namespace Palla.Labs.Vdt.App.Infraestrutura.Mvc
+namespace Palla.Labs.Vdt.App.Infraestrutura.Web
 {
     public class EquipamentoDtoModelBinder : IModelBinder
     {

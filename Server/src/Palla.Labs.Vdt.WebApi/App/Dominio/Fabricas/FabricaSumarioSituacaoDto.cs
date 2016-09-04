@@ -11,7 +11,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
         public virtual SumarioSituacaoDto Criar(IEnumerable<EquipamentoDto> equipamentos)
         {
             var listaEquipamentos = equipamentos.ToList();
-            var total = listaEquipamentos.Count();
+            var total = listaEquipamentos.Count;
             var ok = listaEquipamentos.Count(x => x.SituacaoManutencao == (int)SituacaoManutencao.Ok);
             var atencao = listaEquipamentos.Count(x => x.SituacaoManutencao == (int)SituacaoManutencao.EstadoDeAtencao);
             var critico = listaEquipamentos.Count(x => x.SituacaoManutencao == (int)SituacaoManutencao.EstadoCritico);

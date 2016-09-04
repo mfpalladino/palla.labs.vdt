@@ -11,8 +11,8 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             {
                 return new List<ParteEquipamento>
                 {
-                    new ParteEquipamento(ParteEquipamento.CO2, 12),
-                    new ParteEquipamento(ParteEquipamento.SAPONIFICANTE, 60),
+                    new ParteEquipamento(ParteEquipamento.Co2, 12),
+                    new ParteEquipamento(ParteEquipamento.Saponificante, 60),
                 };
             }
         }

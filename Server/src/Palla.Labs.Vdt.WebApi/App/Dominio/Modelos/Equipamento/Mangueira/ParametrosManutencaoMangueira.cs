@@ -11,7 +11,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
             {
                 return new List<ParteEquipamento>
                 {
-                    new ParteEquipamento(ParteEquipamento.MANGUEIRA, 12)
+                    new ParteEquipamento(ParteEquipamento.Mangueira, 12)
                 };
             }
         }
