@@ -2,7 +2,6 @@ using System.Web.Http;
 using MongoDB.Driver;
 using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Dominio.Servicos;
-using Palla.Labs.Vdt.App.Infraestrutura.Faturas;
 using Palla.Labs.Vdt.App.Infraestrutura.Json;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 using Palla.Labs.Vdt.App.Infraestrutura.Seguranca;
@@ -72,7 +71,6 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<GeradorDeToken, GeradorDeToken>();
             container.RegisterSingle<ValidadorDeToken, ValidadorDeToken>();
             container.RegisterSingle<Login, Login>();
-            container.RegisterSingle<ConfigFaturas, ConfigFaturas>();
 
             container.RegisterWebApiControllers(config);
 

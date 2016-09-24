@@ -3,11 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
 
 namespace Palla.Labs.Vdt.App.Dominio.Fabricas
 {
     public class FabricaFatura
     {
+        private readonly RepositorioEquipamentos _repositorioEquipamentos;
+        private readonly RepositorioUsuarios _repositorioUsuarios;
+        private readonly RepositorioFaturas _repositorioFaturas;
+
+        public FabricaFatura(RepositorioEquipamentos repositorioEquipamentos,
+            RepositorioUsuarios repositorioUsuarios,
+            RepositorioFaturas repositorioFaturas)
+        {
+            _repositorioEquipamentos = repositorioEquipamentos;
+            _repositorioUsuarios = repositorioUsuarios;
+            _repositorioFaturas = repositorioFaturas;
+        }
+
+        public virtual Fatura CriarAtual(Guid siteId)
+        {
+            var ultimaFatura = _repositorioFaturas.BuscarUltima(siteId);
+
+            var dataFatura = DateTime.Now;
+            if (ultimaFatura != null)
+                dataFatura = new DateTime(ultimaFatura.Ano, ultimaFatura.Mes, 1).AddMonths(1);
+
+            var equipamentos = _repositorioEquipamentos.Buscar(siteId);
+            var usuarios = _repositorioUsuarios.Buscar(siteId);
+
+            const decimal valorPorEquipamento = 1;
+            const decimal valorPorUsuario = 2;
+
+            return Criar(siteId, dataFatura, valorPorEquipamento, valorPorUsuario, equipamentos, usuarios);
+        }
+
         public virtual Fatura Criar(Guid siteId, FaturaDto faturaDto)
         {
             return Criar(Guid.NewGuid(), 

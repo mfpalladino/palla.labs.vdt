@@ -233,7 +233,6 @@
     <Compile Include="App\Dominio\Modelos\Equipamento\ParteEquipamento.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SistemaContraIncendioEmCoifa\SistemaContraIncendioEmCoifa.cs" />
     <Compile Include="App\Dominio\Modelos\Equipamento\SituacaoManutencao.cs" />
-    <Compile Include="App\Infraestrutura\Faturas\ConfigFaturas.cs" />
     <Compile Include="App\Infraestrutura\Json\ConversorDeJson.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioFaturas.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioSites.cs" />

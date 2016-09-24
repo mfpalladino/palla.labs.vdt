@@ -39,6 +39,15 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
             return colecao.Find(x => x.SiteId == siteId && x.Mes == mes && x.Ano == ano).FirstOrDefault();
         }
 
+        public virtual Fatura BuscarUltima(Guid siteId)
+        {
+            var colecao = MongoDatabase.GetCollection<Fatura>(NomeColecao);
+            return
+                colecao.Find(x => x.SiteId == siteId)
+                    .Sort(new SortDefinitionBuilder<Fatura>().Descending(x => x.Ano).Descending(x => x.Mes))
+                    .FirstOrDefault();
+        }
+
         public Fatura BuscarPorId(Guid siteId, Guid id)
         {
             var colecao = MongoDatabase.GetCollection<Fatura>(NomeColecao);

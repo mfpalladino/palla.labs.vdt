@@ -30,6 +30,7 @@
 	require("./controllers/sceiAdminController.js");
 	require("./controllers/usuarioController.js");
 	require("./controllers/usuarioManterController.js");
+	require("./controllers/faturamentoController.js");
 	
 	require("./directives/formDirectives.js");
 	require("./directives/resumoGrupoDirective.js");
@@ -41,6 +42,7 @@
 	require("./factories/loginResourceFactory.js");
 	require("./factories/manutencaoResourceFactory.js");
 	require("./factories/usuarioResourceFactory.js");
+	require("./factories/faturamentoResourceFactory.js");
 	
 	require("./services/clienteService.js");
 	require("./services/constantesService.js");
@@ -53,6 +55,7 @@
 	require("./services/resumoGrupoService.js");
 	require("./services/scrollService.js");
 	require("./services/usuarioService.js");
+	require("./services/faturamentoService.js");
 	
 	//Estilo
 	require("./assets/less/app.less");

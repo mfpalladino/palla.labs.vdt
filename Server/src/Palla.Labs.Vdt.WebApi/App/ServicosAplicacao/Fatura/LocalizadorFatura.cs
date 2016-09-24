@@ -12,11 +12,13 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class LocalizadorFatura
     {
         private readonly RepositorioFaturas _repositorioFaturas;
+        private readonly FabricaFatura _fabricaFatura;
         private readonly FabricaFaturaDto _fabricaFaturaDto;
 
-        public LocalizadorFatura(RepositorioFaturas repositorioFaturas, FabricaFaturaDto fabricaFaturaDto)
+        public LocalizadorFatura(RepositorioFaturas repositorioFaturas, FabricaFatura fabricaFatura, FabricaFaturaDto fabricaFaturaDto)
         {
             _repositorioFaturas = repositorioFaturas;
+            _fabricaFatura = fabricaFatura;
             _fabricaFaturaDto = fabricaFaturaDto;
         }
 
@@ -30,6 +32,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
         {
             return _fabricaFaturaDto.Criar(_repositorioFaturas.Buscar(siteId));
         }
+
+        public FaturaDto LocalizarAtual(Guid siteId)
+        {
+            return _fabricaFaturaDto.Criar(_fabricaFatura.CriarAtual(siteId));
+        }
+
 
         private void Validar(Guid siteId, string id)
         {

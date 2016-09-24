@@ -13,7 +13,8 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
         private readonly RepositorioFaturas _repositorioFaturas;
         private readonly FabricaFatura _fabricaFatura;
 
-        public CriadorFatura(RepositorioFaturas repositorioFaturas, FabricaFatura fabricaFatura)
+        public CriadorFatura(RepositorioFaturas repositorioFaturas, 
+            FabricaFatura fabricaFatura)
         {
             _repositorioFaturas = repositorioFaturas;
             _fabricaFatura = fabricaFatura;

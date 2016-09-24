@@ -46,5 +46,12 @@ namespace Palla.Labs.Vdt.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorFatura.Localizar(Request.PegarSiteIdDoUsuario()));
         }
 
+        [HttpGet]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
+        [Route("faturas/atual")]
+        public HttpResponseMessage Atual()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, _localizadorFatura.LocalizarAtual(Request.PegarSiteIdDoUsuario()));
+        }
     }
 }

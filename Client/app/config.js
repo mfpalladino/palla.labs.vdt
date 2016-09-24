@@ -1,4 +1,4 @@
-(function() {
+(function () {
     "use strict";
 
     angular
@@ -38,7 +38,7 @@
                     url: "/home",
                     templateUrl: "views/home.html",
                     resolve: {
-                        loadPlugin: function($ocLazyLoad) {
+                        loadPlugin: function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -95,7 +95,7 @@
                     url: "/clientes/novo",
                     templateUrl: "views/clientes-manter.html",
                     resolve: {
-                        loadPlugin: function($ocLazyLoad) {
+                        loadPlugin: function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -126,7 +126,7 @@
                     url: "/clientes/:clienteId",
                     templateUrl: "views/clientes-manter.html",
                     resolve: {
-                        loadPlugin: function($ocLazyLoad) {
+                        loadPlugin: function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -161,7 +161,7 @@
                     url: "/equipamentos/novo",
                     templateUrl: "views/equipamentos-manter.html",
                     resolve: {
-                        loadPlugin: function($ocLazyLoad) {
+                        loadPlugin: function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -192,7 +192,7 @@
                     url: "/equipamentos/:equipamentoId",
                     templateUrl: "views/equipamentos-manter.html",
                     resolve: {
-                        loadPlugin: function($ocLazyLoad) {
+                        loadPlugin: function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -223,7 +223,7 @@
                     url: "/equipamentos/:equipamentoId/manutencao",
                     templateUrl: "views/equipamentos-manter-manutencao.html",
                     resolve: {
-                        loadPlugin: function($ocLazyLoad) {
+                        loadPlugin: function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -254,7 +254,7 @@
                     url: "/manutencoes",
                     templateUrl: "views/manutencoes.html",
                     resolve: {
-                        loadPlugin: function($ocLazyLoad) {
+                        loadPlugin: function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -289,7 +289,7 @@
                     url: "/usuarios/novo",
                     templateUrl: "views/usuarios-manter.html",
                     resolve: {
-                        loadPlugin: function($ocLazyLoad) {
+                        loadPlugin: function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -320,7 +320,7 @@
                     url: "/usuarios/:usuarioId",
                     templateUrl: "views/usuarios-manter.html",
                     resolve: {
-                        loadPlugin: function($ocLazyLoad) {
+                        loadPlugin: function ($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 {
                                     name: "css",
@@ -346,6 +346,10 @@
                             ]);
                         }
                     }
+                })
+                .state("faturamento", {
+                    url: "/faturamento",
+                    templateUrl: "views/faturamento.html"
                 });
         });
 })();
