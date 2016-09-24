@@ -1,0 +1,126 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+        <div class="container" data-ng-controller="faturamentoController as faturamentoCtrl">
+            <div class="block-header">
+                <h2>Faturamento <small>Aqui você pode pagar as faturas do SCEI e verificar seu histórico de pagamento.</small></h2>
+            </div>
+
+            <div class="card">
+                <div class="card-header ch-alt text-center">
+                    <h4>FATURA ATUAL</h4>
+                </div>
+
+                <div class="card-body card-padding">
+                    <div class="row m-b-25">
+                        <div class="col-xs-6">
+                            <div class="text-right">
+                                <p class="c-gray">De</p>
+
+                                <h4>SCEI</h4>
+
+                                <span class="text-muted">
+                                <br>
+                        </span>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="i-to">
+                                <p class="c-gray">Para</p>
+
+                                <h4>{{faturamentoCtrl.dominio}}</h4>
+
+                                <span class="text-muted">
+                            <br>
+                        </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row m-t-25 p-0 m-b-25">
+                        <div class="col-xs-4">
+                            <div class="bgm-amber brd-2 p-15">
+                                <div class="c-white m-b-5">Data</div>
+                                <h2 class="m-0 c-white f-300">{{faturamentoCtrl.faturaAtual.dataComoString}}</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4 pull-right">
+                            <div class="bgm-green brd-2 p-15">
+                                <div class="c-white m-b-5">Total</div>
+                                <h2 class="m-0 c-white f-300">{{faturamentoCtrl.faturaAtual.totalComoString}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <table class="table i-table m-t-25 m-b-25">
+                        <thead class="text-uppercase">
+                            <tr>
+                                <th class="c-gray">DESCRIÇÃO</th>
+                                <th class="c-gray">VALOR UNITÁRIO</th>
+                                <th class="c-gray">QUANTIDADE</th>
+                                <th class="highlight">TOTAL</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <td width="50%">
+                                    <h5 class="text-uppercase f-400">Equipamentos</h5>
+                                    <p class="text-muted">Esta linha representa a quantidade de equipamentos gerenciados por sua empresa através do SCEI.</p>
+                                </td>
+                                <td>{{faturamentoCtrl.faturaAtual.valorPorEquipamentoComoString}}</td>
+                                <td>{{faturamentoCtrl.faturaAtual.quantidadeEquipamentos}}</td>
+                                <td class="highlight">{{faturamentoCtrl.faturaAtual.totalPorEquipamentoComoString}}</td>
+                            </tr>
+                            <tr>
+                                <td width="50%">
+                                    <h5 class="text-uppercase f-400">Usuários</h5>
+                                    <p class="text-muted">Esta linha representa a quantidade de usuários associados ao seu domínio. 
+                                        Este número é particularmente útil, pois indica quantos usuários se beneficiam do SCEI através da sua empresa.</p>
+                                </td>
+                                <td>{{faturamentoCtrl.faturaAtual.valorPorUsuarioComoString}}</td>
+                                <td>{{faturamentoCtrl.faturaAtual.quantidadeUsuarios}}</td>
+                                <td class="highlight">{{faturamentoCtrl.faturaAtual.totalPorUsuarioComoString}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"></td>
+                                <td class="highlight">{{faturamentoCtrl.faturaAtual.totalComoString}}</td>
+                            </tr>
+                        </thead>
+
+                    </table>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header ch-alt text-center">
+                    <h4>HISTÓRICO DE PAGAMENTOS</h4>
+                </div>
+
+                <div class="card-body card-padding">
+
+                    <footer class="m-t-15 p-20">
+                        <ul class="list-inline text-center list-unstyled">
+                            <li class="m-l-5 m-r-5"><small>scei@scei.com.br</small></li>
+                            <li class="m-l-5 m-r-5"><small>+551199987-7654</small></li>
+                            <li class="m-l-5 m-r-5"><small>www.scei.com.br</small></li>
+                        </ul>
+                    </footer>
+                </div>
+            </div>
+            
+    </section>
+</section>
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
