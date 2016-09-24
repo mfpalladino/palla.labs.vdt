@@ -8,7 +8,7 @@
             </div>
 
             <div class="card">
-                <div class="card-header ch-alt text-center">
+                <div class="card-header ch-alt">
                     <h4>FATURA ATUAL</h4>
                 </div>
 
@@ -19,25 +19,21 @@
                                 <p class="c-gray">De</p>
 
                                 <h4>SCEI</h4>
-
                                 <span class="text-muted">
-                                <br>
-                        </span>
+                                    scei@scei.com.br
+                                </span>
                             </div>
                         </div>
 
                         <div class="col-xs-6">
                             <div class="i-to">
                                 <p class="c-gray">Para</p>
-
-                                <h4>{{faturamentoCtrl.dominio}}</h4>
-
+                                <h4>{{faturamentoCtrl.site.nome}}</h4>
                                 <span class="text-muted">
-                            <br>
-                        </span>
+                                    {{faturamentoCtrl.site.email}}                                        
+                                </span>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="clearfix"></div>
@@ -76,7 +72,8 @@
                             <tr>
                                 <td width="50%">
                                     <h5 class="text-uppercase f-400">Equipamentos</h5>
-                                    <p class="text-muted">Esta linha representa a quantidade de equipamentos gerenciados por sua empresa através do SCEI.</p>
+                                    <p class="text-muted">Esta linha representa a quantidade de equipamentos mantidos por este domínio através
+                                        do SCEI.</p>
                                 </td>
                                 <td>{{faturamentoCtrl.faturaAtual.valorPorEquipamentoComoString}}</td>
                                 <td>{{faturamentoCtrl.faturaAtual.quantidadeEquipamentos}}</td>
@@ -85,8 +82,7 @@
                             <tr>
                                 <td width="50%">
                                     <h5 class="text-uppercase f-400">Usuários</h5>
-                                    <p class="text-muted">Esta linha representa a quantidade de usuários associados ao seu domínio. 
-                                        Este número é particularmente útil, pois indica quantos usuários se beneficiam do SCEI através da sua empresa.</p>
+                                    <p class="text-muted">Esta linha representa a quantidade de usuários associados ao domínio.</p>
                                 </td>
                                 <td>{{faturamentoCtrl.faturaAtual.valorPorUsuarioComoString}}</td>
                                 <td>{{faturamentoCtrl.faturaAtual.quantidadeUsuarios}}</td>
@@ -105,7 +101,7 @@
             </div>
 
             <div class="card">
-                <div class="card-header ch-alt text-center">
+                <div class="card-header ch-alt">
                     <h4>HISTÓRICO DE PAGAMENTOS</h4>
                 </div>
 
@@ -120,7 +116,7 @@
                     </footer>
                 </div>
             </div>
-            
+
     </section>
 </section>
 <footer id="footer" data-ng-include="'template/footer.html'"></footer>

@@ -5,7 +5,7 @@
         .module("sceiAdmin")
         .service("faturamentoService", [
             "$resource", "faturamentoResourceFactory", function ($resource, faturamentoResourceFactory) {
-                this.pegarFaturaAtual = function() {
+                this.listarFaturaAtual = function() {
                     return faturamentoResourceFactory.atual.get();
                 };
             }

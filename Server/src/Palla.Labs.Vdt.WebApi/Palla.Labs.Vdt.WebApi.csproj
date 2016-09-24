@@ -181,8 +181,10 @@
     <Compile Include="App\Dominio\Dtos\Equipamento\ManutencaoDto.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\SumarioSituacaoDto.cs" />
     <Compile Include="App\Dominio\Dtos\FaturaDto.cs" />
+    <Compile Include="App\Dominio\Dtos\SiteDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaFatura.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaFaturaDto.cs" />
+    <Compile Include="App\Dominio\Fabricas\FabricaSiteDto.cs" />
     <Compile Include="App\Dominio\Modelos\Fatura.cs" />
     <Compile Include="App\Dominio\Modelos\Permissoes.cs" />
     <Compile Include="App\Dominio\Modelos\ResultadoLogin.cs" />
@@ -264,6 +266,7 @@
     <Compile Include="App\Infraestrutura\Mongo\RepositorioClientes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioGrupos.cs" />
     <Compile Include="App\ServicosAplicacao\Fatura\LocalizadorFatura.cs" />
+    <Compile Include="App\ServicosAplicacao\Site\LocalizadorSite.cs" />
     <Compile Include="App\ServicosAplicacao\Usuario\CriadorUsuario.cs" />
     <Compile Include="App\ServicosAplicacao\Usuario\LocalizadorGrupo.cs" />
     <Compile Include="App\ServicosAplicacao\Usuario\ModificadorUsuario.cs" />
@@ -303,6 +306,7 @@
     <Compile Include="Controllers\EquipamentosController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\FaturasController.cs" />
+    <Compile Include="Controllers\SitesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\LoginController.cs" />

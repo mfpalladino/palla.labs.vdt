@@ -3,9 +3,9 @@
 
     angular
         .module("sceiAdmin")
-        .controller("faturamentoController", function ($filter, $sce, loginService, faturamentoService) {
+        .controller("faturamentoController", function ($filter, $sce, siteService, loginService, faturamentoService) {
             var vm = this;
-            vm.dominio = null;
+            vm.site = null;
             vm.faturaAtual = null;
 
             montaDadosIniciais();
@@ -15,9 +15,14 @@
             function montaDadosIniciais() {
                 vm.dominio = loginService.recuperarDadosLogin().dominio;    
 
-                faturamentoService.pegarFaturaAtual().$promise
+                faturamentoService.listarFaturaAtual().$promise
                     .then(function (resultado) {
                         vm.faturaAtual = resultado;
+                    });
+
+                siteService.listar().$promise
+                    .then(function (resultado) {
+                        vm.site = resultado;
                     });
             }
         });

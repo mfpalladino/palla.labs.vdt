@@ -39,6 +39,7 @@
 	require("./factories/clienteResourceFactory.js");
 	require("./factories/equipamentoResourceFactory.js");
 	require("./factories/grupoResourceFactory.js");
+	require("./factories/siteResourceFactory.js");
 	require("./factories/loginResourceFactory.js");
 	require("./factories/manutencaoResourceFactory.js");
 	require("./factories/usuarioResourceFactory.js");
@@ -50,6 +51,7 @@
 	require("./services/equipamentoService.js");
 	require("./services/growlService.js");
 	require("./services/grupoService.js");
+	require("./services/siteService.js");
 	require("./services/loginService.js");
 	require("./services/manutencaoService.js");
 	require("./services/resumoGrupoService.js");

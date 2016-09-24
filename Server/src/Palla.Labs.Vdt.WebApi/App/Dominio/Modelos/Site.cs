@@ -9,38 +9,40 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         private const int DiaDeVencimentoPadrao = 15;
 
         private readonly string _nome;
+        private readonly string _email;
         private readonly bool _estaAtivo;
         private readonly int _diaVencimento;
 
-        public Site(string nome)
-            : this(Guid.NewGuid(), nome, true, DiaDeVencimentoPadrao)
+        public Site(string nome, string email)
+            : this(Guid.NewGuid(), nome, email, true, DiaDeVencimentoPadrao)
         {
         }
 
-        public Site(string nome, bool estaAtivo)
-            : this(Guid.NewGuid(), nome, estaAtivo, DiaDeVencimentoPadrao)
+        public Site(string nome, string email, bool estaAtivo)
+            : this(Guid.NewGuid(), nome, email, estaAtivo, DiaDeVencimentoPadrao)
         {
         }
 
-        public Site(string nome, bool estaAtivo, int diaVencimento)
-            : this(Guid.NewGuid(), nome, estaAtivo, diaVencimento)
+        public Site(string nome, string email, bool estaAtivo, int diaVencimento)
+            : this(Guid.NewGuid(), nome, email, estaAtivo, diaVencimento)
         {
         }
 
-        public Site(Guid id, string nome)
-            : this(id, nome, true, DiaDeVencimentoPadrao)
+        public Site(Guid id, string nome, string email)
+            : this(id, nome, email, true, DiaDeVencimentoPadrao)
         {
         }
 
-        public Site(Guid id, string nome, bool estaAtivo)
-            : this(id, nome, estaAtivo, DiaDeVencimentoPadrao)
+        public Site(Guid id, string nome, string email, bool estaAtivo)
+            : this(id, nome, email, estaAtivo, DiaDeVencimentoPadrao)
         {
         }
 
-        public Site(Guid id, string nome, bool estaAtivo, int diaVencimento)
+        public Site(Guid id, string nome, string email, bool estaAtivo, int diaVencimento)
             : base(id)
         {
             _nome = nome;
+            _email = email;
             _estaAtivo = estaAtivo;
             _diaVencimento = diaVencimento;
 
@@ -50,6 +52,11 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public string Nome
         {
             get { return _nome; }
+        }
+
+        public string Email
+        {
+            get { return _email; }
         }
 
         public bool EstaAtivo
