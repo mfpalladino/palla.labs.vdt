@@ -14,10 +14,8 @@
 
                 <div class="card-body card-padding">
                     <div class="row m-b-25">
-                        <div class="col-xs-6">
-                            <div class="text-right">
-                                <p class="c-gray">De</p>
-
+                        <div class="col-xs-12">
+                            <div>
                                 <h4>SCEI</h4>
                                 <span class="text-muted">
                                     scei@scei.com.br
@@ -25,9 +23,8 @@
                             </div>
                         </div>
 
-                        <div class="col-xs-6">
+                        <div class="col-xs-12">
                             <div class="i-to">
-                                <p class="c-gray">Para</p>
                                 <h4>{{faturamentoCtrl.site.nome}}</h4>
                                 <span class="text-muted">
                                     {{faturamentoCtrl.site.email}}                                        
@@ -41,8 +38,9 @@
                     <div class="row m-t-25 p-0 m-b-25">
                         <div class="col-xs-4">
                             <div class="bgm-amber brd-2 p-15">
-                                <div class="c-white m-b-5">Data</div>
-                                <h2 class="m-0 c-white f-300">{{faturamentoCtrl.faturaAtual.dataComoString}}</h2>
+                                <div class="c-white m-b-5">Fatura de</div>
+                                <h2 class="m-0 c-white f-300">{{faturamentoCtrl.faturaAtual.mesAnoComoString}}</h2>
+                                <small class="c-white">(Pagamento a partir de {{faturamentoCtrl.faturaAtual.pagamentoLiberadoAPartirDeComoString}})</small>
                             </div>
                         </div>
 
@@ -50,6 +48,7 @@
                             <div class="bgm-green brd-2 p-15">
                                 <div class="c-white m-b-5">Total</div>
                                 <h2 class="m-0 c-white f-300">{{faturamentoCtrl.faturaAtual.totalComoString}}</h2>
+                                <small class="c-white">&nbsp</small>
                             </div>
                         </div>
                     </div>
@@ -96,7 +95,9 @@
 
                     </table>
 
-                    <div class="clearfix"></div>
+                    <footer class="m-t-15 p-20">
+                        <button type="button" class="btn btn-primary btn-center" ng-click="faturamentoCtrl.pagar()">Pagar esta fatura</button>
+                    </footer>
                 </div>
             </div>
 
@@ -106,11 +107,9 @@
                 </div>
 
                 <div class="card-body card-padding">
-
                     <footer class="m-t-15 p-20">
                         <ul class="list-inline text-center list-unstyled">
                             <li class="m-l-5 m-r-5"><small>scei@scei.com.br</small></li>
-                            <li class="m-l-5 m-r-5"><small>+551199987-7654</small></li>
                             <li class="m-l-5 m-r-5"><small>www.scei.com.br</small></li>
                         </ul>
                     </footer>

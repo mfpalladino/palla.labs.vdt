@@ -6,45 +6,22 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
 {
     public class Site : EntidadeBase<Guid>
     {
-        private const int DiaDeVencimentoPadrao = 15;
-
         private readonly string _nome;
         private readonly string _email;
         private readonly bool _estaAtivo;
         private readonly int _diaVencimento;
+        private readonly decimal _valorPorEquipamento;
+        private readonly decimal _valorPorUsuario;
 
-        public Site(string nome, string email)
-            : this(Guid.NewGuid(), nome, email, true, DiaDeVencimentoPadrao)
-        {
-        }
-
-        public Site(string nome, string email, bool estaAtivo)
-            : this(Guid.NewGuid(), nome, email, estaAtivo, DiaDeVencimentoPadrao)
-        {
-        }
-
-        public Site(string nome, string email, bool estaAtivo, int diaVencimento)
-            : this(Guid.NewGuid(), nome, email, estaAtivo, diaVencimento)
-        {
-        }
-
-        public Site(Guid id, string nome, string email)
-            : this(id, nome, email, true, DiaDeVencimentoPadrao)
-        {
-        }
-
-        public Site(Guid id, string nome, string email, bool estaAtivo)
-            : this(id, nome, email, estaAtivo, DiaDeVencimentoPadrao)
-        {
-        }
-
-        public Site(Guid id, string nome, string email, bool estaAtivo, int diaVencimento)
+        public Site(Guid id, string nome, string email, bool estaAtivo, int diaVencimento, decimal valorPorEquipamento, decimal valorPorUsuario)
             : base(id)
         {
             _nome = nome;
             _email = email;
             _estaAtivo = estaAtivo;
             _diaVencimento = diaVencimento;
+            _valorPorEquipamento = valorPorEquipamento;
+            _valorPorUsuario = valorPorUsuario;
 
             Validar();
         }
@@ -67,6 +44,16 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         public int DiaVencimento
         {
             get { return _diaVencimento; }
+        }
+
+        public decimal ValorPorEquipamento
+        {
+            get { return _valorPorEquipamento; }
+        }
+
+        public decimal ValorPorUsuario
+        {
+            get { return _valorPorUsuario; }
         }
 
         private void Validar()

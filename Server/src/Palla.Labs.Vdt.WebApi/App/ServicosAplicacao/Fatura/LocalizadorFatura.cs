@@ -12,12 +12,14 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class LocalizadorFatura
     {
         private readonly RepositorioFaturas _repositorioFaturas;
+        private readonly RepositorioSites _repositorioSites;
         private readonly FabricaFatura _fabricaFatura;
         private readonly FabricaFaturaDto _fabricaFaturaDto;
 
-        public LocalizadorFatura(RepositorioFaturas repositorioFaturas, FabricaFatura fabricaFatura, FabricaFaturaDto fabricaFaturaDto)
+        public LocalizadorFatura(RepositorioFaturas repositorioFaturas, RepositorioSites repositorioSites, FabricaFatura fabricaFatura, FabricaFaturaDto fabricaFaturaDto)
         {
             _repositorioFaturas = repositorioFaturas;
+            _repositorioSites = repositorioSites;
             _fabricaFatura = fabricaFatura;
             _fabricaFaturaDto = fabricaFaturaDto;
         }
@@ -25,17 +27,20 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
         public FaturaDto Localizar(Guid siteId, string id)
         {
             Validar(siteId, id);
-            return _fabricaFaturaDto.Criar(_repositorioFaturas.BuscarPorId(siteId, new Guid(id)));
+            var site = _repositorioSites.BuscarPorId(siteId);
+            return _fabricaFaturaDto.Criar(site, _repositorioFaturas.BuscarPorId(siteId, new Guid(id)));
         }
 
         public IEnumerable<FaturaDto> Localizar(Guid siteId)
         {
-            return _fabricaFaturaDto.Criar(_repositorioFaturas.Buscar(siteId));
+            var site = _repositorioSites.BuscarPorId(siteId);
+            return _fabricaFaturaDto.Criar(site, _repositorioFaturas.Buscar(siteId));
         }
 
         public FaturaDto LocalizarAtual(Guid siteId)
         {
-            return _fabricaFaturaDto.Criar(_fabricaFatura.CriarAtual(siteId));
+            var site = _repositorioSites.BuscarPorId(siteId);
+            return _fabricaFaturaDto.Criar(site, _fabricaFatura.CriarAtual(siteId));
         }
 
 

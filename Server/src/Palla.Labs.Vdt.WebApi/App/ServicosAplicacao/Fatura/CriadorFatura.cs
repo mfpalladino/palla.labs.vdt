@@ -11,25 +11,30 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
     public class CriadorFatura
     {
         private readonly RepositorioFaturas _repositorioFaturas;
+        private readonly RepositorioSites _repositorioSites;
         private readonly FabricaFatura _fabricaFatura;
 
-        public CriadorFatura(RepositorioFaturas repositorioFaturas, 
+        public CriadorFatura(RepositorioFaturas repositorioFaturas,
+            RepositorioSites repositorioSites, 
             FabricaFatura fabricaFatura)
         {
             _repositorioFaturas = repositorioFaturas;
+            _repositorioSites = repositorioSites;
             _fabricaFatura = fabricaFatura;
         }
 
         public Fatura Criar(Guid siteId, FaturaDto faturaDto)
         {
-            Validar(siteId, faturaDto);
+            var site = _repositorioSites.BuscarPorId(siteId);
+
+            Validar(siteId, site.DiaVencimento, faturaDto);
 
             var fatura = _fabricaFatura.Criar(siteId, faturaDto);
             _repositorioFaturas.Inserir(fatura);
             return fatura;
         }
 
-        private void Validar(Guid siteId, FaturaDto faturaDto)
+        private void Validar(Guid siteId, int diaVencimento, FaturaDto faturaDto)
         {
             if (faturaDto.Mes < 1 || faturaDto.Mes > 12)
                 throw new FormatoInvalido("O mês da fatura não é válido.");
@@ -51,6 +56,12 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
 
             if (_repositorioFaturas.BuscarPorMesAno(siteId, faturaDto.Mes, faturaDto.Ano) != null)
                 throw new FormatoInvalido("Esta fatura já consta em nosso sistema.");
+
+            var dataAtual = DateTime.Now;
+            if (faturaDto.Mes == dataAtual.Month && 
+                faturaDto.Ano == dataAtual.Year &&
+                dataAtual.Day < diaVencimento-10)
+                throw new FormatoInvalido("Esta fatura só pode ser paga com no máximo 10 dias de antecedência.");
         }
     }
 }

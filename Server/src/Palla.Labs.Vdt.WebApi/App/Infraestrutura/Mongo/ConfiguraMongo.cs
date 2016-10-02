@@ -26,17 +26,19 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.Mongo
                 cm.MapField(c => c.ValorPorUsuario);
                 cm.MapField(c => c.Descontos);
                 cm.MapField(c => c.Total);
+                cm.UnmapMember(c => c.TotalPorUsuario);
+                cm.UnmapMember(c => c.TotalPorEquipamento);
             });
 
             BsonClassMap.RegisterClassMap<Site>(cm =>
             {
-                cm.MapCreator(x => new Site(x.Id, x.Nome, x.Email));
-                cm.MapCreator(x => new Site(x.Id, x.Nome, x.Email, x.EstaAtivo));
-                cm.MapCreator(x => new Site(x.Id, x.Nome, x.Email, x.EstaAtivo, x.DiaVencimento));
+                cm.MapCreator(x => new Site(x.Id, x.Nome, x.Email, x.EstaAtivo, x.DiaVencimento, x.ValorPorEquipamento, x.ValorPorUsuario));
                 cm.MapField(c => c.Nome);
                 cm.MapField(c => c.Email);
                 cm.MapField(c => c.EstaAtivo);
                 cm.MapField(c => c.DiaVencimento);
+                cm.MapField(c => c.ValorPorEquipamento);
+                cm.MapField(c => c.ValorPorUsuario);
             });
 
             BsonClassMap.RegisterClassMap<Usuario>(cm =>

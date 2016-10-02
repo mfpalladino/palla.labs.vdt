@@ -80,5 +80,16 @@ namespace Palla.Labs.Vdt.App.Dominio.Modelos
         {
             get { return _total; }
         }
+
+        public decimal TotalPorEquipamento
+        {
+            get { return QuantidadeEquipamentos * ValorPorEquipamento; }
+        }
+
+        public decimal TotalPorUsuario
+        {
+            get { return QuantidadeUsuarios * ValorPorUsuario; }
+        }
+        
     }
 }

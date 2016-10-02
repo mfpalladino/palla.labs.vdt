@@ -3,17 +3,18 @@
 
     angular
         .module("sceiAdmin")
-        .controller("faturamentoController", function ($filter, $sce, siteService, loginService, faturamentoService) {
+        .controller("faturamentoController", function ($filter, $sce, $location, growlService, siteService, loginService, faturamentoService) {
             var vm = this;
             vm.site = null;
             vm.faturaAtual = null;
+            vm.pagar = pagar;
 
-            montaDadosIniciais();
+            montaFaturaAtual();
 
             //////////
 
-            function montaDadosIniciais() {
-                vm.dominio = loginService.recuperarDadosLogin().dominio;    
+            function montaFaturaAtual() {
+                vm.dominio = loginService.recuperarDadosLogin().dominio;
 
                 faturamentoService.listarFaturaAtual().$promise
                     .then(function (resultado) {
@@ -24,6 +25,18 @@
                     .then(function (resultado) {
                         vm.site = resultado;
                     });
-            }
+            };
+
+            function pagar() {
+                faturamentoService.pagar(vm.faturaAtual)
+                    .$promise.then(
+                    function () {
+                        growlService.growlSuccess("Pagamento efetuado com sucesso.");
+                        montaFaturaAtual();
+                    },
+                    function (erro) {
+                        growlService.growlError(erro.data.Mensagem);
+                    });
+            };
         });
 })();

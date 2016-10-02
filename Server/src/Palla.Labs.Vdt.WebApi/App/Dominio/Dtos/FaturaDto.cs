@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 
 namespace Palla.Labs.Vdt.App.Dominio.Dtos
 {
@@ -21,14 +20,20 @@ namespace Palla.Labs.Vdt.App.Dominio.Dtos
 
         public decimal Total { get; set; }
 
-        public DateTime Data
+        public decimal TotalPorEquipamento { get; set; }
+
+        public decimal TotalPorUsuario { get; set; }
+
+        public DateTime PagamentoLiberadoAPartirDe { get; set; }
+
+        public string PagamentoLiberadoAPartirDeComoString
         {
-            get { return new DateTime(Ano, Mes, DateTime.Now.Day); }
+            get { return PagamentoLiberadoAPartirDe.ToString("d"); }
         }
 
-        public string DataComoString
+        public string MesAnoComoString
         {
-            get { return Data.Date.ToString("d"); }
+            get { return string.Format("{0}/{1}", Mes, Ano); }
         }
 
         public string TotalComoString
@@ -43,7 +48,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Dtos
 
         public string TotalPorEquipamentoComoString
         {
-            get { return (QuantidadeEquipamentos * ValorPorEquipamento).ToString("C"); }
+            get { return TotalPorEquipamento.ToString("C"); }
         }
 
         public string ValorPorUsuarioComoString
@@ -53,7 +58,7 @@ namespace Palla.Labs.Vdt.App.Dominio.Dtos
 
         public string TotalPorUsuarioComoString
         {
-            get { return (QuantidadeUsuarios * ValorPorUsuario).ToString("C"); }
+            get { return TotalPorUsuario.ToString("C"); }
         }
     }
 }

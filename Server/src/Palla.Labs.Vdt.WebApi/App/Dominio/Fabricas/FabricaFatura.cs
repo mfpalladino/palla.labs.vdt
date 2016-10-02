@@ -12,18 +12,22 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
         private readonly RepositorioEquipamentos _repositorioEquipamentos;
         private readonly RepositorioUsuarios _repositorioUsuarios;
         private readonly RepositorioFaturas _repositorioFaturas;
+        private readonly RepositorioSites _repositorioSites;
 
         public FabricaFatura(RepositorioEquipamentos repositorioEquipamentos,
             RepositorioUsuarios repositorioUsuarios,
-            RepositorioFaturas repositorioFaturas)
+            RepositorioFaturas repositorioFaturas,
+            RepositorioSites repositorioSites)
         {
             _repositorioEquipamentos = repositorioEquipamentos;
             _repositorioUsuarios = repositorioUsuarios;
             _repositorioFaturas = repositorioFaturas;
+            _repositorioSites = repositorioSites;
         }
 
         public virtual Fatura CriarAtual(Guid siteId)
         {
+            var site = _repositorioSites.BuscarPorId(siteId);
             var ultimaFatura = _repositorioFaturas.BuscarUltima(siteId);
 
             var dataFatura = DateTime.Now;
@@ -33,10 +37,10 @@ namespace Palla.Labs.Vdt.App.Dominio.Fabricas
             var equipamentos = _repositorioEquipamentos.Buscar(siteId);
             var usuarios = _repositorioUsuarios.Buscar(siteId);
 
-            const decimal valorPorEquipamento = 1;
-            const decimal valorPorUsuario = 2;
+            var valorPorEquipamento = site.ValorPorEquipamento;
+            var valorPorUsuario = site.ValorPorUsuario;
 
-            return Criar(siteId, dataFatura, valorPorEquipamento, valorPorUsuario, equipamentos, usuarios);
+            return dataFatura.Date <= DateTime.Now.Date ? Criar(siteId, dataFatura, valorPorEquipamento, valorPorUsuario, equipamentos, usuarios) : null;
         }
 
         public virtual Fatura Criar(Guid siteId, FaturaDto faturaDto)
