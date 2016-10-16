@@ -34,6 +34,13 @@ namespace Palla.Labs.Vdt.App.ServicosAplicacao
             return fatura;
         }
 
+        public void Validar(Guid siteId, FaturaDto faturaDto)
+        {
+            var site = _repositorioSites.BuscarPorId(siteId);
+
+            Validar(siteId, site.DiaVencimento, faturaDto);
+        }
+
         private void Validar(Guid siteId, int diaVencimento, FaturaDto faturaDto)
         {
             if (faturaDto.Mes < 1 || faturaDto.Mes > 12)

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
 using Palla.Labs.Vdt.App.Dominio.Modelos;
+using Palla.Labs.Vdt.App.Infraestrutura.PayPal;
 using Palla.Labs.Vdt.App.Infraestrutura.Web;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
 
@@ -14,21 +15,38 @@ namespace Palla.Labs.Vdt.Controllers
     {
         private readonly CriadorFatura _criadorFatura;
         private readonly LocalizadorFatura _localizadorFatura;
+        private readonly CriadorPagamento _criadorPagamento;
 
-        public FaturasController(CriadorFatura criadorFatura, LocalizadorFatura localizadorFatura)
+        public FaturasController(CriadorFatura criadorFatura, LocalizadorFatura localizadorFatura, CriadorPagamento criadorPagamento)
         {
             _criadorFatura = criadorFatura;
             _localizadorFatura = localizadorFatura;
+            _criadorPagamento = criadorPagamento;
         }
 
         [HttpPost]
         [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         public HttpResponseMessage Post([FromBody] FaturaDto faturaDto)
         {
-            var faturaSalva = _criadorFatura.Criar(Request.PegarSiteIdDoUsuario(), faturaDto);
-            var response = Request.CreateResponse(HttpStatusCode.Created);
-            response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = faturaSalva.Id }));
-            return response;
+            _criadorFatura.Validar(Request.PegarSiteIdDoUsuario(), faturaDto);
+            var urlPagamentoAprovado = _criadorPagamento.CriarPagamento(faturaDto);
+            return Request.CreateResponse(HttpStatusCode.OK, urlPagamentoAprovado);
+        }
+
+        [HttpPost]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
+        [Route("faturas/PagamentoEfetuado")]
+        public HttpResponseMessage PagamentoEfetuado([FromBody] FaturaDto faturaDto, [FromUri]string paymentId, [FromUri]string token, [FromUri]string payerId)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK); //todo
+        }
+
+        [HttpPost]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
+        [Route("faturas/PagamentoCancelado")]
+        public HttpResponseMessage PagamentoCancelado()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK); //todo
         }
 
         [HttpGet]

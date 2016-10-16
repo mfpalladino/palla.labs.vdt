@@ -243,6 +243,8 @@
     <Compile Include="App\Infraestrutura\Mongo\RepositorioFaturas.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioSites.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioUsuarios.cs" />
+    <Compile Include="App\Infraestrutura\PayPal\ConfiguradorPagamento.cs" />
+    <Compile Include="App\Infraestrutura\PayPal\CriadorPagamento.cs" />
     <Compile Include="App\Infraestrutura\Seguranca\ConfigSeguranca.cs" />
     <Compile Include="App\Infraestrutura\Seguranca\GeradorDeSenha.cs" />
     <Compile Include="App\Infraestrutura\Seguranca\ValidadorDeToken.cs" />
