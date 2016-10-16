@@ -238,6 +238,7 @@ _Pvt_Extensions
 
 # Configuracoes
 palla.labs.vdt.webapi.config
+palla.labs.vdt.paypal.config
 constants.js
 
 # Logs
