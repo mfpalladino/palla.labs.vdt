@@ -15,13 +15,13 @@ namespace Palla.Labs.Vdt.Controllers
     {
         private readonly CriadorFatura _criadorFatura;
         private readonly LocalizadorFatura _localizadorFatura;
-        private readonly CriadorPagamento _criadorPagamento;
+        private readonly IntegradorPayPal _integradorPayPal;
 
-        public FaturasController(CriadorFatura criadorFatura, LocalizadorFatura localizadorFatura, CriadorPagamento criadorPagamento)
+        public FaturasController(CriadorFatura criadorFatura, LocalizadorFatura localizadorFatura, IntegradorPayPal integradorPayPal)
         {
             _criadorFatura = criadorFatura;
             _localizadorFatura = localizadorFatura;
-            _criadorPagamento = criadorPagamento;
+            _integradorPayPal = integradorPayPal;
         }
 
         [HttpPost]
@@ -29,20 +29,16 @@ namespace Palla.Labs.Vdt.Controllers
         public HttpResponseMessage Post([FromBody] FaturaDto faturaDto)
         {
             _criadorFatura.Validar(Request.PegarSiteIdDoUsuario(), faturaDto);
-            var urlPagamentoAprovado = _criadorPagamento.CriarPagamento(faturaDto);
-            return Request.CreateResponse(HttpStatusCode.OK, urlPagamentoAprovado);
+            var resultado = _integradorPayPal.CriarPagamento(GetBaseUrl(), faturaDto);
+            return Request.CreateResponse(HttpStatusCode.OK, new { Url = resultado.UrlParaPagamento });
         }
 
-        [HttpPost]
-        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         [Route("faturas/PagamentoEfetuado")]
-        public HttpResponseMessage PagamentoEfetuado([FromBody] FaturaDto faturaDto, [FromUri]string paymentId, [FromUri]string token, [FromUri]string payerId)
+        public HttpResponseMessage PagamentoEfetuado(string paymentId, string token, string PayerID)
         {
             return Request.CreateResponse(HttpStatusCode.OK); //todo
         }
 
-        [HttpPost]
-        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
         [Route("faturas/PagamentoCancelado")]
         public HttpResponseMessage PagamentoCancelado()
         {
@@ -70,6 +66,11 @@ namespace Palla.Labs.Vdt.Controllers
         public HttpResponseMessage Atual()
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorFatura.LocalizarAtual(Request.PegarSiteIdDoUsuario()));
+        }
+
+        private string GetBaseUrl()
+        {
+            return Request.RequestUri.Scheme + "://" + Request.RequestUri.Host;
         }
     }
 }

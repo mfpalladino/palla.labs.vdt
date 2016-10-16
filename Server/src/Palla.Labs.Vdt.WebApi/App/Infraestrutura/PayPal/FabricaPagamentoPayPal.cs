@@ -1,4 +1,4 @@
-Ôªøusing System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
@@ -6,23 +6,17 @@ using PayPal.Api;
 
 namespace Palla.Labs.Vdt.App.Infraestrutura.PayPal
 {
-    public class CriadorPagamento
+    public class FabricaPagamentoPayPal
     {
-        public string CriarPagamento(FaturaDto faturaDto)
+        public virtual Payment Criar(string baseUrl, FaturaDto faturaDto)
         {
-            var apiContext = ConfiguradorPagamento.GetApiContext();
-
-            var payment = new Payment
+            return new Payment
             {
                 intent = "sale",
                 payer = new Payer { payment_method = "paypal" },
                 transactions = PegarListaTransacoes(faturaDto),
-                redirect_urls = PegarUrls()
+                redirect_urls = PegarUrlParaRedirecionamento(baseUrl)
             };
-
-            var createdPayment = payment.Create(apiContext);
-
-            return createdPayment.GetApprovalUrl();
         }
 
         private static List<Transaction> PegarListaTransacoes(FaturaDto faturaDto)
@@ -32,7 +26,7 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.PayPal
                 new Transaction
                 {
                     description = "Pagamento fatura SCEI: " + faturaDto.MesAnoComoString,
-                    invoice_number = PegarNumeroPagamento(),
+                    invoice_number = PegarNumeroRandomicoParaPagamento(),
                     amount = new Amount
                     {
                         currency = "BRL",
@@ -50,19 +44,19 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.PayPal
                         {
                             new Item
                             {
-                                name = "Usu√°rios",
+                                name = "Usu·rios mantidos pelo SCEI",
                                 currency = "BRL",
                                 price = faturaDto.ValorPorUsuario.ToString(CultureInfo.InvariantCulture),
                                 quantity = faturaDto.QuantidadeUsuarios.ToString(CultureInfo.InvariantCulture),
-                                sku = "sku"
+                                sku = "#1-usu·rios"
                             },
                             new Item
                             {
-                                name = "Equipamentos",
+                                name = "Equipamentos mantidos pelo SCEI",
                                 currency = "BRL",
                                 price = faturaDto.ValorPorEquipamento.ToString(CultureInfo.InvariantCulture),
                                 quantity = faturaDto.QuantidadeEquipamentos.ToString(CultureInfo.InvariantCulture),
-                                sku = "sku"
+                                sku = "#2-equipamentos"
                             }
                         }
                     }
@@ -72,27 +66,16 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.PayPal
             return transactionList;
         }
 
-        private static RedirectUrls PegarUrls()
+        private static RedirectUrls PegarUrlParaRedirecionamento(string baseUrl)
         {
             return new RedirectUrls
             {
-                cancel_url = "/Fatura/PagamentoCancelado",
-                return_url = "/Fatura/PagamentoEfetuado"
+                cancel_url = baseUrl + "/Fatura/PagamentoCancelado",
+                return_url = baseUrl + "/Fatura/PagamentoEfetuado"
             };
         }
 
-        public Payment ExecutarPagamento(string idPagamento, string idPagador)
-        {
-            var apiContext = ConfiguradorPagamento.GetApiContext();
-
-            var paymentExecution = new PaymentExecution { payer_id = idPagador };
-            var payment = new Payment { id = idPagamento };
-
-            var executedPayment = payment.Execute(apiContext, paymentExecution);
-            return executedPayment;
-        }
-
-        private static string PegarNumeroPagamento()
+        private static string PegarNumeroRandomicoParaPagamento()
         {
             return new Random().Next(999999).ToString();
         }

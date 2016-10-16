@@ -3,7 +3,7 @@
 
     angular
         .module("sceiAdmin")
-        .controller("faturamentoController", function ($filter, $sce, $location, growlService, siteService, loginService, faturamentoService) {
+        .controller("faturamentoController", function ($filter, $sce, $location, $window, growlService, siteService, loginService, faturamentoService) {
             var vm = this;
             vm.site = null;
             vm.faturaAtual = null;
@@ -30,9 +30,8 @@
             function pagar() {
                 faturamentoService.pagar(vm.faturaAtual)
                     .$promise.then(
-                    function () {
-                        growlService.growlSuccess("Pagamento efetuado com sucesso.");
-                        montaFaturaAtual();
+                    function (resultado) {
+                        $window.location.href = resultado.url;
                     },
                     function (erro) {
                         growlService.growlError(erro.data.Mensagem);

@@ -4,6 +4,7 @@ using Palla.Labs.Vdt.App.Dominio.Fabricas;
 using Palla.Labs.Vdt.App.Dominio.Servicos;
 using Palla.Labs.Vdt.App.Infraestrutura.Json;
 using Palla.Labs.Vdt.App.Infraestrutura.Mongo;
+using Palla.Labs.Vdt.App.Infraestrutura.PayPal;
 using Palla.Labs.Vdt.App.Infraestrutura.Seguranca;
 using Palla.Labs.Vdt.App.Infraestrutura.SimpleInjector;
 using Palla.Labs.Vdt.App.ServicosAplicacao;
@@ -72,6 +73,9 @@ namespace Palla.Labs.Vdt
             container.RegisterSingle<GeradorDeSenha, GeradorDeSenha>();
             container.RegisterSingle<GeradorDeToken, GeradorDeToken>();
             container.RegisterSingle<ValidadorDeToken, ValidadorDeToken>();
+            container.RegisterSingle<ConfiguradorPayPal, ConfiguradorPayPal>();
+            container.RegisterSingle<IntegradorPayPal, IntegradorPayPal>();
+            container.RegisterSingle<FabricaPagamentoPayPal, FabricaPagamentoPayPal>();
             container.RegisterSingle<Login, Login>();
 
             container.RegisterWebApiControllers(config);
