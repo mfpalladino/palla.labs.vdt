@@ -7,6 +7,7 @@
             var vm = this;
             vm.site = null;
             vm.faturaAtual = null;
+            vm.estaEfetuandoPagamento = false;
             vm.pagar = pagar;
 
             montaFaturaAtual();
@@ -28,12 +29,14 @@
             };
 
             function pagar() {
+                vm.estaEfetuandoPagamento = true
                 faturamentoService.pagar(vm.faturaAtual)
                     .$promise.then(
                     function (resultado) {
                         $window.location.href = resultado.url;
                     },
                     function (erro) {
+                        vm.estaEfetuandoPagamento = false
                         growlService.growlError(erro.data.Mensagem);
                     });
             };
