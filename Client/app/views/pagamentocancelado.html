@@ -1,0 +1,21 @@
+﻿<header id="header" data-current-skin={{sceiAdmin.currentSkin}} data-ng-include="'template/header.html'"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': sceiAdmin.sidebarToggle.left === true }"></aside>
+    <section id="content">
+        <div class="container" data-ng-controller="pagamentoCanceladoController as pagamentoCanceladoCtrl">
+            <div class="card">
+                <div class="card-header ch-alt">
+                    <h4>PAGAMENTO CANCELADO</h4>
+                </div>
+
+                <div class="card-body card-padding">
+                    <div class="row m-b-25">
+                        <div class="col-xs-12">
+                            <p class="text-muted">O pagamento da fatura foi cancelado no ambiente do PayPal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</section>
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>

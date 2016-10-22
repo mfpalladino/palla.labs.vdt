@@ -185,6 +185,8 @@
     <Compile Include="App\Dominio\Dtos\Equipamento\ManutencaoDto.cs" />
     <Compile Include="App\Dominio\Dtos\Equipamento\SumarioSituacaoDto.cs" />
     <Compile Include="App\Dominio\Dtos\FaturaDto.cs" />
+    <Compile Include="App\Dominio\Dtos\PagamentoCanceladoDto.cs" />
+    <Compile Include="App\Dominio\Dtos\PagamentoConfirmadoDto.cs" />
     <Compile Include="App\Dominio\Dtos\SiteDto.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaFatura.cs" />
     <Compile Include="App\Dominio\Fabricas\FabricaFaturaDto.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="App\Infraestrutura\Mongo\RepositorioFaturas.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioSites.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioUsuarios.cs" />
+    <Compile Include="App\Infraestrutura\PayPal\CachePayPal.cs" />
     <Compile Include="App\Infraestrutura\PayPal\ConfiguradorPayPal.cs" />
     <Compile Include="App\Infraestrutura\PayPal\FabricaPagamentoPayPal.cs" />
     <Compile Include="App\Infraestrutura\PayPal\IntegradorPayPal.cs" />
@@ -274,6 +277,7 @@
     <Compile Include="App\Infraestrutura\Mongo\RepositorioClientes.cs" />
     <Compile Include="App\Infraestrutura\Mongo\RepositorioGrupos.cs" />
     <Compile Include="App\ServicosAplicacao\Fatura\LocalizadorFatura.cs" />
+    <Compile Include="App\ServicosAplicacao\Fatura\PagadorFatura.cs" />
     <Compile Include="App\ServicosAplicacao\Site\LocalizadorSite.cs" />
     <Compile Include="App\ServicosAplicacao\Usuario\CriadorUsuario.cs" />
     <Compile Include="App\ServicosAplicacao\Usuario\LocalizadorGrupo.cs" />

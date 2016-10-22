@@ -350,6 +350,14 @@
                 .state("faturamento", {
                     url: "/faturamento",
                     templateUrl: "views/faturamento.html"
+                })
+                .state("faturamentoPagamentoCancelado", {
+                    url: "/faturamento/pagamentocancelado",
+                    templateUrl: "views/pagamentoCancelado.html"
+                })                
+                .state("faturamentoPagamentoConfirmado", {
+                    url: "/faturamento/pagamentoconfirmado",
+                    templateUrl: "views/pagamentoConfirmado.html"
                 });
         });
 })();

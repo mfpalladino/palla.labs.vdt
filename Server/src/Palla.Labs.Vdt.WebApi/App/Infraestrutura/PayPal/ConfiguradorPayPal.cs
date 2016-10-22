@@ -7,12 +7,16 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.PayPal
     {
         private readonly string _clientId;
         private readonly string _clientSecret;
+        private readonly string _urlCancelamentoPagamento;
+        private readonly string _urlConfirmacaoPagamento;
 
         public ConfiguradorPayPal()
         {
             var config = GetConfig();
             _clientId = config["clientId"];
             _clientSecret = config["clientSecret"];
+            _urlCancelamentoPagamento = config["urlCancelamentoPgto"];
+            _urlConfirmacaoPagamento = config["urlConfirmacaoPagto"];
         }
 
         public APIContext GetApiContext(string accessToken = "")
@@ -22,6 +26,16 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.PayPal
                 : accessToken) { Config = GetConfig() };
 
             return apiContext;
+        }
+
+        public string UrlCancelamentoPagamento
+        {
+            get { return _urlCancelamentoPagamento; }
+        }
+
+        public string UrlConfirmacaoPagamento
+        {
+            get { return _urlConfirmacaoPagamento; }
         }
 
         private string GetAccessToken()

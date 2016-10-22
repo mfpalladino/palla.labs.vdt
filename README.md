@@ -19,6 +19,7 @@ Em geral eu passo a maior parte do meu tempo desenvolvendo com tecnologias de ba
 - Moq
 - FluentAssertions
 - SimpleInjector
+- PayPal
 
 **Frontend:**
 

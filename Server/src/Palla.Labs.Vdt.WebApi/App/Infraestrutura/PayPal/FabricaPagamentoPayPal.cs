@@ -8,14 +8,18 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.PayPal
 {
     public class FabricaPagamentoPayPal
     {
-        public virtual Payment Criar(string baseUrl, FaturaDto faturaDto)
+        public virtual Payment Criar(string urlCancelamentoPagamento, string urlConfirmacaoPagamento, FaturaDto faturaDto)
         {
             return new Payment
             {
                 intent = "sale",
                 payer = new Payer { payment_method = "paypal" },
                 transactions = PegarListaTransacoes(faturaDto),
-                redirect_urls = PegarUrlParaRedirecionamento(baseUrl)
+                redirect_urls = new RedirectUrls
+                {
+                    cancel_url = urlCancelamentoPagamento,
+                    return_url = urlConfirmacaoPagamento
+                }
             };
         }
 
@@ -64,15 +68,6 @@ namespace Palla.Labs.Vdt.App.Infraestrutura.PayPal
             };
 
             return transactionList;
-        }
-
-        private static RedirectUrls PegarUrlParaRedirecionamento(string baseUrl)
-        {
-            return new RedirectUrls
-            {
-                cancel_url = baseUrl + "/Fatura/PagamentoCancelado",
-                return_url = baseUrl + "/Fatura/PagamentoEfetuado"
-            };
         }
 
         private static string PegarNumeroRandomicoParaPagamento()

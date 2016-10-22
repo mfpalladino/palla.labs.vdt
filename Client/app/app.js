@@ -31,6 +31,8 @@
 	require("./controllers/usuarioController.js");
 	require("./controllers/usuarioManterController.js");
 	require("./controllers/faturamentoController.js");
+	require("./controllers/pagamentoCanceladoController.js");
+	require("./controllers/pagamentoConfirmadoController.js");
 	
 	require("./directives/formDirectives.js");
 	require("./directives/resumoGrupoDirective.js");

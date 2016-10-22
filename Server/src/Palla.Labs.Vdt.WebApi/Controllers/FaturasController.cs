@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Palla.Labs.Vdt.App.Dominio.Dtos;
@@ -14,12 +13,14 @@ namespace Palla.Labs.Vdt.Controllers
     public class FaturasController : ApiController
     {
         private readonly CriadorFatura _criadorFatura;
+        private readonly PagadorFatura _pagadorFatura;
         private readonly LocalizadorFatura _localizadorFatura;
         private readonly IntegradorPayPal _integradorPayPal;
 
-        public FaturasController(CriadorFatura criadorFatura, LocalizadorFatura localizadorFatura, IntegradorPayPal integradorPayPal)
+        public FaturasController(CriadorFatura criadorFatura, PagadorFatura pagadorFatura, LocalizadorFatura localizadorFatura, IntegradorPayPal integradorPayPal)
         {
             _criadorFatura = criadorFatura;
+            _pagadorFatura = pagadorFatura;
             _localizadorFatura = localizadorFatura;
             _integradorPayPal = integradorPayPal;
         }
@@ -29,20 +30,26 @@ namespace Palla.Labs.Vdt.Controllers
         public HttpResponseMessage Post([FromBody] FaturaDto faturaDto)
         {
             _criadorFatura.Validar(Request.PegarSiteIdDoUsuario(), faturaDto);
-            var resultado = _integradorPayPal.CriarPagamento(GetBaseUrl(), faturaDto);
+            var resultado = _integradorPayPal.CriarPagamento(Request.PegarSiteIdDoUsuario(), faturaDto);
             return Request.CreateResponse(HttpStatusCode.OK, new { Url = resultado.UrlParaPagamento });
         }
 
-        [Route("faturas/PagamentoEfetuado")]
-        public HttpResponseMessage PagamentoEfetuado(string paymentId, string token, string PayerID)
+        [HttpPost]
+        [Route("faturas/PagamentoConfirmado")]
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
+        public HttpResponseMessage PagamentoConfirmado(PagamentoConfirmadoDto pagamentoConfirmadoDto)
         {
-            return Request.CreateResponse(HttpStatusCode.OK); //todo
+            _pagadorFatura.Pagar(Request.PegarSiteIdDoUsuario(), pagamentoConfirmadoDto);
+            return Request.CreateResponse(HttpStatusCode.OK); 
         }
 
+        [HttpPost]
         [Route("faturas/PagamentoCancelado")]
-        public HttpResponseMessage PagamentoCancelado()
+        [AtributoValidadorDePerfil(TipoUsuario.Dono)]
+        public HttpResponseMessage PagamentoCancelado(PagamentoCanceladoDto pagamentoCanceladoDto)
         {
-            return Request.CreateResponse(HttpStatusCode.OK); //todo
+            _integradorPayPal.CancelarPagamento(Request.PegarSiteIdDoUsuario(), pagamentoCanceladoDto.Token);
+            return Request.CreateResponse(HttpStatusCode.OK); 
         }
 
         [HttpGet]
@@ -66,11 +73,6 @@ namespace Palla.Labs.Vdt.Controllers
         public HttpResponseMessage Atual()
         {
             return Request.CreateResponse(HttpStatusCode.OK, _localizadorFatura.LocalizarAtual(Request.PegarSiteIdDoUsuario()));
-        }
-
-        private string GetBaseUrl()
-        {
-            return Request.RequestUri.Scheme + "://" + Request.RequestUri.Host;
         }
     }
 }
