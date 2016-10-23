@@ -19,7 +19,7 @@
                             loginService.salvarDadosLogin(resultado.token, vm.login.dominio, resultado.usuario, resultado.permissoes);
                             var mensagemDeBoasVindas = "Olá, " + resultado.usuario + ".";
                             growlService.growlWelcome(mensagemDeBoasVindas);
-                            $location.path("/home");
+                            $location.path("/home").replace();
                         },
                         function(erro) {
                             growlService.growlError(erro.data.Mensagem);
